@@ -67,6 +67,10 @@ return {
 
 			require("neo-tree").setup({
 				filesystem = {
+					filtered_items = {
+						hide_dotfiles = false,
+						hide_gitignored = false,
+					},
 					follow_current_file = {
 						enabled = true,
 						leave_dirs_open = false,
@@ -99,6 +103,9 @@ return {
 					["gx"] = "actions.open_external",
 					["g."] = "actions.toggle_hidden",
 					["g\\"] = "actions.toggle_trash",
+				},
+				view_options = {
+					show_hidden = true,
 				},
 			})
 
