@@ -75,9 +75,12 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Path
+# for linux
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/root/.local/bin"
 export PATH="$PATH:$HOME/.local/bin"
+# macos specific
+export PATH="$PATH:$HOME/nvim-macos-arm64/bin"
 
 # Aliases
 alias ls='ls --color'
