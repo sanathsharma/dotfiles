@@ -77,6 +77,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Path
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/root/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # Aliases
 alias ls='ls --color'
@@ -84,8 +85,9 @@ alias vim='nvim'
 alias c='clear'
 alias tmux="tmux -u"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
