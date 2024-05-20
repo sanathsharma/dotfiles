@@ -23,7 +23,7 @@ return {
 			vim.keymap.set("n", "<leader>fs", builtin.git_status, { desc = "Move between changed files in current HEAD" })
 			vim.keymap.set("n", "<leader>fi", function()
 				builtin.live_grep({ search_dirs = { vim.fn.expand("%:p") } })
-			end, { desc = "Live grep [i]n in current buffer" })
+			end, { desc = "Live grep [i]n current buffer" })
 		end,
 	},
 	{
