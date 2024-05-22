@@ -4,7 +4,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
 	command = "set filetype=sh",
 })
 
-vim.cmd("set noexpandtab")
+vim.cmd("set noexpandtab") -- tabs
+-- vim.cmd("set expandtab") -- spaces
 vim.cmd("set shiftwidth=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set tabstop=2")
@@ -28,6 +29,14 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.scrolloff = 5
 vim.opt.signcolumn = "yes"
+
+-- highlight special characters
+vim.cmd("set listchars=eol:⏎,tab:␉·,trail:·,nbsp:⎵,extends:»,precedes:«,space:·")
+vim.cmd("highlight Whitespace guifg=NvimDarkGray4")
+vim.keymap.set("n", "<leader>tl", function()
+	vim.cmd("set list!")
+end, { desc = "Toggle special characters [l]ist" })
+vim.cmd("set list") -- highlight special by default
 
 -- buffer commands
 vim.keymap.set("n", "<leader>ba", "<cmd>bufdo bd<CR>", { desc = "Close [a]ll buffers" })
@@ -155,4 +164,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
