@@ -11,5 +11,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require("options") -- goes first as it configures leader key
 require("keymaps")
+require("autocmds")
+require("user-cmds")
 require("lazy").setup("plugins") -- look for plugins file in lua module
