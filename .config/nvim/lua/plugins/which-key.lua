@@ -15,6 +15,7 @@ return {             -- Useful plugin to show you pending keybinds.
 
 			-- custom key chains
 			["<leader>f"] = { name = "[F]uzzy find", _ = "which_key_ignore" },
+			["<leader>b"] = { name = "[B]uffer", _ = "which_key_ignore" },
 			["<leader>g"] = { name = "[G]o to", _ = "which_key_ignore" },
 			["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
 			["<leader>a"] = { name = "[A]ctions", _ = "which_key_ignore" },
@@ -24,6 +25,7 @@ return {             -- Useful plugin to show you pending keybinds.
 			["<leader>d"] = { name = "[D]ebug adaptor protocol", _ = "which_key_ignore" },
 			["<leader>l"] = { name = "[L]azy", _ = "which_key_ignore" },
 			["<leader>o"] = { name = "[O]bsidian", _ = "which_key_ignore" },
+			["<leader>x"] = { name = "Trouble", _ = "which_key_ignore" },
 		}, { mode = "n" })
 
 		-- visual mode mappings register
