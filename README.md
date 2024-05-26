@@ -51,7 +51,7 @@ apt intall htop
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 # resource to make nvm available
 source ~/.bashrc
-sourve ~/.zshrc
+source ~/.zshrc
 nvm install 20
 node -v
 npm -v
