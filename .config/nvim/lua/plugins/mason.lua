@@ -8,7 +8,7 @@ return {
 					"codelldb",
 					"biome",
 					"gofumpt",
-					"goimports_reviser",
+					"goimports-reviser",
 					"golines",
 				},
 			})

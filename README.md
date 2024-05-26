@@ -5,11 +5,14 @@
 apt update
 apt upgrade
 
-# Install git
-apt install git-all
-
 # Install curl
 apt install curl
+
+# Install zip (for mason)
+apt install zip
+
+# Install git
+apt install git-all
 
 # Install zsh
 apt install zsh
@@ -42,7 +45,8 @@ apt install gcc build-essential
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
-sudo install lazygit /usr/local/bin
+install lazygit /usr/local/bin
+rm -rf lazygit lazygit.tar.gz
 
 # Install ripgrep
 apt install ripgrep
@@ -69,13 +73,21 @@ rm -f ./nvim-linux64.tar.gz
 
 # Install rust
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+# resource to make rustup available
+source ~/.bashrc
+source ~/.zshrc
 
 # Add rust analyzer, with stable toolchain
 # This makes neovim use the same rust-analyzer verison as the compiler, avoiding editor not giving errors or giving unnecessary errors for example
-rustup toolchain install stable
 rustup component add rust-analyzer
 
-# Install go from https://go.dev/doc/install
+# Install go (see https://go.dev/doc/install for more info)
+GO_VERSION=go1.22.3 # go does not have releases, only tags. Which makes it deficult to get latest tag on the github repo
+curl -Lo go.tar.gz https://go.dev/dl/${GO_VERSION}.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go.tar.gz
+rm go.tar.gz
+# path is already part of .zshrc, add this variable to current shell session
+export PATH=$PATH:/usr/local/go/bin
 ```
 
 ### Check the source of rust-analyzer

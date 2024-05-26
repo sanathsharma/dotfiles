@@ -101,3 +101,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Rust setup
 . "$HOME/.cargo/env"
+
+# Go entry
+export PATH="$PATH:/usr/local/go/bin"
+
