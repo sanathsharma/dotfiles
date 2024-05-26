@@ -11,6 +11,9 @@ apt install git-all
 # Install zsh
 apt install zsh
 
+# Set default shell to zsh
+chsh -s /usr/bin/zsh
+
 # Install GNU stow
 apt install stow
 
@@ -46,6 +49,9 @@ apt intall htop
 
 # Install nodejs via nvm (see https://nodejs.org/en/download/package-manager for more info)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# resource to make nvm available
+source ~/.bashrc
+sourve ~/.zshrc
 nvm install 20
 node -v
 npm -v
