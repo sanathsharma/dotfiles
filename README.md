@@ -8,6 +8,9 @@ apt upgrade
 # Install git
 apt install git-all
 
+# Install curl
+apt install curl
+
 # Install zsh
 apt install zsh
 
