@@ -128,25 +128,6 @@ return {
 			end
 			--#endregion
 
-			--#region rust
-			dap.adapters.lldb = {
-				type = "executable",
-				command = "codelldb",
-				name = "lldb",
-			}
-
-			dap.configurations.rust = {
-				{
-					name = "Launch",
-					type = "lldb",
-					request = "launch",
-					cwd = "${workspaceFolder}",
-					stopOnEntry = false,
-					args = {},
-				},
-			}
-			--#endregion
-
 			--#region event listeners
 			dap.listeners.before.attach.dapui_config = function()
 				dapui.open({ reset = true })
@@ -175,6 +156,7 @@ return {
 				"<cmd>DapToggleBreakpoint<CR>",
 				{ noremap = true, desc = "[T]oggle DAP breakpoint" }
 			)
+			vim.keymap.set("n", "<leader>dx", "<cmd>DapTerminate<CR>", { noremap = true, desc = "DAP Terminate" })
 			vim.keymap.set("n", "<leader>dc", function()
 				if vim.fn.filereadable(".vscode/launch.json") then
 					local dap_vscode = require("dap.ext.vscode")
@@ -194,10 +176,24 @@ return {
 				"<cmd>lua require('dapui').open({ reset = true })<CR>",
 				{ noremap = true, desc = "[R]eset DAP UI" }
 			)
+			vim.keymap.set("n", "<leader>dus", function()
+				local widgets = require("dap.ui.widgets")
+				local sidebar = widgets.sidebar(widgets.scopes)
+				sidebar.open()
+			end, { noremap = true, desc = "Open debugging sidebar" })
 			--#endregion
 		end,
 	},
 	{
 		"theHamsta/nvim-dap-virtual-text",
+	},
+	{
+		"nvim-telescope/telescope-dap.nvim",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+		},
+		config = function()
+			require("telescope").load_extension("dap")
+		end,
 	},
 }
