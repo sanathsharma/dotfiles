@@ -65,9 +65,6 @@ vim.keymap.set("n", "<leader>tr", function()
 	vim.cmd("set relativenumber!")
 end, { desc = "Toggle [r]elative line numbering" })
 
--- see https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua for more helpful configurations and keymaps
--- all configurations and keymaps below this line are from kickstart.nvim template
-
 -- Disable arrow keys in normal mode (to improve vim usage)
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')

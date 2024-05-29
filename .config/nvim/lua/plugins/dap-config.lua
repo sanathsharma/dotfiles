@@ -26,8 +26,6 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
-			"rcarriga/nvim-dap-ui",
-			"nvim-neotest/nvim-nio",
 			"leoluz/nvim-dap-go",
 			{
 				"microsoft/vscode-js-debug",
@@ -47,10 +45,9 @@ return {
 			},
 		},
 		config = function()
-			local dap, dapui = require("dap"), require("dapui")
+			local dap = require("dap")
 
 			require("dap-go").setup()
-			dapui.setup()
 
 			--#region js
 			dap.adapters["chrome"] = {
@@ -120,7 +117,7 @@ return {
 					},
 					-- Divider for the launch.json derived configs
 					{
-						name = "----- ↓ launch.json configs ↓ -----",
+						name = "----- ↑ launch.json configs ↑ -----",
 						type = "",
 						request = "launch",
 					},
@@ -128,34 +125,14 @@ return {
 			end
 			--#endregion
 
-			--#region event listeners
-			dap.listeners.before.attach.dapui_config = function()
-				dapui.open({ reset = true })
-			end
-			dap.listeners.before.launch.dapui_config = function()
-				dapui.open({ reset = true })
-			end
-			dap.listeners.before.event_terminated.dapui_config = function()
-				dapui.close()
-			end
-			dap.listeners.before.event_exited.dapui_config = function()
-				dapui.close()
-			end
-			--#endregion
-
 			--#region keymaps
 			vim.keymap.set(
 				"n",
 				"<leader>dt",
-				"<cmd>lua require('dapui').toggle()<CR>",
-				{ noremap = true, desc = "[T]oggle DAP UI" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>db",
 				"<cmd>DapToggleBreakpoint<CR>",
 				{ noremap = true, desc = "[T]oggle DAP breakpoint" }
 			)
+			vim.keymap.set("n", "<leader>dT", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
 			vim.keymap.set("n", "<leader>dx", "<cmd>DapTerminate<CR>", { noremap = true, desc = "DAP Terminate" })
 			vim.keymap.set("n", "<leader>dc", function()
 				if vim.fn.filereadable(".vscode/launch.json") then
@@ -170,22 +147,39 @@ return {
 				end
 				require("dap").continue()
 			end, { noremap = true, desc = "DAP continue" })
-			vim.keymap.set(
-				"n",
-				"<leader>dr",
-				"<cmd>lua require('dapui').open({ reset = true })<CR>",
-				{ noremap = true, desc = "[R]eset DAP UI" }
-			)
-			vim.keymap.set("n", "<leader>dus", function()
+			vim.keymap.set("n", "<leader>dk", ":lua require\"dap\".up()<CR>zz")
+			vim.keymap.set("n", "<leader>dj", ":lua require\"dap\".down()<CR>zz")
+			vim.keymap.set({ "n", "t" }, "<leader>do", function()
+				require("dap").step_out()
+			end)
+			vim.keymap.set({ "n", "t" }, "<leader>di", function()
+				require("dap").step_into()
+			end)
+			vim.keymap.set({ "n", "t" }, "<leader>dO", function()
+				require("dap").step_over()
+			end)
+			vim.keymap.set("n", "<leader>dn", function()
+				require("dap").run_to_cursor()
+			end)
+			vim.keymap.set("n", "<leader>dK", function()
+				require("dap.ui.widgets").hover()
+			end)
+			vim.keymap.set("n", "<leader>d?", function()
 				local widgets = require("dap.ui.widgets")
-				local sidebar = widgets.sidebar(widgets.scopes)
-				sidebar.open()
-			end, { noremap = true, desc = "Open debugging sidebar" })
+				widgets.centered_float(widgets.scopes)
+			end)
+			vim.keymap.set("n", "<leader>dr", ":lua require\"dap\".repl.toggle({}, \"vsplit\")<CR><C-w>l")
+			vim.keymap.set("n", "<leader>dR", function()
+				require("dap").clear_breakpoints()
+			end)
 			--#endregion
 		end,
 	},
 	{
 		"theHamsta/nvim-dap-virtual-text",
+		config = function()
+			require("nvim-dap-virtual-text").setup()
+		end,
 	},
 	{
 		"nvim-telescope/telescope-dap.nvim",
@@ -194,6 +188,9 @@ return {
 		},
 		config = function()
 			require("telescope").load_extension("dap")
+			vim.keymap.set("n", "<leader>ds", ":Telescope dap frames<CR>")
+			vim.keymap.set("n", "<leader>de", ":Telescope dap commands<CR>")
+			vim.keymap.set("n", "<leader>db", ":Telescope dap list_breakpoints<CR>")
 		end,
 	},
 }
