@@ -52,7 +52,7 @@ rm -rf lazygit lazygit.tar.gz
 apt install ripgrep
 
 # Install htop to moniter process
-apt intall htop
+apt install htop
 
 # Install nodejs via nvm (see https://nodejs.org/en/download/package-manager for more info)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
@@ -104,3 +104,7 @@ In that event you could remove the Mason version with :MasonUninstall rust-analy
 
 see [stackexchange-thread](https://vi.stackexchange.com/questions/43681/simplest-setup-for-nvim-and-rust-and-system-rust-analyzer) for more info
 
+### To symlink the dotfiles to root/home folder, run the following command from within the `dotfiles` dir
+```sh
+stow .
+```

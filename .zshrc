@@ -81,6 +81,8 @@ export PATH="$PATH:/root/.local/bin"
 export PATH="$PATH:$HOME/.local/bin"
 # macos specific
 export PATH="$PATH:$HOME/nvim-macos-arm64/bin"
+# Go entry
+export PATH="$PATH:/usr/local/go/bin"
 
 # Aliases
 alias ls='ls --color'
@@ -101,7 +103,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # Rust setup
 . "$HOME/.cargo/env"
-
-# Go entry
-export PATH="$PATH:/usr/local/go/bin"
 
