@@ -108,3 +108,8 @@ see [stackexchange-thread](https://vi.stackexchange.com/questions/43681/simplest
 ```sh
 stow .
 ```
+
+### i3WM Setup
+```sh
+apt install i3 picom polybar rofi
+```

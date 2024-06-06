@@ -11,6 +11,7 @@ vim.g.maplocalleader = " "
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.conceallevel = 2
+vim.opt.cmdheight = 1
 
 -- color 120th column to identify formatter overflow
 vim.opt.colorcolumn = "120"
