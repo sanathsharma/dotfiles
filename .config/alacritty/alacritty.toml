@@ -16,3 +16,5 @@ option_as_alt = "Both"
 normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
 size = 14
 
+[scrolling]
+multiplier = 0
