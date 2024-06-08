@@ -63,6 +63,9 @@ nvm install 20
 node -v
 npm -v
 
+# Install ohmyposh
+curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin
+
 # Install neovim
 # for latest
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
