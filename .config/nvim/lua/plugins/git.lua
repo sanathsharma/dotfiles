@@ -89,6 +89,12 @@ return {
 		-- order to load the plugin when the command is run for the first time
 		keys = {
 			{ "<leader>lg", "<cmd>LazyGit<CR>", desc = "Lazy[G]it" },
+			{
+				"<leader>ln",
+				":!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
+				silent = true,
+				desc = "Lazygit in [n]ew tmux window",
+			},
 		},
 	},
 }
