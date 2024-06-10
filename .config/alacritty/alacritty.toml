@@ -10,7 +10,7 @@ padding.x = 0
 padding.y = 0
 
 decorations = "Buttonless"
-opacity = 0.8
+# opacity = 0.8
 blur = true
 # startup_mode = "Fullscreen"
 
