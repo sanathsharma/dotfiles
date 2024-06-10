@@ -132,7 +132,12 @@ return {
 				"<cmd>DapToggleBreakpoint<CR>",
 				{ noremap = true, desc = "[T]oggle DAP breakpoint" }
 			)
-			vim.keymap.set("n", "<leader>dT", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+			vim.keymap.set(
+				"n",
+				"<leader>dT",
+				":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+				{ desc = "Set conditional breakpoint" }
+			)
 			vim.keymap.set("n", "<leader>dx", "<cmd>DapTerminate<CR>", { noremap = true, desc = "DAP Terminate" })
 			vim.keymap.set("n", "<leader>dc", function()
 				if vim.fn.filereadable(".vscode/launch.json") then
@@ -147,31 +152,36 @@ return {
 				end
 				require("dap").continue()
 			end, { noremap = true, desc = "DAP continue" })
-			vim.keymap.set("n", "<leader>dk", ":lua require\"dap\".up()<CR>zz")
-			vim.keymap.set("n", "<leader>dj", ":lua require\"dap\".down()<CR>zz")
+			vim.keymap.set("n", "<leader>dk", ":lua require\"dap\".up()<CR>zz", { desc = "DAP up" })
+			vim.keymap.set("n", "<leader>dj", ":lua require\"dap\".down()<CR>zz", { desc = "DAP down" })
 			vim.keymap.set({ "n", "t" }, "<leader>do", function()
 				require("dap").step_out()
-			end)
+			end, { desc = "DAP step out" })
 			vim.keymap.set({ "n", "t" }, "<leader>di", function()
 				require("dap").step_into()
-			end)
+			end, { desc = "DAP step into" })
 			vim.keymap.set({ "n", "t" }, "<leader>dO", function()
 				require("dap").step_over()
-			end)
+			end, { desc = "DAP step over" })
 			vim.keymap.set("n", "<leader>dn", function()
 				require("dap").run_to_cursor()
-			end)
+			end, { desc = "DAP run to cursor" })
 			vim.keymap.set("n", "<leader>dK", function()
 				require("dap.ui.widgets").hover()
-			end)
+			end, { desc = "DAP hover widget" })
 			vim.keymap.set("n", "<leader>d?", function()
 				local widgets = require("dap.ui.widgets")
 				widgets.centered_float(widgets.scopes)
-			end)
-			vim.keymap.set("n", "<leader>dr", ":lua require\"dap\".repl.toggle({}, \"vsplit\")<CR><C-w>l")
+			end, { desc = "DAP scopes widget" })
+			vim.keymap.set(
+				"n",
+				"<leader>dr",
+				":lua require\"dap\".repl.toggle({}, \"vsplit\")<CR><C-w>l",
+				{ desc = "DAP toggle repl" }
+			)
 			vim.keymap.set("n", "<leader>dR", function()
 				require("dap").clear_breakpoints()
-			end)
+			end, { desc = "DAP clear all breakpoints" })
 			--#endregion
 		end,
 	},
