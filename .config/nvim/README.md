@@ -138,3 +138,8 @@ git config --global pull.rebase true
 - `\\` - open terminal
 - = - auto indent selected line in visual mode
 - <n>== - auto indent next n lines
+- `][` - jump to next end of code block
+- `[]` - jump to previous start of code block
+- `]}` - jump to end of current code block
+- `[{` - jump to start of current code block
+- `%` - jump to matching closing or opening braces
