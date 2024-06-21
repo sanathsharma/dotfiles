@@ -48,6 +48,9 @@ tar xf lazygit.tar.gz lazygit
 install lazygit /usr/local/bin
 rm -rf lazygit lazygit.tar.gz
 
+# Install lazydocker
+curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+
 # Install ripgrep
 apt install ripgrep
 
