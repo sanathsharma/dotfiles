@@ -6,6 +6,7 @@
 - rust_analyser
 - jsonls
 - marksman (markdown files)
+- yamlls
 
 ### Quick installation
 #### linux/docker-container
