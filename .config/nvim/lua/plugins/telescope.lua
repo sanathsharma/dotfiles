@@ -40,6 +40,9 @@ return {
 							["<C-k>"] = function(prompt_bufnr)
 								actions.move_selection_previous(prompt_bufnr)
 							end,
+							["<Esc>"] = function(prompt_bufnr)
+								actions.close(prompt_bufnr)
+							end,
 						},
 					},
 				},
