@@ -57,6 +57,9 @@ apt install ripgrep
 # Install htop to moniter process
 apt install htop
 
+# Install psql for dadbod
+apt install postgresql-client
+
 # Install nodejs via nvm (see https://nodejs.org/en/download/package-manager for more info)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 # resource to make nvm available
