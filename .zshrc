@@ -78,6 +78,9 @@ alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
 alias tmux="tmux -u"
+alias cwr="cargo watch -q -c -w src/ -w .cargo/ -x run"
+alias lg="lazygit"
+alias ld="lazydocker"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
