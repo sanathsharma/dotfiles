@@ -60,6 +60,9 @@ apt install htop
 # Install psql for dadbod
 apt install postgresql-client
 
+# Install jq for json parcing and formatting for vim-rest-console (see https://jqlang.github.io/jq/ for more info)
+apt install jq
+
 # Install nodejs via nvm (see https://nodejs.org/en/download/package-manager for more info)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 # resource to make nvm available

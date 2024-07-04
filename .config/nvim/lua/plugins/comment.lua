@@ -31,5 +31,4 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
 	},
-	-- TODO: add a plugin for expanding/collapsing regions
 }
