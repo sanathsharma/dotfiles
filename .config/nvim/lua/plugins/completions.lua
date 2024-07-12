@@ -82,6 +82,7 @@ return {
 		-- INFO: lsp completion are good enough, if more is required then enable this and dissable the lsp completion to avoid duplication
 		-- "hrsh7th/cmp-nvim-lua",
 		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-cmdline",
 		"onsails/lspkind.nvim",
 	},
 	config = function()
@@ -129,6 +130,7 @@ return {
 						nvim_lua = "[api]",
 						path = "[path]",
 						luasnip = "[snip]",
+						cmdline = "[cmd]",
 					},
 				}),
 			},
