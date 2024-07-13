@@ -112,4 +112,17 @@ return {
 			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 		end,
 	},
+	{
+		"ggandor/leap.nvim",
+		config = function()
+			vim.keymap.set({ "n", "x", "o" }, "m", "<Plug>(leap-forward)", { desc = "[M]ove cursor forward" })
+			vim.keymap.set({ "n", "x", "o" }, "M", "<Plug>(leap-backward)", { desc = "[M]ove cursor backward" })
+			vim.keymap.set(
+				{ "n", "x", "o" },
+				"mw",
+				"<Plug>(leap-from-window)",
+				{ desc = "[M]ove cursor across window splits" }
+			)
+		end,
+	},
 }
