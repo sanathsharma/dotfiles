@@ -1,37 +1,41 @@
-return {             -- Useful plugin to show you pending keybinds.
+return { -- Useful plugin to show you pending keybinds.
 	"folke/which-key.nvim",
 	event = "VimEnter", -- Sets the loading event to 'VimEnter'
 	config = function() -- This is the function that runs, AFTER loading
 		local whichKey = require("which-key")
 		whichKey.setup()
 
-		-- normal mode mappings register
-		whichKey.register({
-			-- Document existing key chains
-			["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-			["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-			["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-			["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+		whichKey.add({
+			{
+				-- normal mode mappings register
+				mode = "n",
 
-			-- custom key chains
-			["<leader>f"] = { name = "[F]uzzy find", _ = "which_key_ignore" },
-			["<leader>b"] = { name = "[B]uffer", _ = "which_key_ignore" },
-			["<leader>g"] = { name = "[G]o to", _ = "which_key_ignore" },
-			["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
-			["<leader>a"] = { name = "[A]ctions", _ = "which_key_ignore" },
-			["<leader>h"] = { name = "Git actions", _ = "which_key_ignore" },
-			["<leader>u"] = { name = "[U]pgrade", _ = "which_key_ignore" },
-			["<leader>m"] = { name = "[M]arks", _ = "which_key_ignore" },
-			["<leader>d"] = { name = "[D]ebug adaptor protocol", _ = "which_key_ignore" },
-			["<leader>l"] = { name = "[L]azy", _ = "which_key_ignore" },
-			["<leader>o"] = { name = "[O]bsidian", _ = "which_key_ignore" },
-			["<leader>x"] = { name = "Trouble", _ = "which_key_ignore" },
-		}, { mode = "n" })
+				-- Document existing key chains
+				{ "<leader>c", group = "[C]ode" },
+				{ "<leader>r", group = "[R]ename" },
+				{ "<leader>s", group = "[S]earch" },
+				{ "<leader>w", group = "[W]orkspace" },
 
-		-- visual mode mappings register
-		whichKey.register({
-			["<leader>a"] = { name = "[A]ctions", _ = "which_key_ignore" },
-			["<leader>h"] = { name = "Git actions", _ = "which_key_ignore" },
-		}, { mode = "v" })
+				-- custom key chains
+				{ "<leader>f", group = "[F]uzzy find" },
+				{ "<leader>b", group = "[B]uffer" },
+				{ "<leader>g", group = "[G]o to" },
+				{ "<leader>t", group = "[T]oggle" },
+				{ "<leader>u", group = "[U]pgrade" },
+				{ "<leader>m", group = "[M]arks" },
+				{ "<leader>d", group = "[D]ebug adaptor protocol" },
+				{ "<leader>l", group = "[L]azy" },
+				{ "<leader>o", group = "[O]bsidian" },
+				{ "<leader>x", group = "Trouble" },
+			},
+			{
+				-- visual mode mappings register
+				mode = { "v", "n" },
+
+				-- custom key chains
+				{ "<leader>a", group = "[A]ctions" },
+				{ "<leader>h", group = "Git actions" },
+			},
+		})
 	end,
 }
