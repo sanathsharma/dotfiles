@@ -19,7 +19,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- keep old copied content even after pasting it over another selected content
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Past over selection w/o loosing the clipboard content" })
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "Past over selection w/o loosing the clipboard content" })
 
 -- navigating sugestion
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
@@ -66,10 +66,10 @@ vim.keymap.set("n", "<leader>tr", function()
 end, { desc = "Toggle [r]elative line numbering" })
 
 -- Disable arrow keys in normal mode (to improve vim usage)
-vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set("n", "<left>", "<cmd>echo \"Use h to move!!\"<CR>")
+vim.keymap.set("n", "<right>", "<cmd>echo \"Use l to move!!\"<CR>")
+vim.keymap.set("n", "<up>", "<cmd>echo \"Use k to move!!\"<CR>")
+vim.keymap.set("n", "<down>", "<cmd>echo \"Use j to move!!\"<CR>")
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
@@ -87,4 +87,12 @@ vim.keymap.set(
 	"<leader>ld",
 	":!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazydocker <CR><CR>",
 	{ desc = "Lazy[d]ocker in new tmux window", silent = true }
+)
+
+-- Switching between camelCase and snake_case
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>tc",
+	"<cmd>lua require(\"switch-case\").switch_case()<CR>",
+	{ noremap = true, silent = true, desc = "[T]oggle switch [c]ase" }
 )
