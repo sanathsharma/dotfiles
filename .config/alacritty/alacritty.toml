@@ -9,7 +9,7 @@ TERM = "xterm-256color"
 padding.x = 0
 padding.y = 0
 
-decorations = "Buttonless"
+# decorations = "Buttonless"
 # opacity = 0.8
 blur = true
 # startup_mode = "Fullscreen"
