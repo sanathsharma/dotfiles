@@ -53,10 +53,10 @@ return {
 				on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
 			})
 
-			vim.keymap.set("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Toggle treesetter context" })
-			vim.keymap.set("n", "<leader>gc", function()
+			vim.keymap.set("n", "<leader>ts", "<cmd>TSContextToggle<CR>", { desc = "[T]oggle [s]ticky scroll" })
+			vim.keymap.set("n", "<leader>gs", function()
 				require("treesitter-context").go_to_context(vim.v.count1)
-			end, { silent = true })
+			end, { silent = true, desc = "[g]o to nearest [s]tick scroll context" })
 
 			vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = false })
 			vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", { underline = false })
