@@ -1,5 +1,5 @@
-vim.cmd("set noexpandtab") -- tabs
--- vim.cmd("set expandtab") -- spaces
+-- vim.cmd("set noexpandtab") -- tabs
+vim.cmd("set expandtab") -- spaces
 vim.cmd("set shiftwidth=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set tabstop=2")
