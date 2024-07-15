@@ -82,6 +82,8 @@ alias tmux="tmux -u"
 alias cwr="cargo watch -q -c -w src/ -w .cargo/ -x run"
 alias lg="lazygit"
 alias ld="lazydocker"
+alias d="docker"
+alias k="kubectl"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
