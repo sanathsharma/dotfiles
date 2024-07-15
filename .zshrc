@@ -68,10 +68,11 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/root/.local/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin"
-# macos specific
-export PATH="$PATH:$HOME/nvim-macos-arm64/bin"
 # Go entry
 export PATH="$PATH:/usr/local/go/bin"
+# macos specific
+export PATH="$PATH:$HOME/nvim-macos-arm64/bin"
+export PATH="$PATH:/Library/PostgreSQL/16/bin"
 
 # Aliases
 alias ls='ls --color'
