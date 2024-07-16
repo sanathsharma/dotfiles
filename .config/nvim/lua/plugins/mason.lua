@@ -5,11 +5,11 @@ return {
 			require("mason-tool-installer").setup({
 				ensure_installed = {
 					"stylua",
-					"codelldb",
+					-- "codelldb",
 					"biome",
-					"gofumpt",
-					"goimports-reviser",
-					"golines",
+					-- "gofumpt",
+					-- "goimports-reviser",
+					-- "golines",
 				},
 			})
 		end,
