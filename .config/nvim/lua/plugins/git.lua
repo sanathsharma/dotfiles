@@ -91,4 +91,23 @@ return {
 	-- 		{ "<leader>lg", "<cmd>LazyGit<CR>", desc = "Lazy[G]it" },
 	-- 	},
 	-- },
+	{
+		"ThePrimeagen/git-worktree.nvim",
+		config = function()
+			require("telescope").load_extension("git_worktree")
+
+			vim.keymap.set(
+				"n",
+				"<leader>wo",
+				"<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",
+				{ desc = "Open git worktrees list" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>wn",
+				"<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",
+				{ desc = "Create new worktree" }
+			)
+		end,
+	},
 }
