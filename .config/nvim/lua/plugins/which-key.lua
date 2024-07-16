@@ -14,7 +14,6 @@ return { -- Useful plugin to show you pending keybinds.
 				{ "<leader>c", group = "[C]ode" },
 				{ "<leader>r", group = "[R]ename" },
 				{ "<leader>s", group = "[S]earch" },
-				{ "<leader>w", group = "[W]orkspace" },
 
 				-- custom key chains
 				{ "<leader>f", group = "[F]uzzy find" },
@@ -27,6 +26,7 @@ return { -- Useful plugin to show you pending keybinds.
 				{ "<leader>l", group = "[L]azy" },
 				{ "<leader>o", group = "[O]bsidian" },
 				{ "<leader>x", group = "Trouble" },
+				{ "<leader>w", group = "[W]orktree" },
 			},
 			{
 				-- visual mode mappings register
