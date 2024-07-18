@@ -68,8 +68,12 @@ end, { desc = "Toggle [r]elative line numbering" })
 -- Disable arrow keys in normal mode (to improve vim usage)
 vim.keymap.set("n", "<left>", "<cmd>echo \"Use h to move!!\"<CR>")
 vim.keymap.set("n", "<right>", "<cmd>echo \"Use l to move!!\"<CR>")
-vim.keymap.set("n", "<up>", "<cmd>echo \"Use k to move!!\"<CR>")
-vim.keymap.set("n", "<down>", "<cmd>echo \"Use j to move!!\"<CR>")
+-- vim.keymap.set("n", "<up>", "<cmd>echo \"Use k to move!!\"<CR>")
+-- vim.keymap.set("n", "<down>", "<cmd>echo \"Use j to move!!\"<CR>")
+
+-- Increment/decrement
+vim.keymap.set("n", "<up>", "<C-a>")
+vim.keymap.set("n", "<down>", "<C-x>")
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
@@ -91,15 +95,11 @@ vim.api.nvim_set_keymap(
 	{ noremap = true, silent = true, desc = "[T]oggle switch [c]ase" }
 )
 
--- Increment/decrement
-vim.keymap.set("n", "+", "<C-a>")
-vim.keymap.set("n", "-", "<C-x>")
-
 -- Select all
 vim.keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- Resize window
-vim.keymap.set("n", "<C-w>h", "<C-w><")
-vim.keymap.set("n", "<C-w>l", "<C-w>>")
-vim.keymap.set("n", "<C-w>k", "<C-w>+")
-vim.keymap.set("n", "<C-w>j", "<C-w>-")
+vim.keymap.set("n", "<C-w><down>", "<cmd>horizontal resize -10<CR>")
+vim.keymap.set("n", "<C-w><up>", "<cmd>horizontal resize +10<CR>")
+vim.keymap.set("n", "<C-w><right>", "<cmd>vertical resize +10<CR>")
+vim.keymap.set("n", "<C-w><left>", "<cmd>vertical resize -10<CR>")
