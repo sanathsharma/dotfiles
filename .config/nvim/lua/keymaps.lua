@@ -90,3 +90,16 @@ vim.api.nvim_set_keymap(
 	"<cmd>lua require(\"switch-case\").switch_case()<CR>",
 	{ noremap = true, silent = true, desc = "[T]oggle switch [c]ase" }
 )
+
+-- Increment/decrement
+vim.keymap.set("n", "+", "<C-a>")
+vim.keymap.set("n", "-", "<C-x>")
+
+-- Select all
+vim.keymap.set("n", "<C-a>", "gg<S-v>G")
+
+-- Resize window
+vim.keymap.set("n", "<C-w>h", "<C-w><")
+vim.keymap.set("n", "<C-w>l", "<C-w>>")
+vim.keymap.set("n", "<C-w>k", "<C-w>+")
+vim.keymap.set("n", "<C-w>j", "<C-w>-")

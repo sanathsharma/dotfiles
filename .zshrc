@@ -3,6 +3,9 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+# Change config dir for mac
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -80,6 +83,7 @@ alias vim='nvim'
 alias c='clear'
 alias tmux="tmux -u"
 alias cwr="cargo watch -q -c -w src/ -w .cargo/ -x run"
+alias cwt="cargo watch -q -c -x \"test -- --nocapture\""
 alias lg="lazygit"
 alias ld="lazydocker"
 alias d="docker"
