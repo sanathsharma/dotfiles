@@ -9,9 +9,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- filetype support for .env.development or .env.local
+-- Filetype support for .env.development or .env.local
 vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
 	pattern = ".env*",
 	command = "set filetype=sh",
 })
 
+-- Fix conceallevel for json files
+vim.api.nvim_create_autocmd("Filetype", {
+	pattern = { "json", "jsonc" },
+	callback = function()
+		vim.wo.spell = false
+		vim.wo.conceallevel = 0
+	end,
+})
