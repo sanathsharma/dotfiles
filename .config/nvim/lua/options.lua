@@ -21,6 +21,7 @@ vim.opt.foldmethod = "manual"
 vim.o.foldlevel = 99 -- Using ufo provider need a large value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
+vim.o.foldnestmax = 1
 
 -- store all change in a file, so that we can undo changes which are days old
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
@@ -41,3 +42,11 @@ vim.cmd("set list") -- highlight special by default
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+-- Undercurl
+if vim.fn.has("termguicolors") == 1 then
+	vim.o.termguicolors = true
+	-- Enable undercurl
+	vim.api.nvim_set_var("t_Cs", "\\e[4:3m")
+	vim.api.nvim_set_var("t_Ce", "\\e[4:0m")
+end
