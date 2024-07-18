@@ -107,6 +107,15 @@ return {
 					},
 				},
 				yamlls = {
+					-- See https://github.com/redhat-developer/yaml-language-server/issues/912
+					capabilities = {
+						textDocument = {
+							foldingRange = {
+								dynamicRegistration = false,
+								lineFoldingOnly = true,
+							}
+						}
+					},
 					settings = {
 						yaml = {
 							schemaStore = {

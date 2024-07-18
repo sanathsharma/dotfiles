@@ -120,3 +120,9 @@ see [stackexchange-thread](https://vi.stackexchange.com/questions/43681/simplest
 ```sh
 stow .
 ```
+
+### For working with git worktrees in lazygit, need to run the following command to be able to fetch remote
+
+```sh
+git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+```

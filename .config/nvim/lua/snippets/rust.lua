@@ -29,4 +29,20 @@ ls.add_snippets("rust", {
 			c(1, { t("HANDLER"), t("MIDDLEWARE"), t("EXTRACTOR"), t("INTO_RES"), t("RES_MAPPER"), t("") }),
 		})
 	),
+	s(
+		"tokio:test",
+		fmt(
+			[[
+			#[tokio::test]
+			async fn test_{}() -> Result<{}>{{
+				Ok({})
+			}}
+		]],
+			{
+				i(1, "name"),
+				i(2, "()"),
+				i(3, "()"),
+			}
+		)
+	),
 })
