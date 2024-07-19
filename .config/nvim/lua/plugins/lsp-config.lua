@@ -113,8 +113,8 @@ return {
 							foldingRange = {
 								dynamicRegistration = false,
 								lineFoldingOnly = true,
-							}
-						}
+							},
+						},
 					},
 					settings = {
 						yaml = {
@@ -130,6 +130,7 @@ return {
 					},
 				},
 				marksman = {},
+				cssls = {},
 			}
 
 			-- setup mason
