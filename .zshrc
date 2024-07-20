@@ -66,16 +66,17 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Path
-# for linux
+# For Linux
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/root/.local/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin"
 # Go entry
 export PATH="$PATH:/usr/local/go/bin"
-# macos specific
+# MacOS specific
 export PATH="$PATH:$HOME/nvim-macos-arm64/bin"
 export PATH="$PATH:/Library/PostgreSQL/16/bin"
+export PATH="$PATH:$HOME/Library/Python/3.x/bin"
 
 # Aliases
 alias ls='ls --color'
@@ -106,3 +107,8 @@ export NVM_DIR="$HOME/.nvm"
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.toml)"
 fi
+
+# python
+# poetry completions
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit

@@ -91,15 +91,29 @@ end, { desc = "Lazy[d]ocker in new tmux window", silent = true })
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>tc",
-	"<cmd>lua require(\"switch-case\").switch_case()<CR>",
+	"<cmd>lua require(\"utils.switch-case\").switch_case()<CR>",
 	{ noremap = true, silent = true, desc = "[T]oggle switch [c]ase" }
 )
 
 -- Select all
 vim.keymap.set("n", "<C-a>", "gg<S-v>G")
 
--- Resize window
+-- Re-size window
 vim.keymap.set("n", "<C-w><down>", "<cmd>horizontal resize -10<CR>")
 vim.keymap.set("n", "<C-w><up>", "<cmd>horizontal resize +10<CR>")
 vim.keymap.set("n", "<C-w><right>", "<cmd>vertical resize +10<CR>")
 vim.keymap.set("n", "<C-w><left>", "<cmd>vertical resize -10<CR>")
+
+-- Formatting
+vim.keymap.set("n", "<leader>af", function()
+	vim.lsp.buf.format({ async = true })
+end, { desc = "[F]ormat file async" })
+vim.keymap.set("v", "<leader>af", function()
+	local selection = require("utils.get-visual-selection").get_visual_selection()
+	vim.lsp.buf.format({
+		range = {
+			["start"] = { selection.start.line - 1, selection.start.col - 1 },
+			["end"] = { selection["end"].line - 1, selection["end"].col - 1 },
+		},
+	})
+end, { desc = "Format selected [r]ange async", noremap = true })
