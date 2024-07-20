@@ -25,7 +25,7 @@ return {
 				lua_ls = {
 					settings = {
 						Lua = {
-							runtime = { verison = "LuaJIT" },
+							runtime = { version = "LuaJIT" },
 							workspace = {
 								checkThirdParty = false,
 								library = { vim.env.VIMRUNTIME },
@@ -131,6 +131,24 @@ return {
 				},
 				marksman = {},
 				cssls = {},
+				pyright = {
+					capabilities = {
+						documentFormattingProvider = false,
+					},
+					settings = {
+						pyright = {
+							-- Using Ruff's import organizer
+							disableOrganizeImports = true,
+						},
+						python = {
+							analysis = {
+								-- Ignore all files for analysis to exclusively use Ruff for linting
+								ignore = { "*" },
+							},
+						},
+					},
+				},
+				ruff = {},
 			}
 
 			-- setup mason
@@ -189,7 +207,7 @@ return {
 							vim.lsp.buf.code_action()
 						end
 					end, opts("Show [C]ode actions"))
-					vim.keymap.set("n", "<leader>D", tsBuiltin.lsp_type_definitions, opts("Type [D]efinition"))
+					vim.keymap.set("n", "<leader>D", tsBuiltin.lsp_type_definitions, opts("Type [D]definition"))
 					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts("[R]e[n]ame"))
 					vim.keymap.set("n", "<leader>fd", tsBuiltin.lsp_document_symbols, opts("Find [d]ocument symbols"))
 					vim.keymap.set(

@@ -100,6 +100,10 @@ rm -rf /usr/local/go && tar -C /usr/local -xzf go.tar.gz
 rm go.tar.gz
 # path is already part of .zshrc, add this variable to current shell session
 export PATH=$PATH:/usr/local/go/bin
+
+# Python, assuming python3 is already pre-installed
+# following are required for installing ruff, mypy etc. by mason
+sudo apt install python3-venv python3-virtualenv python3-pip
 ```
 
 ### Check the source of rust-analyzer

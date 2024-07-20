@@ -10,6 +10,7 @@ return {
 					"gofumpt",
 					"goimports-reviser",
 					"golines",
+					"mypy", -- Python static type checking
 				},
 			})
 		end,
