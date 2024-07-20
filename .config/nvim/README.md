@@ -144,3 +144,5 @@ git config --global pull.rebase true
 - `]}` - jump to end of current code block
 - `[{` - jump to start of current code block
 - `%` - jump to matching closing or opening braces
+- `z=` - suggestion for spell fix
+- `zg` - add a word as good word to the spellfile
