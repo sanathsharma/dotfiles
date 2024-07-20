@@ -203,4 +203,23 @@ return {
 			vim.keymap.set("n", "<leader>db", ":Telescope dap list_breakpoints<CR>")
 		end,
 	},
+	{
+		"mfussenegger/nvim-dap-python",
+		ft = { "python" },
+		dependencies = {
+			"mfussenegger/nvim-dap",
+		},
+		config = function()
+			local mason_registry = require("mason-registry")
+
+			local codelldb = mason_registry.get_package("debugpy")
+			local python_path = codelldb:get_install_path() .. "/venv/bin/python"
+			print("python_path", python_path)
+			require("dap-python").setup(python_path)
+
+			vim.keymap.set("n", "<leader>dpr", function()
+				require("dap-python").test_method()
+			end)
+		end,
+	},
 }

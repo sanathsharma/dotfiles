@@ -11,6 +11,7 @@ return {
 					"goimports-reviser",
 					"golines",
 					"mypy", -- Python static type checking
+					"debugpy" -- Python debugger
 				},
 			})
 		end,
