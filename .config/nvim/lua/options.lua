@@ -50,3 +50,7 @@ if vim.fn.has("termguicolors") == 1 then
 	vim.api.nvim_set_var("t_Cs", "\\e[4:3m")
 	vim.api.nvim_set_var("t_Ce", "\\e[4:0m")
 end
+
+-- Spell checking
+vim.opt.spell = true
+vim.opt.spelllang = { "en_us" }
