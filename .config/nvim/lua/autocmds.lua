@@ -23,3 +23,12 @@ vim.api.nvim_create_autocmd("Filetype", {
 		vim.wo.conceallevel = 0
 	end,
 })
+
+-- Fix conceallevel for json files
+vim.api.nvim_create_autocmd("Filetype", {
+	pattern = { "rust" },
+	callback = function()
+		-- color 100th column to identify formatter overflow
+		vim.opt.colorcolumn = "100"
+	end,
+})

@@ -185,12 +185,12 @@ return {
 			--#endregion
 		end,
 	},
-	{
-		"theHamsta/nvim-dap-virtual-text",
-		config = function()
-			require("nvim-dap-virtual-text").setup()
-		end,
-	},
+	-- {
+	-- 	"theHamsta/nvim-dap-virtual-text",
+	-- 	config = function()
+	-- 		require("nvim-dap-virtual-text").setup()
+	-- 	end,
+	-- },
 	{
 		"nvim-telescope/telescope-dap.nvim",
 		dependencies = {
@@ -198,9 +198,9 @@ return {
 		},
 		config = function()
 			require("telescope").load_extension("dap")
-			vim.keymap.set("n", "<leader>ds", ":Telescope dap frames<CR>")
-			vim.keymap.set("n", "<leader>de", ":Telescope dap commands<CR>")
-			vim.keymap.set("n", "<leader>db", ":Telescope dap list_breakpoints<CR>")
+			vim.keymap.set("n", "<leader>df", ":Telescope dap frames<CR>", { desc = "Dap [f]rames" })
+			vim.keymap.set("n", "<leader>de", ":Telescope dap commands<CR>", { desc = "Dap [c]ommands" })
+			vim.keymap.set("n", "<leader>db", ":Telescope dap list_breakpoints<CR>", { desc = "Dap [v]reakpoints" })
 		end,
 	},
 	{
