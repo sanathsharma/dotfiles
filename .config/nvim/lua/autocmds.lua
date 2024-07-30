@@ -15,6 +15,12 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
 	command = "set filetype=sh",
 })
 
+-- Filetype support for Kanata's kbd filetype
+vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
+	pattern = "*.kbd",
+	command = "set filetype=lisp",
+})
+
 -- Fix conceallevel for json files
 vim.api.nvim_create_autocmd("Filetype", {
 	pattern = { "json", "jsonc" },

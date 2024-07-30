@@ -1,0 +1,16 @@
+;; Caps to escape/control configuration for Kanata
+
+(defsrc
+	caps
+	rctrl
+)
+
+(defalias
+	escctrl (tap-hold 100 150 esc lctl)
+	capslock caps
+)
+
+(deflayer base
+	@escctrl
+	@capslock
+)
