@@ -37,12 +37,19 @@ You'll need to replace the label string and the path to kanata and the config de
 </dict>
 </plist>
 ```
+Install karabiner-elements
+
+Activate virtual HID device
+```sh
+/Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager activate
+```
+
+see https://github.com/jtroo/kanata/discussions/736 for more info
 
 Then, copy this file to your LaunchDaemon folder.
 
-
 ```
-sudo cp ./com.example.kanata.plist /Library/LaunchDaemon
+sudo cp ~/.config/kanata/macos/com.example.kanata.plist /Library/LaunchDaemons
 ```
 
 Once copied over, you can then load it using sudo 

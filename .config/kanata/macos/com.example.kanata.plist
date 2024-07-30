@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>io.dreamsofcode.kanata</string>
+    <string>com.example.kanata</string>
 
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/sanathsharma/.cargo/bin/kanata</string>
+        <string>~/.cargo/bin/kanata</string>
         <string>-c</string>
-        <string>/Users/sanathsharma/.config/kanata/macos/config.kbd</string>
+        <string>~/.config/kanata/macos/config.kbd</string>
     </array>
 
     <key>RunAtLoad</key>
