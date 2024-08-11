@@ -131,6 +131,8 @@ return {
 				},
 				marksman = {},
 				cssls = {},
+				emmet_language_server = {},
+				tailwindcss = {},
 				pyright = {
 					capabilities = {
 						documentFormattingProvider = false,
