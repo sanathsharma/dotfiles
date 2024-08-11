@@ -112,25 +112,25 @@ return {
 			}),
 
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
-				{ name = "path" },
-				{ name = "luasnip" },
-				-- INFO: lsp completion are good enough, if more is required then enable this and dissable the lsp completion to avoid duplication
-				-- { name = "nvim_lua" },
+				{ name = "nvim_lsp", priority = 5 },
+				{ name = "path", priority = 4 },
+				{ name = "luasnip", priority = 3 },
+				-- INFO: lsp completion are good enough, if more is required then enable this and disable the lsp completion to avoid duplication
+				-- { name = "nvim_lua", priority = 2 },
 			}, {
-				{ name = "buffer", keyword_length = 5 },
+				{ name = "buffer", keyword_length = 5, priority = 1 },
 			}),
 
 			formatting = {
 				format = lspkind.cmp_format({
 					mode = "symbol_text",
 					menu = {
-						buffer = "[buf]",
 						nvim_lsp = "[LSP]",
 						nvim_lua = "[api]",
 						path = "[path]",
 						luasnip = "[snip]",
 						cmdline = "[cmd]",
+						buffer = "[buf]",
 					},
 				}),
 			},
@@ -142,11 +142,11 @@ return {
 
 		cmp.setup.filetype("sql", {
 			sources = {
-				{ name = "vim-dadbod-completion" },
-				{ name = "luasnip" },
+				{ name = "vim-dadbod-completion", priority = 3 },
+				{ name = "luasnip", priority = 2 },
 			},
 			{
-				{ name = "buffer", keyword_length = 5 },
+				{ name = "buffer", keyword_length = 5, priority = 1 },
 			},
 		})
 
