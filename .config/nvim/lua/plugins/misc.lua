@@ -19,12 +19,12 @@ return {
 				desc = "Buffer Diagnostics (Trouble)",
 			},
 			{
-				"<leader>cs",
+				"<leader>xs",
 				"<cmd>Trouble symbols toggle focus=false<cr>",
 				desc = "Symbols (Trouble)",
 			},
 			{
-				"<leader>cl",
+				"<leader>xl",
 				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
 				desc = "LSP Definitions / references / ... (Trouble)",
 			},
@@ -41,7 +41,17 @@ return {
 			{
 				"gR",
 				"<cmd>Trouble lsp_references toggle<cr>",
-				desc = "Quickfix List (Trouble)",
+				desc = "LSP references (Trouble)",
+			},
+			{
+				"]r",
+				"<cmd>Trouble lsp_references next focus=true<cr>",
+				desc = "Go to next LSP reference (Trouble)",
+			},
+			{
+				"[r",
+				"<cmd>Trouble lsp_references prev focus=true<cr>",
+				desc = "Go to previous LSP reference (Trouble)",
 			},
 		},
 	},
