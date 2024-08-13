@@ -4,8 +4,7 @@ return {
 	{
 		"folke/trouble.nvim",
 		event = "VeryLazy",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		dependencies = { "nvim-tree/nvim-web-devicons", "nvim-telescope/telescope.nvim" },
 		cmd = "Trouble",
 		keys = {
 			{
@@ -53,7 +52,38 @@ return {
 				"<cmd>Trouble lsp_references prev focus=true<cr>",
 				desc = "Go to previous LSP reference (Trouble)",
 			},
+			{
+				"<leader>xt",
+				"<cmd>Trouble telescope toggle<cr>",
+				desc = "Telescope List (Trouble)",
+			},
+			{
+				"]t",
+				"<cmd>Trouble telescope next focus=true<cr>",
+				desc = "Go to next telescope item (Trouble)",
+			},
+			{
+				"[t",
+				"<cmd>Trouble telescope prev focus=true<cr>",
+				desc = "Go to previous telescope item (Trouble)",
+			},
 		},
+		config = function()
+			local open_with_trouble = require("trouble.sources.telescope").open
+
+			require("telescope").setup({
+				defaults = {
+					mappings = {
+						i = { ["<C-t>"] = open_with_trouble },
+						n = { ["<C-t>"] = open_with_trouble },
+					},
+				},
+			})
+
+			require("trouble").setup({
+				auto_close = true, -- auto close when there are no items
+			})
+		end,
 	},
 	{
 		"Wansmer/treesj",
