@@ -1,12 +1,18 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.6",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		tag = "0.1.8",
+		dependencies = { "nvim-lua/plenary.nvim", "folke/trouble.nvim" },
 		config = function()
+			local open_with_trouble = require("trouble.sources.telescope").open
+
 			require("telescope").setup({
 				defaults = {
 					file_ignore_patterns = { "node_modules", "vendor", ".git", "package-lock.json" },
+					mappings = {
+						i = { ["<C-t>"] = open_with_trouble },
+						n = { ["<C-t>"] = open_with_trouble },
+					},
 				},
 			})
 
