@@ -1,3 +1,5 @@
+require("utils.discipline").cowboy()
+
 -- buffer commands
 vim.keymap.set("n", "<leader>ba", "<cmd>bufdo bd<CR>", { desc = "Close [a]ll buffers" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close current buffer" })
@@ -49,7 +51,7 @@ vim.keymap.set(
 	{ desc = "global search and replace" }
 )
 
--- rebase current branch
+-- Re-base current branch
 vim.keymap.set(
 	"n",
 	"<leader>hf",
