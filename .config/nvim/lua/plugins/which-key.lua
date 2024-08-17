@@ -23,6 +23,7 @@ return { -- Useful plugin to show you pending keybinds.
 				{ "<leader>u", group = "[U]pgrade" },
 				{ "<leader>m", group = "[M]arks" },
 				{ "<leader>d", group = "[D]ebug adaptor protocol" },
+				{ "<leader>dt", group = "[D]AP [t]elescope" },
 				{ "<leader>l", group = "[L]azy" },
 				{ "<leader>o", group = "[O]bsidian" },
 				{ "<leader>x", group = "Trouble" },
