@@ -126,20 +126,10 @@ return {
 			--#endregion
 
 			--#region keymaps
-			vim.keymap.set(
-				"n",
-				"<leader>dt",
-				"<cmd>DapToggleBreakpoint<CR>",
-				{ noremap = true, desc = "[T]oggle DAP breakpoint" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>dT",
-				":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-				{ desc = "Set conditional breakpoint" }
-			)
-			vim.keymap.set("n", "<leader>dx", "<cmd>DapTerminate<CR>", { noremap = true, desc = "DAP Terminate" })
-			vim.keymap.set("n", "<leader>dc", function()
+			local function opts(desc)
+				return { noremap = true, silent = true, desc = desc }
+			end
+			vim.keymap.set("n", "<F5>", function()
 				if vim.fn.filereadable(".vscode/launch.json") then
 					local dap_vscode = require("dap.ext.vscode")
 					dap_vscode.load_launchjs(nil, {
@@ -151,37 +141,44 @@ return {
 					})
 				end
 				require("dap").continue()
-			end, { noremap = true, desc = "DAP continue" })
-			vim.keymap.set("n", "<leader>dk", ":lua require\"dap\".up()<CR>zz", { desc = "DAP up" })
-			vim.keymap.set("n", "<leader>dj", ":lua require\"dap\".down()<CR>zz", { desc = "DAP down" })
-			vim.keymap.set({ "n", "t" }, "<leader>do", function()
-				require("dap").step_out()
-			end, { desc = "DAP step out" })
-			vim.keymap.set({ "n", "t" }, "<leader>di", function()
-				require("dap").step_into()
-			end, { desc = "DAP step into" })
-			vim.keymap.set({ "n", "t" }, "<leader>dO", function()
-				require("dap").step_over()
-			end, { desc = "DAP step over" })
-			vim.keymap.set("n", "<leader>dn", function()
-				require("dap").run_to_cursor()
-			end, { desc = "DAP run to cursor" })
-			vim.keymap.set("n", "<leader>dK", function()
-				require("dap.ui.widgets").hover()
-			end, { desc = "DAP hover widget" })
+			end, opts("Start/Continue Debugging"))
+			vim.keymap.set("n", "<F10>", "<cmd>lua require\"dap\".step_over()<CR>", opts("Step Over"))
+			vim.keymap.set("n", "<F11>", "<cmd>lua require\"dap\".step_into()<CR>", opts("Step Into"))
+			vim.keymap.set("n", "<F12>", "<cmd>lua require\"dap\".step_out()<CR>", opts("Step Out"))
+			vim.keymap.set("n", "<F6>", "<cmd>lua require\"dap\".pause()<CR>", opts("Pause"))
+			vim.keymap.set("n", "<F7>", "<cmd>lua require\"dap\".terminate()<CR>", opts("Stop Debugging"))
+			vim.keymap.set("n", "<F9>", "<cmd>lua require\"dap\".toggle_breakpoint()<CR>", opts("Toggle Breakpoint"))
+			vim.keymap.set(
+				"n",
+				"<leader>db",
+				"<cmd>lua require\"dap\".set_breakpoint(vim.fn.input(\"Breakpoint condition: \"))<CR>",
+				opts("Set Conditional Breakpoint")
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>dl",
+				"<cmd>lua require\"dap\".set_breakpoint(nil, nil, vim.fn.input(\"Log point message: \"))<CR>",
+				opts("Set Logpoint")
+			)
+			vim.keymap.set("n", "<leader>de", "<cmd>lua require\"dap.ui.widgets\".hover()<CR>", opts("Evaluate Expression"))
+			vim.keymap.set("n", "<leader>dr", "<cmd>lua require\"dap\".repl.open()<CR>", opts("Open REPL"))
+			vim.keymap.set(
+				"n",
+				"<leader>dl",
+				"<cmd>lua require\"dap\".run_last()<CR>",
+				opts("Run Last Debug Adapter Configuration")
+			)
+			vim.keymap.set("n", "<leader>dc", "<cmd>lua require(\"dap\").run_to_cursor()<CR>", opts("Run to cursor"))
 			vim.keymap.set("n", "<leader>d?", function()
 				local widgets = require("dap.ui.widgets")
 				widgets.centered_float(widgets.scopes)
-			end, { desc = "DAP scopes widget" })
+			end, opts("Open scope"))
 			vim.keymap.set(
 				"n",
-				"<leader>dr",
-				":lua require\"dap\".repl.toggle({}, \"vsplit\")<CR><C-w>l",
-				{ desc = "DAP toggle repl" }
+				"<leader>dB",
+				"<cmd>lua require(\"dap\").clear_breakpoints()<cr>",
+				opts("Clear all breakpoints")
 			)
-			vim.keymap.set("n", "<leader>dR", function()
-				require("dap").clear_breakpoints()
-			end, { desc = "DAP clear all breakpoints" })
 			--#endregion
 		end,
 	},
@@ -198,9 +195,9 @@ return {
 		},
 		config = function()
 			require("telescope").load_extension("dap")
-			vim.keymap.set("n", "<leader>df", ":Telescope dap frames<CR>", { desc = "Dap [f]rames" })
-			vim.keymap.set("n", "<leader>de", ":Telescope dap commands<CR>", { desc = "Dap [c]ommands" })
-			vim.keymap.set("n", "<leader>db", ":Telescope dap list_breakpoints<CR>", { desc = "Dap [v]reakpoints" })
+			vim.keymap.set("n", "<leader>dtf", ":Telescope dap frames<CR>", { desc = "List frames" })
+			vim.keymap.set("n", "<leader>dte", ":Telescope dap commands<CR>", { desc = "List commands" })
+			vim.keymap.set("n", "<leader>dtb", ":Telescope dap list_breakpoints<CR>", { desc = "List breakpoints" })
 		end,
 	},
 	{
