@@ -105,8 +105,8 @@ git config --global pull.rebase true
 - `:Telescope git_commits` - fuzzy search git commits
 - `:Telescope git_branches` - fuzzy search git branches
 - `:Git` - git status
-- `:Git mergetool` - open git mergetool
-- `:Git difftool` - open git difftool
+- `:Git mergetool` - open git merge tool
+- `:Git difftool` - open git diff tool
 - `[d` - go to previous error diagnostics
 - `]d` - go to next error diagnostics
 - `:mkview` - write folds into a file
@@ -119,7 +119,7 @@ git config --global pull.rebase true
 - `G` - go to bottom of the file
 - `:split` - split horizontal window
 - `:vsplit` - split vertical window
-- `<C-w> *` - window options including resizing
+- `<C-w> *` - window options including re-sizing
 - `>>` - normal mode; indent code right
 - `<<` - normal mode; indent code left
 - `<` - visual mode; indent code left
@@ -145,4 +145,10 @@ git config --global pull.rebase true
 - `[{` - jump to start of current code block
 - `%` - jump to matching closing or opening braces
 - `z=` - suggestion for spell fix
-- `zg` - add a word as good word to the spellfile
+- `zg` - add a word as good word to the spell file
+- <C-e> (Ctrl + e): Scroll the page down by one line without moving the cursor.
+- <C-y> (Ctrl + y): Scroll the page up by one line without moving the cursor.
+- <C-d> (Ctrl + d): Scroll the page down by half a screen without moving the cursor.
+- <C-u> (Ctrl + u): Scroll the page up by half a screen without moving the cursor.
+- <C-f> (Ctrl + f): Scroll the page down by a full screen without moving the cursor.
+- <C-b> (Ctrl + b): Scroll the page up by a full screen without moving the cursor.
