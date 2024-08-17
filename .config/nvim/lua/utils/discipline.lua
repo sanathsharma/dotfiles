@@ -2,7 +2,7 @@
 -- See https://github.com/craftzdog/dotfiles-public/blob/master/.config/nvim/lua/craftzdog/discipline.lua for more info
 
 local M = {}
-local LIMIT = 5
+local LIMIT = 10
 
 function M.cowboy()
 	---@type table?
@@ -30,7 +30,7 @@ function M.cowboy()
 				end
 			else
 				count = count + 1
-				timer:start(5000, 0, function()
+				timer:start(2000, 0, function()
 					count = 0
 				end)
 				return map
