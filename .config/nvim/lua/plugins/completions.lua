@@ -79,8 +79,6 @@ return {
 		--  into multiple repos for maintenance purposes.
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
-		-- INFO: lsp completion are good enough, if more is required then enable this and dissable the lsp completion to avoid duplication
-		-- "hrsh7th/cmp-nvim-lua",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-cmdline",
 		"onsails/lspkind.nvim",
@@ -112,11 +110,23 @@ return {
 			}),
 
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp", priority = 5 },
-				{ name = "path", priority = 4 },
+				{
+					name = "nvim_lsp",
+					priority = 5,
+					---@param entry cmp.Entry
+					---@param ctx cmp.Context
+					entry_filter = function(entry, ctx)
+						if ctx.filetype ~= "sql" then
+							return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
+						end
+					end,
+				},
+				{ name = "path",    priority = 4 },
 				{ name = "luasnip", priority = 3 },
-				-- INFO: lsp completion are good enough, if more is required then enable this and disable the lsp completion to avoid duplication
-				-- { name = "nvim_lua", priority = 2 },
+				{
+					name = "lazydev",
+					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+				},
 			}, {
 				{ name = "buffer", keyword_length = 5, priority = 1 },
 			}),
@@ -143,7 +153,7 @@ return {
 		cmp.setup.filetype("sql", {
 			sources = {
 				{ name = "vim-dadbod-completion", priority = 3 },
-				{ name = "luasnip", priority = 2 },
+				{ name = "luasnip",               priority = 2 },
 			},
 			{
 				{ name = "buffer", keyword_length = 5, priority = 1 },
@@ -166,7 +176,9 @@ return {
 			}, {
 				{ name = "cmdline" },
 			}),
-			matching = { disallow_symbol_nonprefix_matching = false },
+			matching = {
+				disallow_symbol_nonprefix_matching = false,
+			},
 		})
 	end,
 }
