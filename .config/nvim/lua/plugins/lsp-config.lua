@@ -22,26 +22,6 @@ return {
 			end
 
 			local servers = {
-				lua_ls = {
-					settings = {
-						Lua = {
-							runtime = { version = "LuaJIT" },
-							workspace = {
-								checkThirdParty = false,
-								library = { vim.env.VIMRUNTIME },
-							},
-							completion = {
-								enable = true,
-								callSnippet = "Replace",
-							},
-							telemetry = { enable = false },
-							hint = {
-								enable = true,
-								arrayIndex = "Disable",
-							},
-						},
-					},
-				},
 				-- biome = {},
 				tsserver = {
 					init_options = {
