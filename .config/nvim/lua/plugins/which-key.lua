@@ -28,6 +28,8 @@ return { -- Useful plugin to show you pending keybinds.
 				{ "<leader>o", group = "[O]bsidian" },
 				{ "<leader>x", group = "Trouble" },
 				{ "<leader>w", group = "[W]orktree" },
+				{ "<leader>vr", group = "[R]est client" },
+				{ "<leader>v", group = "Plugin Keymaps namespace" },
 			},
 			{
 				-- visual mode mappings register
