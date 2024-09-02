@@ -1,13 +1,12 @@
 return {
-	"diepm/vim-rest-console",
-	config = function()
-		vim.g.vrc_set_default_mapping = 0
-		vim.g.vrc_response_default_content_type = "application/json"
-		vim.g.vrc_output_buffer_name = "_OUTPUT.json"
-		vim.g.vrc_auto_format_response_patterns = {
-			json = "jq",
-		}
-
-		vim.keymap.set("n", "<leader>xr", ":call VrcQuery()<CR>", { desc = "E[x]ecute rest [r]equest" })
-	end,
+	{
+		"rest-nvim/rest.nvim",
+		lazy = false,
+		config = function()
+			vim.keymap.set("n", "<leader>vrs", "<cmd>Rest env select<cr>", { desc = "Select env for current file" })
+			vim.keymap.set("n", "<leader>vrr", "<cmd>Rest run<cr>", { desc = "Run request under the cursor" })
+			vim.keymap.set("n", "<leader>vro", "<cmd>Rest open<cr>", { desc = "Open results pane" })
+			vim.keymap.set("n", "<leader>vrl", "<cmd>Rest last<cr>", { desc = "Re-run last request" })
+		end,
+	},
 }

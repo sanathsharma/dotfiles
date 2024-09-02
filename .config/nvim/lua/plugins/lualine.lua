@@ -8,8 +8,8 @@ return {
 		require("lualine").setup({
 			options = {
 				theme = "auto",
-				component_separators = { left = '|', right = '|' },
-				section_separators = { left = '', right = '' },
+				component_separators = { left = "|", right = "|" },
+				section_separators = { left = "", right = "" },
 			},
 			sections = {
 				lualine_a = { {
@@ -33,7 +33,7 @@ return {
 					"diagnostics",
 				},
 				lualine_c = { { "filename", file_status = true, path = 1 } },
-				lualine_x = { "filetype" },
+				lualine_x = { "rest", "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},

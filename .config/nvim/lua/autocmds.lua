@@ -21,6 +21,10 @@ vim.api.nvim_create_autocmd("Filetype", {
 	callback = function()
 		vim.wo.spell = false
 		vim.wo.conceallevel = 0
+
+		-- Formatting json output for rest.nvim,
+		-- see https://github.com/rest-nvim/rest.nvim/issues/417#issuecomment-2322786365
+		vim.api.nvim_set_option_value("formatprg", "jq", { scope = 'local' })
 	end,
 })
 
