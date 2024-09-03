@@ -26,7 +26,6 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
-			"leoluz/nvim-dap-go",
 			{
 				"microsoft/vscode-js-debug",
 				-- After install, build it and rename the dist directory to out
@@ -161,7 +160,7 @@ return {
 				opts("Set Logpoint")
 			)
 			vim.keymap.set("n", "<leader>de", "<cmd>lua require\"dap.ui.widgets\".hover()<CR>", opts("Evaluate Expression"))
-			vim.keymap.set("n", "<leader>dr", "<cmd>lua require\"dap\".repl.open()<CR>", opts("Open REPL"))
+			vim.keymap.set("n", "<leader>dr", "<cmd>lua require\"dap\".repl.toggle()<CR>", opts("Toggle REPL"))
 			vim.keymap.set(
 				"n",
 				"<leader>dl",
@@ -188,16 +187,26 @@ return {
 	-- 		require("nvim-dap-virtual-text").setup()
 	-- 	end,
 	-- },
+	-- {
+	-- 	"nvim-telescope/telescope-dap.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 		"mfussenegger/nvim-dap",
+	-- 	},
+	-- 	ft = js_based_languages,
+	-- 	config = function()
+	-- 		require("telescope").load_extension("dap")
+	-- 		vim.keymap.set("n", "<leader>dtf", ":Telescope dap frames<CR>", { desc = "List frames" })
+	-- 		vim.keymap.set("n", "<leader>dte", ":Telescope dap commands<CR>", { desc = "List commands" })
+	-- 		vim.keymap.set("n", "<leader>dtb", ":Telescope dap list_breakpoints<CR>", { desc = "List breakpoints" })
+	-- 	end,
+	-- },
 	{
-		"nvim-telescope/telescope-dap.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-		},
+		"leoluz/nvim-dap-go",
+		ft = { "go" },
+		dependencies = { "mfussenegger/nvim-dap" },
 		config = function()
-			require("telescope").load_extension("dap")
-			vim.keymap.set("n", "<leader>dtf", ":Telescope dap frames<CR>", { desc = "List frames" })
-			vim.keymap.set("n", "<leader>dte", ":Telescope dap commands<CR>", { desc = "List commands" })
-			vim.keymap.set("n", "<leader>dtb", ":Telescope dap list_breakpoints<CR>", { desc = "List breakpoints" })
+			require("dap-go").setup()
 		end,
 	},
 	{

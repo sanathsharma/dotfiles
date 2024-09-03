@@ -63,6 +63,16 @@ apt install postgresql-client
 # Install jq for json parcing and formatting for vim-rest-console (see https://jqlang.github.io/jq/ for more info)
 apt install jq
 
+# Install lua for luarocks installation (required by rest.nvim)
+apt install lua5.1 liblua5.1-dev libcurl4-openssl-dev
+
+# Install luarocks from their site
+# See https://luarocks.org/#quick-start for installation steps of latest luarocks
+
+# Install lua-curl
+# Use `find /usr -name curl.h` to find the include directory for curl headers
+luarocks install lua-curl CURL_INCDIR=/usr/include/x86_64-linux-gnu
+
 # Install nodejs via nvm (see https://nodejs.org/en/download/package-manager for more info)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 # resource to make nvm available
@@ -100,6 +110,9 @@ rm -rf /usr/local/go && tar -C /usr/local -xzf go.tar.gz
 rm go.tar.gz
 # path is already part of .zshrc, add this variable to current shell session
 export PATH=$PATH:/usr/local/go/bin
+
+# Install delve for go debugging
+go install github.com/go-delve/delve/cmd/dlv@latest
 
 # Python, assuming python3 is already pre-installed
 # following are required for installing ruff, mypy etc. by mason

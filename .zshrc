@@ -71,6 +71,8 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/root/.local/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin"
+export GOPATH="$HOME/go"
+export PATH=$PATH:$GOPATH/bin
 # Go entry
 export PATH="$PATH:/usr/local/go/bin"
 # MacOS specific
@@ -85,6 +87,7 @@ alias c='clear'
 alias tmux="tmux -u"
 alias cwr="cargo watch -q -c -w src/ -w .cargo/ -x run"
 alias cwt="cargo watch -q -c -x \"test -- --nocapture\""
+alias cr="cargo run"
 alias lg="lazygit"
 alias ld="lazydocker"
 alias d="docker"
