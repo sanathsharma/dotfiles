@@ -117,7 +117,10 @@ return {
 					---@param ctx cmp.Context
 					entry_filter = function(entry, ctx)
 						if ctx.filetype ~= "sql" then
-							return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
+							local types = require("cmp.types")
+							-- local kind = types.lsp.CompletionItemKind[entry:get_kind()]
+							local kind = entry:get_kind()
+							return kind ~= types.lsp.CompletionItemKind.Text
 						end
 					end,
 				},
