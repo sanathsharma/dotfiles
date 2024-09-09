@@ -77,7 +77,7 @@ vim.keymap.set("n", "<right>", "<cmd>echo \"Use l to move!!\"<CR>")
 vim.keymap.set("n", "<up>", "<C-a>")
 vim.keymap.set("n", "<down>", "<C-x>")
 
--- Diagnostic keymaps
+-- Diagnostic keymaps (requires 0.11)
 vim.keymap.set("n", "[d", function()
 	vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Go to previous [D]iagnostic message" })

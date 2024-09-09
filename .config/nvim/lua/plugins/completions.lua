@@ -113,18 +113,17 @@ return {
 				{
 					name = "nvim_lsp",
 					priority = 5,
-					---@param entry cmp.Entry
+					--[[ ---@param entry cmp.Entry
 					---@param ctx cmp.Context
 					entry_filter = function(entry, ctx)
 						if ctx.filetype ~= "sql" then
 							local types = require("cmp.types")
-							-- local kind = types.lsp.CompletionItemKind[entry:get_kind()]
 							local kind = entry:get_kind()
 							return kind ~= types.lsp.CompletionItemKind.Text
 						end
-					end,
+					end, ]]
 				},
-				{ name = "path",    priority = 4 },
+				{ name = "path", priority = 4 },
 				{ name = "luasnip", priority = 3 },
 				{
 					name = "lazydev",
@@ -156,7 +155,7 @@ return {
 		cmp.setup.filetype("sql", {
 			sources = {
 				{ name = "vim-dadbod-completion", priority = 3 },
-				{ name = "luasnip",               priority = 2 },
+				{ name = "luasnip", priority = 2 },
 			},
 			{
 				{ name = "buffer", keyword_length = 5, priority = 1 },
