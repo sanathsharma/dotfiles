@@ -152,3 +152,5 @@ git config --global pull.rebase true
 - <C-u> (Ctrl + u): Scroll the page up by half a screen without moving the cursor.
 - <C-f> (Ctrl + f): Scroll the page down by a full screen without moving the cursor.
 - <C-b> (Ctrl + b): Scroll the page up by a full screen without moving the cursor.
+- `D` - delete from cursor position to end of line
+- `S` - delete current line and start editing

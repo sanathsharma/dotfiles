@@ -6,7 +6,8 @@ return {
 		null_ls.setup({
 			sources = {
 				-- Spell check
-				null_ls.builtins.completion.spell,
+				-- Inserts intermediate text suggestions, which is annoying. See https://github.com/hrsh7th/cmp-nvim-lsp/issues/20
+				-- null_ls.builtins.completion.spell,
 				-- Lua
 				null_ls.builtins.formatting.stylua,
 				-- JS, CSS
