@@ -52,15 +52,15 @@ ls.add_snippets("typescript", {
 							{ i(1), i(2) }
 						)
 					),
-				}), -- response type structure
-				i(1), -- hook name
-				rep(1), -- default select type
-				rep(1), -- hook's payload argument type
-				rep(1), -- use query options response type
+				}),                                                        -- response type structure
+				i(1),                                                      -- hook name
+				rep(1),                                                    -- default select type
+				rep(1),                                                    -- hook's payload argument type
+				rep(1),                                                    -- use query options response type
 				c(5, { sn(1, { t("ApiError"), i(1) }), t("unknown"), t("") }), -- error type
-				c(6, { sn(1, { t("Resource"), i(1) }), t("") }), -- queryKey
-				i(7), -- de-structure payload
-				i(8), -- queryFn body
+				c(6, { sn(1, { t("Resource"), i(1) }), t("") }),           -- queryKey
+				i(7),                                                      -- de-structure payload
+				i(8),                                                      -- queryFn body
 			}
 		)
 	),
@@ -99,13 +99,13 @@ ls.add_snippets("typescript", {
 							{ i(1), i(2) }
 						)
 					),
-				}), -- response type structure
-				i(1), -- hook name
-				rep(1), -- default select type
-				rep(1), -- use query options response type
+				}),                                                        -- response type structure
+				i(1),                                                      -- hook name
+				rep(1),                                                    -- default select type
+				rep(1),                                                    -- use query options response type
 				c(3, { sn(1, { t("ApiError"), i(1) }), t("unknown"), t("") }), -- error type
-				c(4, { sn(1, { t("Resource"), i(1) }), t("") }), -- queryKey
-				i(5), -- queryFn body
+				c(4, { sn(1, { t("Resource"), i(1) }), t("") }),           -- queryKey
+				i(5),                                                      -- queryFn body
 			}
 		)
 	),
@@ -157,19 +157,19 @@ ls.add_snippets("typescript", {
 							{ i(1), i(2) }
 						)
 					),
-				}), -- response type structure
-				i(1), -- hook name
-				rep(1), -- default select type
-				rep(1), -- hook's payload argument type
-				rep(1), -- use query options response type
+				}),                                                        -- response type structure
+				i(1),                                                      -- hook name
+				rep(1),                                                    -- default select type
+				rep(1),                                                    -- hook's payload argument type
+				rep(1),                                                    -- use query options response type
 				c(5, { sn(1, { t("ApiError"), i(1) }), t("unknown"), t("") }), -- error type
-				rep(1), -- data type
-				c(6, {t("number"), t("")}), -- page param type
-				c(7, { sn(1, { t("Resource"), i(1) }), t("") }), -- queryKey
-				i(8), -- de-structure payload
-				i(9), -- queryFn body
-				i(10), -- pageParam initial value
-				i(11), -- getNextPageParam body
+				rep(1),                                                    -- data type
+				c(6, { t("number"), t("") }),                              -- page param type
+				c(7, { sn(1, { t("Resource"), i(1) }), t("") }),           -- queryKey
+				i(8),                                                      -- de-structure payload
+				i(9),                                                      -- queryFn body
+				i(10),                                                     -- pageParam initial value
+				i(11),                                                     -- getNextPageParam body
 			}
 		)
 	),
@@ -186,6 +186,58 @@ ls.add_snippets("typescript", {
 				type ListResponseBase,
 				type ListPayloadQueryParams,
 			}} from "@/services/types.ts";
+			{}
+		]],
+			{
+				i(1),
+			}
+		)
+	),
+
+	s(
+		"cs-mutation",
+		fmt(
+			[[
+			export type {}Payload = {} {{
+				{}
+			}};
+
+			export type {}Response = {} {{
+				{}
+			}};
+
+			const use{} = (options?: UseMutationOptions<{}Response, {}, {}Payload>) => {{
+				return useMutation({{
+					mutationFn: async (payload) => {{
+						const {{ {} }} = payload;
+						{}
+					}},
+					...(options ?? {{}})
+				}})
+			}}
+		]],
+			{
+				rep(1),                                                    -- request payload type
+				i(2),                                                      -- request payload extension
+				i(3),                                                      -- request payload structure
+				rep(1),                                                    -- response type
+				i(4),                                                      -- response type extension
+				i(5),                                                      -- response structure
+				i(1),                                                      -- name of the custom hook
+				rep(1),                                                    -- response type name
+				c(6, { sn(1, { t("ApiError"), i(1) }), t("unknown"), t("") }), -- error type
+				rep(1),                                                    -- request type name
+				i(7),                                                      -- de-structure payload
+				i(8),                                                      -- mutation function body
+			}
+		)
+	),
+
+	s(
+		"cs-mutation-imports",
+		fmt(
+			[[
+			import {{ useMutation, type UseMutationOptions }} from "@tanstack/react-query";
 			{}
 		]],
 			{
