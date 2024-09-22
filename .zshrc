@@ -83,6 +83,8 @@ export PATH="$PATH:$HOME/Library/Python/3.x/bin"
 # Aliases
 alias ls='ls --color'
 alias vim='nvim'
+alias v='nvim'
+alias sv='sudo nvim'
 alias c='clear'
 alias tmux="tmux -u"
 alias cwr="cargo watch -q -c -w src/ -w .cargo/ -x run"
