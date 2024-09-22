@@ -13,7 +13,7 @@ vim.opt.backup = false
 vim.opt.conceallevel = 2
 
 -- color 120th column to identify formatter overflow
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "100,120"
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#24273a" })
 
 vim.opt.foldmethod = "manual"
