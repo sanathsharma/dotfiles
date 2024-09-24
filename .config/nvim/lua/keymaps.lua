@@ -89,9 +89,18 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("n", "<leader>lg", function()
 	vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit")
 end, { desc = "Lazy[g]it in new tmux window", silent = true })
+vim.keymap.set("n", "<leader>vlg", function()
+    local cmd = string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazygit", vim.fn.getcwd())
+    vim.fn.system(cmd)
+end, { desc = "Lazy[g]it in new tmux window", silent = true })
 vim.keymap.set("n", "<leader>ld", function()
 	vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazydocker")
-end, { desc = "Lazy[d]ocker in new tmux window", silent = true })
+end, { desc = "Lazy[d]ocker in new zellij window", silent = true })
+vim.keymap.set("n", "<leader>vld", function()
+	local cmd =
+		string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazydocker", vim.fn.getcwd())
+	vim.fn.system(cmd)
+end, { desc = "Lazy[g]it in new tmux window", silent = true })
 
 -- Switching between camelCase and snake_case
 vim.api.nvim_set_keymap(
