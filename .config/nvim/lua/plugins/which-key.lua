@@ -29,6 +29,7 @@ return { -- Useful plugin to show you pending keybinds.
 				{ "<leader>x", group = "Trouble" },
 				{ "<leader>w", group = "[W]orktree" },
 				{ "<leader>vr", group = "[R]est client" },
+				{ "<leader>vm", group = "Grapple Tags manager" },
 				{ "<leader>v", group = "Plugin Keymaps namespace" },
 			},
 			{
