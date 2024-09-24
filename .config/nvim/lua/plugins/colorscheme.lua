@@ -9,6 +9,13 @@ return {
 				cmp = true,
 				gitsigns = true,
 				treesitter = true,
+				native_lsp = {
+					enabled = true,
+					underlines = {
+						errors = { "undercurl" },
+						warnings = { "undercurl" },
+					},
+				},
 			},
 		})
 		vim.cmd.colorscheme("catppuccin")
