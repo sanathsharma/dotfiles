@@ -101,8 +101,10 @@ vim.api.nvim_set_keymap(
 	{ noremap = true, silent = true, desc = "[T]oggle switch [c]ase" }
 )
 
+-- Select all below current line
+vim.keymap.set("n", "<C-a>", "<S-v>G", { desc = "Select all lines below current line" })
 -- Select all
-vim.keymap.set("n", "<C-a>", "gg<S-v>G")
+vim.keymap.set("n", "<C-A>", "gg<S-v>G", { desc = "Select all" })
 
 -- Re-size window
 vim.keymap.set("n", "<C-w><down>", "<cmd>horizontal resize -10<CR>")

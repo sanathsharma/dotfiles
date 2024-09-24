@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
 
 -- Fix conceallevel for json files
 vim.api.nvim_create_autocmd("Filetype", {
-	pattern = { "json", "jsonc" },
+	pattern = { "json", "jsonc", "code-snippets" },
 	callback = function()
 		vim.wo.spell = false
 		vim.wo.conceallevel = 0

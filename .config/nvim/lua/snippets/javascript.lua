@@ -206,11 +206,19 @@ ls.add_snippets("typescript", {
 				{}
 			}};
 
-			const use{} = (options?: UseMutationOptions<{}Response, {}, {}Payload>) => {{
+			export const use{} = (feature: Feature, options?: UseMutationOptions<{}Response, {}, {}Payload>) => {{
+				const queryClient = useQueryClient();
+
 				return useMutation({{
 					mutationFn: async (payload) => {{
 						const {{ {} }} = payload;
 						{}
+					}},
+					onSuccess: (data, variables, ctx) => {{
+						const {{ {} }} = variables;
+						{}
+
+						options?.onSuccess?.(data, variables, ctx);
 					}},
 					...(options ?? {{}})
 				}})
@@ -229,6 +237,8 @@ ls.add_snippets("typescript", {
 				rep(1),                                                    -- request type name
 				i(7),                                                      -- de-structure payload
 				i(8),                                                      -- mutation function body
+				i(9),                                                      -- de-structure variables
+				i(10),                                                     -- onSuccess body
 			}
 		)
 	),
@@ -237,7 +247,11 @@ ls.add_snippets("typescript", {
 		"cs-mutation-imports",
 		fmt(
 			[[
-			import {{ useMutation, type UseMutationOptions }} from "@tanstack/react-query";
+			import {{ useMutation, useQueryClient, type UseMutationOptions }} from "@tanstack/react-query";
+			import {{
+				type Feature,
+				type ApiError,
+			}} from "@/services/types.ts";
 			{}
 		]],
 			{

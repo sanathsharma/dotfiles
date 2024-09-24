@@ -112,7 +112,14 @@ return {
 				marksman = {},
 				cssls = {},
 				emmet_language_server = {},
-				tailwindcss = {},
+				tailwindcss = {
+					settings = {
+						includeLanguages = {
+							templ = "html",
+						},
+					},
+				},
+				templ = {},
 				pyright = {
 					capabilities = {
 						documentFormattingProvider = false,

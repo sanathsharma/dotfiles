@@ -146,6 +146,9 @@ git config --global pull.rebase true
 - `%` - jump to matching closing or opening braces
 - `z=` - suggestion for spell fix
 - `zg` - add a word as good word to the spell file
+- `zz` - move current line to center of the screen
+- `zt` - move current line to top of the screen
+- `zb` - move current line to bottom of the screen
 - <C-e> (Ctrl + e): Scroll the page down by one line without moving the cursor.
 - <C-y> (Ctrl + y): Scroll the page up by one line without moving the cursor.
 - <C-d> (Ctrl + d): Scroll the page down by half a screen without moving the cursor.

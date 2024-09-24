@@ -36,3 +36,6 @@ https
 github
 md
 Jotai
+keyof
+biome
+noExplicitAny

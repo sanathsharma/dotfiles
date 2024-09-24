@@ -38,7 +38,7 @@ return {
 					require("dap-vscode-js").setup({
 						-- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
 						debugger_path = vim.fn.resolve(vim.fn.stdpath("data") .. "/lazy/vscode-js-debug"),
-						adapters = { "pwa-node" }, -- which adapters to register in nvim-dap
+						adapters = { "pwa-node", "node-terminal" }, -- which adapters to register in nvim-dap
 					})
 				end,
 			},
@@ -163,7 +163,7 @@ return {
 			vim.keymap.set("n", "<leader>dr", "<cmd>lua require\"dap\".repl.toggle()<CR>", opts("Toggle REPL"))
 			vim.keymap.set(
 				"n",
-				"<leader>dl",
+				"<leader>dd",
 				"<cmd>lua require\"dap\".run_last()<CR>",
 				opts("Run Last Debug Adapter Configuration")
 			)
