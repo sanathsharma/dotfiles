@@ -16,7 +16,7 @@ return {
 				return "make install_jsregexp"
 			end)(),
 			dependencies = {
-				-- `friendly-snippets` contains a variety of premade snippets.
+				-- `friendly-snippets` contains a variety of pre-made snippets.
 				--    See the README about individual language/framework/plugin snippets:
 				--    https://github.com/rafamadriz/friendly-snippets
 				"rafamadriz/friendly-snippets",
@@ -47,7 +47,7 @@ return {
 				-- Load custom snippets
 				require("snippets")
 
-				--#region -- Luasnip keymaps
+				--#region -- Luasnip keymap's
 				vim.keymap.set({ "i", "s" }, "<C-k>", function()
 					if luasnip.expand_or_jumpable() then
 						luasnip.expand_or_jump()
@@ -76,7 +76,7 @@ return {
 
 		-- Adds other completion capabilities.
 		--  nvim-cmp does not ship with all sources by default. They are split
-		--  into multiple repos for maintenance purposes.
+		--  into multiple repositories for maintenance purposes.
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-buffer",
