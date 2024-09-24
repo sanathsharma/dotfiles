@@ -1,3 +1,6 @@
+export TERM="xterm-256color"
+[[ -n $TMUX ]] && export TERM="screen-256color"
+
 if [[ -f "/opt/homebrew/bin/brew" ]] then
   # If you're using macOS, you'll want this enabled
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -94,6 +97,7 @@ alias lg="lazygit"
 alias ld="lazydocker"
 alias d="docker"
 alias k="kubectl"
+alias z="zellij"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
