@@ -90,8 +90,9 @@ vim.keymap.set("n", "<leader>lg", function()
 	vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit")
 end, { desc = "Lazy[g]it in new tmux window", silent = true })
 vim.keymap.set("n", "<leader>vlg", function()
-    local cmd = string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazygit", vim.fn.getcwd())
-    vim.fn.system(cmd)
+	local cmd =
+		string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazygit", vim.fn.getcwd())
+	vim.fn.system(cmd)
 end, { desc = "Lazy[g]it in new tmux window", silent = true })
 vim.keymap.set("n", "<leader>ld", function()
 	vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazydocker")
@@ -134,3 +135,9 @@ vim.keymap.set("v", "<leader>af", function()
 		},
 	})
 end, { desc = "Format selected [r]ange async", noremap = true })
+
+-- Move between splits using Alt + h/j/k/l
+vim.keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to the left pane", silent = true })
+vim.keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to the bottom pane", silent = true })
+vim.keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to the top pane", silent = true })
+vim.keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to the right pane", silent = true })
