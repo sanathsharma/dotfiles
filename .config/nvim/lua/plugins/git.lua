@@ -56,10 +56,6 @@ return {
 						gitsigns.blame_line({ full = true })
 					end, { desc = "[B]lame line" })
 					map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle git line [b]lame" })
-					map("n", "<leader>hd", gitsigns.diffthis, { desc = "[D]iffthis" })
-					map("n", "<leader>hD", function()
-						gitsigns.diffthis("~")
-					end, { desc = "[D]iffthis" })
 					map("n", "<leader>td", gitsigns.toggle_deleted, { desc = "Toggle [d]eleted (Git)" })
 
 					-- Text object
@@ -109,5 +105,8 @@ return {
 				{ desc = "Create new worktree" }
 			)
 		end,
+	},
+	{
+		"sindrets/diffview.nvim",
 	},
 }

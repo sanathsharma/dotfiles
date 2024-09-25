@@ -6,7 +6,7 @@ return {
 		config = function()
 			require("telescope").setup({
 				defaults = {
-					file_ignore_patterns = { "node_modules", "vendor", ".git", "package-lock.json" },
+					file_ignore_patterns = { "node_modules/", "vendor/", ".git/", "package-lock.json" },
 				},
 			})
 
@@ -21,9 +21,7 @@ return {
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Search [h]elp" })
 			vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Search current [W]ord" })
 			vim.keymap.set("n", "<leader>fs", builtin.git_status, { desc = "Move between changed files in current HEAD" })
-			vim.keymap.set("n", "<leader>fi", function()
-				builtin.live_grep({ search_dirs = { vim.fn.expand("%:p") } })
-			end, { desc = "Live grep [i]n current buffer" })
+			vim.keymap.set("n", "<leader>fi", builtin.current_buffer_fuzzy_find, { desc = "Live grep [i]n current buffer" })
 		end,
 	},
 	{
