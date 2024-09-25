@@ -144,13 +144,13 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		cmd = "Grapple",
 		keys = {
-			{ "<leader>vma", "<cmd>Grapple toggle<cr>", desc = "Tag a file" },
-			{ "<leader>vmm", "<cmd>Grapple toggle_tags<cr>", desc = "Toggle tags menu" },
+			{ "<leader>vma", "<cmd>Grapple toggle<cr>",          desc = "Tag a file" },
+			{ "<leader>vmm", "<cmd>Grapple toggle_tags<cr>",     desc = "Toggle tags menu" },
 
-			{ "<leader>vm1", "<cmd>Grapple select index=1<cr>", desc = "Select first tag" },
-			{ "<leader>vm2", "<cmd>Grapple select index=2<cr>", desc = "Select second tag" },
-			{ "<leader>vm3", "<cmd>Grapple select index=3<cr>", desc = "Select third tag" },
-			{ "<leader>vm4", "<cmd>Grapple select index=4<cr>", desc = "Select fourth tag" },
+			{ "<leader>vm1", "<cmd>Grapple select index=1<cr>",  desc = "Select first tag" },
+			{ "<leader>vm2", "<cmd>Grapple select index=2<cr>",  desc = "Select second tag" },
+			{ "<leader>vm3", "<cmd>Grapple select index=3<cr>",  desc = "Select third tag" },
+			{ "<leader>vm4", "<cmd>Grapple select index=4<cr>",  desc = "Select fourth tag" },
 
 			{ "<leader>vmn", "<cmd>Grapple cycle_tags next<cr>", desc = "Go to next tag" },
 			{ "<leader>vmp", "<cmd>Grapple cycle_tags prev<cr>", desc = "Go to previous tag" },
@@ -160,14 +160,18 @@ return {
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		---@type Flash.Config
-		opts = {},
+		opts = {
+			search = {
+				mode = "fuzzy"
+			}
+		},
 		-- stylua: ignore
 		keys = {
-			{ "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-			{ "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-			{ "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-			{ "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-			{ "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+			{ "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+			{ "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,                     desc = "Flash Treesitter" },
+			{ "r",     mode = "o",               function() require("flash").remote() end,                         desc = "Remote Flash" },
+			{ "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end,              desc = "Treesitter Search" },
+			{ "<c-s>", mode = { "c" },           function() require("flash").toggle() end,                         desc = "Toggle Flash Search" },
 		},
 	},
 }
