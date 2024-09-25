@@ -33,7 +33,14 @@ return {
 					"diagnostics",
 				},
 				lualine_c = { { "filename", file_status = true, path = 1 } },
-				lualine_x = { "rest", "filetype" },
+				lualine_x = {
+					{
+						require("noice").api.status.mode.get,
+						cond = require("noice").api.status.mode.has,
+					},
+					"rest",
+					"filetype",
+				},
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
