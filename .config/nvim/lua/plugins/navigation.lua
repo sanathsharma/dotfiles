@@ -134,29 +134,6 @@ return {
 		end,
 	},
 	{
-		"cbochs/grapple.nvim",
-		dependencies = {
-			{ "nvim-tree/nvim-web-devicons", lazy = true },
-		},
-		opts = {
-			scope = "git_branch", -- also try out "git_branch"
-		},
-		event = { "BufReadPost", "BufNewFile" },
-		cmd = "Grapple",
-		keys = {
-			{ "<leader>vma", "<cmd>Grapple toggle<cr>",          desc = "Tag a file" },
-			{ "<leader>vmm", "<cmd>Grapple toggle_tags<cr>",     desc = "Toggle tags menu" },
-
-			{ "<leader>vm1", "<cmd>Grapple select index=1<cr>",  desc = "Select first tag" },
-			{ "<leader>vm2", "<cmd>Grapple select index=2<cr>",  desc = "Select second tag" },
-			{ "<leader>vm3", "<cmd>Grapple select index=3<cr>",  desc = "Select third tag" },
-			{ "<leader>vm4", "<cmd>Grapple select index=4<cr>",  desc = "Select fourth tag" },
-
-			{ "<leader>vmn", "<cmd>Grapple cycle_tags next<cr>", desc = "Go to next tag" },
-			{ "<leader>vmp", "<cmd>Grapple cycle_tags prev<cr>", desc = "Go to previous tag" },
-		},
-	},
-	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		---@type Flash.Config
