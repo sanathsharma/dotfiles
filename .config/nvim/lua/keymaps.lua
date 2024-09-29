@@ -1,4 +1,5 @@
-require("utils.discipline").cowboy()
+-- Using m4xshen/hardtime.nvim instead
+-- require("utils.discipline").cowboy()
 
 -- buffer commands
 vim.keymap.set("n", "<leader>ba", "<cmd>bufdo bd<CR>", { desc = "Close [a]ll buffers" })
