@@ -32,8 +32,8 @@ border_style = { fg = "#7f849c" }
 syntect_theme = "~/.config/yazi/Catppuccin-mocha.tmTheme"
 
 [status]
-separator_open = ""
-separator_close = ""
+separator_open = "█"
+separator_close = "█"
 separator_style = { fg = "#45475a", bg = "#45475a" }
 
 # Mode
@@ -695,4 +695,11 @@ exts = [
 	{ name = "cob", text = "⚙", fg_dark = "#585b70", fg_light = "#585b70" },
 	{ name = "cmake", text = "", fg_dark = "#7f849c", fg_light = "#7f849c" },
 	{ name = "webp", text = "", fg_dark = "#7f849c", fg_light = "#7f849c" },
+]
+dirs = [{ name = ".config", text = "󱂀" }, { name = "Desktop", text = "" }]
+conds = [
+	# Fallback
+	{ if = "dir", text = "" },
+	{ if = "exec", text = "" },
+	{ if = "!dir", text = "" },
 ]
