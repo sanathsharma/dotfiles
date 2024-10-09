@@ -1,6 +1,10 @@
 -- Using m4xshen/hardtime.nvim instead
 -- require("utils.discipline").cowboy()
 
+local function trim(s)
+  return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
+end
+
 -- buffer commands
 vim.keymap.set("n", "<leader>ba", "<cmd>bufdo bd<CR>", { desc = "Close [a]ll buffers" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close current buffer" })
@@ -88,21 +92,26 @@ end, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 vim.keymap.set("n", "<leader>lg", function()
-	vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit")
-end, { desc = "Lazy[g]it in new tmux window", silent = true })
-vim.keymap.set("n", "<leader>vlg", function()
+	local tmux_env = vim.fn.system("echo $TMUX")
+	if string.len(trim(tmux_env)) > 0 then
+		vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit")
+		return
+	end
+
 	local cmd =
 		string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazygit", vim.fn.getcwd())
 	vim.fn.system(cmd)
-end, { desc = "Lazy[g]it in new tmux window", silent = true })
+end, { desc = "Lazy[g]it in new tmux window / zellij floating window", silent = true })
 vim.keymap.set("n", "<leader>ld", function()
-	vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazydocker")
-end, { desc = "Lazy[d]ocker in new zellij window", silent = true })
-vim.keymap.set("n", "<leader>vld", function()
+	local tmux_env = vim.fn.system("echo $TMUX")
+	if string.len(trim(tmux_env)) > 0 then
+		vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazydocker")
+		return
+	end
 	local cmd =
 		string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazydocker", vim.fn.getcwd())
 	vim.fn.system(cmd)
-end, { desc = "Lazy[g]it in new tmux window", silent = true })
+end, { desc = "Lazy[d]ocker in new tmux window / zellij floating window", silent = true })
 
 -- Switching between camelCase and snake_case
 vim.api.nvim_set_keymap(
