@@ -95,6 +95,8 @@ rm -f ./nvim-linux64.tar.gz
 
 # Install rust
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+# Update if already present
+rustup update
 # resource to make rustup available
 source ~/.bashrc
 source ~/.zshrc
@@ -102,6 +104,9 @@ source ~/.zshrc
 # Add rust analyzer, with stable toolchain
 # This makes neovim use the same rust-analyzer verison as the compiler, avoiding editor not giving errors or giving unnecessary errors for example
 rustup component add rust-analyzer
+
+# Install yazi terminal UI file manager
+cargo install --locked yazi-fm yazi-cli
 
 # Install go (see https://go.dev/doc/install for more info)
 GO_VERSION=go1.22.3 # go does not have releases, only tags. Which makes it deficult to get latest tag on the github repo
