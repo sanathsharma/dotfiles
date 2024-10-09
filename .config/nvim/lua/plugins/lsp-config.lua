@@ -138,6 +138,25 @@ return {
 					},
 				},
 				ruff = {},
+				-- TOML
+				taplo = {
+					settings = {
+						taplo = {
+							schema = {
+								enabled = true,   -- Enable schema validation for TOML
+								repositoryEnabled = true, -- Enable schema repository from SchemaStore
+								cache = true,
+							},
+							lint = {
+								enabled = true, -- Enable linting
+							},
+							format = {
+								enabled = true, -- Enable formatting
+								command = "taplo fmt", -- Taplo formatter
+							},
+						},
+					},
+				},
 			}
 
 			-- setup mason

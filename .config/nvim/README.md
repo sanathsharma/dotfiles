@@ -7,6 +7,12 @@
 - jsonls
 - marksman (markdown files)
 - yamlls
+- taplo (toml)
+- tailwindcss
+- emmet
+- css
+- pyright
+- ruff
 
 ### Quick installation
 #### linux/docker-container
