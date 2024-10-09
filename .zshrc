@@ -98,6 +98,7 @@ alias ld="lazydocker"
 alias d="docker"
 alias k="kubectl"
 alias z="zellij"
+alias fm="yazi"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
