@@ -28,7 +28,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- keep old copied content even after pasting it over another selected content
 vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "Past over selection w/o loosing the clipboard content" })
 
--- navigating sugestion
+-- navigating suggestion
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 
