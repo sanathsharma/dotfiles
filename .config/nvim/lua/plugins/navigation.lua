@@ -162,7 +162,7 @@ return {
 		---@type Flash.Config
 		opts = {
 			search = {
-				mode = "fuzzy"
+				-- mode = "fuzzy"
 			}
 		},
 		-- stylua: ignore
