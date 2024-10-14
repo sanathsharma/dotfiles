@@ -20,6 +20,22 @@ apt install zsh
 # Set default shell to zsh
 chsh -s /usr/bin/zsh
 
+# Or install Fish
+# See https://github.com/fish-shell/fish-shell?tab=readme-ov-file#packages-for-linux for setup
+# Following steps for debian based linux
+sudo apt-add-repository ppa:fish-shell/release-3
+# Might need to install python3-launchpadlib if above command throws
+# error: AttributeError: 'NoneType' object has no attribute 'people'
+sudo apt install python3-launchpadlib
+sudo apt update
+sudo apt install fish
+
+# Set default shell to fish
+chsh -s /usr/bin/fish
+
+# Install fisher, plugin manager for fish
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+
 # Install GNU stow
 apt install stow
 
