@@ -1,0 +1,69 @@
+if status is-interactive
+	# Commands to run in interactive sessions can go here
+end
+
+# Abbreviations
+abbr -a c "clear"
+abbr -a lg "lazygit"
+abbr -a x "exit"
+
+# Alias
+alias ls='ls --color'
+alias vim='nvim'
+alias v='nvim'
+alias sv='sudo nvim'
+alias tmux="tmux -u"
+alias cwr="cargo watch -q -c -w src/ -w .cargo/ -x run"
+alias cwt="cargo watch -q -c -x \"test -- --nocapture\""
+alias cr="cargo run"
+alias ld="lazydocker"
+alias d="docker"
+alias k="kubectl"
+alias z="zellij"
+alias fm="yazi"
+
+# Path
+# For Linux
+fish_add_path /opt/nvim-linux64/bin
+fish_add_path /root/.local/bin
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/bin
+fish_add_path $HOME/go
+fish_add_path $GOPATH/bin
+# Go entry
+fish_add_path /usr/local/go/bin
+# MacOS specific
+fish_add_path $HOME/nvim-macos-arm64/bin
+fish_add_path $HOME/Library/Python/3.x/bin
+
+# Set variables
+set -U EDITOR nvim
+
+# Bindings
+bind --mode insert \cf forward-char
+bind --mode insert --sets-mode default jk repaint # Bind jk to escape of insert mode
+bind --mode default --mode insert \cp history-search-backward
+bind --mode default --mode insert \cn history-search-forward
+
+# Initialization
+zoxide init --cmd cd fish | source
+oh-my-posh init fish --config ~/.config/ohmyposh/base.toml | source
+
+# Enable vi mode
+set -g fish_key_bindings fish_vi_key_bindings
+set -g fish_vi_force_cursor 1
+
+# Emulates vim's cursor shape behavior
+# Set the normal and visual mode cursors to a block
+set fish_cursor_default block
+# Set the insert mode cursor to a line
+set fish_cursor_insert line
+# Set the replace mode cursors to an underscore
+set fish_cursor_replace_one underscore
+set fish_cursor_replace underscore
+# Set the external cursor to a line. The external cursor appears when a command is started.
+# The cursor shape takes the value of fish_cursor_default when fish_cursor_external is not specified.
+set fish_cursor_external line
+# The following variable can be used to configure cursor shape in
+# visual mode, but due to fish_cursor_default, is redundant here
+set fish_cursor_visual block
