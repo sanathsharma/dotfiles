@@ -6,21 +6,19 @@ end
 abbr -a c "clear"
 abbr -a lg "lazygit"
 abbr -a x "exit"
-
-# Alias
-alias ls='ls --color'
-alias vim='nvim'
-alias v='nvim'
-alias sv='sudo nvim'
-alias tmux="tmux -u"
-alias cwr="cargo watch -q -c -w src/ -w .cargo/ -x run"
-alias cwt="cargo watch -q -c -x \"test -- --nocapture\""
-alias cr="cargo run"
-alias ld="lazydocker"
-alias d="docker"
-alias k="kubectl"
-alias z="zellij"
-alias fm="yazi"
+abbr -a ls 'ls --color'
+abbr -a vim "nvim"
+abbr -a v "nvim"
+abbr -a sv "sudo nvim"
+abbr -a tmux "tmux -u"
+abbr -a cwr "cargo watch -q -c -w src/ -w .cargo/ -x run"
+abbr -a cwt "cargo watch -q -c -x \"test -- --nocapture\""
+abbr -a cr "cargo run"
+abbr -a ld "lazydocker"
+abbr -a d "docker"
+abbr -a k "kubectl"
+abbr -a z "zellij"
+abbr -a fm "yazi"
 
 # Path
 # For Linux
@@ -37,7 +35,8 @@ fish_add_path $HOME/nvim-macos-arm64/bin
 fish_add_path $HOME/Library/Python/3.x/bin
 
 # Set variables
-set -U EDITOR nvim
+set EDITOR nvim
+set fish_greeting ""
 
 # Bindings
 bind --mode insert \cf forward-char
