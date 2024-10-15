@@ -151,3 +151,9 @@ vim.keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to the left pane", silent 
 vim.keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to the bottom pane", silent = true })
 vim.keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to the top pane", silent = true })
 vim.keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to the right pane", silent = true })
+
+-- Zellij new tab layouts
+vim.keymap.set("n", "<leader>zlg", function ()
+	local cmd = "zellij action new-tab --layout ~/.config/zellij/layouts/lazygit.kdl --name lazygit"
+	vim.fn.system(cmd)
+end)
