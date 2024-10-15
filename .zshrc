@@ -1,3 +1,6 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":$HOME.zsh/completions:"* ]]; then export FPATH="$HOME/.zsh/completions:$FPATH"; fi
+
 export TERM="xterm-256color"
 [[ -n $TMUX ]] && export TERM="screen-256color"
 
@@ -122,3 +125,5 @@ fi
 # poetry completions
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
+
+. "$HOME/.deno/env"
