@@ -31,6 +31,7 @@ return { -- Useful plugin to show you pending keybinds.
 				{ "<leader>vr", group = "[R]est client" },
 				{ "<leader>vm", group = "Grapple Tags manager" },
 				{ "<leader>v", group = "Plugin Keymaps namespace" },
+				{ "<leader>z", group = "[Z]ellij" },
 			},
 			{
 				-- visual mode mappings register
