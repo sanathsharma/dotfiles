@@ -37,6 +37,7 @@ fish_add_path $HOME/Library/Python/3.x/bin
 # Set variables
 set EDITOR nvim
 set fish_greeting ""
+set --universal nvm_default_version 20.18.0
 
 # Bindings
 bind --mode insert \cf forward-char

@@ -36,3 +36,4 @@ SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
 SETUVAR fish_user_paths:/home/sanathsharma/go/bin\x1e/usr/local/go/bin\x1e/home/sanathsharma/go\x1e/home/sanathsharma/bin\x1e/home/sanathsharma/\x2elocal/bin\x1e/opt/nvim\x2dlinux64/bin
+SETUVAR nvm_default_version:20\x2e18\x2e0
