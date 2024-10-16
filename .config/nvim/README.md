@@ -13,6 +13,7 @@
 - css
 - pyright
 - ruff
+- denols
 
 ### Quick installation
 #### linux/docker-container

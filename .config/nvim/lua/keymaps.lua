@@ -2,7 +2,7 @@
 -- require("utils.discipline").cowboy()
 
 local function trim(s)
-  return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
+	return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
 end
 
 -- buffer commands
@@ -99,7 +99,7 @@ vim.keymap.set("n", "<leader>lg", function()
 	end
 
 	local cmd =
-		string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazygit", vim.fn.getcwd())
+			string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazygit", vim.fn.getcwd())
 	vim.fn.system(cmd)
 end, { desc = "Lazy[g]it in new tmux window / zellij floating window", silent = true })
 vim.keymap.set("n", "<leader>ld", function()
@@ -109,7 +109,7 @@ vim.keymap.set("n", "<leader>ld", function()
 		return
 	end
 	local cmd =
-		string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazydocker", vim.fn.getcwd())
+			string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazydocker", vim.fn.getcwd())
 	vim.fn.system(cmd)
 end, { desc = "Lazy[d]ocker in new tmux window / zellij floating window", silent = true })
 
@@ -153,7 +153,7 @@ vim.keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to the top pane", silent =
 vim.keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to the right pane", silent = true })
 
 -- Zellij new tab layouts
-vim.keymap.set("n", "<leader>zlg", function ()
+vim.keymap.set("n", "<leader>zlg", function()
 	local cmd = "zellij action new-tab --layout ~/.config/zellij/layouts/lazygit.kdl --name lazygit"
 	vim.fn.system(cmd)
-end)
+end, { desc = "Open lazygit in a new zellij tab" })
