@@ -3,4 +3,5 @@
 __pycache__
 .mypy_cache
 local_tests
+fish_variables
 
