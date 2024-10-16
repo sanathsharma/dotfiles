@@ -33,6 +33,8 @@ fish_add_path /usr/local/go/bin
 # MacOS specific
 fish_add_path $HOME/nvim-macos-arm64/bin
 fish_add_path $HOME/Library/Python/3.x/bin
+fish_add_path /opt/homebrew/bin
+fish_add_path $HOME/.cargo/bin
 
 # Set variables
 set EDITOR nvim
