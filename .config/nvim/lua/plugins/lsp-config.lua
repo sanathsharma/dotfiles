@@ -54,6 +54,36 @@ return {
 
 						vim.keymap.set("n", "<leader>ai", "<cmd>OrganizeImportsTS<CR>", { desc = "Organize [I]mports" })
 					end,
+					-- See https://dev.to/davidecavaliere/avoid-conflicts-between-denols-and-tsserver-in-neovim-4bco
+					root_dir = function(filename, _bufnr)
+						local denoRootDir = util.root_pattern("deno.json", "deno.jsonc")(filename)
+						if denoRootDir then
+							-- print('this seems to be a deno project; returning nil so that tsserver does not attach');
+							return nil
+						end
+
+						-- else
+						-- print('this seems to be a ts project; return root dir based on package.json')
+						return util.root_pattern("package.json")(filename)
+					end,
+					single_file_support = false,
+				},
+				denols = {
+					root_dir = util.root_pattern("deno.json", "deno.jsonc"),
+					init_options = {
+						enable = true,
+						lint = true,
+						unstable = true,
+						suggest = {
+							imports = {
+								hosts = {
+									["https://deno.land"] = true,
+									-- ["https://cdn.nest.land"] = true,
+									-- ["https://crux.land"] = true,
+								},
+							},
+						},
+					},
 				},
 				gopls = {
 					cmd = { "gopls" },
