@@ -6,11 +6,8 @@ end
 abbr -a c "clear"
 abbr -a lg "lazygit"
 abbr -a x "exit"
-abbr -a ls 'ls --color'
-abbr -a vim "nvim"
 abbr -a v "nvim"
 abbr -a sv "sudo nvim"
-abbr -a tmux "tmux -u"
 abbr -a cwr "cargo watch -q -c -w src/ -w .cargo/ -x run"
 abbr -a cwt "cargo watch -q -c -x \"test -- --nocapture\""
 abbr -a cr "cargo run"
@@ -19,6 +16,11 @@ abbr -a d "docker"
 abbr -a k "kubectl"
 abbr -a z "zellij"
 abbr -a fm "yazi"
+
+# Alias
+alias ls="ls --color"
+alias vim="nvim"
+alias tmux="tmux -u"
 
 # Path
 # For Linux

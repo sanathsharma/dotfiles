@@ -157,3 +157,11 @@ vim.keymap.set("n", "<leader>zlg", function()
 	local cmd = "zellij action new-tab --layout ~/.config/zellij/layouts/lazygit.kdl --name lazygit"
 	vim.fn.system(cmd)
 end, { desc = "Open lazygit in a new zellij tab" })
+vim.keymap.set("n", "<leader>zld", function()
+	local cmd = "zellij action new-tab --layout ~/.config/zellij/layouts/lazydocker.kdl --name lazydocker"
+	vim.fn.system(cmd)
+end, { desc = "Open lazydocker in a new zellij tab" })
+vim.keymap.set("n", "<leader>zly", function()
+	local cmd = "zellij action new-tab --layout ~/.config/zellij/layouts/yazi.kdl --name yazi"
+	vim.fn.system(cmd)
+end, { desc = "Open yazi in a new zellij tab" })
