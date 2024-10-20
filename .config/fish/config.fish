@@ -16,6 +16,8 @@ abbr -a d "docker"
 abbr -a k "kubectl"
 abbr -a z "zellij"
 abbr -a fm "yazi"
+abbr -a ss "sudo shutdown -h now"
+abbr -a u "sudo apt update && sudo apt upgrade"
 
 # Alias
 alias ls="ls --color"
@@ -28,6 +30,7 @@ fish_add_path /opt/nvim-linux64/bin
 fish_add_path /root/.local/bin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/bin
+fish_add_path /sbin
 fish_add_path $HOME/go
 fish_add_path $GOPATH/bin
 # Go entry
