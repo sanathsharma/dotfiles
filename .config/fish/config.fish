@@ -42,7 +42,8 @@ fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.cargo/bin
 
 # Set variables
-set EDITOR nvim
+set -gx EDITOR nvim
+set -gx VISUAL nvim
 set fish_greeting ""
 set --universal nvm_default_version 20.18.0
 

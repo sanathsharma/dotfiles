@@ -23,11 +23,11 @@ chsh -s /usr/bin/zsh
 # Or install Fish
 # See https://github.com/fish-shell/fish-shell?tab=readme-ov-file#packages-for-linux for setup
 # Following steps for debian based linux
-sudo apt-add-repository ppa:fish-shell/release-3
+# sudo apt-add-repository ppa:fish-shell/release-3
 # Might need to install python3-launchpadlib if above command throws
 # error: AttributeError: 'NoneType' object has no attribute 'people'
-sudo apt install python3-launchpadlib
-sudo apt update
+# sudo apt install python3-launchpadlib
+# sudo apt update
 sudo apt install fish
 
 # Set default shell to fish
