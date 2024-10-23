@@ -44,7 +44,16 @@ return {
 
 				-- Lazy load snippets
 				require("luasnip.loaders.from_vscode").lazy_load()
+				-- Lazy load project local snippets
+				local util = require("utils.find-code-snippet-paths")
+				local files = util.find_code_snippets_paths(vim.fn.getcwd() .. "/.vscode/")
+				for _, file in ipairs(files or {}) do
+					require("luasnip.loaders.from_vscode").load_standalone({
+						path = file,
+					})
+				end
 				-- Load custom snippets
+				-- require("luasnip.loaders.from_lua").load({ paths = { "~/snippets" } })
 				require("snippets")
 
 				--#region -- Luasnip keymap's
@@ -123,7 +132,7 @@ return {
 						end
 					end, ]]
 				},
-				{ name = "path", priority = 4 },
+				{ name = "path",    priority = 4 },
 				{ name = "luasnip", priority = 3 },
 				{
 					name = "lazydev",
@@ -155,7 +164,7 @@ return {
 		cmp.setup.filetype("sql", {
 			sources = {
 				{ name = "vim-dadbod-completion", priority = 3 },
-				{ name = "luasnip", priority = 2 },
+				{ name = "luasnip",               priority = 2 },
 			},
 			{
 				{ name = "buffer", keyword_length = 5, priority = 1 },
