@@ -1,12 +1,17 @@
 local ls = require("luasnip")
 local fmt = require("luasnip.extras.fmt").fmt
 local s = ls.snippet
+local d = ls.dynamic_node
 local t = ls.text_node
 local i = ls.insert_node
 local extras = require("luasnip.extras")
 local rep = extras.rep
 local c = ls.choice_node
 local sn = ls.snippet_node
+
+local function filename_base(_args)
+	return sn(nil, i(1, vim.fn.expand("%:t:r")))
+end
 
 ls.add_snippets("typescript", {
 	s(
@@ -270,5 +275,67 @@ ls.add_snippets("typescript", {
 			{ i(1) }
 		),
 		t()
+	),
+})
+
+ls.add_snippets("typescriptreact", {
+	s(
+		"cs-create-component",
+		fmt(
+			[[
+    import CreateComponent from "@/components/core/CreateComponent";
+
+    export type {}Props = {}
+
+    const {} = CreateComponent(({}: {}Props) => {{
+      return (
+        {}
+      );
+    }});
+
+    export default {};
+  ]],
+			{
+				d(1, filename_base),                                             -- Component name
+				c(2, {
+					sn(1, fmt("{{\n\t{}\n}};", { i(1) })),                         -- Inline props
+					t("Record<string, unknown>;"),                                 -- Record type
+				}),
+				rep(1),                                                          -- Component name
+				c(3, { sn(1, fmt("{{ {} }}", { i(1) })), t("props"), t("_props") }), -- Props destructure or alias
+				rep(1),                                                          -- Component name
+				i(4),                                                            -- Final content
+				rep(1),                                                          -- Component name
+			}
+		)
+	),
+
+	s(
+		"cs-react-functional-component",
+		fmt(
+			[[
+    export type {}Props = {}
+
+    const {} = ({}: {}Props) => {{
+      return (
+        {}
+      );
+    }};
+
+    export default {};
+  ]],
+			{
+				d(1, filename_base),                                             -- Component name
+				c(2, {
+					sn(1, fmt("{{\n\t{}\n}};", { i(1) })),                         -- Inline props
+					t("Record<string, unknown>;"),                                 -- Record type
+				}),
+				rep(1),                                                          -- Component name
+				c(3, { sn(1, fmt("{{ {} }}", { i(1) })), t("props"), t("_props") }), -- Props destructure or alias
+				rep(1),                                                          -- Component name
+				i(4),                                                            -- Final content
+				rep(1),                                                          -- Component name
+			}
+		)
 	),
 })
