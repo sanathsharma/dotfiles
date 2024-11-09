@@ -288,6 +288,8 @@ ls.add_snippets("typescriptreact", {
     export type {}Props = {}
 
     const {} = CreateComponent(({}: {}Props) => {{
+      {}
+
       return (
         {}
       );
@@ -304,8 +306,46 @@ ls.add_snippets("typescriptreact", {
 				rep(1),                                                          -- Component name
 				c(3, { sn(1, fmt("{{ {} }}", { i(1) })), t("props"), t("_props") }), -- Props destructure or alias
 				rep(1),                                                          -- Component name
-				i(4),                                                            -- Final content
+				i(4),                                                            -- Component body
+				i(5),                                                            -- Component jsx
 				rep(1),                                                          -- Component name
+			}
+		)
+	),
+	s(
+		"cs-create-component-no-props",
+		fmt(
+			[[
+				import CreateComponent from "@/components/core/CreateComponent";
+
+				const {} = CreateComponent(() => {{
+					return (
+						{}
+					);
+				}});
+
+				export default {};
+			]],
+			{
+				d(1, filename_base), -- Component name
+				i(2),            -- Final content
+				rep(1),          -- Component name
+			}
+		)
+	),
+	s(
+		"cs-create-component-export",
+		fmt(
+			[[
+				export const {} = CreateComponent(() => {{
+					return (
+						{}
+					);
+				}});
+			]],
+			{
+				d(1, filename_base), -- Component name
+				i(2),            -- Final content
 			}
 		)
 	),
@@ -314,16 +354,18 @@ ls.add_snippets("typescriptreact", {
 		"cs-react-functional-component",
 		fmt(
 			[[
-    export type {}Props = {}
+				export type {}Props = {}
 
-    const {} = ({}: {}Props) => {{
-      return (
-        {}
-      );
-    }};
+				const {} = ({}: {}Props) => {{
+					{}
 
-    export default {};
-  ]],
+					return (
+						{}
+					);
+				}};
+
+				export default {};
+			]],
 			{
 				d(1, filename_base),                                             -- Component name
 				c(2, {
@@ -333,9 +375,12 @@ ls.add_snippets("typescriptreact", {
 				rep(1),                                                          -- Component name
 				c(3, { sn(1, fmt("{{ {} }}", { i(1) })), t("props"), t("_props") }), -- Props destructure or alias
 				rep(1),                                                          -- Component name
-				i(4),                                                            -- Final content
+				i(4),                                                            -- Component body
+				i(5),                                                            -- Component jsx
 				rep(1),                                                          -- Component name
 			}
 		)
 	),
 })
+
+ls.filetype_extend("typescriptreact", { "typescript" })
