@@ -1,0 +1,5 @@
+customCommands:
+  - key: "<c-a>"
+    context: "commits"
+    command: "git commit --amend --no-verify --no-edit"
+    description: "Amend commit w/o running the pre-commit hook"
