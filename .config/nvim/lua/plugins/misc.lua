@@ -1,6 +1,6 @@
 return {
 	{ "tpope/vim-unimpaired", event = "VeryLazy" },
-	{ "tpope/vim-surround",   event = "VeryLazy" },
+	{ "tpope/vim-surround", event = "VeryLazy" },
 	{
 		"folke/trouble.nvim",
 		event = "VeryLazy",
@@ -9,8 +9,8 @@ return {
 		keys = {
 			{
 				"<leader>xx",
-				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Diagnostics (Trouble)",
+				"<cmd>Trouble close<cr>",
+				desc = "Close (Trouble)",
 			},
 			{
 				"<leader>xb",
@@ -19,12 +19,12 @@ return {
 			},
 			{
 				"<leader>xs",
-				"<cmd>Trouble symbols toggle focus=false<cr>",
+				"<cmd>Trouble symbols toggle focus=false new=false<cr>",
 				desc = "Symbols (Trouble)",
 			},
 			{
 				"<leader>xl",
-				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				"<cmd>Trouble lsp toggle focus=false win.position=right new=false<cr>",
 				desc = "LSP Definitions / references / ... (Trouble)",
 			},
 			{
@@ -38,19 +38,34 @@ return {
 				desc = "Quickfix List (Trouble)",
 			},
 			{
-				"gR",
-				"<cmd>Trouble lsp_references toggle<cr>",
+				"<leader>gr",
+				"<cmd>Trouble lsp_references new=false<cr>",
 				desc = "LSP references (Trouble)",
 			},
 			{
-				"]r",
-				"<cmd>Trouble lsp_references next focus=true<cr>",
-				desc = "Go to next LSP reference (Trouble)",
+				"<leader>gD",
+				"<cmd>Trouble lsp_declarations new=false<cr>",
+				desc = "LSP delectrations (Trouble)",
 			},
 			{
-				"[r",
-				"<cmd>Trouble lsp_references prev focus=true<cr>",
-				desc = "Go to previous LSP reference (Trouble)",
+				"<leader>gd",
+				"<cmd>Trouble lsp_definitions new=false<cr>",
+				desc = "LSP definations (Trouble)",
+			},
+			{
+				"<leader>gi",
+				"<cmd>Trouble lsp_implementations new=false<cr>",
+				desc = "LSP implementations (Trouble)",
+			},
+			{
+				"<leader>gt",
+				"<cmd>Trouble lsp_type_definitions new=false<cr>",
+				desc = "LSP type definations (Trouble)",
+			},
+			{
+				"<leader>gs",
+				"<cmd>Trouble lsp_document_symbols new=false<cr>",
+				desc = "LSP document symbols(Trouble)",
 			},
 			{
 				"<leader>xt",
@@ -59,12 +74,12 @@ return {
 			},
 			{
 				"]t",
-				"<cmd>Trouble telescope next focus=true<cr>",
+				"<cmd>Trouble next focus=true<cr>",
 				desc = "Go to next telescope item (Trouble)",
 			},
 			{
 				"[t",
-				"<cmd>Trouble telescope prev focus=true<cr>",
+				"<cmd>Trouble prev focus=true<cr>",
 				desc = "Go to previous telescope item (Trouble)",
 			},
 		},
@@ -82,6 +97,11 @@ return {
 
 			require("trouble").setup({
 				auto_close = false, -- auto close when there are no items
+				follow = true,
+				auto_refresh = false,
+				focus = true,
+				auto_jump = true,
+				pinned = true,
 			})
 		end,
 	},
@@ -98,13 +118,13 @@ return {
 		"nvim-treesitter/nvim-treesitter-context",
 		config = function()
 			require("treesitter-context").setup({
-				enable = true,       -- Enable this plugin (Can be enabled/disabled later via commands)
-				max_lines = 10,      -- How many lines the window should span. Values <= 0 mean no limit.
+				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+				max_lines = 10, -- How many lines the window should span. Values <= 0 mean no limit.
 				min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
 				line_numbers = true,
 				multiline_threshold = 5, -- Maximum number of lines to show for a single context
 				trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-				mode = "cursor",     -- Line used to calculate context. Choices: 'cursor', 'topline'
+				mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
 				-- Separator between context and content. Should be a single character string, like '-'.
 				-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
 				separator = nil,
@@ -209,11 +229,11 @@ return {
 			},
 			-- you can enable a preset for easier configuration
 			presets = {
-				bottom_search = true,     -- use a classic bottom cmdline for search
-				command_palette = true,   -- position the cmdline and popupmenu together
+				bottom_search = true, -- use a classic bottom cmdline for search
+				command_palette = true, -- position the cmdline and popupmenu together
 				long_message_to_split = true, -- long messages will be sent to a split
-				inc_rename = false,       -- enables an input dialog for inc-rename.nvim
-				lsp_doc_border = false,   -- add a border to hover docs and signature help
+				inc_rename = false, -- enables an input dialog for inc-rename.nvim
+				lsp_doc_border = false, -- add a border to hover docs and signature help
 			},
 		},
 		dependencies = {
