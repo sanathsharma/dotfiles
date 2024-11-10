@@ -1,0 +1,4 @@
+core.editor=$EDITOR
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+pull.rebase=true
+push.autoSetupRemote=true
