@@ -135,6 +135,9 @@ export PATH=$PATH:/usr/local/go/bin
 # Install delve for go debugging
 go install github.com/go-delve/delve/cmd/dlv@latest
 
+# Install gum for bash scripting
+go install github.com/charmbracelet/gum@latest
+
 # Python, assuming python3 is already pre-installed
 # following are required for installing ruff, mypy etc. by mason
 sudo apt install python3-venv python3-virtualenv python3-pip
