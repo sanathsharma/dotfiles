@@ -24,6 +24,13 @@ alias ls="ls --color"
 alias vim="nvim"
 alias tmux="tmux -u"
 
+# Set variables
+set -gx EDITOR nvim
+set -gx VISUAL nvim
+set -gx GOPATH $HOME/go
+set fish_greeting ""
+set --universal nvm_default_version 20.18.0
+
 # Path
 # For Linux
 fish_add_path /opt/nvim-linux64/bin
@@ -41,14 +48,9 @@ fish_add_path $HOME/Library/Python/3.x/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.cargo/bin
 
-# Set variables
-set -gx EDITOR nvim
-set -gx VISUAL nvim
-set fish_greeting ""
-set --universal nvm_default_version 20.18.0
-
 # Bindings
 bind --mode insert \cf forward-char
+bind --mode insert \cy forward-char
 bind --mode insert --sets-mode default jk repaint # Bind jk to escape of insert mode
 bind --mode default --mode insert \cp history-search-backward
 bind --mode default --mode insert \cn history-search-forward
