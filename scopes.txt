@@ -1,0 +1,13 @@
+none
+readme
+nvim
+lazygit
+alacrity
+kitty
+git
+ohmyposh
+scripts
+fish
+zellij
+tmux
+yazi
