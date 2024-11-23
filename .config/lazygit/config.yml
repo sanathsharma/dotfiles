@@ -5,7 +5,7 @@ customCommands:
     description: "Amend commit w/o running the pre-commit hook"
   - key: "C"
     context: "files"
-    command: "zellij action new-pane --close-on-exit -- ~/scripts/commit.sh"
+    command: "zellij action new-pane --close-on-exit -- git commit"
     subprocess: false
     description: "Commit with custom script"
     loadingText: "Opening commit script"

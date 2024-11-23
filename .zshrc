@@ -102,6 +102,7 @@ alias d="docker"
 alias k="kubectl"
 alias z="zellij"
 alias fm="yazi"
+alias commit="sh ~/scripts/commit.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
