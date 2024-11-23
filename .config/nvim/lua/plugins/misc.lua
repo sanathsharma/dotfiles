@@ -38,32 +38,32 @@ return {
 				desc = "Quickfix List (Trouble)",
 			},
 			{
-				"<leader>gr",
+				"gr",
 				"<cmd>Trouble lsp_references new=false<cr>",
 				desc = "LSP references (Trouble)",
 			},
 			{
-				"<leader>gD",
+				"gD",
 				"<cmd>Trouble lsp_declarations new=false<cr>",
 				desc = "LSP delectrations (Trouble)",
 			},
 			{
-				"<leader>gd",
+				"gd",
 				"<cmd>Trouble lsp_definitions new=false<cr>",
 				desc = "LSP definations (Trouble)",
 			},
 			{
-				"<leader>gi",
+				"gi",
 				"<cmd>Trouble lsp_implementations new=false<cr>",
 				desc = "LSP implementations (Trouble)",
 			},
 			{
-				"<leader>gt",
+				"gt",
 				"<cmd>Trouble lsp_type_definitions new=false<cr>",
 				desc = "LSP type definations (Trouble)",
 			},
 			{
-				"<leader>gs",
+				"gs",
 				"<cmd>Trouble lsp_document_symbols new=false<cr>",
 				desc = "LSP document symbols(Trouble)",
 			},

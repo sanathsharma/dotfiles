@@ -173,7 +173,7 @@ return {
 					settings = {
 						taplo = {
 							schema = {
-								enabled = true,   -- Enable schema validation for TOML
+								enabled = true, -- Enable schema validation for TOML
 								repositoryEnabled = true, -- Enable schema repository from SchemaStore
 								cache = true,
 							},
@@ -233,7 +233,7 @@ return {
 					local tsBuiltin = require("telescope.builtin")
 
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("Show hover documentation"))
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("Go to [d]eclaration"))
+					vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, opts("Go to [d]eclaration"))
 
 					vim.keymap.set("n", "<leader>vgd", vim.lsp.buf.definition, opts("Go to [d]efination"))
 					vim.keymap.set("n", "<leader>vgi", vim.lsp.buf.implementation, opts("Go to [i]mplementation"))
@@ -241,11 +241,11 @@ return {
 					vim.keymap.set("n", "<leader>vgt", vim.lsp.buf.type_definition, opts("Type [D]definition"))
 					vim.keymap.set("n", "<leader>vgs", vim.lsp.buf.document_symbol, opts("Find [d]ocument symbols"))
 
-					vim.keymap.set("n", "gd", tsBuiltin.lsp_definitions, opts("Go to [d]efination"))
-					vim.keymap.set("n", "gi", tsBuiltin.lsp_implementations, opts("Go to [i]mplementation"))
-					vim.keymap.set("n", "gr", tsBuiltin.lsp_references, opts("Go to [r]eferences"))
-					vim.keymap.set("n", "gt", tsBuiltin.lsp_type_definitions, opts("Type [D]definition"))
-					vim.keymap.set("n", "gs", tsBuiltin.lsp_document_symbols, opts("Find [d]ocument symbols"))
+					vim.keymap.set("n", "<leader>gd", tsBuiltin.lsp_definitions, opts("Go to [d]efination"))
+					vim.keymap.set("n", "<leader>gi", tsBuiltin.lsp_implementations, opts("Go to [i]mplementation"))
+					vim.keymap.set("n", "<leader>gr", tsBuiltin.lsp_references, opts("Go to [r]eferences"))
+					vim.keymap.set("n", "<leader>gt", tsBuiltin.lsp_type_definitions, opts("Type [D]definition"))
+					vim.keymap.set("n", "<leader>gs", tsBuiltin.lsp_document_symbols, opts("Find [d]ocument symbols"))
 
 					vim.keymap.set({ "n", "v" }, "<leader>ac", function()
 						if vim.bo.filetype == "rust" then
