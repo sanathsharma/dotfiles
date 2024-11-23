@@ -23,6 +23,7 @@ abbr -a u "sudo apt update && sudo apt upgrade"
 alias ls="ls --color"
 alias vim="nvim"
 alias tmux="tmux -u"
+alias commit="sh ~/scripts/commit.sh"
 
 # Set variables
 set -gx EDITOR nvim
