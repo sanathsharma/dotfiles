@@ -6,6 +6,7 @@ alacrity
 kitty
 git
 ohmyposh
+starship
 scripts
 fish
 zellij
