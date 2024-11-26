@@ -71,6 +71,9 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+# Variables
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
 # Path
 # For Linux
 export PATH="$PATH:/opt/nvim-linux64/bin"
@@ -119,7 +122,8 @@ export NVM_DIR="$HOME/.nvm"
 . "$HOME/.cargo/env"
 
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.toml)"
+  # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.toml)"
+  eval "$(starship init zsh)"	
 fi
 
 # python

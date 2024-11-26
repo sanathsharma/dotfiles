@@ -101,6 +101,9 @@ npm -v
 # Install ohmyposh
 curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin
 
+# Or install starship
+curl -sS https://starship.rs/install.sh | sh
+
 # Install neovim
 # for latest
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz

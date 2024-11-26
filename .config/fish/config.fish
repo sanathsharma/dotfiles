@@ -29,6 +29,7 @@ alias commit="sh ~/scripts/commit.sh"
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx GOPATH $HOME/go
+set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 set fish_greeting ""
 set --universal nvm_default_version 20.18.0
 
@@ -58,7 +59,8 @@ bind --mode default --mode insert \cn history-search-forward
 
 # Initialization
 zoxide init --cmd cd fish | source
-oh-my-posh init fish --config ~/.config/ohmyposh/base.toml | source
+# oh-my-posh init fish --config ~/.config/ohmyposh/base.toml | source
+starship init fish | source
 
 # Enable vi mode
 set -g fish_key_bindings fish_vi_key_bindings
