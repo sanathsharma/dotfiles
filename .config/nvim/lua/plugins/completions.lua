@@ -74,12 +74,6 @@ return {
 						luasnip.change_choice(1)
 					end
 				end, { silent = true })
-				vim.keymap.set(
-					"n",
-					"<leader><leader>s",
-					"<cmd>source ~/.config/nvim/lua/snippets/init.lua<CR>",
-					{ silent = true }
-				)
 				--#endregion -- Luasnip keymaps
 			end,
 		},

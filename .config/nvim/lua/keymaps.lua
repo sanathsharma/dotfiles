@@ -1,9 +1,9 @@
 -- Using m4xshen/hardtime.nvim instead
 -- require("utils.discipline").cowboy()
 
-local function trim(s)
-	return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
-end
+-- local function trim(s)
+-- 	return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
+-- end
 
 -- buffer commands
 vim.keymap.set("n", "<leader>ba", "<cmd>bufdo bd<CR>", { desc = "Close [a]ll buffers" })
@@ -56,14 +56,6 @@ vim.keymap.set(
 	{ desc = "global search and replace" }
 )
 
--- Re-base current branch
-vim.keymap.set(
-	"n",
-	"<leader>hf",
-	"<cmd>!git fetch<CR><cmd>!git rebase<CR>",
-	{ desc = "[f]etch origin, and rebase current branch" }
-)
-
 vim.keymap.set("n", "<leader>tn", function()
 	vim.cmd("set number!")
 end, { desc = "Toggle line [n]umbering" })
@@ -90,28 +82,28 @@ vim.keymap.set("n", "]d", function()
 	vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-vim.keymap.set("n", "<leader>lg", function()
-	local tmux_env = vim.fn.system("echo $TMUX")
-	if string.len(trim(tmux_env)) > 0 then
-		vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit")
-		return
-	end
-
-	local cmd =
-			string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazygit", vim.fn.getcwd())
-	vim.fn.system(cmd)
-end, { desc = "Lazy[g]it in new tmux window / zellij floating window", silent = true })
-vim.keymap.set("n", "<leader>ld", function()
-	local tmux_env = vim.fn.system("echo $TMUX")
-	if string.len(trim(tmux_env)) > 0 then
-		vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazydocker")
-		return
-	end
-	local cmd =
-			string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazydocker", vim.fn.getcwd())
-	vim.fn.system(cmd)
-end, { desc = "Lazy[d]ocker in new tmux window / zellij floating window", silent = true })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic localtion list" })
+-- vim.keymap.set("n", "<leader>lg", function()
+-- 	local tmux_env = vim.fn.system("echo $TMUX")
+-- 	if string.len(trim(tmux_env)) > 0 then
+-- 		vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit")
+-- 		return
+-- 	end
+--
+-- 	local cmd =
+-- 			string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazygit", vim.fn.getcwd())
+-- 	vim.fn.system(cmd)
+-- end, { desc = "Lazy[g]it in new tmux window / zellij floating window", silent = true })
+-- vim.keymap.set("n", "<leader>ld", function()
+-- 	local tmux_env = vim.fn.system("echo $TMUX")
+-- 	if string.len(trim(tmux_env)) > 0 then
+-- 		vim.cmd("!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazydocker")
+-- 		return
+-- 	end
+-- 	local cmd =
+-- 			string.format("zellij run -c -f --height 100%% --width 100%% -x 0 -y 0 --cwd %s -- lazydocker", vim.fn.getcwd())
+-- 	vim.fn.system(cmd)
+-- end, { desc = "Lazy[d]ocker in new tmux window / zellij floating window", silent = true })
 
 -- Switching between camelCase and snake_case
 vim.api.nvim_set_keymap(
@@ -151,6 +143,15 @@ vim.keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to the left pane", silent 
 vim.keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to the bottom pane", silent = true })
 vim.keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to the top pane", silent = true })
 vim.keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to the right pane", silent = true })
+
+-- Easier window switching with leader + Number
+-- Creates mappings like this: km.set("n", "<Leader>2", "2<C-W>w", { desc = "Move to Window 2" })
+for i = 1, 4 do
+	local lhs = "<Leader>" .. i
+	local rhs = i .. "<C-W>w"
+	vim.keymap.set("n", lhs, rhs, { desc = "Move to Window " .. i })
+end
+vim.keymap.set("n", "<leader><leader>", "<C-W>w", { desc = "Move to Next Window" })
 
 -- Zellij new tab layouts
 vim.keymap.set("n", "<leader>zlg", function()

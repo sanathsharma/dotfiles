@@ -43,6 +43,9 @@ apt install stow
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
+# or install skim via cargo for fish
+cargo install skim
+
 # Install zoxide from source (see https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation for more info)
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
@@ -67,8 +70,8 @@ rm -rf lazygit lazygit.tar.gz
 # Install lazydocker
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
-# Install ripgrep
-apt install ripgrep
+# Install ripgrep, fd bat
+apt install ripgrep fd-find bat
 
 # Install htop to moniter process
 apt install htop

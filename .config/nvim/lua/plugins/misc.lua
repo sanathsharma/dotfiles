@@ -1,5 +1,26 @@
 return {
-	{ "tpope/vim-unimpaired", event = "VeryLazy" },
+	{
+		"echasnovski/mini.bracketed",
+		version = "*",
+		config = function()
+			require("mini.bracketed").setup({
+				buffer = { suffix = "b", options = {} },
+				comment = { suffix = "c", options = {} },
+				conflict = { suffix = "x", options = {} },
+				diagnostic = { suffix = "d", options = {} },
+				file = { suffix = "f", options = {} },
+				indent = { suffix = "i", options = {} },
+				jump = { suffix = "j", options = {} },
+				location = { suffix = "l", options = {} },
+				oldfile = { suffix = "o", options = {} },
+				quickfix = { suffix = "q", options = {} },
+				treesitter = { suffix = "n", options = {} },
+				undo = { suffix = "u", options = {} },
+				window = { suffix = "w", options = {} },
+				yank = { suffix = "y", options = {} },
+			})
+		end,
+	},
 	{ "tpope/vim-surround", event = "VeryLazy" },
 	{
 		"folke/trouble.nvim",
@@ -192,18 +213,27 @@ return {
 		end,
 	},
 	{
-		"lukas-reineke/indent-blankline.nvim",
+		"windwp/nvim-ts-autotag",
 		config = function()
-			require("ibl").setup({
-				scope = {
-					enabled = true,
-					show_start = false,
-					show_end = false,
+			require("nvim-ts-autotag").setup({
+				opts = {
+					-- Defaults
+					enable_close = true, -- Auto close tags
+					enable_rename = true, -- Auto rename pairs of tags
+					enable_close_on_slash = false, -- Auto close on trailing </
 				},
-				--[[ indent = {
-					char = "│",
-					tab_char = "┋",
-				}, ]]
+			})
+		end,
+	},
+	{
+		"echasnovski/mini.indentscope",
+		version = "*",
+		config = function()
+			require("mini.indentscope").setup({
+				draw = {
+					delay = 0,
+					animation = require("mini.indentscope").gen_animation.none(),
+				},
 			})
 		end,
 	},
@@ -235,6 +265,13 @@ return {
 				inc_rename = false, -- enables an input dialog for inc-rename.nvim
 				lsp_doc_border = false, -- add a border to hover docs and signature help
 			},
+			cmdline = {
+				enabled = true,
+				view = "cmdline",
+				format = {
+					cmdline = { icon = "❱" },
+				},
+			},
 		},
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -245,10 +282,10 @@ return {
 			-- "rcarriga/nvim-notify",
 		},
 	},
-	{
-		"HiPhish/rainbow-delimiters.nvim",
-		event = "VeryLazy",
-	},
+	-- {
+	-- 	"HiPhish/rainbow-delimiters.nvim",
+	-- 	event = "VeryLazy",
+	-- },
 	{
 		"m4xshen/hardtime.nvim",
 		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
@@ -256,4 +293,20 @@ return {
 		opts = {},
 	},
 	"mbbill/undotree",
+	{
+		"brenoprata10/nvim-highlight-colors",
+		config = function()
+			require("nvim-highlight-colors").setup({
+				render = "virtual", -- or 'foreground' or 'first_column'
+			})
+		end,
+	},
+	{
+		"folke/zen-mode.nvim",
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+	},
 }

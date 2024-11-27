@@ -16,7 +16,9 @@ vim.opt.ignorecase = true
 
 -- color 120th column to identify formatter overflow
 vim.opt.colorcolumn = "100,120"
-vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#24273a" })
+
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 
 vim.opt.foldmethod = "manual"
 -- vim.o.foldcolumn = "1"
@@ -34,7 +36,6 @@ vim.opt.signcolumn = "yes"
 -- highlight special characters
 vim.cmd("set showbreak=↪·") -- indicate a line break in a long line of text
 vim.cmd("set listchars=eol:⏎,tab:⇾·,trail:·,nbsp:⎵,extends:»,precedes:«,space:·")
-vim.api.nvim_set_hl(0, "Whitespace", { fg = "NvimDarkGray4" })
 vim.keymap.set("n", "<leader>tl", function()
 	vim.cmd("set list!")
 end, { desc = "Toggle special characters [l]ist" })
