@@ -21,6 +21,7 @@ return { -- Useful plugin to show you pending keybinds.
 				{ "<leader>f", group = "[F]uzzy find" },
 				{ "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Fzf files" },
 				{ "<leader>fG", "<cmd>FzfLua git_files<cr>", desc = "Fzf git files" },
+				{ "<leader>fc", "<cmd>FzfLua git_status<cr>", desc = "Fzf modified/new files" },
 				{ "<leader>fg", "<cmd>FzfLua live_grep_native<cr>", desc = "Fzf live grep" },
 				{ "<leader>fh", "<cmd>FzfLua helptags<cr>", desc = "Fzf help tags" },
 				{ "<leader>fm", "<cmd>FzfLua manpages<cr>", desc = "Fzf manpages" },
@@ -30,9 +31,13 @@ return { -- Useful plugin to show you pending keybinds.
 
 				{ "<leader>b", group = "[B]uffer actions" },
 				{ "<leader>bf", "<cmd>FzfLua buffers<cr>", desc = "Fzf buffers" },
+				{ "<leader>ba", "<cmd>bufdo bd<CR>", desc = "Close [a]ll buffers" },
+				{ "<leader>bd", "<cmd>bp|bd #<CR>", desc = "Close current buffer" },
+				{ "<leader>bc", "<cmd>%bd|e#<CR>", desc = "Close all but current buffer" },
 
 				{ "<leader>g", group = "[G]it action", mode = { "n", "v" } },
-				{ "<leader>gf", "<cmd>FzfLua git_branchs<cr>", desc = "Fzf git branches" },
+				{ "<leader>gf", "<cmd>FzfLua git_files<cr>", desc = "Fzf git branches" },
+				{ "<leader>gB", "<cmd>FzfLua git_branchs<cr>", desc = "Fzf git branches" },
 				{ "<leader>gc", "<cmd>FzfLua git_bcommits<cr>", desc = "Fzf git buffer commits" },
 
 				{ "<leader>t", group = "[T]oggle" },

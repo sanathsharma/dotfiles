@@ -5,11 +5,6 @@
 -- 	return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
 -- end
 
--- buffer commands
-vim.keymap.set("n", "<leader>ba", "<cmd>bufdo bd<CR>", { desc = "Close [a]ll buffers" })
-vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close current buffer" })
-vim.keymap.set("n", "<leader>bc", "<cmd>%bd|e#<CR>", { desc = "Close all but current buffer" })
-
 -- move selected lines up and down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
