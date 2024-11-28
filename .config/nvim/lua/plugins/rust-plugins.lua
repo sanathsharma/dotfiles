@@ -7,7 +7,8 @@ return {
 		dependencies = "neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+			-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+			capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 
 			vim.g.rustaceanvim = function()
 				local mason_registry = require("mason-registry")
@@ -53,13 +54,14 @@ return {
 	},
 	{
 		"saecki/crates.nvim",
-		ft = { "toml" },
+		tag = 'stable',
+		event = { "BufRead Cargo.toml" },
 		config = function(_, opts)
 			local crates = require("crates")
 			crates.setup(opts)
-			require("cmp").setup.buffer({
-				sources = { { name = "crates" } },
-			})
+			-- require("cmp").setup.buffer({
+			-- 	sources = { { name = "crates" } },
+			-- })
 			crates.show()
 			-- require("core.utils").load_mappings("crates")
 
