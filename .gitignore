@@ -4,4 +4,8 @@ __pycache__
 .mypy_cache
 local_tests
 fish_variables
-
+/.config/AWS*
+tmux-*
+iterm2
+htop
+configstore

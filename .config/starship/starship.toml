@@ -9,12 +9,23 @@ palette = "catppuccin_mocha"
 right_format = """$all"""
 command_timeout = 1000
 
+[character]
+# Note the use of Catppuccin color 'peach'
+success_symbol = "[❯](peach)"
+error_symbol = "[❯](peach)"
+vimcmd_symbol = "[❮](subtext1)"        # For use with zsh-vi-mode
+
+[directory]
+truncation_length = 4
+style = "bold lavender"
+
 [directory.substitutions]
 '~/tests/starship-custom' = 'work-project'
 
 [git_branch]
 format = '[$symbol$branch(:$remote_branch)]($style)'
 symbol = '󰘬 '
+style = "bold mauve"
 
 [aws]
 format = '[$symbol(profile: "$profile" )(\(region: $region\) )]($style)'

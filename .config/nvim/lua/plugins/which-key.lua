@@ -12,6 +12,34 @@ return { -- Useful plugin to show you pending keybinds.
 				-- normal mode mappings register
 				mode = "n",
 
+				{
+					"gD",
+					"<cmd>lua requrie('fzf-lua').lsp_declarations({jump_to_single_result = true})<cr>",
+					desc = "Fzf lsp_declarations",
+				},
+				{
+					"gd",
+					"<cmd>lua require('fzf-lua').lsp_definitions({jump_to_single_result = true})<cr>",
+					desc = "Fzf lsp_definitions",
+				},
+				{
+					"gi",
+					"<cmd>lua require('fzf-lua').lsp_implementations({jump_to_single_result = true})<cr>",
+					desc = "Fzf lsp_implementations",
+				},
+				{
+					"gr",
+					"<cmd>lua require('fzf-lua').lsp_references({jump_to_single_result = true})<cr>",
+					desc = "Fzf lsp_references",
+				},
+				{ "gs", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "Fzf lsp_document_symbols" },
+				{ "gw", "<cmd>FzfLua lsp_workspace_symbols<cr>", desc = "Fzf lsp_workspace_symbols" },
+				{
+					"gt",
+					"<cmd>lua require('fzf-lua').lsp_typedefs({jump_to_single_result = true})<cr>",
+					desc = "Fzf lsp_typedefs",
+				},
+
 				-- Document existing key chains
 				{ "<leader>c", group = "[C]ode" },
 				{ "<leader>r", group = "[R]ename" },
@@ -81,8 +109,8 @@ return { -- Useful plugin to show you pending keybinds.
 						if vim.bo.filetype == "rust" then
 							vim.cmd.RustLsp("codeAction")
 						else
-							vim.lsp.buf.code_action()
-							-- require("fzf-lua").lsp_code_actions()
+							-- vim.lsp.buf.code_action()
+							require("fzf-lua").lsp_code_actions()
 						end
 					end,
 					desc = "Fzf lsp code actions",

@@ -59,49 +59,34 @@ return {
 				desc = "Quickfix List (Trouble)",
 			},
 			{
-				"gr",
+				"<leader>xr",
 				"<cmd>Trouble lsp_references new=false<cr>",
 				desc = "LSP references (Trouble)",
 			},
 			{
-				"gD",
+				"<leader>xD",
 				"<cmd>Trouble lsp_declarations new=false<cr>",
 				desc = "LSP delectrations (Trouble)",
 			},
 			{
-				"gd",
+				"<leader>xd",
 				"<cmd>Trouble lsp_definitions new=false<cr>",
 				desc = "LSP definations (Trouble)",
 			},
 			{
-				"gi",
+				"<leader>xi",
 				"<cmd>Trouble lsp_implementations new=false<cr>",
 				desc = "LSP implementations (Trouble)",
 			},
 			{
-				"gt",
+				"<leader>xt",
 				"<cmd>Trouble lsp_type_definitions new=false<cr>",
 				desc = "LSP type definations (Trouble)",
 			},
 			{
-				"gs",
+				"<leader>xs",
 				"<cmd>Trouble lsp_document_symbols new=false<cr>",
 				desc = "LSP document symbols(Trouble)",
-			},
-			{
-				"<leader>xt",
-				"<cmd>Trouble telescope toggle<cr>",
-				desc = "Telescope List (Trouble)",
-			},
-			{
-				"]t",
-				"<cmd>Trouble next focus=true<cr>",
-				desc = "Go to next telescope item (Trouble)",
-			},
-			{
-				"[t",
-				"<cmd>Trouble prev focus=true<cr>",
-				desc = "Go to previous telescope item (Trouble)",
 			},
 		},
 		config = function()
@@ -154,7 +139,7 @@ return {
 			})
 
 			vim.keymap.set("n", "<leader>ts", "<cmd>TSContextToggle<CR>", { desc = "[T]oggle [s]ticky scroll" })
-			vim.keymap.set("n", "<leader>gs", function()
+			vim.keymap.set("n", "<leader>xs", function()
 				require("treesitter-context").go_to_context(vim.v.count1)
 			end, { silent = true, desc = "[g]o to nearest [s]tick scroll context" })
 

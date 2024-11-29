@@ -70,12 +70,21 @@ rm -rf lazygit lazygit.tar.gz
 # Install lazydocker
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
-# Install ripgrep, fd bat
-apt install ripgrep fd-find bat
+# Install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Install htop to moniter process
-apt install htop
+# Install ripgrep, fd
+apt install ripgrep fd-find
 
+# Install bat from source
+# cargo install --locked bat 
+# Or
+brew install bat
+bat cache --build
+
+# Install btop to moniter process
+brew install btop
+/
 # Install psql for dadbod
 apt install postgresql-client
 
@@ -109,9 +118,9 @@ curl -sS https://starship.rs/install.sh | sh
 
 # Install neovim
 # for latest
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 # for nightly
-# curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+# wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
 tar -C /opt -xzvf ./nvim-linux64.tar.gz
 rm -f ./nvim-linux64.tar.gz
 

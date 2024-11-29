@@ -32,6 +32,12 @@ set -gx GOPATH $HOME/go
 set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 set fish_greeting ""
 set --universal nvm_default_version 20.18.0
+set -Ux FZF_DEFAULT_OPTS "\
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--multi"
 
 # Path
 # For Linux
@@ -80,3 +86,7 @@ set fish_cursor_external line
 # The following variable can be used to configure cursor shape in
 # visual mode, but due to fish_cursor_default, is redundant here
 set fish_cursor_visual block
+
+if test -e /home/linuxbrew/.linuxbrew/bin/brew
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+end
