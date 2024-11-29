@@ -32,7 +32,7 @@ return { -- Useful plugin to show you pending keybinds.
 				{ "<leader>b", group = "[B]uffer actions" },
 				{ "<leader>bf", "<cmd>FzfLua buffers<cr>", desc = "Fzf buffers" },
 				{ "<leader>ba", "<cmd>bufdo bd<CR>", desc = "Close [a]ll buffers" },
-				{ "<leader>bd", "<cmd>bp|bd #<CR>", desc = "Close current buffer" },
+				{ "<leader>bd", "<cmd>bd<CR>", desc = "Close current buffer" },
 				{ "<leader>bc", "<cmd>%bd|e#<CR>", desc = "Close all but current buffer" },
 
 				{ "<leader>g", group = "[G]it action", mode = { "n", "v" } },
@@ -65,6 +65,8 @@ return { -- Useful plugin to show you pending keybinds.
 				{ "<leader>vm", group = "Grapple Tags manager" },
 				{ "<leader>v", group = "Plugin Keymaps namespace" },
 				{ "<leader>z", group = "[Z]ellij" },
+				{ "<leader>e", group = "Extras" },
+				{ "<leader>ec", "<cmd>g/console.log/d<cr>", desc = "Delete console.log" },
 			},
 			{
 				-- visual mode mappings register
