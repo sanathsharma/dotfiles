@@ -230,7 +230,7 @@ return {
 						return { buffer = ev.buf, desc = "LSP: " .. desc }
 					end
 
-					local tsBuiltin = require("telescope.builtin")
+					-- local tsBuiltin = require("telescope.builtin")
 
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("Show hover documentation"))
 					-- vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, opts("Go to [d]eclaration"))
