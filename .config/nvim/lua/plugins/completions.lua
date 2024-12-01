@@ -86,6 +86,7 @@ return {
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-cmdline",
+		"hrsh7th/cmp-calc",
 		"onsails/lspkind.nvim",
 	},
 	config = function()
@@ -93,15 +94,18 @@ return {
 		local lspkind = require("lspkind")
 
 		cmp.setup({
+			view = {
+				entries = "custom",
+			},
 			snippet = {
 				expand = function(args)
 					require("luasnip").lsp_expand(args.body)
 				end,
 			},
-			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
-			},
+			-- window = {
+			-- 	completion = cmp.config.window.bordered(),
+			-- 	documentation = cmp.config.window.bordered(),
+			-- },
 			mapping = cmp.mapping.preset.insert({
 				["<C-n>"] = cmp.mapping.select_next_item(),
 				["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -110,7 +114,8 @@ return {
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.abort(),
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
+				-- ["<CR>"] = cmp.mapping.confirm({ select = true }),
+				["<CR>"] = cmp.config.disable,
 				["<tab>"] = cmp.config.disable,
 			}),
 
@@ -128,12 +133,13 @@ return {
 						end
 					end, ]]
 				},
-				{ name = "path",    priority = 4 },
+				{ name = "path", priority = 4 },
 				{ name = "luasnip", priority = 3 },
 				{
 					name = "lazydev",
 					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
 				},
+				{ name = "calc" },
 			}, {
 				{ name = "buffer", keyword_length = 5, priority = 1 },
 			}),
@@ -148,6 +154,7 @@ return {
 						luasnip = "[snip]",
 						cmdline = "[cmd]",
 						buffer = "[buf]",
+						calc = "[calc]",
 					},
 				}),
 			},
@@ -160,7 +167,7 @@ return {
 		cmp.setup.filetype("sql", {
 			sources = {
 				{ name = "vim-dadbod-completion", priority = 3 },
-				{ name = "luasnip",               priority = 2 },
+				{ name = "luasnip", priority = 2 },
 			},
 			{
 				{ name = "buffer", keyword_length = 5, priority = 1 },

@@ -15,6 +15,7 @@ return {
 						["ctrl-e"] = actions.toggle_ignore,
 						["ctrl-q"] = actions.file_sel_to_qf,
 						["ctrl-t"] = open_with_trouble,
+						["ctrl-y"] = actions.file_edit_or_qf,
 					},
 				},
 				grep = {
@@ -38,6 +39,7 @@ return {
 							prefix = "select-all+",
 						},
 						["ctrl-t"] = open_with_trouble,
+						["ctrl-y"] = actions.file_edit_or_qf,
 					},
 				},
 				winopts = {
