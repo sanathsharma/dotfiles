@@ -1,6 +1,6 @@
 [core]
 	editor = "$EDITOR"
-[remote.orign]
+[remote.origin]
 	fetch = "+refs/heads/*:refs/remotes/origin/*"
 [pull]
 	rebase = true

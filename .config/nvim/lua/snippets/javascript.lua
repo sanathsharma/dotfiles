@@ -307,7 +307,7 @@ ls.add_snippets("typescriptreact", {
 				c(3, { sn(1, fmt("{{ {} }}", { i(1) })), t("props"), t("_props") }), -- Props destructure or alias
 				rep(1),                                                          -- Component name
 				i(4),                                                            -- Component body
-				i(5),                                                            -- Component jsx
+				d(5, filename_base),                                                            -- Component jsx
 				rep(1),                                                          -- Component name
 			}
 		)
