@@ -1,6 +1,6 @@
 return {
 	"hrsh7th/nvim-cmp",
-	event = "InsertEnter",
+	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
 		-- Snippet Engine & its associated nvim-cmp source
 		{
@@ -20,7 +20,7 @@ return {
 				--    See the README about individual language/framework/plugin snippets:
 				--    https://github.com/rafamadriz/friendly-snippets
 				"rafamadriz/friendly-snippets",
-				"rust10x/rust10x-vscode",
+				{ "rust10x/rust10x-vscode", ft = { "rust" } },
 			},
 			config = function()
 				local luasnip = require("luasnip")
@@ -133,7 +133,7 @@ return {
 						end
 					end, ]]
 				},
-				{ name = "path", priority = 4 },
+				{ name = "path",    priority = 4 },
 				{ name = "luasnip", priority = 3 },
 				{
 					name = "lazydev",
@@ -167,7 +167,7 @@ return {
 		cmp.setup.filetype("sql", {
 			sources = {
 				{ name = "vim-dadbod-completion", priority = 3 },
-				{ name = "luasnip", priority = 2 },
+				{ name = "luasnip",               priority = 2 },
 			},
 			{
 				{ name = "buffer", keyword_length = 5, priority = 1 },

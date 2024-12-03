@@ -18,12 +18,14 @@ abbr -a z "zellij"
 abbr -a fm "yazi"
 abbr -a ss "sudo shutdown -h now"
 abbr -a u "sudo apt update && sudo apt upgrade"
+abbr -a zz "cd -"
 
 # Alias
 alias ls="ls --color"
 alias vim="nvim"
 alias tmux="tmux -u"
 alias commit="sh ~/scripts/commit.sh"
+alias cat="bat"
 
 # Set variables
 set -gx EDITOR nvim

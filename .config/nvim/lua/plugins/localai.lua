@@ -1,7 +1,7 @@
 return {
 	{
 		"David-Kunz/gen.nvim",
-		event = "VeryLazy",
+		cmd = "Gen",
 		opts = {
 			model = "llama3:8b", -- The default model to use.
 			host = "localhost", -- The host running the Ollama service.

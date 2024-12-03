@@ -1,5 +1,6 @@
 return {
 	"nvimtools/none-ls.nvim",
+	ft = require("utils.ft-known"),
 	config = function()
 		local null_ls = require("null-ls")
 

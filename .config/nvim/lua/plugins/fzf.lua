@@ -2,6 +2,74 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "folke/trouble.nvim" },
+		keys = {
+			{ "<leader>ff", "<cmd>FzfLua files<cr>",                 desc = "Fzf files" },
+			{ "<leader>fG", "<cmd>FzfLua git_files<cr>",             desc = "Fzf git files" },
+			{ "<leader>fc", "<cmd>FzfLua git_status<cr>",            desc = "Fzf modified/new files" },
+			{ "<leader>fg", "<cmd>FzfLua live_grep_native<cr>",      desc = "Fzf live grep" },
+			{ "<leader>fh", "<cmd>FzfLua helptags<cr>",              desc = "Fzf help tags" },
+			{ "<leader>fm", "<cmd>FzfLua manpages<cr>",              desc = "Fzf manpages" },
+			{ "<leader>fw", "<cmd>FzfLua grep_cword<cr>",            desc = "Fzf word under cursor" },
+			{ "<leader>fi", "<cmd>FzfLua lgrep_curbuf<cr>",          desc = "Fzf current buffer only" },
+			{ "<leader>fr", "<cmd>FzfLua grep_last<cr>",             desc = "Fzf resume last grep" },
+
+			{ "<leader>bf", "<cmd>FzfLua buffers<cr>",               desc = "Fzf buffers" },
+
+			{ "<leader>gf", "<cmd>FzfLua git_files<cr>",             desc = "Fzf git branches" },
+			{ "<leader>gB", "<cmd>FzfLua git_branchs<cr>",           desc = "Fzf git branches" },
+			{ "<leader>gc", "<cmd>FzfLua git_bcommits<cr>",          desc = "Fzf git buffer commits" },
+
+			{ "<leader>lD", "<cmd>FzfLua lsp_declarations<cr>",      desc = "Fzf lsp_declarations" },
+			{ "<leader>ld", "<cmd>FzfLua lsp_definitions<cr>",       desc = "Fzf lsp_definitions" },
+			{ "<leader>li", "<cmd>FzfLua lsp_implementations<cr>",   desc = "Fzf lsp_implementations" },
+			{ "<leader>lr", "<cmd>FzfLua lsp_references<cr>",        desc = "Fzf lsp_references" },
+			{ "<leader>ls", "<cmd>FzfLua lsp_document_symbols<cr>",  desc = "Fzf lsp_document_symbols" },
+			{ "<leader>lw", "<cmd>FzfLua lsp_workspace_symbols<cr>", desc = "Fzf lsp_workspace_symbols" },
+			{ "<leader>lt", "<cmd>FzfLua lsp_typedefs<cr>",          desc = "Fzf lsp_typedefs" },
+
+			{ "<leader>as", "<cmd>FzfLua spell_suggest<cr>",         desc = "Fzf spell suggest" },
+
+			{
+				"gD",
+				"<cmd>lua requrie('fzf-lua').lsp_declarations({jump_to_single_result = true})<cr>",
+				desc = "Fzf lsp_declarations",
+			},
+			{
+				"gd",
+				"<cmd>lua require('fzf-lua').lsp_definitions({jump_to_single_result = true})<cr>",
+				desc = "Fzf lsp_definitions",
+			},
+			{
+				"gi",
+				"<cmd>lua require('fzf-lua').lsp_implementations({jump_to_single_result = true})<cr>",
+				desc = "Fzf lsp_implementations",
+			},
+			{
+				"gr",
+				"<cmd>lua require('fzf-lua').lsp_references({jump_to_single_result = true})<cr>",
+				desc = "Fzf lsp_references",
+			},
+			{ "gs", "<cmd>FzfLua lsp_document_symbols<cr>",  desc = "Fzf lsp_document_symbols" },
+			{ "gw", "<cmd>FzfLua lsp_workspace_symbols<cr>", desc = "Fzf lsp_workspace_symbols" },
+			{
+				"gt",
+				"<cmd>lua require('fzf-lua').lsp_typedefs({jump_to_single_result = true})<cr>",
+				desc = "Fzf lsp_typedefs",
+			},
+
+			{
+				"<leader>ac",
+				function()
+					if vim.bo.filetype == "rust" then
+						vim.cmd.RustLsp("codeAction")
+					else
+						-- vim.lsp.buf.code_action()
+						require("fzf-lua").lsp_code_actions()
+					end
+				end,
+				desc = "Fzf lsp code actions",
+			},
+		},
 		config = function()
 			-- See https://github.com/ibhagwan/fzf-lua/tree/main?tab=readme-ov-file#default-options for more supported config
 			local actions = require("fzf-lua.actions")
@@ -40,6 +108,13 @@ return {
 						},
 						["ctrl-t"] = open_with_trouble,
 						["ctrl-y"] = actions.file_edit_or_qf,
+					},
+				},
+				lsp = {
+					code_actions = {
+						actions = {
+							["ctrl-y"] = actions.file_edit_or_qf,
+						},
 					},
 				},
 				winopts = {

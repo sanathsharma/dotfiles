@@ -1,6 +1,7 @@
 return {
 	{
 		"numToStr/Comment.nvim",
+		lazy = true,
 		keys = {
 			{ "gcc", mode = "n", desc = "Comment toggle current line" },
 			{ "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
@@ -28,7 +29,7 @@ return {
 	},
 	{
 		"folke/todo-comments.nvim",
-		event = "VimEnter",
+		ft = require("utils.ft-known"),
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
 	},

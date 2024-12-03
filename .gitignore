@@ -9,4 +9,4 @@ tmux-*
 iterm2
 htop
 configstore
-btop.log
+*.log

@@ -3,7 +3,6 @@ return {
 		"mrcjkb/rustaceanvim",
 		version = "^4",
 		ft = { "rust" },
-		lazy = false, -- This plugin is already lazy
 		dependencies = "neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = vim.lsp.protocol.make_client_capabilities()

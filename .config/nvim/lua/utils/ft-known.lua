@@ -1,0 +1,25 @@
+local ft_known = {
+	"javascript",
+	"javascriptreact",
+	"typescript",
+	"typescriptreact",
+	"rust",
+	"go",
+	"css",
+	"scss",
+	"sass",
+	"less",
+	"json",
+	"jsonc",
+	"yaml",
+	"toml",
+	"yml",
+	"md",
+	"py",
+	"lua",
+	"html",
+	"cjs",
+	"mjs",
+}
+
+return ft_known

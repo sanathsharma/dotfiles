@@ -45,6 +45,7 @@ end
 
 return {
 	"nvim-lualine/lualine.nvim",
+	event = "VimEnter",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		-- local custom_auto = require("lualine.themes.auto")

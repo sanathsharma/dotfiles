@@ -57,3 +57,8 @@ end
 -- Spell checking
 vim.opt.spell = true
 vim.opt.spelllang = { "en_us" }
+
+-- Enable loader to speed up start time
+if vim.loader then
+	vim.loader.enable()
+end

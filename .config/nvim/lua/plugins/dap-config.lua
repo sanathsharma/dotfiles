@@ -6,6 +6,10 @@ local js_based_languages = {
 	"vue",
 }
 
+local function opts(desc)
+	return { noremap = true, silent = true, desc = desc }
+end
+
 local function pick_url()
 	local co = coroutine.running()
 	return coroutine.create(function()
@@ -25,6 +29,29 @@ end
 return {
 	{
 		"mfussenegger/nvim-dap",
+		lazy = true,
+		keys = {
+			{
+				"<F5>",
+				mode = "n",
+				function()
+					if vim.fn.filereadable(".vscode/launch.json") then
+						local dap_vscode = require("dap.ext.vscode")
+						dap_vscode.load_launchjs(nil, {
+							["pwa-node"] = js_based_languages,
+							["node"] = js_based_languages,
+							["chrome"] = js_based_languages,
+							["pwa-chrome"] = js_based_languages,
+							["lldb"] = { "rust" },
+						})
+					end
+					require("dap").continue()
+				end,
+				desc = "Start/Continue Debugging",
+				silent = true,
+				noremap = true,
+			},
+		},
 		dependencies = {
 			{
 				"microsoft/vscode-js-debug",
@@ -125,9 +152,6 @@ return {
 			--#endregion
 
 			--#region keymaps
-			local function opts(desc)
-				return { noremap = true, silent = true, desc = desc }
-			end
 			vim.keymap.set("n", "<F5>", function()
 				if vim.fn.filereadable(".vscode/launch.json") then
 					local dap_vscode = require("dap.ext.vscode")

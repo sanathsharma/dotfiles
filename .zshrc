@@ -106,6 +106,8 @@ alias k="kubectl"
 alias z="zellij"
 alias fm="yazi"
 alias commit="sh ~/scripts/commit.sh"
+alias zz="cd -"
+alias cat="bat"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

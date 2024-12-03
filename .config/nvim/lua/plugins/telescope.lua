@@ -1,5 +1,5 @@
 return {
-	{
+	--[[ {
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -62,5 +62,5 @@ return {
 			})
 			require("telescope").load_extension("ui-select")
 		end,
-	},
+	}, ]]
 }

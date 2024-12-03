@@ -1,5 +1,10 @@
 return {
-	"tpope/vim-dadbod",
-	"kristijanhusak/vim-dadbod-ui",
-	{ "kristijanhusak/vim-dadbod-completion", event = "VeryLazy" },
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		cmd = "DBUI",
+		dependencies = {
+			"kristijanhusak/vim-dadbod-completion",
+			"tpope/vim-dadbod",
+		},
+	},
 }

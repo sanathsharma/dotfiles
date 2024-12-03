@@ -2,6 +2,7 @@
 return {
 	{
 		"lewis6991/gitsigns.nvim",
+		ft = require("utils.ft-known"),
 		config = function()
 			require("gitsigns").setup({
 				signs = {
@@ -67,6 +68,7 @@ return {
 	},
 	{
 		"tpope/vim-fugitive",
+		cmd = "G",
 	},
 	-- {
 	-- 	"kdheepak/lazygit.nvim",
@@ -87,8 +89,10 @@ return {
 	-- 		{ "<leader>lg", "<cmd>LazyGit<CR>", desc = "Lazy[G]it" },
 	-- 	},
 	-- },
-	{
+	--[[ {
 		"ThePrimeagen/git-worktree.nvim",
+		event = "UIEnter",
+		dependencies = { "nvim-telescope/telescope.nvim" },
 		config = function()
 			require("telescope").load_extension("git_worktree")
 
@@ -105,8 +109,9 @@ return {
 				{ desc = "Create new worktree" }
 			)
 		end,
-	},
+	}, ]]
 	{
 		"sindrets/diffview.nvim",
+		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 	},
 }

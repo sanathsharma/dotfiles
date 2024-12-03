@@ -2,6 +2,7 @@ return {
 	{
 		"echasnovski/mini.bracketed",
 		version = "*",
+		ft = require("utils.ft-known"),
 		config = function()
 			require("mini.bracketed").setup({
 				buffer = { suffix = "b", options = {} },
@@ -21,12 +22,17 @@ return {
 			})
 		end,
 	},
-	{ "tpope/vim-surround", event = "VeryLazy" },
+	{
+		"tpope/vim-surround",
+		ft = require("utils.ft-known"),
+	},
 	{
 		"folke/trouble.nvim",
-		event = "VeryLazy",
-		dependencies = { "nvim-tree/nvim-web-devicons", "nvim-telescope/telescope.nvim" },
+		dependencies = {
+			"nvim-tree/nvim-web-devicons", --[[ "nvim-telescope/telescope.nvim"  ]]
+		},
 		cmd = "Trouble",
+		lazy = true,
 		keys = {
 			{
 				"<leader>xx",
@@ -90,7 +96,7 @@ return {
 			},
 		},
 		config = function()
-			local open_with_trouble = require("trouble.sources.telescope").open
+			--[[ local open_with_trouble = require("trouble.sources.telescope").open
 
 			require("telescope").setup({
 				defaults = {
@@ -99,7 +105,7 @@ return {
 						n = { ["<C-t>"] = open_with_trouble },
 					},
 				},
-			})
+			}) ]]
 
 			require("trouble").setup({
 				auto_close = false, -- auto close when there are no items
@@ -114,7 +120,7 @@ return {
 	{
 		"Wansmer/treesj",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		event = "VeryLazy",
+		ft = require("utils.ft-known"),
 		config = function()
 			require("treesj").setup()
 			vim.keymap.set("n", "<leader>tt", "<cmd>TSJToggle<CR>", { desc = "Toggle split join" })
@@ -122,6 +128,7 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
+		ft = require("utils.ft-known"),
 		config = function()
 			require("treesitter-context").setup({
 				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
@@ -147,10 +154,17 @@ return {
 			vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", { underline = false })
 		end,
 	},
-	"RRethy/vim-illuminate",
-	"folke/twilight.nvim",
+	{
+		"RRethy/vim-illuminate",
+		ft = require("utils.ft-known"),
+	},
+	{
+		"folke/twilight.nvim",
+		cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
+	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		ft = require("utils.ft-known"),
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				textobjects = {
@@ -199,6 +213,7 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag",
+		event = "InsertEnter",
 		config = function()
 			require("nvim-ts-autotag").setup({
 				opts = {
@@ -212,6 +227,7 @@ return {
 	},
 	{
 		"echasnovski/mini.indentscope",
+		ft = require("utils.ft-known"),
 		version = "*",
 		config = function()
 			require("mini.indentscope").setup({
@@ -224,7 +240,7 @@ return {
 	},
 	{
 		"folke/noice.nvim",
-		event = "VeryLazy",
+		event = "UIEnter",
 		opts = {
 			-- add any options here
 			lsp = {
@@ -269,17 +285,21 @@ return {
 	},
 	-- {
 	-- 	"HiPhish/rainbow-delimiters.nvim",
-	-- 	event = "VeryLazy",
+	-- 	event = "UIEnter",
 	-- },
 	{
 		"m4xshen/hardtime.nvim",
 		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-		event = "BufEnter",
+		ft = require("utils.ft-known"),
 		opts = {},
 	},
-	"mbbill/undotree",
+	{
+		"mbbill/undotree",
+		ft = require("utils.ft-known"),
+	},
 	{
 		"brenoprata10/nvim-highlight-colors",
+		ft = { "jsx", "tsx", "ts", "css", "scss", "js" },
 		config = function()
 			require("nvim-highlight-colors").setup({
 				render = "virtual", -- or 'foreground' or 'first_column'
@@ -288,6 +308,7 @@ return {
 	},
 	{
 		"folke/zen-mode.nvim",
+		cmd = "ZenMode",
 		opts = {
 			-- your configuration comes here
 			-- or leave it empty to use the default settings

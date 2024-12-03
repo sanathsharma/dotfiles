@@ -1,6 +1,8 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		lazy = true,
+		ft = require("utils.ft-known"),
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
@@ -173,7 +175,7 @@ return {
 					settings = {
 						taplo = {
 							schema = {
-								enabled = true,   -- Enable schema validation for TOML
+								enabled = true, -- Enable schema validation for TOML
 								repositoryEnabled = true, -- Enable schema repository from SchemaStore
 								cache = true,
 							},
