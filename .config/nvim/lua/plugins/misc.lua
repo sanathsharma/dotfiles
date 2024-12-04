@@ -2,7 +2,8 @@ return {
 	{
 		"echasnovski/mini.bracketed",
 		version = "*",
-		ft = require("utils.ft-known"),
+		-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 		config = function()
 			require("mini.bracketed").setup({
 				buffer = { suffix = "b", options = {} },
@@ -24,7 +25,8 @@ return {
 	},
 	{
 		"tpope/vim-surround",
-		ft = require("utils.ft-known"),
+		-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 	},
 	{
 		"folke/trouble.nvim",
@@ -120,7 +122,8 @@ return {
 	{
 		"Wansmer/treesj",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		ft = require("utils.ft-known"),
+		-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 		config = function()
 			require("treesj").setup()
 			vim.keymap.set("n", "<leader>tt", "<cmd>TSJToggle<CR>", { desc = "Toggle split join" })
@@ -128,7 +131,8 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
-		ft = require("utils.ft-known"),
+		-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 		config = function()
 			require("treesitter-context").setup({
 				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
@@ -156,7 +160,8 @@ return {
 	},
 	{
 		"RRethy/vim-illuminate",
-		ft = require("utils.ft-known"),
+		-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 	},
 	{
 		"folke/twilight.nvim",
@@ -164,7 +169,8 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		ft = require("utils.ft-known"),
+		-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				textobjects = {
@@ -227,7 +233,8 @@ return {
 	},
 	{
 		"echasnovski/mini.indentscope",
-		ft = require("utils.ft-known"),
+		-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 		version = "*",
 		config = function()
 			require("mini.indentscope").setup({
@@ -290,12 +297,14 @@ return {
 	{
 		"m4xshen/hardtime.nvim",
 		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-		ft = require("utils.ft-known"),
+		-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 		opts = {},
 	},
 	{
 		"mbbill/undotree",
-		ft = require("utils.ft-known"),
+		-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",

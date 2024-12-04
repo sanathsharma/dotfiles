@@ -2,7 +2,8 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		lazy = true,
-		ft = require("utils.ft-known"),
+		-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",

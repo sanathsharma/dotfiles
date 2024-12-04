@@ -1,6 +1,7 @@
 return {
 	"nvimtools/none-ls.nvim",
-	ft = require("utils.ft-known"),
+	-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 	config = function()
 		local null_ls = require("null-ls")
 

@@ -2,7 +2,8 @@
 return {
 	{
 		"lewis6991/gitsigns.nvim",
-		ft = require("utils.ft-known"),
+		-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 		config = function()
 			require("gitsigns").setup({
 				signs = {

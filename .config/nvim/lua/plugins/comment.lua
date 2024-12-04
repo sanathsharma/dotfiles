@@ -29,7 +29,8 @@ return {
 	},
 	{
 		"folke/todo-comments.nvim",
-		ft = require("utils.ft-known"),
+		event = "BufEnter",
+		-- ft = require("utils.ft-known"),
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
 	},

@@ -1,7 +1,8 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	ft = require("utils.ft-known"),
+	-- ft = require("utils.ft-known"),
+		event = "BufEnter",
 	config = function()
 		local configs = require("nvim-treesitter.configs")
 		configs.setup({
