@@ -1,12 +1,31 @@
 [core]
 	editor = "$EDITOR"
+	fsmonitor = true ; Run daemon to monitor file changes to speed up git status command 
+	untrackedcache = true
 ; [remote.origin]
 ; 	fetch = "+refs/heads/*:refs/remotes/origin/*"
 [pull]
 	rebase = true
 [push]
 	autoSetupRemote = true
+	forceWithLease = true
 [init]
 	defaultBranch = "main"
 [alias]
-	sro = git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+	sro = config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' ; Set remote.origin for new worktree
+	; Use -L :<fn-name>:/path/to/file for changes done on specific functions
+	fb = blame -w -C -C -C ; File blame w/ ignored whitespace, detect lines moved or copied, the commit that created the file or any commit at all
+	st = status -s
+	sta = status
+[rerere]
+	enabled = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[fetch]
+	writeCommitGraph = true ; For large repositories
+[maintenance]
+	auto = false
+	strategy = incremental
+

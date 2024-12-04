@@ -10,3 +10,4 @@ iterm2
 htop
 configstore
 *.log
+/.config/systemd
