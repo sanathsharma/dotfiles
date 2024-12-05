@@ -19,6 +19,7 @@ abbr -a fm "yazi"
 abbr -a ss "sudo shutdown -h now"
 abbr -a u "sudo apt update && sudo apt upgrade"
 abbr -a zz "cd -"
+abbr -a vvim "NVIM_APPNAME=nvim-vscode nvim"
 
 # Alias
 alias ls="ls --color"

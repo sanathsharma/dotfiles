@@ -1,7 +1,6 @@
 return {
 	{
 		"ibhagwan/fzf-lua",
-		dependencies = { "folke/trouble.nvim" },
 		cmd = "FzfLua",
 		keys = {
 			{ "<leader>ff", "<cmd>FzfLua files<cr>",                 desc = "Fzf files" },
@@ -71,10 +70,12 @@ return {
 				desc = "Fzf lsp code actions",
 			},
 		},
+		-- cond = function ()
+		-- 	return vim.g.vscode == nil
+		-- end,
 		config = function()
 			-- See https://github.com/ibhagwan/fzf-lua/tree/main?tab=readme-ov-file#default-options for more supported config
 			local actions = require("fzf-lua.actions")
-			local open_with_trouble = require("trouble.sources.fzf").open
 			require("fzf-lua").setup({
 				{ "max-perf" },
 				-- fzf_bin = "sk",
@@ -83,7 +84,6 @@ return {
 					actions = {
 						["ctrl-e"] = actions.toggle_ignore,
 						["ctrl-q"] = actions.file_sel_to_qf,
-						["ctrl-t"] = open_with_trouble,
 						["ctrl-y"] = actions.file_edit_or_qf,
 					},
 				},
@@ -107,7 +107,6 @@ return {
 							fn = actions.file_edit_or_qf,
 							prefix = "select-all+",
 						},
-						["ctrl-t"] = open_with_trouble,
 						["ctrl-y"] = actions.file_edit_or_qf,
 					},
 				},
