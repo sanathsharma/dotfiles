@@ -13,7 +13,7 @@ select = "underline"
 hidden = false
 
 [editor.whitespace]
-render = "all"
+# render = "all"
 
 [editor.whitespace.characters]
 space = "·"
