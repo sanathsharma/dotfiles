@@ -133,3 +133,6 @@ vim.keymap.set("n", "<leader>zly", function()
 	local cmd = "zellij action new-tab --layout ~/.config/zellij/layouts/yazi.kdl --name yazi"
 	vim.fn.system(cmd)
 end, { desc = "Open yazi in a new zellij tab" })
+
+vim.keymap.set("n", "gl", "$", { desc = "Go to end of line" })
+vim.keymap.set("n", "gh", "0", { desc = "Go to start of line" })
