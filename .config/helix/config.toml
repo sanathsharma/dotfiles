@@ -4,6 +4,10 @@ theme = "catppuccin_mocha"
 line-number = "relative"
 mouse = false
 rulers = [100, 120]
+cursorline = true
+cursorcolumn = true
+undercurl = true
+default-line-ending = "lf"
 
 [editor.cursor-shape]
 insert = "bar"
