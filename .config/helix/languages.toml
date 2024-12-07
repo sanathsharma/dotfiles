@@ -1,15 +1,47 @@
 [[language]]
 name = "lua"
-language-server =  { command = "lua-language-server"}
-
-[[language]]
-name = "typescript"
-language-servers = ["typescript-language-server", "biome"]
-
-[[language]]
-name = "javascript"
-language-servers = ["typescript-language-server", "biome"]
+language-servers = ["lua-language-server"]
 
 [[language]]
 name = "toml"
 formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[language-server.emmet-lsp]
+command = "emmet-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "html"
+roots = [".git"]
+language-servers = ["emmet-lsp"]
+
+[[language]]
+name = "html"
+language-servers = [ "emmet-lsp", "tailwindcss-ls" ]
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "tailwindcss-ls" ]
+
+[language-server]
+biome = { command = "biome", args = ["lsp-proxy"] }
+
+[[language]]
+name = "javascript"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "typescript"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "tsx"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "tailwindcss-ls", "emmet-lsp" ]
+
+[[language]]
+name = "jsx"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "tailwindcss-ls", "emmet-lsp"]
+
+[[language]]
+name = "json"
+language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]

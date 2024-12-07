@@ -3,6 +3,7 @@ theme = "catppuccin_mocha"
 [editor]
 line-number = "relative"
 mouse = false
+rulers = [100, 120]
 
 [editor.cursor-shape]
 insert = "bar"
