@@ -11,3 +11,4 @@ htop
 configstore
 *.log
 /.config/systemd
+btop.conf

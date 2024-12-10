@@ -29,8 +29,8 @@ alias commit="sh ~/scripts/commit.sh"
 alias cat="bat"
 
 # Set variables
-set -gx EDITOR nvim
-set -gx VISUAL nvim
+set -gx EDITOR hx
+set -gx VISUAL hx
 set -gx GOPATH $HOME/go
 set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 set fish_greeting ""
