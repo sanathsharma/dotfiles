@@ -17,6 +17,7 @@
 	fb = blame -w -C -C -C ; File blame w/ ignored whitespace, detect lines moved or copied, the commit that created the file or any commit at all
 	st = status -s
 	sta = status
+	udn = commit --amend --date=now --no-edit
 [rerere]
 	enabled = true
 [column]
