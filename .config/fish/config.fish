@@ -4,7 +4,7 @@ end
 
 # Abbreviations
 abbr -a c "clear"
-abbr -a lg "lazygit"
+abbr -a lg "lazygit -ucd ~/.config/lazygit"
 abbr -a x "exit"
 abbr -a v "nvim"
 abbr -a sv "sudo nvim"

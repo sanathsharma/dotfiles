@@ -1,4 +1,11 @@
 customCommands:
+  - key: "D"
+    description: "Update date of the latest commit to now"
+    context: "commits"
+    command: "git commit --amend --no-edit --date=now"
+    prompts:
+    - type: 'confirm'
+      body: 'Are you sure you want to update the date of latest commit to now?'
   - key: "<c-a>"
     context: "commits"
     command: "git commit --amend --no-verify --no-edit"

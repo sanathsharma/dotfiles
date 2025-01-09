@@ -12,3 +12,4 @@ configstore
 *.log
 /.config/systemd
 btop.conf
+/.config/lazygit/state.yml
