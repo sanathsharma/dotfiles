@@ -1,22 +1,23 @@
 if status is-interactive
-	# Commands to run in interactive sessions can go here
+    # Commands to run in interactive sessions can go here
 end
 
 # Abbreviations
-abbr -a c "clear"
+abbr -a c clear
 abbr -a lg "lazygit -ucd ~/.config/lazygit"
-abbr -a x "exit"
-abbr -a v "nvim"
+abbr -a x exit
+abbr -a v nvim
 abbr -a sv "sudo nvim"
 abbr -a cwr "cargo watch -q -c -w src/ -w .cargo/ -x run"
 abbr -a cwt "cargo watch -q -c -x \"test -- --nocapture\""
 abbr -a cr "cargo run"
-abbr -a ld "lazydocker"
-abbr -a d "docker"
-abbr -a k "kubectl"
-abbr -a z "zellij"
-abbr -a fm "yazi"
+abbr -a ld lazydocker
+abbr -a d docker
+abbr -a k kubectl
+abbr -a z zellij
+abbr -a fm yazi
 abbr -a ss "sudo shutdown -h now"
+abbr -a sr "sudo shutdown -r now"
 abbr -a u "sudo apt update && sudo apt upgrade"
 abbr -a zz "cd -"
 abbr -a vvim "NVIM_APPNAME=nvim-vscode nvim"
@@ -91,5 +92,5 @@ set fish_cursor_external line
 set fish_cursor_visual block
 
 if test -e /home/linuxbrew/.linuxbrew/bin/brew
-	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 end
