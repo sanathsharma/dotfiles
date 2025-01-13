@@ -13,3 +13,4 @@ zellij
 tmux
 yazi
 aerospace
+helix

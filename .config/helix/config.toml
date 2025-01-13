@@ -8,6 +8,7 @@ cursorline = true
 cursorcolumn = true
 undercurl = true
 default-line-ending = "lf"
+auto-format = false
 
 [editor.cursor-shape]
 insert = "bar"

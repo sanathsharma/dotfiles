@@ -34,3 +34,7 @@ Install vscode servers (e.g, css)
 ```
 npm i -g vscode-langservers-extracted
 ```
+Install marksman for markdown support
+```sh
+brew install marksman
+```
