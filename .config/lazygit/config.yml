@@ -16,6 +16,12 @@ customCommands:
     subprocess: true
     description: "Commit with custom script"
     loadingText: "Opening commit script"
+  - key: "N"
+    context: "localBranches"
+    command: "BASE_BRANCH='{{ .SelectedLocalBranch.Name }}' sh ~/scripts/branch.sh"
+    subprocess: true
+    description: "Create new branch with custom script"
+    loadingText: "Opening branch script"
 gui:
   theme:
     activeBorderColor:
