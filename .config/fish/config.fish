@@ -50,6 +50,7 @@ set -Ux FZF_DEFAULT_OPTS "\
 fish_add_path /opt/nvim-linux64/bin
 fish_add_path /root/.local/bin
 fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.local/kitty.app/bin
 fish_add_path $HOME/bin
 fish_add_path /sbin
 fish_add_path $HOME/go
