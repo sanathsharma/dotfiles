@@ -22,6 +22,7 @@ abbr -a u "sudo apt update && sudo apt upgrade"
 abbr -a zz "cd -"
 abbr -a vvim "NVIM_APPNAME=nvim-vscode nvim"
 abbr -a clip "xclip -selection clipboard"
+abbr -a s "kitten ssh"
 
 # Alias
 alias ls="ls --color"
