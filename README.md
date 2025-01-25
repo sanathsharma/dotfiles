@@ -14,6 +14,9 @@ apt install zip
 # Install git
 apt install git-all
 
+# Install xclip for clipboard ops
+apt install xclip
+
 # Install zsh
 apt install zsh
 
@@ -142,7 +145,7 @@ cargo install --locked yazi-fm yazi-cli
 # Install go (see https://go.dev/doc/install for more info)
 GO_VERSION=go1.22.3 # go does not have releases, only tags. Which makes it deficult to get latest tag on the github repo
 curl -Lo go.tar.gz https://go.dev/dl/${GO_VERSION}.linux-amd64.tar.gz
-rm -rf /usr/local/go && tar -C /usr/local -xzf go.tar.gz
+rm -rf ~/go && tar -C ~/go -xzf go.tar.gz
 rm go.tar.gz
 # path is already part of .zshrc, add this variable to current shell session
 export PATH=$PATH:/usr/local/go/bin
