@@ -24,7 +24,13 @@ git status --porcelain
 echo ""
 
 TICKET=$(gum input --placeholder "ticket_id")
-test -n "$TICKET" && TICKET="[$TICKET] "
+JIRA_LINK=""
+if [ -n "$TICKET" ]; then
+    # Extract ticket ID without brackets for the link
+    TICKET_CLEAN=$(echo "$TICKET" | sed 's/[^A-Za-z0-9-]//g')
+    JIRA_LINK="https://pyxispm.atlassian.net/browse/$TICKET_CLEAN"
+    TICKET="[$TICKET] "
+fi
 
 TYPE=$(gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert")
 
@@ -45,15 +51,18 @@ fi
 SUMMARY=$(gum input --value "$TICKET$TYPE$SCOPE: " --placeholder "Summary of this change")
 DESCRIPTION=$(gum write --placeholder "Details of this change")
 
-echo "Any breaking changes?"
-BREAKING_CHANGE=$(gum choose "yes" "no")
-
-if test ["$BREAKING_CHANGE" = "yes"]; then 
-	BREAKING_CHANGE_TEXT=$(gum input --placeholder "Enter breaking change desctiption")
-	# Open the commit editor with the filled details
-	git commit -m "$SUMMARY" -m "$DESCRIPTION" -m "BREAKING CHANGE: $BREAKING_CHANGE_TEXT" -e
-else 
-	# Open the commit editor with the filled details
-	git commit -m "$SUMMARY" -m "$DESCRIPTION" -e
+# Ask user if they want to include Jira link
+if [ -n "$JIRA_LINK" ]; then
+    if gum confirm "Include Jira link in commit?" --default=false; then
+        DESCRIPTION=$(printf "%s\n\nJira: %s" "$DESCRIPTION" "$JIRA_LINK")
+    fi
 fi
 
+if gum confirm "Any breaking changes?" --default=false; then
+    BREAKING_CHANGE_TEXT=$(gum input --placeholder "Enter breaking change description")
+    # Open the commit editor with the filled details
+    git commit -m "$SUMMARY" -m "$DESCRIPTION" -m "BREAKING CHANGE: $BREAKING_CHANGE_TEXT" -e
+else
+    # Open the commit editor with the filled details
+    git commit -m "$SUMMARY" -m "$DESCRIPTION" -e
+fi
