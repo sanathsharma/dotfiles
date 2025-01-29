@@ -54,6 +54,9 @@ end = "no_op"
 esc = ["collapse_selection", "keep_primary_selection"]
 ret = ["expand_selection"]
 tab = ["shrink_selection"]
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 
 [keys.normal.space]
 "." = ["file_picker_in_current_buffer_directory"]
+"i" = [":toggle lsp.display-inlay-hints"]
