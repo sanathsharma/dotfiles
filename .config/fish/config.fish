@@ -45,6 +45,11 @@ set -Ux FZF_DEFAULT_OPTS "\
 --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
 --color=selected-bg:#45475a \
 --multi"
+if type -q pass
+    set -gx OPENAI_API_KEY (pass show ai/openaikey)
+    set -gx CODEIUM_API_KEY (pass show ai/codeiumkey)
+    set -gx HANDLER (pass show ai/handler)
+end
 
 # Path
 # For Linux

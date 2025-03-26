@@ -1,3 +1,10 @@
+# [language-server.gpt]
+# command = "bun"
+# args = ["run", "~/.local/bin/helix-gpt.js"]
+
+[language-server.gpt]
+command = "helix-gpt"
+
 [[language]]
 name = "lua"
 language-servers = ["lua-language-server"]
@@ -28,11 +35,11 @@ biome = { command = "biome", args = ["lsp-proxy"] }
 
 [[language]]
 name = "javascript"
-language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "gpt" ]
 
 [[language]]
 name = "typescript"
-language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "gpt" ]
 
 [[language]]
 name = "tsx"

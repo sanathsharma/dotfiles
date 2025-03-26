@@ -56,6 +56,7 @@ ret = ["expand_selection"]
 tab = ["shrink_selection"]
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+C-i = ["jump_forward"]
 
 [keys.normal.space]
 "." = ["file_picker_in_current_buffer_directory"]
