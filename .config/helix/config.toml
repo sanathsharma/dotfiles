@@ -9,6 +9,12 @@ cursorcolumn = true
 undercurl = true
 default-line-ending = "lf"
 auto-format = false
+color-modes = true
+end-of-line-diagnostics = "error"
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+# other-lines = "error"
 
 [editor.cursor-shape]
 insert = "bar"
