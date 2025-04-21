@@ -29,4 +29,5 @@
 [maintenance]
 	auto = false
 	strategy = incremental
-
+[rebase]
+	updateRefs = true
