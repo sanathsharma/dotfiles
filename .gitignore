@@ -13,3 +13,12 @@ configstore
 /.config/systemd
 btop.conf
 /.config/lazygit/state.yml
+
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data

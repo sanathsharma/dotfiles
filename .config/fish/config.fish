@@ -21,6 +21,7 @@ abbr -a sr "sudo shutdown -r now"
 abbr -a u "sudo apt update && sudo apt upgrade"
 abbr -a zz "cd -"
 abbr -a vvim "NVIM_APPNAME=nvim-vscode nvim"
+abbr -a lvim "NVIM_APPNAME=lvim nvim"
 abbr -a clip "xclip -selection clipboard"
 abbr -a s "kitten ssh"
 
