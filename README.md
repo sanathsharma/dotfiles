@@ -87,7 +87,7 @@ bat cache --build
 
 # Install btop to moniter process
 brew install btop
-/
+
 # Install psql for dadbod
 apt install postgresql-client
 
