@@ -16,6 +16,12 @@ customCommands:
     subprocess: true
     description: "Commit with custom script"
     loadingText: "Opening commit script"
+  - key: "x"
+    context: "files"
+    command: "git commit"
+    subprocess: true
+    description: "Commit with default editor"
+    loadingText: "Opening default editor"
   - key: "N"
     context: "localBranches"
     command: "BASE_BRANCH='{{ .SelectedLocalBranch.Name }}' sh ~/scripts/branch.sh"
