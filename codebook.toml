@@ -1,0 +1,13 @@
+words = [
+    "btop",
+    "chsh",
+    "fzf",
+    "homebrew",
+    "lazydocker",
+    "lazygit",
+    "ripgrep",
+    "tmux",
+    "xclip",
+    "zoxide",
+    "zsh",
+]

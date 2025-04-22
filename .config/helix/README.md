@@ -38,3 +38,11 @@ Install marksman for markdown support
 ```sh
 brew install marksman
 ```
+
+Install codebook for spell checking
+
+- Download the tar from latest releases page, https://github.com/blopker/codebook/releases
+```sh
+tar -C ~/.local/bin -xzf <file-name>.tar.gz
+rm <file-name>.tar.gz
+```

@@ -85,7 +85,7 @@ apt install ripgrep fd-find
 brew install bat
 bat cache --build
 
-# Install btop to moniter process
+# Install btop to monitor process
 brew install btop
 
 # Install psql for dadbod
