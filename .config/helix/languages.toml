@@ -43,12 +43,12 @@ language-servers = [ { name = "typescript-language-server", except-features = [ 
 
 [[language]]
 name = "tsx"
-language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "tailwindcss-ls", "emmet-lsp" ]
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "tailwindcss-ls", "emmet-lsp", "gpt" ]
 
 [[language]]
 name = "jsx"
-language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "tailwindcss-ls", "emmet-lsp"]
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "tailwindcss-ls", "emmet-lsp", "gpt"]
 
 [[language]]
 name = "json"
-language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
+language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome", "gpt" ]
