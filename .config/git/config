@@ -1,16 +1,11 @@
+[init]
+	defaultBranch = "main"
 [core]
 	editor = "$EDITOR"
 	fsmonitor = true ; Run daemon to monitor file changes to speed up git status command 
 	untrackedcache = true
 ; [remote.origin]
 ; 	fetch = "+refs/heads/*:refs/remotes/origin/*"
-[pull]
-	rebase = true
-[push]
-	autoSetupRemote = true
-	forceWithLease = true
-[init]
-	defaultBranch = "main"
 [alias]
 	sro = config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' ; Set remote.origin for new worktree
 	; Use -L :<fn-name>:/path/to/file for changes done on specific functions
@@ -29,5 +24,21 @@
 [maintenance]
 	auto = false
 	strategy = incremental
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+	forceWithLease = true
 [rebase]
 	updateRefs = true
+[merge]
+	tool = windsurf
+[mergetool "windsurf"]
+	; Comment: Original way before three-way merge shown commented out
+	;    cmd = windsurf --wait $MERGED
+	; Comment: For "Three-way merge"
+	cmd = windsurf --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[diff]
+	tool = windsurf
+[difftool "windsurf"]
+	cmd = windsurf --wait --diff $LOCAL $REMOTE
