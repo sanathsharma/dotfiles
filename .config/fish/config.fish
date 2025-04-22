@@ -36,6 +36,7 @@ alias cat="bat"
 # Set variables
 set -gx EDITOR hx
 set -gx VISUAL hx
+set -gx GIT_EDITOR hx
 set -gx GOPATH $HOME/go
 set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 set fish_greeting ""
