@@ -13,7 +13,7 @@ echo "Creating new branch based off of: $CURRENT_BRANCH"
 echo ""
 
 # Get the branch type
-TYPE=$(gum choose "feature" "fix" "poc" "temp")
+TYPE=$(gum choose "feature" "fix" "poc" "temp" "release")
 
 if [ "$TYPE" = "temp" ]; then
     # Handle temp branch creation
