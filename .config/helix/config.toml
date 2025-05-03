@@ -11,6 +11,9 @@ default-line-ending = "lf"
 auto-format = false
 color-modes = true
 end-of-line-diagnostics = "error"
+scrolloff = 4
+middle-click-paste = false
+true-color = true
 
 [editor.inline-diagnostics]
 cursor-line = "error"
