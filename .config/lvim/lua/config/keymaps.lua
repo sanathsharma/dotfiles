@@ -39,6 +39,8 @@ vim.api.nvim_set_keymap("n", "<leader>c", "gcc", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>C", "gbc", { noremap = true })
 vim.api.nvim_set_keymap("v", "<leader>c", "gc", { noremap = true })
 vim.api.nvim_set_keymap("v", "<leader>C", "gb", { noremap = true })
+vim.api.nvim_set_keymap("n", "mm", "%", { noremap = true })
+vim.api.nvim_set_keymap("n", "%", "ggVG", { noremap = true })
 -- check if selection spans from first letter of first line to last letter of last line
 -- If yes, apply j$ (move down and to end of line), else apply V (switch to line-wise visual mode)
 vim.keymap.set("v", "x", function()
