@@ -1,6 +1,7 @@
 none
 readme
 nvim
+lvim
 lazygit
 alacrity
 kitty
