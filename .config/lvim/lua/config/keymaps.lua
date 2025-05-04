@@ -50,3 +50,12 @@ vim.keymap.set("v", "x", function()
 		vim.cmd("normal! V")
 	end
 end, { noremap = true })
+vim.keymap.set("n", "<leader>th", function()
+	if vim.lsp.inlay_hint == nil then
+		print("Error: inlay hints not supported by LSP")
+		return
+	end
+
+	-- toggle inlay hints
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
+end, { desc = "Toggle inlay [h]ints" })
