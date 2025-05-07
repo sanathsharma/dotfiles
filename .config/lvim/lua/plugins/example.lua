@@ -107,12 +107,15 @@ return {
 	{ "akinsho/bufferline.nvim", enabled = false },
 	{ "folke/ts-comments.nvim", enabled = false },
 	{
-		"snacks.nvim",
+		"folke/snacks.nvim",
 		opts = {
 			dashboard = { enabled = false },
 			-- explorer = { enabled = false },
 			indent = { enabled = false },
 		},
+		config = function()
+			require("snacks").scroll.disable()
+		end,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
@@ -380,11 +383,133 @@ return {
 				desc = "Treesitter Search",
 			},
 		},
+		config = function()
+			vim.keymap.del("n", "s")
+		end,
 	},
 	{
 		"numToStr/Comment.nvim",
 		opts = {
 			-- add any options here
+		},
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		lazy = true,
+		build = (not LazyVim.is_win())
+				and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
+			or nil,
+		dependencies = {
+			{
+				"rafamadriz/friendly-snippets",
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load()
+					require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+				end,
+			},
+		},
+		config = function()
+			local luasnip = require("luasnip")
+			local types = require("luasnip.util.types")
+
+			luasnip.config.setup({
+				keep_roots = true,
+				link_roots = true,
+				link_children = true,
+				exit_roots = false,
+				update_events = "TextChanged,TextChangedI",
+				-- enable_autosnippets = true,
+				ext_ops = {
+					[types.choiceNode] = {
+						active = {
+							virt_text = { { "⇐", "Error" } },
+						},
+					},
+				},
+				history = true,
+				delete_check_events = "TextChanged",
+			})
+
+			LazyVim.cmp.actions.snippet_forward = function()
+				if require("luasnip").jumpable(1) then
+					vim.schedule(function()
+						require("luasnip").jump(1)
+					end)
+					return true
+				end
+			end
+			LazyVim.cmp.actions.snippet_stop = function()
+				if require("luasnip").expand_or_jumpable() then -- or just jumpable(1) is fine?
+					require("luasnip").unlink_current()
+					return true
+				end
+			end
+
+			vim.keymap.set({ "i", "s" }, "<C-k>", function()
+				if luasnip.expand_or_jumpable() then
+					luasnip.expand_or_jump()
+				end
+			end, { silent = true })
+			vim.keymap.set({ "i", "s" }, "<C-j>", function()
+				if luasnip.jumpable(-1) then
+					luasnip.jump(-1)
+				end
+			end, { silent = true })
+			vim.keymap.set({ "i", "s" }, "<C-l>", function()
+				if luasnip.choice_active() then
+					luasnip.change_choice(1)
+				end
+			end, { silent = true })
+
+			-- Lazy load snippets
+			require("snippets")
+		end,
+	},
+	{
+		"saghen/blink.cmp",
+		optional = true,
+		opts = {
+			snippets = {
+				preset = "luasnip",
+			},
+		},
+	},
+	{
+		"echasnovski/mini.surround",
+		keys = function(_, keys)
+			-- Populate the keys based on the user's options
+			local opts = LazyVim.opts("mini.surround")
+			print(opts.mappings.add)
+			local mappings = {
+				{ opts.mappings.add, desc = "Add Surrounding", mode = { "n", "v" } },
+				{ opts.mappings.delete, desc = "Delete Surrounding" },
+				{ opts.mappings.find, desc = "Find Right Surrounding" },
+				{ opts.mappings.find_left, desc = "Find Left Surrounding" },
+				{ opts.mappings.highlight, desc = "Highlight Surrounding" },
+				{ opts.mappings.replace, desc = "Replace Surrounding" },
+				{ opts.mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
+			}
+			mappings = vim.tbl_filter(function(m)
+				return m[1] and #m[1] > 0
+			end, mappings)
+			return vim.list_extend(mappings, keys)
+		end,
+		opts = {
+			mappings = {
+				add = "ms", -- Add surrounding in Normal and Visual modes
+				delete = "md", -- Delete surrounding
+				find = "mf", -- Find surrounding (to the right)
+				find_left = "mF", -- Find surrounding (to the left)
+				highlight = "mh", -- Highlight surrounding
+				replace = "mr", -- Replace surrounding
+				update_n_lines = "mn", -- Update `n_lines`
+			},
+		},
+	},
+	{
+		"neovim/nvim-lspconfig",
+		opts = {
+			inlay_hints = { enabled = false },
 		},
 	},
 }
