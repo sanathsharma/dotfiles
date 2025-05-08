@@ -75,3 +75,9 @@ vim.keymap.set("n", "<leader>f.", function()
 	local buf_dir = vim.fn.expand("%:p:h")
 	require("fzf-lua").files({ cwd = buf_dir })
 end, { noremap = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>tc",
+	'<cmd>lua require("utils.switch-case").switch_case()<CR>',
+	{ noremap = true, silent = true, desc = "[T]oggle switch [c]ase" }
+)
