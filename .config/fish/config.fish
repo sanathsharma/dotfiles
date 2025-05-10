@@ -6,7 +6,7 @@ end
 abbr -a c clear
 abbr -a lg "lazygit -ucd ~/.config/lazygit"
 abbr -a x exit
-abbr -a v nvim
+abbr -a v "NVIM_APPNAME=lvim nvim"
 abbr -a sv "sudo nvim"
 abbr -a cwr "cargo watch -q -c -w src/ -w .cargo/ -x run"
 abbr -a cwt "cargo watch -q -c -x \"test -- --nocapture\""
@@ -27,7 +27,7 @@ abbr -a s "kitten ssh"
 
 # Alias
 alias ls="ls --color"
-alias vim="nvim"
+alias vim="NVIM_APPNAME=lvim nvim"
 alias tmux="tmux -u"
 alias commit="sh ~/scripts/commit.sh"
 alias new-branch="sh ~/scripts/branch.sh"

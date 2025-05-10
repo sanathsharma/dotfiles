@@ -42,3 +42,6 @@
 	tool = windsurf
 [difftool "windsurf"]
 	cmd = windsurf --wait --diff $LOCAL $REMOTE
+[user]
+	name = sanathsharma
+	email = 48090208+sanathsharma@users.noreply.github.com
