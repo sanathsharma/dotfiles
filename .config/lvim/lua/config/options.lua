@@ -67,3 +67,5 @@ end
 if vim.loader then
 	vim.loader.enable()
 end
+
+vim.g.neovide_scale_factor = 0.95

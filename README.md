@@ -142,26 +142,46 @@ rustup component add rust-analyzer
 # Install yazi terminal UI file manager
 cargo install --locked yazi-fm yazi-cli
 
-# Install go (see https://go.dev/doc/install for more info)
+# Install neovide (see https://neovide.dev/installation.html#linux-source)
+```sh
+sudo apt install -y curl \
+    gnupg ca-certificates git \
+    gcc-multilib g++-multilib cmake libssl-dev pkg-config \
+    libfreetype6-dev libasound2-dev libexpat1-dev libxcb-composite0-dev \
+    libbz2-dev libsndio-dev freeglut3-dev libxmu-dev libxi-dev libfontconfig1-dev \
+    libxcursor-dev
+cargo install --git https://github.com/neovide/neovide
+```
+
+# Install go (see <https://go.dev/doc/install> for more info)
+
 GO_VERSION=go1.22.3 # go does not have releases, only tags. Which makes it deficult to get latest tag on the github repo
-curl -Lo go.tar.gz https://go.dev/dl/${GO_VERSION}.linux-amd64.tar.gz
+curl -Lo go.tar.gz <https://go.dev/dl/${GO_VERSION}.linux-amd64.tar.gz>
 rm -rf ~/go && tar -C ~/go -xzf go.tar.gz
 rm go.tar.gz
+
 # path is already part of .zshrc, add this variable to current shell session
+
 export PATH=$PATH:/usr/local/go/bin
 
 # Install delve for go debugging
+
 go install github.com/go-delve/delve/cmd/dlv@latest
 
 # Install gum for bash scripting
+
 go install github.com/charmbracelet/gum@latest
 
 # Python, assuming python3 is already pre-installed
+
 # following are required for installing ruff, mypy etc. by mason
+
 sudo apt install python3-venv python3-virtualenv python3-pip
+
 ```
 
 ### Check the source of rust-analyzer
+
 You can confirm if your setup is using your system LSP via :checkhealth rustaceanvim after opening a Rust file:
 
 ```txt
@@ -176,8 +196,9 @@ In that event you could remove the Mason version with :MasonUninstall rust-analy
 see [stackexchange-thread](https://vi.stackexchange.com/questions/43681/simplest-setup-for-nvim-and-rust-and-system-rust-analyzer) for more info
 
 ### To symlink the dotfiles to root/home folder, run the following command from within the `dotfiles` dir
+
 ```sh
-stow .
+stow . -t ~
 ```
 
 ### For working with git worktrees in lazygit, need to run the following command to be able to fetch remote
