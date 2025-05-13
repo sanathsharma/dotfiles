@@ -45,8 +45,10 @@
 [user]
 	name = sanathsharma
 	email = 48090208+sanathsharma@users.noreply.github.com
-	signingKey = "~/.ssh/id_ed25519.pub"
-[gpg]
-	format = ssh
+	signingKey = 6ED369B3ADF2672C
+; [gpg]
+; 	format = ssh
 [commit]
 	gpgsign = true
+[tag]
+	gpgSign = true
