@@ -41,6 +41,7 @@ set -gx VISUAL hx
 set -gx GIT_EDITOR hx
 set -gx GOPATH $HOME/go
 set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
+set -gx GPG_TTY "$(tty)"
 set fish_greeting ""
 set --universal nvm_default_version 20.18.0
 set -Ux FZF_DEFAULT_OPTS "\
