@@ -206,3 +206,9 @@ stow . -t ~
 ```sh
 git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 ```
+
+### For signing git commits follow the below steps
+
+1. create gpg key, see <https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key>
+2. add the key to github, see <https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key>
+3. run `git config --global user.signingkey <gpg-key-id>`
