@@ -45,3 +45,7 @@
 [user]
 	name = sanathsharma
 	email = 48090208+sanathsharma@users.noreply.github.com
+[gpg]
+	format = ssh
+[user]
+	signingKey = ~/.ssh/id_ed25519.pub
