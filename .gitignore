@@ -22,3 +22,4 @@ debug
 foo.*
 *.log
 data
+.idea
