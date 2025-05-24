@@ -32,16 +32,16 @@
 [rebase]
 	updateRefs = true
 [merge]
-	tool = windsurf
-[mergetool "windsurf"]
+	tool = webstorm
+[mergetool "webstorm"]
 	; Comment: Original way before three-way merge shown commented out
-	;    cmd = windsurf --wait $MERGED
+	;    cmd = webstorm --wait $MERGED
 	; Comment: For "Three-way merge"
-	cmd = windsurf --wait --merge $REMOTE $LOCAL $BASE $MERGED
+	cmd = webstorm merge $REMOTE $LOCAL $BASE $MERGED
 [diff]
-	tool = windsurf
-[difftool "windsurf"]
-	cmd = windsurf --wait --diff $LOCAL $REMOTE
+	tool = webstorm
+[difftool "webstorm"]
+	cmd = webstorm diff $LOCAL $REMOTE
 [user]
 	name = sanathsharma
 	email = 48090208+sanathsharma@users.noreply.github.com
