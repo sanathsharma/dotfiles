@@ -5,6 +5,7 @@ end
 # Abbreviations
 abbr -a c clear
 abbr -a lg "lazygit -ucd ~/.config/lazygit"
+abbr -a gui "gitui"
 abbr -a x exit
 abbr -a v "NVIM_APPNAME=lvim nvim"
 abbr -a vvim "NVIM_APPNAME=nvim-vscode nvim"
