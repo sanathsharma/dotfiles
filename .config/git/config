@@ -32,16 +32,9 @@
 [rebase]
 	updateRefs = true
 [merge]
-	tool = webstorm
-[mergetool "webstorm"]
-	; Comment: Original way before three-way merge shown commented out
-	;    cmd = webstorm --wait $MERGED
-	; Comment: For "Three-way merge"
-	cmd = webstorm merge $REMOTE $LOCAL $BASE $MERGED
+	tool = meld
 [diff]
-	tool = webstorm
-[difftool "webstorm"]
-	cmd = webstorm diff $LOCAL $REMOTE
+	tool = meld
 [user]
 	name = sanathsharma
 	email = 48090208+sanathsharma@users.noreply.github.com
