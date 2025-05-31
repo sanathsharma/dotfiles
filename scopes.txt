@@ -4,6 +4,7 @@ neovide
 helix
 lvim
 lazygit
+gitui
 fish
 git
 kitty
