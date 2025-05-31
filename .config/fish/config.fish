@@ -34,6 +34,7 @@ alias vim="NVIM_APPNAME=lvim nvim"
 alias tmux="tmux -u"
 alias commit="sh ~/scripts/commit.sh"
 alias new-branch="sh ~/scripts/branch.sh"
+alias nb="sh ~/scripts/branch.sh"
 alias cat="bat"
 
 # Set variables
