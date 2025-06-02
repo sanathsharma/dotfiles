@@ -28,7 +28,7 @@ select = "underline"
 hidden = false
 
 [editor.whitespace]
-# render = "all"
+render = "none"
 
 [editor.whitespace.characters]
 space = "·"
@@ -70,6 +70,8 @@ C-k = [
 	"move_line_up",
 	"paste_before",
 ]
+F1 = ":toggle whitespace.render all none"
+F2 = ":toggle lsp.display-inlay-hints"
 
 [keys.normal.space]
 "." = ["file_picker_in_current_buffer_directory"]
