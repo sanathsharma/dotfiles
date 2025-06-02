@@ -1,4 +1,4 @@
-Installl helix
+Install helix
 ```
 brew install helix
 ```
@@ -45,4 +45,9 @@ Install codebook for spell checking
 ```sh
 tar -C ~/.local/bin -xzf <file-name>.tar.gz
 rm <file-name>.tar.gz
+```
+
+Rust setup
+```sh
+rustup component add rust-analyzer
 ```
