@@ -58,3 +58,9 @@ language-servers = [ { name = "vscode-json-language-server", except-features = [
 [[language]]
 name = "git-commit"
 language-servers = [ "codebook" ]
+
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
+[language-server.rust-analyzer.config.cargo]
+features = "all"
