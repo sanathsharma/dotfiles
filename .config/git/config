@@ -13,6 +13,7 @@
 	st = status -s
 	sta = status
 	udn = commit --amend --date=now --no-edit
+	cp = cherry-pick
 [rerere]
 	enabled = true
 [column]
