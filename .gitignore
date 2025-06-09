@@ -27,3 +27,4 @@ node_modules/
 raycast/
 uv/
 codebook/
+.config/nushell/history.txt
