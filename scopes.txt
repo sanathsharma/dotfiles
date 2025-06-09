@@ -17,3 +17,4 @@ nvim
 alacrity
 tmux
 zellij
+nushell
