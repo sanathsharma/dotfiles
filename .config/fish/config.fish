@@ -35,6 +35,7 @@ alias tmux="tmux -u"
 alias commit="sh ~/scripts/commit.sh"
 alias new-branch="sh ~/scripts/branch.sh"
 alias nb="sh ~/scripts/branch.sh"
+alias pr-url="sh ~/scripts/pr-url.sh"
 alias cat="bat"
 
 # Set variables
