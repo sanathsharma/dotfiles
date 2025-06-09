@@ -62,7 +62,7 @@ fi
 # Ask if user wants to change the current branch
 if gum confirm "Change current branch?" --default=false; then
     echo "Select branch to create PR from:"
-    SELECTED_BRANCH=$(echo "$ALL_BRANCHES" | gum filter --placeholder "Search and select branch...")
+    SELECTED_BRANCH=$(echo "$ALL_BRANCHES" | gum filter --height 15 --placeholder "Search and select branch...")
     
     if [ -z "$SELECTED_BRANCH" ]; then
         echo "No branch selected, using current branch: $CURRENT_BRANCH"
@@ -87,7 +87,7 @@ fi
 
 # Let user select a BASE branch using gum filter
 echo "Select base branch to merge INTO:"
-BASE_BRANCH=$(echo "$BRANCHES" | gum filter --placeholder "Search and select base branch...")
+BASE_BRANCH=$(echo "$BRANCHES" | gum filter --height 15 --placeholder "Search and select base branch...")
 
 if [ -z "$BASE_BRANCH" ]; then
     echo "No base branch selected"
