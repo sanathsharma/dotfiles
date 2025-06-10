@@ -32,7 +32,7 @@ if [ -n "$TICKET" ]; then
     TICKET="[$TICKET] "
 fi
 
-TYPE=$(gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert" "build")
+TYPE=$(gum choose "fix" "feat" "enhance" "docs" "style" "refactor" "test" "chore" "revert" "build")
 
 if test -f ./scopes.txt; then
 	SCOPE=$(cat ./scopes.txt | gum choose)
