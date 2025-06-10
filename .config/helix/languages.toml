@@ -24,6 +24,18 @@ name = "html"
 roots = [".git"]
 language-servers = ["emmet-lsp"]
 
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+[language-server.tailwindcss-ls.config.tailwindCSS]
+classFunctions = ["cva", "cx", "tw", "clsx", "cn", "tw\\.[a-z-]+"]
+hovers = true
+showPixelEquivalents = true
+rootFontSize = 16
+suggestions = true
+codeActions = true
+
 [[language]]
 name = "html"
 language-servers = [ "emmet-lsp", "tailwindcss-ls" ]
