@@ -37,6 +37,7 @@ alias new-branch="sh ~/scripts/branch.sh"
 alias nb="sh ~/scripts/branch.sh"
 alias pr-url="sh ~/scripts/pr-url.sh"
 alias commit-url="sh ~/scripts/commit-url.sh"
+alias copy-branch="sh ~/scripts/copy-branch.sh"
 alias cat="bat"
 
 # Set variables
