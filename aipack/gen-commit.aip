@@ -1,20 +1,21 @@
 # Data
 
 ```lua
+	local is_nx_repo = aip.file.exists("nx.json")
 	local branch_name = aip.cmd.exec("git", {"branch", "--show-current"})
 
 	if type(branch_name) == "table" and branch_name.error then
-	  return aip.flow.skip("Could not get branch name")
+		return aip.flow.skip("Could not get branch name")
 	end
 
 	local diff = aip.cmd.exec("git", {"diff", "--staged"})
 
 	if type(diff) == "table" and diff.error then
-	  return aip.flow.skip("Could not load diff")
+		return aip.flow.skip("Could not load diff")
 	end
 
 	if type(diff) == "table" and diff.stdout == "" then
-	  return aip.flow.skip("No diff --staged for generating commit message")
+		return aip.flow.skip("No diff --staged for generating commit message")
 	end
 
 	local pwd = aip.cmd.exec("pwd")
@@ -23,7 +24,8 @@
 		return {
 			branch_name = branch_name.stdout,
 			diff = diff.stdout,
-			scopes = ""
+			scopes = "",
+			is_nx_repo = is_nx_repo
 		}
 	end
 
@@ -32,7 +34,8 @@
 	return {
 		branch_name = branch_name.stdout,
 		diff = diff.stdout,
-		scopes = scopes.content:gsub("\n", ",")
+		scopes = scopes,
+		is_nx_repo = is_nx_repo
 	}
 ```
 
@@ -69,20 +72,25 @@ Follow the pattern: `<type>[optional scope]: <description>`
 
 ### Scope Examples
 
-In case the scopes list specified at the end is empty, use directory names from apps and libs as scopes:
-- `feat(notes): add note creation feature`
-- `feat(notes-e2e): add login test scenarios`
-- `fix(core): resolve provider tree building issue`
-- `fix(machines): handle promise retry logic`
-- `docs(ui): update component documentation`
-- `refactor(utils): simplify error handling`
-- `test(notes): add unit tests for app component`
-- `chore(notes): update build configuration`
+### Scope Guidelines
 
-In case the scopes are available, depending on the directory names in which the change was made, identify the
-appropriate scope for the commit. This shall allign with the summary text.
-- `feat(helix): add typescirpt lsp support`
-- `feat(scripts): update new branch script`
+- If a comma-separated list of scopes is provided in the data, use ONLY scopes from this list
+- For Nx repositories (when is_nx_repo is true), the scopes list will contain app and lib directory names
+- Only use a scope if it clearly matches the changes being made
+- If no scope from the provided list is suitable, omit the scope entirely
+- Do not invent scopes that aren't in the provided list
+- For Nx repositories, prefer using the app or lib name that contains the changed files as the scope
+- If the scopes list is empty and it's not an Nx repo, you may derive a scope from the directory names in the diff
+
+Examples with scope:
+- `feat(helix): add typescript lsp support`
+- `fix(nvim): resolve plugin loading issue`
+- `docs(fish): update function documentation`
+
+Examples without scope:
+- `feat: add new configuration option`
+- `fix: resolve cross-platform compatibility issue`
+- `refactor: simplify error handling logic`
 
 ### Multi-file Changes
 - Focus on the primary purpose of the change
@@ -130,6 +138,7 @@ Analyze the branch name, diff and scopes attached, to generate a conventional co
 ```md
 Branch name: {{data.branch_name}}
 Scopes: {{data.scopes}}
+Is Nx Repository: {{data.is_nx_repo}}
 Diff of staged changes:
 {{data.diff}}
 ```
