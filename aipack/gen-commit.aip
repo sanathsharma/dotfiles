@@ -4,7 +4,6 @@
 	local branch_name = aip.cmd.exec("git", {"branch", "--show-current"})
 
 	if type(branch_name) == "table" and branch_name.error then
-	  print("Execution Error:", branch_name.error)
 	  return aip.flow.skip("Could not get branch name")
 	end
 
