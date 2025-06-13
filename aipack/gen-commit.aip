@@ -1,0 +1,133 @@
+# Data
+
+```lua
+	local branch_name = aip.cmd.exec("git", {"branch", "--show-current"})
+
+	if type(branch_name) == "table" and branch_name.error then
+	  print("Execution Error:", branch_name.error)
+	  return aip.flow.skip("Could not get branch name")
+	end
+
+	local diff = aip.cmd.exec("git", {"diff", "--staged"})
+
+	if type(diff) == "table" and diff.error then
+	  return aip.flow.skip("Could not load diff")
+	end
+
+	if type(diff) == "table" and diff.stdout == "" then
+	  return aip.flow.skip("No diff --staged for generating commit message")
+	end
+
+	return {
+		branch_name = branch_name.stdout,
+		diff = diff.stdout
+	}
+```
+
+# Instruction
+
+```md
+# Git Commit Message Generation Prompt
+
+You are an expert at writing clear, concise, and meaningful git commit messages following conventional commit patterns.
+
+## Requirements
+
+### Conventional Commit Format
+Follow the pattern: `<type>[optional scope]: <description>`
+
+### Types
+- **feat**: A new feature
+- **fix**: A bug fix
+- **docs**: Documentation only changes
+- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- **refactor**: A code change that neither fixes a bug nor adds a feature
+- **perf**: A code change that improves performance
+- **test**: Adding missing tests or correcting existing tests
+- **chore**: Changes to the build process or auxiliary tools and libraries
+- **ci**: Changes to CI configuration files and scripts
+- **build**: Changes that affect the build system or external dependencies
+
+### Guidelines
+- **Keep it short**: Limit the subject line to 72 characters or less
+- **Use imperative mood**: "Add feature" not "Added feature" or "Adding feature"
+- **No period**: Don't end the subject line with a period
+- **Capitalize**: Start with a capital letter
+- **Be specific**: Describe what the commit does, not what was wrong
+
+### Scope Examples
+Use directory names from apps and libs as scopes:
+- `feat(notes): add note creation feature`
+- `feat(notes-e2e): add login test scenarios`
+- `fix(core): resolve provider tree building issue`
+- `fix(machines): handle promise retry logic`
+- `docs(ui): update component documentation`
+- `refactor(utils): simplify error handling`
+- `test(notes): add unit tests for app component`
+- `chore(notes): update build configuration`
+
+### Multi-file Changes
+- Focus on the primary purpose of the change
+- Use the most appropriate type for the overall change
+- Consider breaking large changes into smaller, focused commits
+
+### Message Structure
+When multiple changes are present:
+- **Subject**: Describe the major/primary change (max 72 chars)
+- **Body**: Use bullet points with `-` for additional changes
+- **Footer**: Include breaking changes and issue references
+
+### Body Format
+```
+- Add secondary feature or fix
+- Update documentation for new API
+- Refactor helper functions for better performance
+```
+
+### Footer Format
+```
+BREAKING CHANGE: API endpoint /users now requires authentication
+
+Closes #123
+Fixes #456
+Resolves #789
+```
+
+### Breaking Changes
+- Always include `BREAKING CHANGE:` in footer when applicable
+- Describe what changed and migration path if needed
+- Use when changes break backward compatibility
+
+### Issue References
+- Use `Closes #123` for features that close issues
+- Use `Fixes #456` for bug fixes that resolve issues
+- Use `Resolves #789` for general issue resolution
+- Multiple references are allowed
+
+Generate commit messages that clearly communicate the intent and impact of the staged changes.
+```
+
+Analyze the branch name, diff and scopes attached, to generate a conventional commit message.
+
+```md
+Branch name: {{data.branch_name}}
+Diff of staged changes:
+{{data.diff}}
+```
+
+ALWAYS RETURN COMMIT MESSAGE as STANDARD OUTPUT LIKE FOLLOWING AND NO EXPLANATION, NO INTRODUCTION, NO SUMMARY,
+JUST commit message
+```md
+<message-here>
+```
+
+# Output
+
+```lua
+	local content = ai_response.content
+	content = aip.md.outer_block_content_or_raw(content) 
+
+	aip.file.save("aipack/tmp/commit-msg.txt", content)
+
+	return content
+```

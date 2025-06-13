@@ -28,3 +28,5 @@ raycast/
 uv/
 codebook/
 .config/nushell/history.txt
+.aipack/
+tmp/

@@ -38,6 +38,7 @@ alias nb="sh ~/scripts/branch.sh"
 alias pr-url="sh ~/scripts/pr-url.sh"
 alias commit-url="sh ~/scripts/commit-url.sh"
 alias copy-branch="sh ~/scripts/copy-branch.sh"
+alias gen-commit="aip run --single-shot ~/aipack/gen-commit && git commit -m \"$(cat ~/aipack/tmp/commit-msg.txt)\" -e"
 alias cat="bat"
 
 # Set variables
@@ -75,6 +76,7 @@ fish_add_path $HOME/Library/Python/3.x/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+fish_add_path "$HOME/.aipack-base/bin"
 
 # Bindings
 bind --mode insert \cf forward-char
