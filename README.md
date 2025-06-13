@@ -212,3 +212,15 @@ git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 1. create gpg key, see <https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key>
 2. add the key to github, see <https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key>
 3. run `git config --global user.signingkey <gpg-key-id>`
+
+### Managing ai model keys
+
+```sh
+mkdir ~/keys
+cd ~/keys
+touch anthropic_key.txt
+touch openapi_key.txt
+```
+
+Add the key for the respective models or model providers in the file, and the fish config shall load the keys to their
+respective env var for the cli tools to use.

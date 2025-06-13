@@ -5,7 +5,7 @@ end
 # Abbreviations
 abbr -a c clear
 abbr -a lg "lazygit -ucd ~/.config/lazygit"
-abbr -a gui "gitui"
+abbr -a gui gitui
 abbr -a x exit
 abbr -a v "NVIM_APPNAME=lvim nvim"
 abbr -a vvim "NVIM_APPNAME=nvim-vscode nvim"
@@ -38,7 +38,7 @@ alias nb="sh ~/scripts/branch.sh"
 alias pr-url="sh ~/scripts/pr-url.sh"
 alias commit-url="sh ~/scripts/commit-url.sh"
 alias copy-branch="sh ~/scripts/copy-branch.sh"
-alias gen-commit="aip run --single-shot ~/aipack/gen-commit && git commit -m \"$(cat ~/aipack/tmp/commit-msg.txt)\" -e"
+alias gen-commit="aip run --single-shot ~/aipack/gen-commit && sleep 0.5s && git commit -m \"$(cat ~/aipack/tmp/commit-msg.txt)\" -e"
 alias cat="bat"
 
 # Set variables
@@ -111,4 +111,12 @@ set fish_cursor_visual block
 
 if test -e /home/linuxbrew/.linuxbrew/bin/brew
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+end
+
+if test -e $HOME/keys/anthropic_key.txt
+    set -gx ANTHROPIC_API_KEY $(cat $HOME/keys/anthropic_key.txt)
+end
+
+if test -e $HOME/keys/openapi_key.txt
+    set -gx OPENAI_API_KEY $(cat $HOME/keys/openapi_key.txt)
 end
