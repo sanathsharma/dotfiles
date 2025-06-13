@@ -38,7 +38,7 @@ alias nb="sh ~/scripts/branch.sh"
 alias pr-url="sh ~/scripts/pr-url.sh"
 alias commit-url="sh ~/scripts/commit-url.sh"
 alias copy-branch="sh ~/scripts/copy-branch.sh"
-alias gen-commit="aip run --single-shot ~/aipack/gen-commit && sleep 0.5s && git commit -m \"$(cat ~/aipack/tmp/commit-msg.txt)\" -e"
+alias gen-commit="aip run --single-shot ~/aipack/gen-commit && sleep 0.5s && git commit -m \"$(cat ~/aipack/tmp/commit-msg.txt)\" -e && echo "" > ~/aipack/tmp/commit-msg.txt"
 alias cat="bat"
 
 # Set variables
