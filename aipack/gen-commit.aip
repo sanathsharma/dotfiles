@@ -155,7 +155,7 @@ JUST commit message
 	local content = ai_response.content
 	content = aip.md.outer_block_content_or_raw(content) 
 
-	aip.file.save("aipack/tmp/commit-msg.txt", content)
+	aip.file.save("tmp/commit-msg.txt", content)
 
 	return content
 ```
