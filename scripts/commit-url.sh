@@ -2,22 +2,22 @@
 set -e
 
 # Script to select a git commit and copy its URL to the clipboard.
-# Uses gum for interactive selection.
+# Uses fzf for interactive selection.
 
 # 1. Get commit list
 # Format: <short_hash> - <subject>
 COMMIT_LOG_OUTPUT=$(git log --pretty=format:"%h - %s" -n 30 --no-merges)
 
 if [ -z "$COMMIT_LOG_OUTPUT" ]; then
-    gum style --bold --foreground="red" "No commits found in the current repository."
+    echo "No commits found in the current repository."
     exit 1
 fi
 
-# 2. Use gum filter to select a commit
-SELECTED_LINE=$(echo "$COMMIT_LOG_OUTPUT" | gum filter --height 15 --placeholder "Select a commit...")
+# 2. Use fzf to select a commit
+SELECTED_LINE=$(echo "$COMMIT_LOG_OUTPUT" | fzf --info=inline --prompt="Commit: " --height=20 --preview="" --multi=0)
 
 if [ -z "$SELECTED_LINE" ]; then
-    gum style --foreground="yellow" "No commit selected. Exiting."
+    echo "No commit selected. Exiting."
     exit 0
 fi
 
@@ -28,8 +28,8 @@ COMMIT_HASH=$(echo "$SELECTED_LINE" | awk '{print $1}')
 RAW_REMOTE_URL=$(git remote get-url origin 2>/dev/null)
 
 if [ -z "$RAW_REMOTE_URL" ]; then
-    gum style --bold --foreground="red" "Error: Could not determine remote URL for 'origin'."
-    gum style --foreground="yellow" "Please ensure the 'origin' remote is configured for this repository."
+    echo "Error: Could not determine remote URL for 'origin'."
+    echo "Please ensure the 'origin' remote is configured for this repository."
     exit 1
 fi
 
@@ -44,8 +44,8 @@ if echo "$RAW_REMOTE_URL" | grep -q "github.com"; then
         REPO_INFO=$(echo "$RAW_REMOTE_URL" | sed 's|https://github.com/||' | sed 's/\.git$//')
     fi
 else
-    gum style --bold --foreground="red" "Error: Remote URL is not a GitHub repository."
-    gum style --foreground="yellow" "Remote URL: $RAW_REMOTE_URL"
+    echo "Error: Remote URL is not a GitHub repository."
+    echo "Remote URL: $RAW_REMOTE_URL"
     exit 1
 fi
 

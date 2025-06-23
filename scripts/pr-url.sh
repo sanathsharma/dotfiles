@@ -48,8 +48,8 @@ echo "Creating PR from current branch: $CURRENT_BRANCH"
 echo ""
 
 # Fetch all branches once
-echo "Fetching branches..."
-git fetch --all --quiet 2>/dev/null || true
+# echo "Fetching branches..."
+# git fetch --all --quiet 2>/dev/null || true
 
 # Get all branches, remove duplicates, and clean up the format
 ALL_BRANCHES=$(git branch -a | sed 's/^[* ] //' | sed 's|remotes/origin/||' | grep -v '^HEAD' | sort -u)
@@ -59,10 +59,13 @@ if [ -z "$ALL_BRANCHES" ]; then
     exit 1
 fi
 
-# Ask if user wants to change the current branch
-if gum confirm "Change current branch?" --default=false; then
+# Ask if user wants to change the current branch using fzf
+echo "Select an option:"
+OPTION=$(printf "Use current branch: %s\nSelect different branch" "$CURRENT_BRANCH" | fzf --info=inline --prompt="Option: " --height=5 --preview="" --multi=0)
+
+if echo "$OPTION" | grep -q "Select different branch"; then
     echo "Select branch to create PR from:"
-    SELECTED_BRANCH=$(echo "$ALL_BRANCHES" | gum filter --height 15 --placeholder "Search and select branch...")
+    SELECTED_BRANCH=$(echo "$ALL_BRANCHES" | fzf --info=inline --prompt="PR Branch: " --height=20 --preview="" --multi=0)
     
     if [ -z "$SELECTED_BRANCH" ]; then
         echo "No branch selected, using current branch: $CURRENT_BRANCH"
@@ -85,9 +88,9 @@ if [ -z "$BRANCHES" ]; then
     exit 1
 fi
 
-# Let user select a BASE branch using gum filter
+# Let user select a BASE branch using fzf
 echo "Select base branch to merge INTO:"
-BASE_BRANCH=$(echo "$BRANCHES" | gum filter --height 15 --placeholder "Search and select base branch...")
+BASE_BRANCH=$(echo "$BRANCHES" | fzf --info=inline --prompt="Base Branch: " --height=20 --preview="" --multi=0)
 
 if [ -z "$BASE_BRANCH" ]; then
     echo "No base branch selected"

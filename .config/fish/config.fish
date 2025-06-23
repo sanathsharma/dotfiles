@@ -28,19 +28,21 @@ abbr -a u "sudo apt update && sudo apt upgrade"
 abbr -a zz "cd -"
 abbr -a clip "xclip -selection clipboard"
 abbr -a s "kitten ssh"
+abbr -a nb "new-branch"
+abbr -a sb "switch-branch"
 
 # Alias
 alias ls="ls --color"
 alias vim="NVIM_APPNAME=lvim nvim"
 alias tmux="tmux -u"
 alias commit="sh ~/scripts/commit.sh"
-alias new-branch="sh ~/scripts/branch.sh"
-alias nb="sh ~/scripts/branch.sh"
+alias new-branch="sh ~/scripts/new-branch.sh"
 alias pr-url="sh ~/scripts/pr-url.sh"
 alias commit-url="sh ~/scripts/commit-url.sh"
 alias copy-branch="sh ~/scripts/copy-branch.sh"
 alias gen-commit="sh ~/scripts/gen-commit.sh"
 alias cat="bat"
+alias switch-branch='sh ~/scripts/checkout-branch.sh'
 
 # Set variables
 set -gx EDITOR hx
@@ -56,7 +58,10 @@ set -Ux FZF_DEFAULT_OPTS "\
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
 --color=selected-bg:#45475a \
+--preview=\"bat --style=numbers --color=always {}\" \
 --multi"
+# set -Ux FZF_DEFAULT_COMMAND "rg --files --hidden --glob '!.git/*' --glob '!**/.git/*'"
+set -Ux FZF_DEFAULT_COMMAND ""
 
 # Path
 # For Linux
