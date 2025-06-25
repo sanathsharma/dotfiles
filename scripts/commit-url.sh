@@ -14,7 +14,7 @@ if [ -z "$COMMIT_LOG_OUTPUT" ]; then
 fi
 
 # 2. Use fzf to select a commit
-SELECTED_LINE=$(echo "$COMMIT_LOG_OUTPUT" | fzf --info=inline --prompt="Commit: " --height=20 --preview="" --multi=0)
+SELECTED_LINE=$(echo "$COMMIT_LOG_OUTPUT" | fzf --reverse --info=inline --prompt="Commit: " --height=20 --preview="" --multi=0)
 
 if [ -z "$SELECTED_LINE" ]; then
     echo "No commit selected. Exiting."

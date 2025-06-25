@@ -14,7 +14,7 @@ set -e
 echo "Welcome to commit-cli"
 
 if [ -z "$(git status -s -uno | grep -v '^ ' | awk '{print $2}')" ]; then
-    STAGE_OPTION=$(printf "Yes\nNo" | fzf --info=inline --prompt="Stage all? " --height=5 --preview="" --multi=0)
+    STAGE_OPTION=$(printf "Yes\nNo" | fzf --reverse --info=inline --prompt="Stage all? " --height=5 --preview="" --multi=0)
     if [ "$STAGE_OPTION" = "Yes" ]; then
         git add .
     fi
@@ -35,10 +35,10 @@ if [ -n "$TICKET" ]; then
     TICKET="[$TICKET] "
 fi
 
-TYPE=$(printf "fix\nfeat\nenhance\ndocs\nstyle\nrefactor\ntest\nchore\nrevert\nbuild" | fzf --info=inline --prompt="Commit Type: " --height=12 --preview="" --multi=0)
+TYPE=$(printf "fix\nfeat\nenhance\ndocs\nstyle\nrefactor\ntest\nchore\nrevert\nbuild" | fzf --reverse --info=inline --prompt="Commit Type: " --height=12 --preview="" --multi=0)
 
 if test -f ./scopes.txt; then
-	SCOPE=$(cat ./scopes.txt | fzf --info=inline --prompt="Scope: " --height=15 --preview="" --multi=0)
+	SCOPE=$(cat ./scopes.txt | fzf --reverse --info=inline --prompt="Scope: " --height=15 --preview="" --multi=0)
 else 
 	SCOPE=$(gum input --placeholder "scope")
 fi
@@ -56,13 +56,13 @@ DESCRIPTION=$(gum write --placeholder "Details of this change")
 
 # Ask user if they want to include Jira link
 if [ -n "$JIRA_LINK" ]; then
-    JIRA_OPTION=$(printf "Yes\nNo" | fzf --info=inline --prompt="Include Jira link in commit? " --height=5 --preview="" --multi=0)
+    JIRA_OPTION=$(printf "Yes\nNo" | fzf --reverse --info=inline --prompt="Include Jira link in commit? " --height=5 --preview="" --multi=0)
     if [ "$JIRA_OPTION" = "Yes" ]; then
         DESCRIPTION=$(printf "%s\n\nJira: %s" "$DESCRIPTION" "$JIRA_LINK")
     fi
 fi
 
-BREAKING_OPTION=$(printf "No\nYes" | fzf --info=inline --prompt="Any breaking changes? " --height=5 --preview="" --multi=0)
+BREAKING_OPTION=$(printf "No\nYes" | fzf --reverse --info=inline --prompt="Any breaking changes? " --height=5 --preview="" --multi=0)
 if [ "$BREAKING_OPTION" = "Yes" ]; then
     BREAKING_CHANGE_TEXT=$(gum input --placeholder "Enter breaking change description")
     # Open the commit editor with the filled details

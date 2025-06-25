@@ -28,7 +28,7 @@ select_branch() {
 
     # Let user select a branch using fzf
     echo "Select branch to copy:"
-    SELECTED_BRANCH=$(echo "$ALL_BRANCHES" | fzf --info=inline --prompt="Branch: " --height=20 --preview="" --multi=0)
+    SELECTED_BRANCH=$(echo "$ALL_BRANCHES" | fzf --reverse --info=inline --prompt="Branch: " --height=20 --preview="" --multi=0)
 
     if [ -z "$SELECTED_BRANCH" ]; then
         echo "No branch selected"
@@ -54,7 +54,7 @@ fi
 
 # Ask if user wants to copy current branch or search for another (skip if in detached HEAD)
 if [ "$IN_DETACHED_HEAD" = "false" ]; then
-    COPY_OPTION=$(printf "Copy current branch: %s\nSelect different branch" "$CURRENT_BRANCH" | fzf --info=inline --prompt="Option: " --height=5 --preview="" --multi=0)
+    COPY_OPTION=$(printf "Copy current branch: %s\nSelect different branch" "$CURRENT_BRANCH" | fzf --reverse --info=inline --prompt="Option: " --height=5 --preview="" --multi=0)
     if echo "$COPY_OPTION" | grep -q "Copy current branch"; then
         SELECTED_BRANCH="$CURRENT_BRANCH"
         echo "Using current branch: $SELECTED_BRANCH"

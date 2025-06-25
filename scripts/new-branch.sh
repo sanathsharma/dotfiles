@@ -13,7 +13,7 @@ echo "Creating new branch based off of: $CURRENT_BRANCH"
 echo ""
 
 # Get the branch type
-TYPE=$(printf "feature\nfix\nfixes\npoc\ntemp\nrelease\nhotfix" | fzf --info=inline --prompt="Branch Type: " --height=10 --preview="" --multi=0)
+TYPE=$(printf "feature\nfix\nfixes\npoc\ntemp\nrelease\nhotfix" | fzf --reverse --info=inline --prompt="Branch Type: " --height=10 --preview="" --multi=0)
 
 if [ "$TYPE" = "temp" ]; then
 	# Handle temp branch creation

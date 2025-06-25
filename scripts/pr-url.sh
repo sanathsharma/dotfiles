@@ -61,11 +61,11 @@ fi
 
 # Ask if user wants to change the current branch using fzf
 echo "Select an option:"
-OPTION=$(printf "Use current branch: %s\nSelect different branch" "$CURRENT_BRANCH" | fzf --info=inline --prompt="Option: " --height=5 --preview="" --multi=0)
+OPTION=$(printf "Use current branch: %s\nSelect different branch" "$CURRENT_BRANCH" | fzf --reverse --info=inline --prompt="Option: " --height=5 --preview="" --multi=0)
 
 if echo "$OPTION" | grep -q "Select different branch"; then
     echo "Select branch to create PR from:"
-    SELECTED_BRANCH=$(echo "$ALL_BRANCHES" | fzf --info=inline --prompt="PR Branch: " --height=20 --preview="" --multi=0)
+    SELECTED_BRANCH=$(echo "$ALL_BRANCHES" | fzf --reverse --info=inline --prompt="PR Branch: " --height=20 --preview="" --multi=0)
     
     if [ -z "$SELECTED_BRANCH" ]; then
         echo "No branch selected, using current branch: $CURRENT_BRANCH"
@@ -90,7 +90,7 @@ fi
 
 # Let user select a BASE branch using fzf
 echo "Select base branch to merge INTO:"
-BASE_BRANCH=$(echo "$BRANCHES" | fzf --info=inline --prompt="Base Branch: " --height=20 --preview="" --multi=0)
+BASE_BRANCH=$(echo "$BRANCHES" | fzf --reverse --info=inline --prompt="Base Branch: " --height=20 --preview="" --multi=0)
 
 if [ -z "$BASE_BRANCH" ]; then
     echo "No base branch selected"
