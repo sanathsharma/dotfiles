@@ -14,7 +14,7 @@ SELECTED_BRANCH=$(git branch -a | \
     grep -v '^HEAD' | \
     grep -v "^${CURRENT_BRANCH}$" | \
     sort -u | \
-    fzf --info=inline --prompt="Branch: " --height=20 --preview="")
+    fzf --reverse --info=inline --prompt="Branch: " --height=20 --preview="")
 
 # Exit if no branch was selected
 if [ -z "$SELECTED_BRANCH" ]; then
@@ -22,8 +22,12 @@ if [ -z "$SELECTED_BRANCH" ]; then
     exit 0
 fi
 
-# Remove origin/ prefix if present for cleaner checkout
-CLEAN_BRANCH=$(echo "$SELECTED_BRANCH" | sed 's/^origin\///')
+# Remove any remote prefix if present for cleaner checkout
+# Get list of all remotes and remove any matching prefix
+CLEAN_BRANCH="$SELECTED_BRANCH"
+for remote in $(git remote); do
+    CLEAN_BRANCH=$(echo "$CLEAN_BRANCH" | sed "s/^${remote}\///")
+done
 
 echo "Switching to branch: $CLEAN_BRANCH"
 
