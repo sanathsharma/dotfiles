@@ -74,6 +74,8 @@ fish_add_path $HOME/bin
 fish_add_path /sbin
 fish_add_path $HOME/go
 fish_add_path $GOPATH/bin
+fish_add_path /usr/bin
+fish_add_path $HOME/jetbrains-toolbox/bin
 # Go entry
 fish_add_path /usr/local/go/bin
 # MacOS specific
