@@ -71,19 +71,19 @@ echo ""
 # Copy to clipboard based on OS
 if command -v pbcopy > /dev/null 2>&1; then
     # macOS
-    echo "$SELECTED_BRANCH" | pbcopy
+    printf "%s" "$SELECTED_BRANCH" | pbcopy
     echo "✅ Branch name copied to clipboard (macOS)"
 elif command -v xclip > /dev/null 2>&1; then
     # Linux with xclip
-    echo "$SELECTED_BRANCH" | xclip -selection clipboard
+    printf "%s" "$SELECTED_BRANCH" | xclip -selection clipboard
     echo "✅ Branch name copied to clipboard (Linux - xclip)"
 elif command -v xsel > /dev/null 2>&1; then
     # Linux with xsel
-    echo "$SELECTED_BRANCH" | xsel --clipboard --input
+    printf "%s" "$SELECTED_BRANCH" | xsel --clipboard --input
     echo "✅ Branch name copied to clipboard (Linux - xsel)"
 elif command -v wl-copy > /dev/null 2>&1; then
     # Wayland
-    echo "$SELECTED_BRANCH" | wl-copy
+    printf "%s" "$SELECTED_BRANCH" | wl-copy
     echo "✅ Branch name copied to clipboard (Wayland)"
 else
     echo "⚠️  Could not copy to clipboard. Please copy the branch name manually."
