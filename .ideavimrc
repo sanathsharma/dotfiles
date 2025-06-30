@@ -21,6 +21,7 @@ set showmode
 set hlsearch
 set visualbell
 set commentary
+set scrolloff=5
 " Can be installed / enabled with command from the comment
 set surround " Plug 'tpope/vim-surround' " (https://github.com/tpope/vim-surround/blob/master/doc/surround.txt)
 set highlightedyank " Plug 'machakann/vim-highlightedyank' " (https://github.com/machakann/vim-highlightedyank/blob/master/doc/highlightedyank.txt)
@@ -158,6 +159,7 @@ map \\tr <Action>(ToggleReadOnlyAttribute)
 
 " use \tm as m for marks to work
 noremap \\tm m
+noremap \\m m
 
 " NerdTree
 " ========
