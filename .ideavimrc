@@ -62,13 +62,22 @@ set matchit " Plug 'chrisbra/matchit' " (https://github.com/adelarsq/vim-matchit
 " " Which key plugin
 " " Install: https://plugins.jetbrains.com/plugin/15976-which-key
 " " Docs: https://github.com/TheBlob42/idea-which-key?tab=readme-ov-file#installation
-" set which-key
-" set timeoutlen=10000
+set which-key
+set timeoutlen=10000
 
 " " Sneak plugin
 " " Install (alternative syntax): Plug 'justinmk/vim-sneak'
 " " Docs: https://github.com/Mishkun/ideavim-sneak
 " set sneak
+Plug 'justinmk/vim-sneak'
+map gw <Plug>Sneak_s
+map gW <Plug>Sneak_S
+map s <Plug>Sneak_s
+map S <Plug>Sneak_S
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 
 " " Quickscope plugin
 " " Install: https://plugins.jetbrains.com/plugin/19417-ideavim-quickscope
@@ -83,7 +92,7 @@ set matchit " Plug 'chrisbra/matchit' " (https://github.com/adelarsq/vim-matchit
 
 " " Vim paragraph motion
 " " Docs: https://github.com/dbakker/vim-paragraph-motion#vim-paragraph-motion
-" Plug 'dbakker/vim-paragraph-motion'
+Plug 'dbakker/vim-paragraph-motion'
 
 " " EasyMotion plugin
 " " Requires: https://plugins.jetbrains.com/plugin/7086-acejump
@@ -449,7 +458,8 @@ map <C-a> :action AddToHarpoon<cr>
 " map g<S-C-n> <Plug>AllOccurrences
 
 " END REQUIRES multiple-cursors
-
+map <leader>c <Action>(CommentByLineComment)
+map <leader>C <Action>(CommentByBlockComment)
 
 """ Running and Debugging
 nmap ,r <Action>(ContextRun)
