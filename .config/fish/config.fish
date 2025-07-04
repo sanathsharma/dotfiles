@@ -30,6 +30,7 @@ abbr -a clip "xclip -selection clipboard"
 abbr -a s "kitten ssh"
 abbr -a nb "new-branch"
 abbr -a sb "switch-branch"
+abbr -a sro "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 
 # Alias
 alias ls="ls --color"
@@ -41,6 +42,7 @@ alias pr-url="sh ~/scripts/pr-url.sh"
 alias commit-url="sh ~/scripts/commit-url.sh"
 alias copy-branch="sh ~/scripts/copy-branch.sh"
 alias gen-commit="sh ~/scripts/gen-commit.sh"
+alias ocat="$(which cat)"
 alias cat="bat"
 alias switch-branch='sh ~/scripts/checkout-branch.sh'
 
