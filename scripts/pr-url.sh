@@ -52,7 +52,7 @@ echo ""
 # git fetch --all --quiet 2>/dev/null || true
 
 # Get all branches, remove duplicates, and clean up the format
-ALL_BRANCHES=$(git branch -a | sed 's/^[* ] //' | sed 's|remotes/origin/||' | grep -v '^HEAD' | sort -u)
+ALL_BRANCHES=$(git branch -a | sed 's/^[*+ ] //' | sed 's|remotes/origin/||' | grep -v '^HEAD' | sort -u)
 
 if [ -z "$ALL_BRANCHES" ]; then
     echo "Error: No branches found"
