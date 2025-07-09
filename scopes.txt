@@ -19,3 +19,4 @@ tmux
 zellij
 nushell
 aipack
+ideavim

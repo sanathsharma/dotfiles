@@ -54,5 +54,6 @@ gui:
     "*": "#b4befe"
 git:
   autoForwardBranches: "allBranches"
+  overrideGpg: true
 os:
   editPreset: "helix (hx)"
