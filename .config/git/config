@@ -37,15 +37,14 @@
 	tool = meld
 [diff]
 	tool = meld
-[user]
-	name = sanathsharma
-	email = 48090208+sanathsharma@users.noreply.github.com
-	signingKey = 6ED369B3ADF2672C
-; [gpg]
-; 	format = ssh
+[gpg]
+	format = ssh
 [commit]
 	gpgsign = true
 [tag]
 	gpgSign = true
 [checkout]
 	defaultRemote = origin
+; setup user.name, user.email and user.signingKey in the following file
+[include]
+	path = "~/keys/.gitconfig"
