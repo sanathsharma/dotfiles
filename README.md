@@ -207,12 +207,6 @@ stow . -t ~
 git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 ```
 
-### For signing git commits follow the below steps
-
-1. create gpg key, see <https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key>
-2. add the key to github, see <https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key>
-3. run `git config --global user.signingkey <gpg-key-id>`
-
 ### Managing ai model keys
 
 ```sh
@@ -224,3 +218,19 @@ touch openapi_key.txt
 
 Add the key for the respective models or model providers in the file, and the fish config shall load the keys to their
 respective env var for the cli tools to use.
+
+### Setting up git user details and signing key
+
+```sh
+cd ~/keys
+touch .gitconfig
+```
+
+add the following content to the ~/keys/.gitconfig file
+
+```ini
+[user]
+	name = <username>
+	email = <noreply-email-id>
+	signingKey = <path/to/pub-key>
+```
