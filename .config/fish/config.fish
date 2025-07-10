@@ -61,6 +61,7 @@ set -Ux FZF_DEFAULT_OPTS "\
 --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
 --color=selected-bg:#45475a \
 --preview=\"bat --style=numbers --color=always {}\" \
+--height=20 \
 --multi"
 # set -Ux FZF_DEFAULT_COMMAND "rg --files --hidden --glob '!.git/*' --glob '!**/.git/*'"
 set -Ux FZF_DEFAULT_COMMAND ""
