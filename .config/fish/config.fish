@@ -62,9 +62,12 @@ set -Ux FZF_DEFAULT_OPTS "\
 --color=selected-bg:#45475a \
 --preview=\"bat --style=numbers --color=always {}\" \
 --height=20 \
+--reverse \
 --multi"
 # set -Ux FZF_DEFAULT_COMMAND "rg --files --hidden --glob '!.git/*' --glob '!**/.git/*'"
+# set -Ux FZF_DEFAULT_COMMAND "fd --type file --hidden --no-ignore"
 set -Ux FZF_DEFAULT_COMMAND ""
+set -Ux FZF_COMPLETION_TRIGGER "~~"
 
 # Path
 # For Linux
