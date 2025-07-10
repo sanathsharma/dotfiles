@@ -41,7 +41,8 @@ alias new-branch="sh ~/scripts/new-branch.sh"
 alias pr-url="sh ~/scripts/pr-url.sh"
 alias commit-url="sh ~/scripts/commit-url.sh"
 alias copy-branch="sh ~/scripts/copy-branch.sh"
-alias gen-commit="sh ~/scripts/gen-commit.sh"
+# use https://github.com/sanathsharma/gen-commit instead
+# alias gen-commit="sh ~/scripts/gen-commit.sh"
 alias ocat="$(which cat)"
 alias cat="bat"
 alias switch-branch='sh ~/scripts/checkout-branch.sh'

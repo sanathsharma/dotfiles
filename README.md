@@ -234,3 +234,7 @@ add the following content to the ~/keys/.gitconfig file
 	email = <noreply-email-id>
 	signingKey = <path/to/pub-key>
 ```
+
+### Commit message generator with AI
+
+see https://github.com/sanathsharma/gen-commit for setup and usage
