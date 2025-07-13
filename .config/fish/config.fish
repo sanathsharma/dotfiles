@@ -31,6 +31,8 @@ abbr -a s "kitten ssh"
 abbr -a nb "new-branch"
 abbr -a sb "switch-branch"
 abbr -a sro "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
+abbr -a gc "gen-commit"
+abbr -a gco "gen-commit -m openai:gpt-4.1-mini"
 
 # Alias
 alias ls="ls --color"
