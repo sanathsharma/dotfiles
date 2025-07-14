@@ -12,7 +12,7 @@ function _fzf_search_npm_scripts
 
     # Check if package.json exists
     if not test -f $package_json_path
-        echo "No package.json found in current directory or git toplevel directory."
+        echo "No package.json found in current directory or git toplevel directory." >&2
         return 1
     end
 
@@ -20,12 +20,12 @@ function _fzf_search_npm_scripts
     set scripts (jq -r '.scripts | keys[]' $package_json_path 2>/dev/null)
 
     if test $status -ne 0
-        echo "Error: Failed to parse package.json. Make sure jq is installed."
+        echo "Error: Failed to parse package.json. Make sure jq is installed." >&2
         return 1
     end
 
     if test (count $scripts) -eq 0
-        echo "No npm scripts found in package.json."
+        echo "No npm scripts found in package.json." >&2
         return 1
     end
 

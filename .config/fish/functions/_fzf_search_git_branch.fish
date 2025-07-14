@@ -1,6 +1,6 @@
 function _fzf_search_git_branch
     if not git rev-parse --git-dir >/dev/null 2>&1
-        echo "Not a git repository."
+        echo "Not a git repository." >&2
         return 1
     end
 
