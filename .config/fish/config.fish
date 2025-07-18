@@ -48,6 +48,7 @@ alias copy-branch="sh ~/scripts/copy-branch.sh"
 alias ocat="$(which cat)"
 alias cat="bat"
 alias switch-branch='sh ~/scripts/checkout-branch.sh'
+alias dr="sh ~/scripts/debug_rust.sh"
 
 # Set variables
 set -gx EDITOR hx
