@@ -48,7 +48,7 @@ enable = true
 display-messages = true
 
 [keys.insert]
-j = { k = "normal_mode" }
+# j = { k = "normal_mode" }
 C-space = ["completion"]
 up = "no_op"
 down = "no_op"
