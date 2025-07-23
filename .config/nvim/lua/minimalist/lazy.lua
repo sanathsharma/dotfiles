@@ -15,6 +15,28 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Constants
+-- ---------------------------------------------------------------------------------------------------------------------
+
+local treesitter_parsers = {
+	"rust",
+	"javascript",
+	"javascriptreact",
+	"typescript",
+	"typescriptreact",
+	"toml",
+	"yaml",
+	"json",
+	"sh",
+	"lua",
+	"markdown",
+}
+
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Plugins setup
+-- ---------------------------------------------------------------------------------------------------------------------
+
 require("lazy").setup({
 	{
 		"folke/which-key.nvim",
@@ -27,41 +49,85 @@ require("lazy").setup({
 				{
 					mode = { "n" },
 					-- FzfLua
-					{ "<leader>f",        "<cmd>FzfLua files<cr>",                     desc = "Open file picker" },
-					{ "<leader><leader>", "<cmd>FzfLua files<cr>",                     desc = "Open file picker" },
-					{ "<leader>'",        "<cmd>FzfLua resume<cr>",                    desc = "Open last picker" },
-					{ "<leader>s",        "<cmd>FzfLua lsp_document_symbols<cr>",      desc = "Open symbol picker" },
-					{ "<leader>S",        "<cmd>FzfLua lsp_workspace_symbols<cr>",     desc = "Open workspace symbol picker" },
-					{ "<leader>d",        "<cmd>FzfLua lsp_document_diagnostics<cr>",  desc = "Open diagnostic picker" },
-					{ "<leader>D",        "<cmd>FzfLua lsp_workspace_diagnostics<cr>", desc = "Open workspace diagnostic picker" },
-					{ "<leader>o",        "<cmd>FzfLua lsp_incoming_calls<cr>",        desc = "Open incoming calls picker" },
-					{ "<leader>O",        "<cmd>FzfLua lsp_outgoing_calls<cr>",        desc = "Open outgoing calls picker" },
-					{ "<leader>a",        "<cmd>FzfLua lsp_code_actions<cr>",          desc = "Perform code actions" },
+					{ "<leader>f",        "<cmd>FzfLua files<cr>",                                                   desc = "Open file picker" },
+					{ "<leader>.",        "<cmd>lua require('fzf-lua').files({ cwd = vim.fn.expand('%:p:h') })<cr>", desc = "Open file picker in current buffer directory" },
+					{ "<leader><leader>", "<cmd>FzfLua files<cr>",                                                   desc = "Open file picker" },
+					{ "<leader>'",        "<cmd>FzfLua resume<cr>",                                                  desc = "Open last picker" },
+					{ "<leader>b",        "<cmd>FzfLua buffers<cr>",                                                 desc = "Open buffer picker" },
+					{ "<leader>/",        "<cmd>FzfLua grep_project<cr>",                                            desc = "Global search in workspace folder" },
+					{ "<leader>j",        "<cmd>FzfLua jumps<cr>",                                                   desc = "Open jumplist picker" },
+					{ "<leader>s",        "<cmd>FzfLua lsp_document_symbols<cr>",                                    desc = "Open symbol picker" },
+					{ "<leader>S",        "<cmd>FzfLua lsp_workspace_symbols<cr>",                                   desc = "Open workspace symbol picker" },
+					{ "<leader>d",        "<cmd>FzfLua lsp_document_diagnostics<cr>",                                desc = "Open diagnostic picker" },
+					{ "<leader>D",        "<cmd>FzfLua lsp_workspace_diagnostics<cr>",                               desc = "Open workspace diagnostic picker" },
+					{ "<leader>g",        "<cmd>FzfLua git_files<cr>",                                               desc = "Open changed file picker" },
+					{ "<leader>o",        "<cmd>FzfLua lsp_incoming_calls<cr>",                                      desc = "Open incoming calls picker" },
+					{ "<leader>O",        "<cmd>FzfLua lsp_outgoing_calls<cr>",                                      desc = "Open outgoing calls picker" },
+					{ "<leader>a",        "<cmd>FzfLua lsp_code_actions<cr>",                                        desc = "Perform code actions" },
+					{ "<leader>r",        vim.lsp.buf.rename,                                                        desc = "Rename symbol" },
+					{ "<leader>k",        vim.lsp.buf.hover,                                                         desc = "Show docs for item under cursor" },
 
 					-- Oil
-					{ "-",                "<cmd>Oil<cr>",                              desc = "Open parent directory" },
+					{ "-",                "<cmd>Oil<cr>",                                                            desc = "Open parent directory" },
 
 					-- Goto
-					{ "gd",               "<cmd>FzfLua lsp_definitions<cr>",           desc = "Goto definition" },
-					{ "gD",               "<cmd>FzfLua lsp_declarations<cr>",          desc = "Goto declaration" },
-					{ "gy",               "<cmd>FzfLua lsp_typedefs<cr>",              desc = "Goto type definition" },
-					{ "gr",               "<cmd>FzfLua lsp_references<cr>",            desc = "Goto references" },
-					{ "gi",               "<cmd>FzfLua lsp_implementations<cr>",       desc = "Goto implementation" },
+					{ "gd",               "<cmd>FzfLua lsp_definitions<cr>",                                         desc = "Goto definition" },
+					{ "gD",               "<cmd>FzfLua lsp_declarations<cr>",                                        desc = "Goto declaration" },
+					{ "gy",               "<cmd>FzfLua lsp_typedefs<cr>",                                            desc = "Goto type definition" },
+					{ "gr",               "<cmd>FzfLua lsp_references<cr>",                                          desc = "Goto references" },
+					{ "gi",               "<cmd>FzfLua lsp_implementations<cr>",                                     desc = "Goto implementation" },
+
+					-- Helpers
+					{ "<leader>y",        '"+yy',                                                                    desc = "Yank current line into system clipboard" },
+
+					-- Remaps
+					{ "<Esc>",            "<cmd>nohlsearch<CR>" },
+					{ "n",                "nzzzv" },
+					{ "N",                "Nzzzv" },
+					{ "<C-d>",            "<C-d>zz" },
+					{ "<C-u>",            "<C-u>zz" },
+					{ "U",                "<C-r>" },
 				},
 				{
 					mode = { "n", "v" },
 					-- Goto
-					{ "ge", "G", desc = "Goto last line" },
-					{ "gh", "0", desc = "Goto line start" },
-					{ "gl", "$", desc = "Goto line end" },
-					{ "gs", "^", desc = "Goto first non-blank in line" },
+					{ "ge",        "G",   desc = "Goto last line" },
+					{ "gh",        "0",   desc = "Goto line start" },
+					{ "gl",        "$",   desc = "Goto line end" },
+					{ "gs",        "^",   desc = "Goto first non-blank in line" },
+
+					-- Comments
+					{ "<leader>c", "gcc", desc = "Comment/uncomment selections", noremap = true },
+					{ "<leader>C", "gbc", desc = "Block comment/uncomment selections", noremap = true },
+				},
+				{
+					mode = { "v" },
+					-- Remaps
+					{ ">", ">gv", noremap = true, desc = "Keep selection after right indent" },
+					{ "<", "<gv", noremap = true, desc = "Keep selection after left indent" },
+				},
+				{
+					mode = { "x", "v" },
+					{ "<leader>y", '"+y', noremap = true, desc = "Yank selection into system clipboard" }
 				}
 			})
 		end
 	},
 	{
 		"ibhagwan/fzf-lua",
-		opts = {}
+		opts = {
+			winopts = {
+				fullscreen = true,
+			},
+			grep = {
+				hidden = true,
+			},
+			colorschemes = {
+				winopts = {
+					fullscreen = false,
+				},
+			},
+		},
 	},
 	{
 		'stevearc/oil.nvim',
@@ -93,9 +159,29 @@ require("lazy").setup({
 			})
 		end
 	},
-	{
+	--[[ {
 		'nvim-treesitter/nvim-treesitter',
 		branch = 'main',
+		build = ':TSUpdate',
+		config = function()
+			require('nvim-treesitter').setup()
+			require('nvim-treesitter').install(treesitter_parsers)
+			vim.api.nvim_create_autocmd('FileType', {
+				pattern = treesitter_parsers,
+				callback = function()
+					-- syntax highlighting, provided by Neovim
+					vim.treesitter.start()
+					-- folds, provided by Neovim
+					vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+					-- indentation, provided by nvim-treesitter
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end,
+			})
+		end,
+	} ]]--,
+	{
+		'nvim-treesitter/nvim-treesitter',
+		branch = 'master',
 		build = ':TSUpdate',
 		config = function()
 			local configs = require("nvim-treesitter.configs")
@@ -134,6 +220,35 @@ require("lazy").setup({
 			})
 		end,
 	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true,
+						keymaps = {
+							["aa"] = "@parameter.outer",
+							["ia"] = "@parameter.inner",
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["ac"] = "@class.outer",
+							["ic"] = "@class.inner",
+							["aj"] = "@conditional.outer",
+							["ij"] = "@conditional.inner",
+							["al"] = "@loop.outer",
+							["il"] = "@loop.inner",
+							["at"] = "@comment.outer",
+							["as"] = "@scope",
+						},
+						include_surrounding_whitespace = false,
+					},
+				},
+			})
+		end,
+	},
+	'numToStr/Comment.nvim',
 	-- Themes
 	{
 		"folke/tokyonight.nvim",

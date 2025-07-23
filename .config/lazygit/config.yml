@@ -13,21 +13,21 @@ customCommands:
   - key: "C"
     context: "files"
     command: "sh ~/scripts/commit.sh"
-    subprocess: true
     description: "Commit with custom script"
     loadingText: "Opening commit script"
+    output: terminal
   - key: "x"
     context: "files"
     command: "git commit"
-    subprocess: true
     description: "Commit with default editor"
     loadingText: "Opening default editor"
+    output: terminal
   - key: "N"
     context: "localBranches"
     command: "BASE_BRANCH='{{ .SelectedLocalBranch.Name }}' sh ~/scripts/branch.sh"
-    subprocess: true
     description: "Create new branch with custom script"
     loadingText: "Opening branch script"
+    output: terminal
 gui:
   theme:
     activeBorderColor:
@@ -49,7 +49,6 @@ gui:
       - "#cdd6f4"
     searchingActiveBorderColor:
       - "#f9e2af"
-
   authorColors:
     "*": "#b4befe"
 git:

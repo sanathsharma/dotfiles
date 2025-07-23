@@ -9,3 +9,12 @@ vim.opt.expandtab = false              -- Use tabs instead of spaces
 vim.opt.shiftwidth = 2                  -- Size of an indent
 vim.opt.tabstop = 2                     -- Number of spaces tabs count for
 vim.opt.softtabstop = 2                 -- Number of spaces for a tab when editing
+vim.opt.scrolloff = 3
+vim.opt.signcolumn = "yes"
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+
+-- Enable loader to speed up start time
+if vim.loader then
+	vim.loader.enable()
+end
