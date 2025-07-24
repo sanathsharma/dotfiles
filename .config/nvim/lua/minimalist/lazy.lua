@@ -72,14 +72,18 @@ require("lazy").setup({
 					{ "-",                "<cmd>Oil<cr>",                                                            desc = "Open parent directory" },
 
 					-- Split join
-					{ "<leader>tt", "<cmd>TSJToggle<CR>", desc = "Toggle split join" },
+					{ "<leader>tt",       "<cmd>TSJToggle<CR>",                                                      desc = "Toggle split join" },
 
 					-- Goto
-					{ "gd",               "<cmd>FzfLua lsp_definitions<cr>",                                         desc = "Goto definition" },
-					{ "gD",               "<cmd>FzfLua lsp_declarations<cr>",                                        desc = "Goto declaration" },
-					{ "gy",               "<cmd>FzfLua lsp_typedefs<cr>",                                            desc = "Goto type definition" },
-					{ "gr",               "<cmd>FzfLua lsp_references<cr>",                                          desc = "Goto references" },
-					{ "gi",               "<cmd>FzfLua lsp_implementations<cr>",                                     desc = "Goto implementation" },
+					-- { "gd",               "<cmd>FzfLua lsp_definitions<cr>",                                         desc = "Goto definition" }, -- Use gri instead
+					-- { "gD",               "<cmd>FzfLua lsp_declarations<cr>",                                        desc = "Goto declaration" },
+					-- { "gy",               "<cmd>FzfLua lsp_typedefs<cr>",                                            desc = "Goto type definition" }, -- Use grt instead
+					-- { "gr",               "<cmd>FzfLua lsp_references<cr>",                                          desc = "Goto references" }, -- Use grr instead
+					-- { "gi",               "<cmd>FzfLua lsp_implementations<cr>",                                     desc = "Goto implementation" }, -- Use gri instead
+
+					-- Git
+					{ "[h",               "<cmd>Gitsigns nav_hunk prev<cr>",                                         desc = "Previous hunk" },
+					{ "]h",               "<cmd>Gitsigns nav_hunk next<cr>",                                         desc = "Next hunk" },
 
 					-- Helpers
 					{ "<leader>y",        '"+yy',                                                                    desc = "Yank current line into system clipboard" },
@@ -249,11 +253,30 @@ require("lazy").setup({
 	},
 	'numToStr/Comment.nvim',
 	"mbbill/undotree",
+	"tpope/vim-unimpaired",
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			-- Snippet support required for css/html completions from vscode-langservers-extracted
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+			local lspconfig = require("lspconfig")
+
+			lspconfig.cssls.setup {
+				capabilities = capabilities,
+			}
+
+			lspconfig.html.setup {
+				capabilities = capabilities,
+			}
+		end
+	},
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require('gitsigns').setup {
-				signs                        = {
+				signs        = {
 					add = { text = "+" },
 					change = { text = "~" },
 					delete = { text = "󰍵" },
@@ -261,7 +284,7 @@ require("lazy").setup({
 					changedelete = { text = "~" },
 					untracked = { text = "│" },
 				},
-				signs_staged                 = {
+				signs_staged = {
 					add = { text = "+" },
 					change = { text = "~" },
 					delete = { text = "󰍵" },
@@ -279,51 +302,15 @@ require("lazy").setup({
 		},
 		config = function()
 			require("codeium").setup({
-				-- Optionally disable cmp source if using virtual text only
 				enable_cmp_source = false,
 				virtual_text = {
-					enabled = true,
-
-					-- These are the defaults
-
-					-- Set to true if you never want completions to be shown automatically.
-					manual = false,
-					-- A mapping of filetype to true or false, to enable virtual text.
-					filetypes = {},
-					-- Whether to enable virtual text of not for filetypes not specifically listed above.
-					default_filetype_enabled = true,
-					-- How long to wait (in ms) before requesting completions after typing stops.
-					idle_delay = 75,
-					-- Priority of the virtual text. This usually ensures that the completions appear on top of
-					-- other plugins that also add virtual text, such as LSP inlay hints, but can be modified if
-					-- desired.
-					virtual_text_priority = 65535,
-					-- Set to false to disable all key bindings for managing completions.
-					map_keys = true,
-					-- The key to press when hitting the accept keybinding but no completion is showing.
-					-- Defaults to \t normally or <c-n> when a popup is showing.
-					accept_fallback = nil,
-					-- Key bindings for managing completions in virtual text mode.
-					key_bindings = {
-						-- Accept the current completion.
-						accept = "<Tab>",
-						-- Accept the next word.
-						accept_word = false,
-						-- Accept the next line.
-						accept_line = false,
-						-- Clear the virtual text.
-						clear = false,
-						-- Cycle to the next completion.
-						next = "<M-]>",
-						-- Cycle to the previous completion.
-						prev = "<M-[>",
-					},
+					enabled = true
+				},
+				workspace_root = {
+					use_lsp = true,
 				},
 			})
-			vim.keymap.set("n", "<c-.>", function()
-				require("codeium.virtual_text").cycle_or_complete()
-			end, { noremap = true, silent = true })
-		end,
+		end
 	},
 	{
 		"Wansmer/treesj",
