@@ -50,6 +50,7 @@ require("lazy").setup({
 					mode = { "n" },
 					-- FzfLua
 					{ "<leader>f",        "<cmd>FzfLua files<cr>",                                                   desc = "Open file picker" },
+					{ "<C-p>",            "<cmd>FzfLua global<cr>",                                                  desc = "Open global picker" },
 					{ "<leader>.",        "<cmd>lua require('fzf-lua').files({ cwd = vim.fn.expand('%:p:h') })<cr>", desc = "Open file picker in current buffer directory" },
 					{ "<leader><leader>", "<cmd>FzfLua files<cr>",                                                   desc = "Open file picker" },
 					{ "<leader>'",        "<cmd>FzfLua resume<cr>",                                                  desc = "Open last picker" },
@@ -69,6 +70,9 @@ require("lazy").setup({
 
 					-- Oil
 					{ "-",                "<cmd>Oil<cr>",                                                            desc = "Open parent directory" },
+
+					-- Split join
+					{ "<leader>tt", "<cmd>TSJToggle<CR>", desc = "Toggle split join" },
 
 					-- Goto
 					{ "gd",               "<cmd>FzfLua lsp_definitions<cr>",                                         desc = "Goto definition" },
@@ -97,7 +101,7 @@ require("lazy").setup({
 					{ "gs",        "^",   desc = "Goto first non-blank in line" },
 
 					-- Comments
-					{ "<leader>c", "gcc", desc = "Comment/uncomment selections", noremap = true },
+					{ "<leader>c", "gcc", desc = "Comment/uncomment selections",       noremap = true },
 					{ "<leader>C", "gbc", desc = "Block comment/uncomment selections", noremap = true },
 				},
 				{
@@ -178,7 +182,7 @@ require("lazy").setup({
 				end,
 			})
 		end,
-	} ]]--,
+	} ]] --,
 	{
 		'nvim-treesitter/nvim-treesitter',
 		branch = 'master',
@@ -196,12 +200,7 @@ require("lazy").setup({
 				},
 				autotag = {
 					enable = true,
-					filetypes = {
-						"html",
-						"javascript",
-						"typescript",
-						"markdown",
-					},
+					filetype = treesitter_parsers,
 				},
 				-- INFO: use `o` to jump between either ends of selection for inc/dec selection w/ j,k
 				incremental_selection = {
@@ -249,6 +248,111 @@ require("lazy").setup({
 		end,
 	},
 	'numToStr/Comment.nvim',
+	"mbbill/undotree",
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require('gitsigns').setup {
+				signs                        = {
+					add = { text = "+" },
+					change = { text = "~" },
+					delete = { text = "󰍵" },
+					topdelete = { text = "‾" },
+					changedelete = { text = "~" },
+					untracked = { text = "│" },
+				},
+				signs_staged                 = {
+					add = { text = "+" },
+					change = { text = "~" },
+					delete = { text = "󰍵" },
+					topdelete = { text = "‾" },
+					changedelete = { text = "~" },
+					untracked = { text = "│" },
+				},
+			}
+		end
+	},
+	{
+		"Exafunction/windsurf.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			require("codeium").setup({
+				-- Optionally disable cmp source if using virtual text only
+				enable_cmp_source = false,
+				virtual_text = {
+					enabled = true,
+
+					-- These are the defaults
+
+					-- Set to true if you never want completions to be shown automatically.
+					manual = false,
+					-- A mapping of filetype to true or false, to enable virtual text.
+					filetypes = {},
+					-- Whether to enable virtual text of not for filetypes not specifically listed above.
+					default_filetype_enabled = true,
+					-- How long to wait (in ms) before requesting completions after typing stops.
+					idle_delay = 75,
+					-- Priority of the virtual text. This usually ensures that the completions appear on top of
+					-- other plugins that also add virtual text, such as LSP inlay hints, but can be modified if
+					-- desired.
+					virtual_text_priority = 65535,
+					-- Set to false to disable all key bindings for managing completions.
+					map_keys = true,
+					-- The key to press when hitting the accept keybinding but no completion is showing.
+					-- Defaults to \t normally or <c-n> when a popup is showing.
+					accept_fallback = nil,
+					-- Key bindings for managing completions in virtual text mode.
+					key_bindings = {
+						-- Accept the current completion.
+						accept = "<Tab>",
+						-- Accept the next word.
+						accept_word = false,
+						-- Accept the next line.
+						accept_line = false,
+						-- Clear the virtual text.
+						clear = false,
+						-- Cycle to the next completion.
+						next = "<M-]>",
+						-- Cycle to the previous completion.
+						prev = "<M-[>",
+					},
+				},
+			})
+			vim.keymap.set("n", "<c-.>", function()
+				require("codeium.virtual_text").cycle_or_complete()
+			end, { noremap = true, silent = true })
+		end,
+	},
+	{
+		"Wansmer/treesj",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("treesj").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.indentscope",
+		config = function()
+			require("mini.indentscope").setup({
+				draw = {
+					delay = 0,
+					animation = require("mini.indentscope").gen_animation.none(),
+				},
+				symbol = "╎",
+				mappings = {
+					-- Textobjects
+					object_scope = "ii",
+					object_scope_with_border = "ai",
+
+					-- Motions (jump to respective border line; if not present - body line)
+					goto_top = "[i",
+					goto_bottom = "]i",
+				},
+			})
+		end,
+	},
 	-- Themes
 	{
 		"folke/tokyonight.nvim",
