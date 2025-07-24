@@ -70,3 +70,15 @@ You can install cssmodules-language-server via npm:
 ```sh
 npm install -g cssmodules-language-server
 ```
+
+Shell file formatter (https://github.com/mvdan/sh)
+
+```sh
+go install mvdan.cc/sh/v3/cmd/shfmt@latest
+```
+
+yaml formatter (https://github.com/google/yamlfmt)
+```sh
+go install github.com/google/yamlfmt/cmd/yamlfmt@latest
+```
+

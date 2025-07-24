@@ -61,7 +61,7 @@ require("lazy").setup({
 					{ "<leader>S",        "<cmd>FzfLua lsp_workspace_symbols<cr>",                                   desc = "Open workspace symbol picker" },
 					{ "<leader>d",        "<cmd>FzfLua lsp_document_diagnostics<cr>",                                desc = "Open diagnostic picker" },
 					{ "<leader>D",        "<cmd>FzfLua lsp_workspace_diagnostics<cr>",                               desc = "Open workspace diagnostic picker" },
-					{ "<leader>g",        "<cmd>FzfLua git_files<cr>",                                               desc = "Open changed file picker" },
+					{ "<leader>g",        "<cmd>FzfLua git_status<cr>",                                              desc = "Open changed file picker" },
 					{ "<leader>o",        "<cmd>FzfLua lsp_incoming_calls<cr>",                                      desc = "Open incoming calls picker" },
 					{ "<leader>O",        "<cmd>FzfLua lsp_outgoing_calls<cr>",                                      desc = "Open outgoing calls picker" },
 					{ "<leader>a",        "<cmd>FzfLua lsp_code_actions<cr>",                                        desc = "Perform code actions" },
@@ -270,6 +270,24 @@ require("lazy").setup({
 			lspconfig.html.setup {
 				capabilities = capabilities,
 			}
+		end
+	},
+	{
+		'stevearc/conform.nvim',
+		config = function()
+			require('conform').setup({
+				formatters_by_ft = {
+					lua = { 'stylua' },
+					css = { 'biome' },
+					javascript = { 'biome' },
+					javascriptreact = { 'biome' },
+					typescript = { 'biome' },
+					typescriptreact = { 'biome' },
+					json = { 'biome' },
+					sh = { 'shfmt' },
+					yaml = { 'yamlfmt' },
+				}
+			})
 		end
 	},
 	{

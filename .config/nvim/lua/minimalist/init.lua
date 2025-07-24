@@ -15,6 +15,7 @@ local enable_lsps = {
 	"cssmodules_ls",
 	"cssls",
 	"html",
+	"marksman", -- markdown
 }
 
 for _, lsp in ipairs(enable_lsps) do
