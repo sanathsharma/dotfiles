@@ -50,7 +50,7 @@ require("lazy").setup({
 					mode = { "n" },
 					-- FzfLua
 					{ "<leader>f",        "<cmd>FzfLua files<cr>",                                                   desc = "Open file picker" },
-					{ "<C-p>",            "<cmd>FzfLua global<cr>",                                                  desc = "Open global picker" },
+					-- { "<C-p>",            "<cmd>FzfLua global<cr>",                                                  desc = "Open global picker" },
 					{ "<leader>.",        "<cmd>lua require('fzf-lua').files({ cwd = vim.fn.expand('%:p:h') })<cr>", desc = "Open file picker in current buffer directory" },
 					{ "<leader><leader>", "<cmd>FzfLua files<cr>",                                                   desc = "Open file picker" },
 					{ "<leader>'",        "<cmd>FzfLua resume<cr>",                                                  desc = "Open last picker" },
