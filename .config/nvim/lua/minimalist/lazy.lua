@@ -95,6 +95,10 @@ require("lazy").setup({
 					{ "<C-d>",            "<C-d>zz" },
 					{ "<C-u>",            "<C-u>zz" },
 					{ "U",                "<C-r>" },
+
+					-- Leap
+					{ "gw",               "<Plug>(leap)",                                                            desc = "Leap anywhere" },
+					{ "gW",               "<Plug>(leap-from-window)",                                                desc = "Leap from window" },
 				},
 				{
 					mode = { "n", "v" },
@@ -254,6 +258,7 @@ require("lazy").setup({
 	'numToStr/Comment.nvim',
 	"mbbill/undotree",
 	"tpope/vim-unimpaired",
+	"ggandor/leap.nvim",
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
