@@ -7,11 +7,6 @@ abbr -a c clear
 abbr -a lg "lazygit -ucd ~/.config/lazygit"
 abbr -a gui gitui
 abbr -a x exit
-abbr -a v "NVIM_APPNAME=lvim nvim"
-abbr -a vvim "NVIM_APPNAME=nvim-vscode nvim"
-abbr -a lvim "NVIM_APPNAME=lvim nvim"
-abbr -a lvide "NVIM_APPNAME=lvim neovide --fork"
-abbr -a lv "NVIM_APPNAME=lvim neovide --fork"
 abbr -a sv "sudo nvim"
 abbr -a cwr "cargo watch -q -c -w src/ -x run"
 abbr -a cwrc "cargo watch -q -c -w src/ -w .cargo/ -x run"
@@ -36,7 +31,7 @@ abbr -a gco "gen-commit -m openai:gpt-4.1-mini"
 
 # Alias
 alias ls="ls --color"
-alias vim="NVIM_APPNAME=lvim nvim"
+alias vim="nvim"
 alias tmux="tmux -u"
 alias commit="sh ~/scripts/commit.sh"
 alias new-branch="sh ~/scripts/new-branch.sh"
