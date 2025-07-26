@@ -30,3 +30,4 @@ codebook/
 .config/nushell/history.txt
 .aipack/
 tmp/
+lazy-lock.json
