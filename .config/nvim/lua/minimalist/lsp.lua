@@ -1,25 +1,12 @@
-local enable_lsps = {
-	"lua_ls",
-	"rust_analyzer",
-	"biome",
-	"ts_ls",
-	"tailwindcss",
-	"taplo", -- toml
-	"emmet_language_server",
-	"css_variables",
-	"cssmodules_ls",
-	"cssls",
-	"html",
-	"marksman", -- markdown
-}
+local enable_lsps  = require("minimalist.constants").enable_lsps
 
-local enable = function()
+local enable       = function()
 	for _, lsp in ipairs(enable_lsps) do
 		vim.lsp.enable(lsp)
 	end
 end
 
-local setup = function()
+local setup        = function()
 	local lspconfig = require("lspconfig")
 
 	local custom_setup = { "html", "cssls" }
