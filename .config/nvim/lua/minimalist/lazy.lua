@@ -75,8 +75,8 @@ require("lazy").setup({
 					{ "<leader>tt",       "<cmd>TSJToggle<CR>",                                                      desc = "Toggle split join" },
 
 					-- Goto
-					-- { "gd",               "<cmd>FzfLua lsp_definitions<cr>",                                         desc = "Goto definition" }, -- Use gri instead
-					-- { "gD",               "<cmd>FzfLua lsp_declarations<cr>",                                        desc = "Goto declaration" },
+					{ "gd",               vim.lsp.buf.definition,                                                    desc = "Goto definition" },
+					{ "gD",               vim.lsp.buf.declaration,                                                   desc = "Goto declaration" },
 					-- { "gy",               "<cmd>FzfLua lsp_typedefs<cr>",                                            desc = "Goto type definition" }, -- Use grt instead
 					-- { "gr",               "<cmd>FzfLua lsp_references<cr>",                                          desc = "Goto references" }, -- Use grr instead
 					-- { "gi",               "<cmd>FzfLua lsp_implementations<cr>",                                     desc = "Goto implementation" }, -- Use gri instead
@@ -107,6 +107,7 @@ require("lazy").setup({
 					{ "gh",        "0",   desc = "Goto line start" },
 					{ "gl",        "$",   desc = "Goto line end" },
 					{ "gs",        "^",   desc = "Goto first non-blank in line" },
+					{ "gk",        "g_",  desc = "Goto last non-blank in line" },
 
 					-- Comments
 					{ "<leader>c", "gcc", desc = "Comment/uncomment selections",       noremap = true },
@@ -263,38 +264,7 @@ require("lazy").setup({
 		"neovim/nvim-lspconfig",
 		dependencies = { 'saghen/blink.cmp' },
 		config = function()
-			local lspconfig = require("lspconfig")
-
-			local simple_setup = {
-				"lua_ls",
-				"rust_analyzer",
-				"biome",
-				"ts_ls",
-				"tailwindcss",
-				"taplo", -- toml
-				"emmet_language_server",
-				"css_variables",
-				"cssmodules_ls",
-				"marksman", -- markdown
-			}
-
-			for _, server in pairs(simple_setup) do
-				local capabilities = require('blink.cmp').get_lsp_capabilities()
-				lspconfig[server].setup({ capabilities = capabilities })
-			end
-
-			-- Snippet support required for css/html completions from vscode-langservers-extracted
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities.textDocument.completion.completionItem.snippetSupport = true
-			capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
-
-			lspconfig.cssls.setup {
-				capabilities = capabilities,
-			}
-
-			lspconfig.html.setup {
-				capabilities = capabilities,
-			}
+			require("minimalist.lsp").setup()
 		end
 	},
 	{
