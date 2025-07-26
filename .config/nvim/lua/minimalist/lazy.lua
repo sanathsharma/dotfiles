@@ -281,6 +281,7 @@ require("lazy").setup({
 					json = { 'biome' },
 					sh = { 'shfmt' },
 					yaml = { 'yamlfmt' },
+					rust = { 'rustfmt' },
 				}
 			})
 		end
@@ -366,6 +367,23 @@ require("lazy").setup({
 				update_n_lines = "mn", -- Update `n_lines`
 			},
 		},
+	},
+	"mfussenegger/nvim-dap",
+	{
+		'mrcjkb/rustaceanvim',
+		version = '^6',
+		lazy = false, -- This plugin is already lazy
+		config = function()
+			require("minimalist.lsp").setup_rustaceanvim()
+			require("minimalist.keymaps").setup_rustaceanvim_keymaps()
+		end,
+	},
+	{
+		'saecki/crates.nvim',
+		event = { "BufRead Cargo.toml" },
+		config = function()
+			require('crates').setup()
+		end,
 	},
 	-- Themes
 	{

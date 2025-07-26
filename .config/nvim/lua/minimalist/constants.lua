@@ -1,6 +1,6 @@
 local enable_lsps = {
 	"lua_ls",
-	"rust_analyzer",
+	-- "rust_analyzer", -- Managed by rustaceanvim
 	"biome",
 	"ts_ls",
 	"tailwindcss",

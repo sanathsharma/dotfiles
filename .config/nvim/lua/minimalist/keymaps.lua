@@ -106,4 +106,22 @@ local setup_luasnip_keymaps = function()
 	})
 end
 
-return { setup = setup, setup_luasnip_keymaps = setup_luasnip_keymaps }
+local setup_rustaceanvim_keymaps = function()
+	local bufnr = vim.api.nvim_get_current_buf()
+	require("which-key").add({
+		{
+			mode = { "n" },
+			silent = true,
+			buffer = bufnr,
+			noremap = true,
+			{ "<leader>a", function() vim.cmd.RustLsp('codeAction') end,         desc = "Rust code action" },
+			{ "K",         function() vim.cmd.RustLsp({ 'hover', 'actions' }) end, desc = "Rust hover actions" },
+		},
+	})
+end
+
+return {
+	setup = setup,
+	setup_luasnip_keymaps = setup_luasnip_keymaps,
+	setup_rustaceanvim_keymaps = setup_rustaceanvim_keymaps,
+}
