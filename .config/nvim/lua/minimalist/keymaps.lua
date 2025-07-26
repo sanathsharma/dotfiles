@@ -1,5 +1,5 @@
 local setup = function()
-  require("which-key").add({
+	require("which-key").add({
 		{
 			mode = { "n" },
 			-- FzfLua
@@ -76,8 +76,34 @@ local setup = function()
 		{
 			mode = { "x", "v" },
 			{ "<leader>y", '"+y', noremap = true, desc = "Yank selection into system clipboard" }
-		}
+		},
 	})
 end
 
-return { setup = setup }
+local setup_luasnip_keymaps = function()
+	local ls = require("luasnip")
+	require("which-key").add({
+		{
+			mode = { "i" },
+			silent = true,
+			{ "<C-K>", function() ls.expand() end, desc = "Expand snippet" },
+		},
+		{
+			mode = { "i", "s" },
+			silent = true,
+			{ "<C-L>", function() ls.jump(1) end,  desc = "Jump forward" },
+			{ "<C-J>", function() ls.jump(-1) end, desc = "Jump backward", },
+			{
+				"<C-E>",
+				function()
+					if ls.choice_active() then
+						ls.change_choice(1)
+					end
+				end,
+				desc = "Change choice",
+			},
+		},
+	})
+end
+
+return { setup = setup, setup_luasnip_keymaps = setup_luasnip_keymaps }

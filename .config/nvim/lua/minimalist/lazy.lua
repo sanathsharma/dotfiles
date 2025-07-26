@@ -175,7 +175,9 @@ require("lazy").setup({
 	{
 		'saghen/blink.cmp',
 		-- optional: provides snippets for the snippet source
-		dependencies = { 'rafamadriz/friendly-snippets' },
+		dependencies = {
+			{ 'L3MON4D3/LuaSnip', version = 'v2.*' },
+		},
 
 		-- use a release tag to download pre-built binaries
 		version = '1.*',
@@ -235,8 +237,35 @@ require("lazy").setup({
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 
 			signature = { enabled = true },
+
+			snippets = { preset = 'luasnip' },
 		},
 		opts_extend = { "sources.default" }
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		build = "make install_jsregexp",
+		lazy = true,
+		dependencies = {
+			{
+				"rafamadriz/friendly-snippets",
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load()
+					require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+				end,
+			},
+		},
+		opts = {
+			history = true,
+			delete_check_events = "TextChanged",
+		},
+		config = function()
+			-- Load snippets from ~/.config/nvim/snippets
+			require("snippets")
+			-- Setup luasnip keymaps
+			require("minimalist.keymaps").setup_luasnip_keymaps()
+		end
 	},
 	{
 		'stevearc/conform.nvim',
