@@ -368,7 +368,7 @@ require("lazy").setup({
 			},
 		},
 	},
-	"mfussenegger/nvim-dap",
+	-- Rust
 	{
 		'mrcjkb/rustaceanvim',
 		version = '^6',
@@ -384,6 +384,39 @@ require("lazy").setup({
 		config = function()
 			require('crates').setup()
 		end,
+	},
+	-- Debug adapters setup
+	{
+		"mfussenegger/nvim-dap",
+		config = function()
+			require("minimalist.keymaps").setup_dap_keymaps()
+		end
+	},
+	{
+		"igorlfs/nvim-dap-view",
+		---@module 'dap-view'
+		---@type dapview.Config
+		opts = {},
+		config = function()
+			require("minimalist.keymaps").setup_dapview_keymaps()
+		end
+	},
+	{
+		"nvim-neotest/neotest",
+		dependencies = {
+			"nvim-neotest/nvim-nio",
+			"nvim-lua/plenary.nvim",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-treesitter/nvim-treesitter"
+		},
+		config = function()
+			require('neotest').setup({
+				adapters = {
+					require('rustaceanvim.neotest')
+				},
+			})
+			require("minimalist.keymaps").setup_test_keymaps()
+		end
 	},
 	-- Themes
 	{

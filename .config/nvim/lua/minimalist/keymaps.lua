@@ -5,7 +5,7 @@ local setup = function()
 			-- FzfLua
 			{ "<leader>f",        "<cmd>FzfLua files<cr>",                                                   desc = "Open file picker" },
 			-- { "<C-p>",            "<cmd>FzfLua global<cr>",                                                  desc = "Open global picker" },
-			{ "<leader>.",        "<cmd>lua require('fzf-lua').files({ cwd = vim.fn.expand('%:p:h') })<cr>", desc = "Open file picker in current buffer directory" },
+			{ "<leader>F",        "<cmd>lua require('fzf-lua').files({ cwd = vim.fn.expand('%:p:h') })<cr>", desc = "Open file picker in current buffer directory" },
 			{ "<leader><leader>", "<cmd>FzfLua files<cr>",                                                   desc = "Open file picker" },
 			{ "<leader>'",        "<cmd>FzfLua resume<cr>",                                                  desc = "Open last picker" },
 			{ "<leader>b",        "<cmd>FzfLua buffers<cr>",                                                 desc = "Open buffer picker" },
@@ -114,9 +114,54 @@ local setup_rustaceanvim_keymaps = function()
 			silent = true,
 			buffer = bufnr,
 			noremap = true,
-			{ "<leader>a", function() vim.cmd.RustLsp('codeAction') end,         desc = "Rust code action" },
+			{ "<leader>a", function() vim.cmd.RustLsp('codeAction') end,           desc = "Rust code action" },
 			{ "K",         function() vim.cmd.RustLsp({ 'hover', 'actions' }) end, desc = "Rust hover actions" },
 		},
+	})
+end
+
+local setup_dap_keymaps = function()
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{ "<leader>,",  "",                             desc = "+Dap" },
+			{ "<leader>,c", "<cmd>DapContinue<cr>",         desc = "Start/Continue" },
+			{ "<leader>,n", "<cmd>DapStepOver<cr>",         desc = "Step over" },
+			{ "<leader>,i", "<cmd>DapStepInto<cr>",         desc = "Step into" },
+			{ "<leader>,o", "<cmd>DapStepOut<cr>",          desc = "Step out" },
+			{ "<leader>,x", "<cmd>DapTerminate<cr>",        desc = "Terminate debug session" },
+			{ "<leader>,q", "<cmd>DapDisconnect<cr>",       desc = "Disconnect debug session" },
+			{ "<leader>,b", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint" },
+			{ "<leader>,r", "<cmd>DapRestartFrame<cr>",     desc = "Restart frame" },
+		}
+	})
+end
+
+local setup_dapview_keymaps = function()
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{ "<leader>,v", "<cmd>DapViewToggle<cr>", desc = "Toggle debug view" },
+		}
+	})
+end
+
+local setup_test_keymaps = function()
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{ "<leader>.",  "",                                                                                 desc = "+test" },
+			{ "<leader>.t", function() require("neotest").run.run(vim.fn.expand("%")) end,                      desc = "Run File (Neotest)" },
+			{ "<leader>.T", function() require("neotest").run.run(vim.uv.cwd()) end,                            desc = "Run All Test Files (Neotest)" },
+			{ "<leader>.r", function() require("neotest").run.run() end,                                        desc = "Run Nearest (Neotest)" },
+			{ "<leader>.d", function() require("neotest").run.run({ strategy = "dap" }) end,                    desc = "Run Nearest with DAP (Neotest)" },
+			{ "<leader>.l", function() require("neotest").run.run_last() end,                                   desc = "Run Last (Neotest)" },
+			{ "<leader>.s", function() require("neotest").summary.toggle() end,                                 desc = "Toggle Summary (Neotest)" },
+			{ "<leader>.o", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "Show Output (Neotest)" },
+			{ "<leader>.O", function() require("neotest").output_panel.toggle() end,                            desc = "Toggle Output Panel (Neotest)" },
+			{ "<leader>.S", function() require("neotest").run.stop() end,                                       desc = "Stop (Neotest)" },
+			{ "<leader>.w", function() require("neotest").watch.toggle(vim.fn.expand("%")) end,                 desc = "Toggle Watch (Neotest)" },
+		}
 	})
 end
 
@@ -124,4 +169,7 @@ return {
 	setup = setup,
 	setup_luasnip_keymaps = setup_luasnip_keymaps,
 	setup_rustaceanvim_keymaps = setup_rustaceanvim_keymaps,
+	setup_dap_keymaps = setup_dap_keymaps,
+	setup_dapview_keymaps = setup_dapview_keymaps,
+	setup_test_keymaps = setup_test_keymaps
 }
