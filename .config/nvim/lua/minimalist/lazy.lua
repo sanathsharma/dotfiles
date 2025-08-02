@@ -33,19 +33,22 @@ require("lazy").setup({
 	},
 	{
 		"ibhagwan/fzf-lua",
-		opts = {
-			winopts = {
-				fullscreen = true,
-			},
-			grep = {
-				hidden = true,
-			},
-			colorschemes = {
+		config = function()
+			require("fzf-lua").register_ui_select()
+			require("fzf-lua").setup({
 				winopts = {
-					fullscreen = false,
+					fullscreen = true,
 				},
-			},
-		},
+				grep = {
+					hidden = true,
+				},
+				colorschemes = {
+					winopts = {
+						fullscreen = false,
+					},
+				},
+			})
+		end
 	},
 	{
 		'stevearc/oil.nvim',
