@@ -290,6 +290,20 @@ require("lazy").setup({
 		end
 	},
 	{
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("lint").linters_by_ft = {
+				rust = { "clippy" },
+				css = { 'biomejs' },
+				javascript = { 'biomejs' },
+				javascriptreact = { 'biomejs' },
+				typescript = { 'biomejs' },
+				typescriptreact = { 'biomejs' },
+				json = { 'biomejs' },
+			}
+		end
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require('gitsigns').setup {
