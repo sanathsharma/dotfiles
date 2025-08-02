@@ -242,6 +242,12 @@ require("lazy").setup({
 			signature = { enabled = true },
 
 			snippets = { preset = 'luasnip' },
+			per_filetype = {
+				sql = { 'dadbod' },
+			},
+			providers = {
+				dadbod = { module = "vim_dadbod_completion.blink" },
+			},
 		},
 		opts_extend = { "sources.default" }
 	},
@@ -435,6 +441,10 @@ require("lazy").setup({
 			require("minimalist.keymaps").setup_test_keymaps()
 		end
 	},
+	-- database
+	"tpope/vim-dadbod",
+	"kristijanhusak/vim-dadbod-ui",
+	"kristijanhusak/vim-dadbod-completion",
 	-- Themes
 	{
 		"folke/tokyonight.nvim",
