@@ -90,6 +90,14 @@ fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 fish_add_path "$HOME/.aipack-base/bin"
+fish_add_path "$HOME/Library/PostgreSQL/16/bin"
+
+if test -d /opt/homebrew/opt/postgresql@15/bin 
+	fish_add_path /opt/homebrew/opt/postgresql@15/bin
+
+	set -gx LDFLAGS "-L/opt/homebrew/opt/postgresql@15/lib"
+	set -gx CPPFLAGS "-I/opt/homebrew/opt/postgresql@15/include"
+end
 
 # Bindings
 bind --mode insert \cf forward-char
