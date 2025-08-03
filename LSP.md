@@ -82,3 +82,12 @@ yaml formatter (https://github.com/google/yamlfmt)
 go install github.com/google/yamlfmt/cmd/yamlfmt@latest
 ```
 
+Install stylua for lua formatting
+```sh
+cargo install stylua
+```
+or 
+```sh
+brew install stylua
+```
+
