@@ -51,7 +51,22 @@ ls.add_snippets("gitcommit", {
 			]],
 			{
 				c(1, { sn(nil, fmt("[{}] ", { i(1) })), t("") }),
-				c(2, { t("feat"), t("fix"), t("docs"), t("style"), t("refactor"), t("test"), t("chore"), t("ci"), t("build"), t("perf"), t("revert") }),
+				c(
+					2,
+					{
+						t("feat"),
+						t("fix"),
+						t("docs"),
+						t("style"),
+						t("refactor"),
+						t("test"),
+						t("chore"),
+						t("ci"),
+						t("build"),
+						t("perf"),
+						t("revert"),
+					}
+				),
 				c(3, { sn(1, fmt("{}", { d(1, scopes_node) })) }),
 				i(4),
 				i(5),

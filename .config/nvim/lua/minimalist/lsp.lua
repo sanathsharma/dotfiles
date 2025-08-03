@@ -1,12 +1,12 @@
-local enable_lsps        = require("minimalist.constants").enable_lsps
+local enable_lsps = require("minimalist.constants").enable_lsps
 
-local enable             = function()
+local enable = function()
 	for _, lsp in ipairs(enable_lsps) do
 		vim.lsp.enable(lsp)
 	end
 end
 
-local setup              = function()
+local setup = function()
 	local lspconfig = require("lspconfig")
 
 	local custom_setup = { "html", "cssls", "rust_analyzer" }
@@ -14,7 +14,7 @@ local setup              = function()
 
 	-- Simple setup of servers
 	for _, server in pairs(simple_setup) do
-		local capabilities = require('blink.cmp').get_lsp_capabilities()
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		lspconfig[server].setup({ capabilities = capabilities })
 	end
 
@@ -22,19 +22,19 @@ local setup              = function()
 	-- Snippet support required for css/html completions from vscode-langservers-extracted
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
-	capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
-	lspconfig.cssls.setup {
+	lspconfig.cssls.setup({
 		capabilities = capabilities,
-	}
+	})
 
-	lspconfig.html.setup {
+	lspconfig.html.setup({
 		capabilities = capabilities,
-	}
+	})
 end
 
 local setup_rustaceanvim = function()
-	local capabilities = require('blink.cmp').get_lsp_capabilities()
+	local capabilities = require("blink.cmp").get_lsp_capabilities()
 	vim.g.rustaceanvim = {
 		server = {
 			cmd = { "rustup", "run", "stable", "rust-analyzer" },
