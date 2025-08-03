@@ -14,8 +14,3 @@ vim.opt.signcolumn = "yes"      -- Always show sign column
 vim.opt.hlsearch = true         -- Highlight search matches
 vim.opt.incsearch = true        -- Show search matches as you type
 vim.opt.fixeol = false          -- Don't automatically add newline at end of file
-
--- Enable loader to speed up start time
-if vim.loader then
-	vim.loader.enable()
-end
