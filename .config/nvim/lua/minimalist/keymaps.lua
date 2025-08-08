@@ -31,7 +31,7 @@ local setup = function()
 			},
 			{
 				"<leader>/",
-				"<cmd>FzfLua grep_project<cr>",
+				"<cmd>FzfLua live_grep<cr>",
 				desc = "Global search in workspace folder",
 			},
 			{
