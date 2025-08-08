@@ -4,6 +4,7 @@
 	editor = "$EDITOR"
 	fsmonitor = true ; Run daemon to monitor file changes to speed up git status command 
 	untrackedcache = true
+	excludesFile = "~/keys/.gitignore_global"
 ; [remote.origin]
 ; 	fetch = "+refs/heads/*:refs/remotes/origin/*"
 [alias]
