@@ -363,6 +363,19 @@ local setup_test_keymaps = function()
 	})
 end
 
+local setup_codeium_keymaps = function()
+	require("which-key").add({
+		{
+			mode = "i",
+			{
+				"<M-n>",
+				"<cmd>lua require('codeium.virtual_text').cycle_or_complete()<cr>",
+				desc = "Codeium: cycle or complete",
+			},
+		},
+	})
+end
+
 return {
 	setup = setup,
 	setup_luasnip_keymaps = setup_luasnip_keymaps,
@@ -370,4 +383,5 @@ return {
 	setup_dap_keymaps = setup_dap_keymaps,
 	setup_dapview_keymaps = setup_dapview_keymaps,
 	setup_test_keymaps = setup_test_keymaps,
+	setup_codeium_keymap = setup_codeium_keymaps,
 }
