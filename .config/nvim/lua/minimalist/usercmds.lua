@@ -36,3 +36,6 @@ vim.api.nvim_create_user_command("Fmtp", function()
 		lsp_fromat = "never",
 	})
 end, {})
+
+-- Register extended functionality commands
+require("minimalist.extended").register_case_commands()
