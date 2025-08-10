@@ -12,7 +12,6 @@ vim.api.nvim_create_user_command("Fmt", function(args)
 	local formatters = require("minimalist.utils").get_closest_formatter({
 		biome = { "biome.json" },
 		prettierd = { ".prettierrc", "prettier.config.js" },
-		stylua = { "stylua.toml" },
 	})
 
 	if not formatters then

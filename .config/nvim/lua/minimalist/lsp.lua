@@ -1,12 +1,14 @@
+local M = {}
+
 local enable_lsps = require("minimalist.constants").enable_lsps
 
-local enable = function()
+function M.enable()
 	for _, lsp in ipairs(enable_lsps) do
 		vim.lsp.enable(lsp)
 	end
 end
 
-local setup = function()
+function M.setup()
 	local lspconfig = require("lspconfig")
 
 	local custom_setup = { "html", "cssls", "rust_analyzer" }
@@ -33,7 +35,7 @@ local setup = function()
 	})
 end
 
-local setup_rustaceanvim = function()
+function M.setup_rustaceanvim()
 	local capabilities = require("blink.cmp").get_lsp_capabilities()
 	vim.g.rustaceanvim = {
 		server = {
@@ -53,8 +55,4 @@ local setup_rustaceanvim = function()
 	}
 end
 
-return {
-	enable = enable,
-	setup = setup,
-	setup_rustaceanvim = setup_rustaceanvim,
-}
+return M

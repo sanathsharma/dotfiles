@@ -1,4 +1,6 @@
-local setup = function()
+local M = {}
+
+function M.setup()
 	require("which-key").add({
 		{
 			mode = { "n" },
@@ -184,7 +186,7 @@ local setup = function()
 	})
 end
 
-local setup_luasnip_keymaps = function()
+function M.setup_luasnip_keymaps()
 	local ls = require("luasnip")
 	require("which-key").add({
 		{
@@ -228,7 +230,7 @@ local setup_luasnip_keymaps = function()
 	})
 end
 
-local setup_rustaceanvim_keymaps = function()
+function M.setup_rustaceanvim_keymaps()
 	local bufnr = vim.api.nvim_get_current_buf()
 	require("which-key").add({
 		{
@@ -254,7 +256,7 @@ local setup_rustaceanvim_keymaps = function()
 	})
 end
 
-local setup_dap_keymaps = function()
+function M.setup_dap_keymaps()
 	require("which-key").add({
 		{
 			mode = { "n" },
@@ -271,7 +273,7 @@ local setup_dap_keymaps = function()
 	})
 end
 
-local setup_dapview_keymaps = function()
+function M.setup_dapview_keymaps()
 	require("which-key").add({
 		{
 			mode = { "n" },
@@ -280,7 +282,7 @@ local setup_dapview_keymaps = function()
 	})
 end
 
-local setup_test_keymaps = function()
+function M.setup_test_keymaps()
 	require("which-key").add({
 		{
 			mode = { "n" },
@@ -363,7 +365,7 @@ local setup_test_keymaps = function()
 	})
 end
 
-local setup_codeium_keymaps = function()
+function M.setup_codeium_keymaps()
 	require("which-key").add({
 		{
 			mode = "i",
@@ -376,12 +378,4 @@ local setup_codeium_keymaps = function()
 	})
 end
 
-return {
-	setup = setup,
-	setup_luasnip_keymaps = setup_luasnip_keymaps,
-	setup_rustaceanvim_keymaps = setup_rustaceanvim_keymaps,
-	setup_dap_keymaps = setup_dap_keymaps,
-	setup_dapview_keymaps = setup_dapview_keymaps,
-	setup_test_keymaps = setup_test_keymaps,
-	setup_codeium_keymap = setup_codeium_keymaps,
-}
+return M

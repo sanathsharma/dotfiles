@@ -1,4 +1,6 @@
-local filterTable = function(sourceTable, filterTable)
+local M = {}
+
+function M.filterTable(sourceTable, filterTable)
 	local result = {}
 	local filterSet = {}
 
@@ -55,7 +57,7 @@ end
 -- Inspired by https://github.com/asilvadesigns/config/blob/87adf2bdc22c4ca89d1b06b013949d817b405e77/nvim/lua/plugins/conform.lua#L63
 ---@param _formatters table<string, string[]>
 ---@return string[] | nil
-local get_closest_formatter = function(_formatters)
+function M.get_closest_formatter(_formatters)
 	---@type string
 	local current_buffer_path = vim.api.nvim_buf_get_name(0)
 
@@ -65,7 +67,7 @@ local get_closest_formatter = function(_formatters)
 		table.insert(keys_to_include, value.name)
 	end
 	---@type table<string, string[]>
-	_formatters = filterTable(_formatters, keys_to_include)
+	_formatters = M.filterTable(_formatters, keys_to_include)
 
 	---@type table<string, number>
 	local distance = {}
@@ -105,7 +107,4 @@ local get_closest_formatter = function(_formatters)
 	return { shortest_path_key }
 end
 
-return {
-	filterTable = filterTable,
-	get_closest_formatter = get_closest_formatter,
-}
+return M

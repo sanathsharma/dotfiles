@@ -367,7 +367,7 @@ require("lazy").setup({
 					use_lsp = true,
 				},
 			})
-			require("minimalist.keymaps").setup_codeium_keymap()
+			require("minimalist.keymaps").setup_codeium_keymaps()
 		end,
 	},
 	{
