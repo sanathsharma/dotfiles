@@ -38,4 +38,6 @@ vim.api.nvim_create_user_command("Fmtp", function()
 end, {})
 
 -- Register extended functionality commands
-require("minimalist.extended").register_case_commands()
+local extended = require("minimalist.extended")
+extended.register_case_commands()
+extended.register_lsp_case_commands()
