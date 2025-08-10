@@ -91,3 +91,7 @@ or
 brew install stylua
 ```
 
+Install prettierd for fast js like files formatting
+```sh
+brew install prettierd
+```
