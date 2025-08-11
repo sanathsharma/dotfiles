@@ -107,4 +107,12 @@ function M.get_closest_formatter(_formatters)
 	return { shortest_path_key }
 end
 
+function M.is_dadbod_temp_dir()
+	local path_base = "/var/folders"
+	if string.sub(vim.fn.expand("%"), 1, string.len(path_base)) == path_base then
+		return true
+	end
+	return false
+end
+
 return M

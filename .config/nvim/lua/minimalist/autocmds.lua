@@ -10,6 +10,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Run linters
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	callback = function()
+		if require("minimalist.utils").is_dadbod_temp_dir() then
+			return
+		end
+
 		-- try_lint without arguments runs the linters defined in `linters_by_ft`
 		-- for the current filetype
 		require("lint").try_lint()
