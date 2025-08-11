@@ -137,37 +137,8 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				textobjects = {
-					select = {
-						enable = true,
-						lookahead = true,
-						keymaps = {
-							["aa"] = "@parameter.outer",
-							["ia"] = "@parameter.inner",
-							["af"] = "@function.outer",
-							["if"] = "@function.inner",
-							["ac"] = "@class.outer",
-							["ic"] = "@class.inner",
-							["aj"] = "@conditional.outer",
-							["ij"] = "@conditional.inner",
-							["al"] = "@loop.outer",
-							["il"] = "@loop.inner",
-							["at"] = "@comment.outer",
-							["as"] = "@scope",
-						},
-						include_surrounding_whitespace = false,
-					},
-				},
-			})
-		end,
-	},
 	"numToStr/Comment.nvim",
 	"mbbill/undotree",
-	"tpope/vim-unimpaired",
 	"ggandor/leap.nvim",
 	{
 		"neovim/nvim-lspconfig",
@@ -411,6 +382,27 @@ require("lazy").setup({
 				update_n_lines = "mn", -- Update `n_lines`
 			},
 		},
+	},
+	{
+		"echasnovski/mini.ai",
+		version = "*",
+		config = function()
+			require("mini.ai").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.pairs",
+		version = "*",
+		config = function()
+			require("mini.pairs").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.bracketed",
+		version = "*",
+		config = function()
+			require("mini.bracketed").setup()
+		end,
 	},
 	-- Rust
 	{
