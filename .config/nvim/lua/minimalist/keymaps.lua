@@ -378,4 +378,15 @@ function M.setup_codeium_keymaps()
 	})
 end
 
+function M.setup_lazy_module_keymaps()
+	require("which-key").add({
+		{
+			mode = "n",
+			{"<leader>l", "", desc = "+lazy"},
+			{"<leader>ld", "<cmd>Lazy load nvim-dap-view<cr>", desc = "Lazy load dap setup" },
+			{"<leader>lt", "<cmd>Lazy load neotest", desc = "Lazy load neotest" },
+		}
+	})
+end
+
 return M

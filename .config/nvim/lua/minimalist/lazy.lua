@@ -28,7 +28,9 @@ require("lazy").setup({
 			require("which-key").setup({
 				preset = "helix",
 			})
-			require("minimalist.keymaps").setup()
+			local keymaps = require("minimalist.keymaps")
+			keymaps.setup()
+			keymaps.setup_lazy_module_keymaps()
 		end,
 	},
 	{
@@ -423,13 +425,16 @@ require("lazy").setup({
 	},
 	-- Debug adapters setup
 	{
-		"mfussenegger/nvim-dap",
-		config = function()
-			require("minimalist.keymaps").setup_dap_keymaps()
-		end,
-	},
-	{
 		"igorlfs/nvim-dap-view",
+		lazy = true,
+		dependencies = {
+			{
+				"mfussenegger/nvim-dap",
+				config = function()
+					require("minimalist.keymaps").setup_dap_keymaps()
+				end,
+			},
+		},
 		---@module 'dap-view'
 		---@type dapview.Config
 		opts = {},
@@ -445,6 +450,7 @@ require("lazy").setup({
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},
+		lazy = true,
 		config = function()
 			require("neotest").setup({
 				adapters = {
@@ -454,10 +460,23 @@ require("lazy").setup({
 			require("minimalist.keymaps").setup_test_keymaps()
 		end,
 	},
-	-- database
-	"tpope/vim-dadbod",
-	"kristijanhusak/vim-dadbod-ui",
-	"kristijanhusak/vim-dadbod-completion",
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		dependencies = {
+			{ "tpope/vim-dadbod", lazy = true },
+			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true }, -- Optional
+		},
+		cmd = {
+			"DBUI",
+			"DBUIToggle",
+			"DBUIAddConnection",
+			"DBUIFindBuffer",
+		},
+		init = function()
+			-- Your DBUI configuration
+			vim.g.db_ui_use_nerd_fonts = 1
+		end,
+	},
 	-- Themes
 	{
 		"folke/tokyonight.nvim",
