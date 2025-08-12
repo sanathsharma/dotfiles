@@ -346,6 +346,7 @@ require("lazy").setup({
 	{
 		"Wansmer/treesj",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		cmd = "TSJToggle",
 		config = function()
 			require("treesj").setup()
 		end,
@@ -404,6 +405,13 @@ require("lazy").setup({
 		version = "*",
 		config = function()
 			require("mini.bracketed").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.cursorword",
+		version = "*",
+		config = function()
+			require("mini.cursorword").setup()
 		end,
 	},
 	-- Rust
