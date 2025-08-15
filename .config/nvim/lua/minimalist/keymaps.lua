@@ -105,6 +105,11 @@ function M.setup()
 				"<cmd>TSJToggle<CR>",
 				desc = "Toggle split join",
 			},
+			{
+				"<leader>ti",
+				"<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
+				desc = "Toggle lsp inlay hints",
+			},
 
 			-- Goto
 			{
