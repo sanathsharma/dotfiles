@@ -159,6 +159,8 @@ function M.setup()
 				"<Plug>(leap-from-window)",
 				desc = "Leap from window",
 			},
+			{ "<A-j>", "<cmd>move .+1==<cr>", noremap = true, silent = true },
+			{ "<A-k>", "<cmd>move .-2==<cr>", noremap = true, silent = true },
 		},
 		{
 			mode = { "n", "v" },
@@ -182,6 +184,8 @@ function M.setup()
 		{
 			mode = { "x", "v" },
 			{ "<leader>y", "\"+y", noremap = true, desc = "Yank selection into system clipboard" },
+			{ "<A-j>", ":move '>+1<CR>gv=gv", noremap = true, silent = true },
+			{ "<A-k>", ":move '<-2<CR>gv=gv", noremap = true, silent = true },
 		},
 	})
 end
@@ -382,10 +386,10 @@ function M.setup_lazy_module_keymaps()
 	require("which-key").add({
 		{
 			mode = "n",
-			{"<leader>l", "", desc = "+lazy"},
-			{"<leader>ld", "<cmd>Lazy load nvim-dap-view<cr>", desc = "Lazy load dap setup" },
-			{"<leader>lt", "<cmd>Lazy load neotest", desc = "Lazy load neotest" },
-		}
+			{ "<leader>l", "", desc = "+lazy" },
+			{ "<leader>ld", "<cmd>Lazy load nvim-dap-view<cr>", desc = "Lazy load dap setup" },
+			{ "<leader>lt", "<cmd>Lazy load neotest", desc = "Lazy load neotest" },
+		},
 	})
 end
 
