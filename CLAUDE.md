@@ -72,7 +72,7 @@ The Neovim configuration follows a modular "minimalist" approach:
 - `snippets/` - Code snippets organized by language
 
 ### Key Management
-API keys and sensitive configuration are stored in `~/keys/`:
+API keys and sensitive configuration are stored in `~/dotlocal/`:
 - `anthropic_key.txt` - Anthropic API key
 - `openapi_key.txt` - OpenAI API key  
 - `.gitconfig` - User-specific git configuration

@@ -4,7 +4,7 @@
 	editor = "$EDITOR"
 	fsmonitor = true ; Run daemon to monitor file changes to speed up git status command 
 	untrackedcache = true
-	excludesFile = "~/keys/.gitignore_global"
+	excludesFile = "~/dotlocal/.gitignore_global"
 ; [remote.origin]
 ; 	fetch = "+refs/heads/*:refs/remotes/origin/*"
 [alias]
@@ -48,4 +48,4 @@
 	defaultRemote = origin
 ; setup user.name, user.email and user.signingKey in the following file
 [include]
-	path = "~/keys/.gitconfig"
+	path = "~/dotlocal/.gitconfig"

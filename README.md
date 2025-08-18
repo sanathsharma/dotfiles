@@ -226,7 +226,7 @@ cd ~/keys
 touch .gitconfig
 ```
 
-add the following content to the ~/keys/.gitconfig file
+add the following content to the ~/dotlocal/.gitconfig file
 
 ```ini
 [user]
