@@ -485,6 +485,7 @@ require("lazy").setup({
 			vim.g.db_ui_use_nerd_fonts = 1
 		end,
 	},
+	{ "j-hui/fidget.nvim", tag = "*", opts = {} },
 	-- Themes
 	{
 		"folke/tokyonight.nvim",
