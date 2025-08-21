@@ -1,4 +1,6 @@
 # Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/sanathsharma/.zsh/completions:"* ]]; then export FPATH="/Users/sanathsharma/.zsh/completions:$FPATH"; fi
+# Add deno completions to search path
 if [[ ":$FPATH:" != *":$HOME.zsh/completions:"* ]]; then export FPATH="$HOME/.zsh/completions:$FPATH"; fi
 
 export TERM="xterm-256color"
@@ -137,3 +139,4 @@ autoload -Uz compinit && compinit
 
 # Added by Windsurf
 export PATH="$HOME/.codeium/windsurf/bin:$PATH"
+. "$HOME/.deno/env"
