@@ -21,10 +21,16 @@ fi
 
 # Extract GitHub repo info from different URL formats
 # Handle both SSH (git@github.com:user/repo.git) and HTTPS (https://github.com/user/repo.git)
-if echo "$REMOTE_URL" | grep -q "github.com"; then
-    if echo "$REMOTE_URL" | grep -q "^git@"; then
+if echo "$REMOTE_URL" | grep -q -E "(github\.com|work-github|personal-github)"; then
+    if echo "$REMOTE_URL" | grep -q "^git@github.com:"; then
         # SSH format: git@github.com:user/repo.git
         REPO_INFO=$(echo "$REMOTE_URL" | sed 's/git@github.com://' | sed 's/\.git$//')
+    elif echo "$REMOTE_URL" | grep -q "^work-github:"; then
+        # SSH host format: work-github:user/repo.git
+        REPO_INFO=$(echo "$REMOTE_URL" | sed 's/work-github://' | sed 's/\.git$//')
+    elif echo "$REMOTE_URL" | grep -q "^personal-github:"; then
+        # SSH host format: personal-github:user/repo.git
+        REPO_INFO=$(echo "$REMOTE_URL" | sed 's/personal-github://' | sed 's/\.git$//')
     else
         # HTTPS format: https://github.com/user/repo.git
         REPO_INFO=$(echo "$REMOTE_URL" | sed 's|https://github.com/||' | sed 's/\.git$//')
