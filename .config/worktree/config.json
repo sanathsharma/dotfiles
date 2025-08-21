@@ -1,6 +1,8 @@
 {
 	"directories": [
 		"~/personal",
-		"~/work"
+		"~/work",
+		"~/code",
+		"~/code/projects"
 	]
 }
