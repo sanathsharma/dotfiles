@@ -81,6 +81,7 @@ fish_add_path $HOME/go
 fish_add_path $GOPATH/bin
 fish_add_path /usr/bin
 fish_add_path $HOME/jetbrains-toolbox/bin
+fish_add_path $HOME/.codeium/windsurf/bin
 # Go entry
 fish_add_path /usr/local/go/bin
 # MacOS specific

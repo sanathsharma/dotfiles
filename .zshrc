@@ -134,3 +134,6 @@ fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
 . "$HOME/.deno/env"
+
+# Added by Windsurf
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
