@@ -1,5 +1,5 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+	# Commands to run in interactive sessions can go here
 end
 
 # Abbreviations
@@ -131,13 +131,21 @@ set fish_cursor_external line
 set fish_cursor_visual block
 
 if test -e /home/linuxbrew/.linuxbrew/bin/brew
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 end
 
 if test -e $HOME/dotlocal/anthropic_key.txt
-    set -gx ANTHROPIC_API_KEY $(cat $HOME/dotlocal/anthropic_key.txt)
+	set -gx ANTHROPIC_API_KEY $(cat $HOME/dotlocal/anthropic_key.txt)
 end
 
 if test -e $HOME/dotlocal/openapi_key.txt
-    set -gx OPENAI_API_KEY $(cat $HOME/dotlocal/openapi_key.txt)
+	set -gx OPENAI_API_KEY $(cat $HOME/dotlocal/openapi_key.txt)
+end
+
+# functions
+function w
+	set result (worktree $argv)
+	if test -n "$result"
+		cd $result
+	end
 end

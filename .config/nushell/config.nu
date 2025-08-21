@@ -25,5 +25,8 @@ alias gcv = gen-commit -v
 alias gcov = gen-commit -m openai:get-4.1-mini -v
 alias clip = xclip -selection clipboard
 alias s = kitten ssh
+alias w = cd (worktree)
 
 def ocat [...args] { /bin/cat ...$args }
+
+source $"($nu.home-path)/.cargo/env.nu"
