@@ -41,3 +41,39 @@ end, {})
 local extended = require("minimalist.extended")
 extended.register_case_commands()
 extended.register_lsp_case_commands()
+
+vim.api.nvim_create_user_command("BiomeCheck", function()
+	local fidget = require("fidget")
+	local current_file = vim.api.nvim_buf_get_name(0)
+
+	if current_file == "" then
+		vim.notify("No file associated with current buffer", vim.log.levels.WARN)
+		return
+	end
+
+	if vim.fn.filereadable(current_file) == 0 then
+		fidget.notify("Current buffer file does not exist on disk", vim.log.levels.WARN)
+		return
+	end
+
+	-- Save buffer first
+	vim.cmd("write")
+
+	local cmd = string.format(
+		"biome check --write --formatter-enabled=true --linter-enabled=true --organize-imports-enabled=true \"%s\"",
+		current_file
+	)
+	local output = vim.fn.system(cmd)
+	local exit_code = vim.v.shell_error
+
+	if exit_code == 0 then
+		fidget.notify("Biome check and fix completed ✓", vim.log.levels.INFO)
+		-- Reload the buffer to show changes
+		vim.cmd("edit!")
+	else
+		fidget.notify("Biome check failed ✗", vim.log.levels.ERROR)
+		print(output)
+	end
+end, {
+	desc = "Run biome check with --write on current buffer",
+})
