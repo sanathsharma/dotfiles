@@ -53,7 +53,6 @@ set -gx GOPATH $HOME/go
 set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 set -gx GPG_TTY "$(tty)"
 set fish_greeting ""
-set --universal nvm_default_version 20.18.0
 set -Ux FZF_DEFAULT_OPTS "\
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
@@ -67,6 +66,8 @@ set -Ux FZF_DEFAULT_OPTS "\
 # set -Ux FZF_DEFAULT_COMMAND "fd --type file --hidden --no-ignore"
 set -Ux FZF_DEFAULT_COMMAND ""
 set -Ux FZF_COMPLETION_TRIGGER "~~"
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH
 
 # Path
 # For Linux
