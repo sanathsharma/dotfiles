@@ -1,22 +1,18 @@
 local M = {}
 
-function M.filterTable(sourceTable, filterTable)
-	local result = {}
-	local filterSet = {}
+---@param originalTable table<string, string[]>
+---@param keysToInclude string[]
+function M.filterTable(originalTable, keysToInclude)
+  local resultTable = {}
 
-	-- Create a lookup set from the filter table for O(1) lookups
-	for _, value in ipairs(filterTable) do
-		filterSet[value] = true
-	end
+  for _, key in ipairs(keysToInclude) do
+    local value = originalTable[key]
+    if value then
+      resultTable[key] = value
+    end
+  end
 
-	-- Add elements from sourceTable to result only if they're not in filterSet
-	for _, value in ipairs(sourceTable) do
-		if not filterSet[value] then
-			table.insert(result, value)
-		end
-	end
-
-	return result
+  return resultTable
 end
 
 ---@param path_one string

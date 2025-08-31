@@ -47,7 +47,7 @@ vim.api.nvim_create_user_command("BiomeCheck", function()
 	local current_file = vim.api.nvim_buf_get_name(0)
 
 	if current_file == "" then
-		vim.notify("No file associated with current buffer", vim.log.levels.WARN)
+		fidget.notify("No file associated with current buffer", vim.log.levels.WARN)
 		return
 	end
 
@@ -60,7 +60,7 @@ vim.api.nvim_create_user_command("BiomeCheck", function()
 	vim.cmd("write")
 
 	local cmd = string.format(
-		"biome check --write --formatter-enabled=true --linter-enabled=true --organize-imports-enabled=true \"%s\"",
+		"biome check --write \"%s\"",
 		current_file
 	)
 	local output = vim.fn.system(cmd)

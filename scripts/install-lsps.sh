@@ -68,7 +68,7 @@ fi
 
 # JavaScript formatter
 echo "Installing prettierd for fast JavaScript formatting..."
-brew install prettierd
+npm install -g @fsouza/prettierd
 
 echo ""
 echo "LSP installation complete!"
