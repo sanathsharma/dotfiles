@@ -31,3 +31,4 @@ codebook/
 .aipack/
 tmp/
 lazy-lock.json
+kitty-override.conf

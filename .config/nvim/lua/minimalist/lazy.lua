@@ -49,6 +49,10 @@ require("lazy").setup({
 						fullscreen = false,
 					},
 				},
+				fzf_colors = {
+					true,
+					["bg"] = { "bg", "Normal" },
+				},
 			})
 		end,
 	},
