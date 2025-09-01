@@ -81,5 +81,5 @@ vim.api.nvim_create_user_command("Cnear", function(details)
 	require("treesitter-context").go_to_context(count)
 end, {
 	desc = "Jump to context (upwards)",
-	nargs = 1,
+	nargs = "?",
 })
