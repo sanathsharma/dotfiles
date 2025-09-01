@@ -49,10 +49,7 @@ require("lazy").setup({
 						fullscreen = false,
 					},
 				},
-				fzf_colors = {
-					true,
-					["bg"] = { "bg", "Normal" },
-				},
+				fzf_colors = true,
 			})
 		end,
 	},
@@ -523,12 +520,17 @@ require("lazy").setup({
 				treesitter_context = true,
 				which_key = true,
 			},
-			custom_highlights = {
-				CursorLine = { bg = "#2a2b3d" },
-				CursorColumn = { bg = "#2a2b3d" },
-				-- 	ColorColumn = { bg = "#313244" },
-				-- 	Whitespace = { fg = "NvimDarkGray4" },
-			},
+			custom_highlights = function(colors)
+				return {
+					-- CursorLine = { bg = "#2a2b3d" },
+					-- CursorColumn = { bg = "#2a2b3d" },
+					-- 	ColorColumn = { bg = "#313244" },
+					-- 	Whitespace = { fg = "NvimDarkGray4" },
+				}
+			end,
 		},
 	},
+	{ "EdenEast/nightfox.nvim", name = "nightfox", lazy = true },
+	{ "rose-pine/neovim", name = "rosepine", lazy = true },
+	{ "projekt0n/github-nvim-theme", name = "github-theme", lazy = true },
 }, {})
