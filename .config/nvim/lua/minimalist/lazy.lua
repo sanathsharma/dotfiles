@@ -49,6 +49,11 @@ require("lazy").setup({
 						fullscreen = false,
 					},
 				},
+				marks = {
+					winopts = {
+						fullscreen = false,
+					},
+				},
 				fzf_colors = true,
 			})
 		end,

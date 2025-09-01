@@ -1,5 +1,6 @@
 vim.cmd([[:cnoreabbrev Themes FzfLua colorschemes]])
 vim.cmd([[:cnoreabbrev Livegrep FzfLua live_grep]])
+vim.cmd([[:cnoreabbrev Marks FzfLua marks]])
 
 -- Toggle
 vim.cmd([[:cnoreabbrev Tblame Gitsigns toggle_current_line_blame]])
