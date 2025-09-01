@@ -59,10 +59,7 @@ vim.api.nvim_create_user_command("BiomeCheck", function()
 	-- Save buffer first
 	vim.cmd("write")
 
-	local cmd = string.format(
-		"biome check --write \"%s\"",
-		current_file
-	)
+	local cmd = string.format("biome check --write \"%s\"", current_file)
 	local output = vim.fn.system(cmd)
 	local exit_code = vim.v.shell_error
 
@@ -76,4 +73,13 @@ vim.api.nvim_create_user_command("BiomeCheck", function()
 	end
 end, {
 	desc = "Run biome check with --write on current buffer",
+})
+
+vim.api.nvim_create_user_command("Cnear", function(details)
+	local args = details.fargs
+	local count = args[1] or vim.v.count1
+	require("treesitter-context").go_to_context(count)
+end, {
+	desc = "Jump to context (upwards)",
+	nargs = 1,
 })
