@@ -4,7 +4,7 @@ if vim.loader then
 end
 
 require("minimalist.lazy")
-require("minimalist.options")
+require("minimalist.options").setup()
 require("minimalist.autocmds")
 require("minimalist.usercmds")
 require("minimalist.aliases")

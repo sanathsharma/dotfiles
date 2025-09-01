@@ -487,6 +487,21 @@ require("lazy").setup({
 		end,
 	},
 	{ "j-hui/fidget.nvim", tag = "*", opts = {} },
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = { "kevinhwang91/promise-async" },
+		lazy = true,
+		config = function()
+			require("ufo").setup({
+				provider_selector = function(bufnr, filetype, buftype)
+					return { "treesitter", "indent" }
+				end,
+			})
+
+			require("minimalist.options").setup_fold_opts()
+			require("minimalist.keymaps").setup_fold_keymaps()
+		end,
+	},
 	-- Themes
 	{
 		"folke/tokyonight.nvim",
