@@ -216,15 +216,16 @@ require("lazy").setup({
 
 			completion = {
 				-- (Default) Only show the documentation popup when manually triggered
-				documentation = { auto_show = false },
+				documentation = { auto_show = true },
 				list = { selection = { auto_insert = false, preselect = false } },
 				accept = { auto_brackets = { enabled = false } },
-				menu = { auto_show = false },
+				menu = { auto_show = true },
 			},
 
 			cmdline = {
 				completion = {
 					list = { selection = { auto_insert = false, preselect = false } },
+					menu = { auto_show = true },
 				},
 			},
 
