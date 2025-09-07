@@ -533,6 +533,7 @@ require("lazy").setup({
 			require("minimalist.keymaps").setup_fold_keymaps()
 		end,
 	},
+	{ "godlygeek/tabular" },
 	-- Themes
 	{
 		"folke/tokyonight.nvim",
