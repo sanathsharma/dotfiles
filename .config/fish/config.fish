@@ -33,16 +33,11 @@ abbr -a gco "gen-commit -m openai:gpt-4.1-mini"
 alias ls="ls --color"
 alias vim="nvim"
 alias tmux="tmux -u"
-alias commit="sh ~/scripts/commit.sh"
-alias new-branch="sh ~/scripts/new-branch.sh"
-alias pr-url="sh ~/scripts/pr-url.sh"
-alias commit-url="sh ~/scripts/commit-url.sh"
-alias copy-branch="sh ~/scripts/copy-branch.sh"
 # use https://github.com/sanathsharma/gen-commit instead
 # alias gen-commit="sh ~/scripts/gen-commit.sh"
 alias ocat="$(which cat)"
 alias cat="bat"
-alias switch-branch='sh ~/scripts/checkout-branch.sh'
+alias switch-branch='sh ~/scripts/switch-branch.sh'
 alias dr="sh ~/scripts/debug_rust.sh"
 
 # Set variables
@@ -83,6 +78,7 @@ fish_add_path $GOPATH/bin
 fish_add_path /usr/bin
 fish_add_path $HOME/jetbrains-toolbox/bin
 fish_add_path $HOME/.codeium/windsurf/bin
+fish_add_path $HOME/scripts
 # Go entry
 fish_add_path /usr/local/go/bin
 # MacOS specific
