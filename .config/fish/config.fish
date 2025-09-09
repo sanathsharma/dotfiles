@@ -39,6 +39,8 @@ alias ocat="$(which cat)"
 alias cat="bat"
 alias switch-branch='sh ~/scripts/switch-branch.sh'
 alias dr="sh ~/scripts/debug_rust.sh"
+alias op="cd ~/vaults/personal"
+alias ow="cd ~/vaults/work"
 
 # Set variables
 set -gx EDITOR nvim

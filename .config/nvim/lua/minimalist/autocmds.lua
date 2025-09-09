@@ -70,3 +70,16 @@ vim.api.nvim_create_autocmd("Filetype", {
 		vim.opt.softtabstop = tab_spaces -- Number of spaces for a tab when editing
 	end,
 })
+
+vim.api.nvim_create_autocmd("Filetype", {
+	pattern = { "markdown" },
+	callback = function()
+		if
+			string.sub(vim.fn.expand("%:p"), 1, string.len(vim.fn.expand("~") .. "/vaults/"))
+			== vim.fn.expand("~") .. "/vaults/"
+		then
+			vim.opt.conceallevel = 2
+		end
+	end,
+})
+

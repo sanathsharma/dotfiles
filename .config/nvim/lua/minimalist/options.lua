@@ -17,7 +17,6 @@ function M.setup()
 	vim.opt.signcolumn = "yes" -- Always show sign column
 	vim.opt.hlsearch = true -- Highlight search matches
 	vim.opt.incsearch = true -- Show search matches as you type
-	vim.opt.fixendofline = false -- Don't fix eol and eof
 	vim.opt.showbreak = "↪·" -- Indicate a line break in a long line of text
 	vim.opt.listchars = "eol:⏎,tab:⇾·,trail:·,nbsp:⎵,extends:»,precedes:«,space:·"
 	vim.opt.ignorecase = true -- Ignore case in search
