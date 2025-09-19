@@ -550,6 +550,7 @@ require("lazy").setup({
 	},
 	{ "godlygeek/tabular" },
 	{ "tpope/vim-fugitive" },
+	{ "sindrets/diffview.nvim", lazy = true },
 	{
 		"epwalsh/obsidian.nvim",
 		version = "*",
