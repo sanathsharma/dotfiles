@@ -549,6 +549,7 @@ require("lazy").setup({
 		end,
 	},
 	{ "godlygeek/tabular" },
+	{ "tpope/vim-fugitive" },
 	{
 		"epwalsh/obsidian.nvim",
 		version = "*",
@@ -579,7 +580,7 @@ require("lazy").setup({
 					["?"] = { char = "", hl_group = "ObsidianQuestion" }, -- question
 					["!"] = { char = "", hl_group = "ObsidianImportant" }, -- important
 					["*"] = { char = "", hl_group = "ObsidianStar" }, -- star
-					['"'] = { char = "", hl_group = "ObsidianQuote" }, -- quote
+					["\""] = { char = "", hl_group = "ObsidianQuote" }, -- quote
 					["l"] = { char = "", hl_group = "ObsidianLocation" }, -- location
 					["B"] = { char = "", hl_group = "ObsidianBookmark" }, -- bookmark
 					["i"] = { char = "", hl_group = "ObsidianInformation" }, -- information
