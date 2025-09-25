@@ -357,37 +357,49 @@ require("lazy").setup({
 			})
 		end,
 	},
+	-- {
+	-- 	"Exafunction/windsurf.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		require("codeium").setup({
+	-- 			enable_cmp_source = false,
+	-- 			virtual_text = {
+	-- 				enabled = true,
+	-- 				manual = true,
+	-- 				key_bindings = {
+	-- 					-- Accept the current completion.
+	-- 					accept = "<M-y>",
+	-- 					-- Accept the next word.
+	-- 					accept_word = "<M-w>",
+	-- 					-- Accept the next line.
+	-- 					accept_line = "<M-cr>",
+	-- 					-- Clear the virtual text.
+	-- 					clear = "<M-c>",
+	-- 					-- Cycle to the next completion.
+	-- 					next = "<M-l>",
+	-- 					-- Cycle to the previous completion.
+	-- 					prev = "<M-h>",
+	-- 				},
+	-- 			},
+	-- 			workspace_root = {
+	-- 				use_lsp = true,
+	-- 			},
+	-- 		})
+	-- 		require("minimalist.keymaps").setup_codeium_keymaps()
+	-- 	end,
+	-- },
 	{
-		"Exafunction/windsurf.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
+		"supermaven-inc/supermaven-nvim",
 		config = function()
-			require("codeium").setup({
-				enable_cmp_source = false,
-				virtual_text = {
-					enabled = true,
-					manual = true,
-					key_bindings = {
-						-- Accept the current completion.
-						accept = "<M-y>",
-						-- Accept the next word.
-						accept_word = "<M-w>",
-						-- Accept the next line.
-						accept_line = "<M-cr>",
-						-- Clear the virtual text.
-						clear = "<M-c>",
-						-- Cycle to the next completion.
-						next = "<M-l>",
-						-- Cycle to the previous completion.
-						prev = "<M-h>",
-					},
-				},
-				workspace_root = {
-					use_lsp = true,
+			require("supermaven-nvim").setup({
+				keymaps = {
+					accept_suggestion = "<M-y>",
+					clear_suggestion = "<M-c>",
+					accept_word = "<M-w>",
 				},
 			})
-			require("minimalist.keymaps").setup_codeium_keymaps()
 		end,
 	},
 	{
