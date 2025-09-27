@@ -37,6 +37,11 @@ function M.setup()
 				desc = "Global search in workspace folder",
 			},
 			{
+				"<leader>w",
+				"<cmd>FzfLua grep_cword<cr>",
+				desc = "Search word under cursor",
+			},
+			{
 				"<leader>j",
 				"<cmd>FzfLua jumps<cr>",
 				desc = "Open jumplist picker",
@@ -95,7 +100,7 @@ function M.setup()
 
 			-- Oil
 			{
-				"-",
+				"<leader>e",
 				"<cmd>Oil<cr>",
 				desc = "Open parent directory",
 			},
