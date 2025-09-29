@@ -378,9 +378,9 @@ require("lazy").setup({
 	-- 					-- Clear the virtual text.
 	-- 					clear = "<M-c>",
 	-- 					-- Cycle to the next completion.
-	-- 					next = "<M-l>",
+	-- 					next = "<M-[>",
 	-- 					-- Cycle to the previous completion.
-	-- 					prev = "<M-h>",
+	-- 					prev = "<M-]>",
 	-- 				},
 	-- 			},
 	-- 			workspace_root = {
@@ -647,6 +647,24 @@ require("lazy").setup({
 					ObsidianDown = { bold = true, fg = "#f7768e" },
 				},
 			},
+		},
+	},
+	{
+		"christoomey/vim-tmux-navigator",
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateDown",
+			"TmuxNavigateUp",
+			"TmuxNavigateRight",
+			"TmuxNavigatePrevious",
+			"TmuxNavigatorProcessList",
+		},
+		keys = {
+			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
 	-- Themes

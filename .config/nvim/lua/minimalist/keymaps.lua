@@ -208,7 +208,7 @@ function M.setup_luasnip_keymaps()
 			mode = { "i" },
 			silent = true,
 			{
-				"<C-K>",
+				"<M-K>",
 				function()
 					ls.expand()
 				end,
@@ -219,21 +219,21 @@ function M.setup_luasnip_keymaps()
 			mode = { "i", "s" },
 			silent = true,
 			{
-				"<C-L>",
+				"<M-L>",
 				function()
 					ls.jump(1)
 				end,
 				desc = "Jump forward",
 			},
 			{
-				"<C-J>",
+				"<M-J>",
 				function()
 					ls.jump(-1)
 				end,
 				desc = "Jump backward",
 			},
 			{
-				"<C-E>",
+				"<M-E>",
 				function()
 					if ls.choice_active() then
 						ls.change_choice(1)
