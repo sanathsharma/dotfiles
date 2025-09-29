@@ -29,6 +29,15 @@ abbr -a sro "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*
 abbr -a gc "gen-commit -v"
 abbr -a gco "gen-commit -m openai:gpt-4.1-mini"
 
+set os (uname)
+if test $os = "Darwin"
+	abbr -a hrm "kanata -c ~/.config/kanata/macos/config.kbd"
+	abbr -a colemak "kanata -c ~/.config/kanata/macos/colemak.kbd"
+else
+	abbr -a hrm "kanata -c ~/.config/kanata/linux/config.kbd"
+	abbr -a colemak "kanata -c ~/.config/kanata/linux/colemak.kbd"
+end
+
 # Alias
 alias ls="ls --color"
 alias vim="nvim"

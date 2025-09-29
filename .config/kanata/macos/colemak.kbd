@@ -1,0 +1,50 @@
+(defsrc
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
+  caps
+  fn
+  q w e r t y u i o p
+  a s d f g h j k l ;
+  z x c v b n m
+)
+(defvar
+  tap-time 200
+  hold-time 200
+)
+
+(defalias
+  escctrl (tap-hold $tap-time $hold-time esc lctl)
+  a (tap-hold $tap-time $hold-time a lmet)
+  r (tap-hold $tap-time $hold-time r lalt)
+  s (tap-hold $tap-time $hold-time s lsft)
+  t (tap-hold $tap-time $hold-time t lctl)
+  n (tap-hold $tap-time $hold-time n rctl)
+  e (tap-hold $tap-time $hold-time e rsft)
+  i (tap-hold $tap-time $hold-time i ralt)
+  o (tap-hold $tap-time $hold-time o rmet)
+  fnl (tap-hold 200 200 fn (layer-toggle fn))
+)
+
+(deflayer base
+  brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
+  @escctrl
+  @fnl
+  _ _ f p b j l u y ;
+  @a @r @s @t g m @n @e @i @o
+  _ _ _ d v k h
+)
+
+(deflayer fn
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
+  @escctrl
+  fn
+	_ _ _ _ _ _ _ _ _ _
+	_	_	_	_	_	_	_	_	_	_
+	_	_	_	_	_	_	_
+)
+
+(defcfg
+  process-unmapped-keys   yes
+  concurrent-tap-hold     yes
+  allow-hardware-repeat   no
+)
+

@@ -1,0 +1,43 @@
+(defsrc
+  caps
+  q w e r t y u i o p
+  a s d f g h j k l ;
+  z x c v b n m
+)
+(defvar
+  tap-time 200
+  hold-time 200
+)
+
+(defalias
+  escctrl (tap-hold $tap-time $hold-time esc lctl)
+  a (tap-hold $tap-time $hold-time a lmet)
+  r (tap-hold $tap-time $hold-time r lalt)
+  s (tap-hold $tap-time $hold-time s lsft)
+  t (tap-hold $tap-time $hold-time t lctl)
+  n (tap-hold $tap-time $hold-time n rctl)
+  e (tap-hold $tap-time $hold-time e rsft)
+  i (tap-hold $tap-time $hold-time i ralt)
+  o (tap-hold $tap-time $hold-time o rmet)
+)
+
+(deflayer base
+  @escctrl
+  _ _ f p b j l u y ;
+  @a @r @s @t g m @n @e @i @o
+  _ _ _ d v k h
+)
+
+(deflayer fn
+  @escctrl
+	_ _ _ _ _ _ _ _ _ _
+	_	_	_	_	_	_	_	_	_	_
+	_	_	_	_	_	_	_
+)
+
+(defcfg
+  process-unmapped-keys   yes
+  concurrent-tap-hold     yes
+  allow-hardware-repeat   no
+)
+
