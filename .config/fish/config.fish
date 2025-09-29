@@ -32,7 +32,7 @@ abbr -a gco "gen-commit -m openai:gpt-4.1-mini"
 # Alias
 alias ls="ls --color"
 alias vim="nvim"
-alias tmux="tmux -u"
+alias tmux="tmux -u -f ~/.config/tmux/tmux.conf"
 # use https://github.com/sanathsharma/gen-commit instead
 # alias gen-commit="sh ~/scripts/gen-commit.sh"
 alias ocat="$(which cat)"
