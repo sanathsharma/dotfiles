@@ -1,18 +1,45 @@
 (defsrc
   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
-  caps
   fn
-  q w e r t y u i o p
-  a s d f g h j k l ;
-  z x c v b n m
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
 )
+
 (defvar
   tap-time 200
   hold-time 200
 )
 
 (defalias
-  escctrl (tap-hold $tap-time $hold-time esc lctl)
+  ect (tap-hold $tap-time $hold-time esc lctl)
+  fnl (tap-hold 200 200 fn (layer-toggle fn))
+
+  num (layer-toggle numbers)
+  arr (layer-toggle arrows)
+  lay (layer-toggle layers)
+  sym (layer-toggle symbols)
+  br  (layer-toggle brackets)
+  mse (layer-toggle mouse)
+
+  qwr (layer-switch qwerty)
+  bas (layer-switch base)
+  col (layer-switch colemak)
+
+  ;; tap-hold keys with letters for tap and layer change for hold
+  gnm (tap-hold-release $tap-time $hold-time g @num)
+  rar (tap-hold-release $tap-time $hold-time r @arr)
+  par (tap-hold-release $tap-time $hold-time p @arr)
+  esy (tap-hold-release $tap-time $hold-time e @sym)
+  fsy (tap-hold-release $tap-time $hold-time f @sym)
+  spb (tap-hold-release $tap-time $hold-time spc @br)
+  grl (tap-hold-release $tap-time $hold-time grv @lay)
+  tms (tap-hold-release $tap-time $hold-time t @mse)
+  bms (tap-hold-release $tap-time $hold-time b @mse)
+
+  ;; colmak home row mods
   a (tap-hold $tap-time $hold-time a lmet)
   r (tap-hold $tap-time $hold-time r lalt)
   s (tap-hold $tap-time $hold-time s lsft)
@@ -21,25 +48,145 @@
   e (tap-hold $tap-time $hold-time e rsft)
   i (tap-hold $tap-time $hold-time i ralt)
   o (tap-hold $tap-time $hold-time o rmet)
-  fnl (tap-hold 200 200 fn (layer-toggle fn))
+
+  ;; qwerty home row mods
+  sa (tap-hold $tap-time $hold-time s lalt)
+  d (tap-hold $tap-time $hold-time d lsft)
+  f (tap-hold $tap-time $hold-time f lctl)
+  j (tap-hold $tap-time $hold-time j rctl)
+  k (tap-hold $tap-time $hold-time k rsft)
+  l (tap-hold $tap-time $hold-time l ralt)
+  ; (tap-hold $tap-time $hold-time ; rmet)
+
+  s1 S-1
+  s2 S-2
+  s3 S-3
+  s4 S-4
+  s5 S-5
+  s6 S-6
+  s7 S-7
+  s8 S-8
+  po S-9
+  pc S-0
+  dq S-'
+  co S-;
+  fo S-[
+  fc S-]
+
+  mwu (mwheel-up 50 120)
+  mwd (mwheel-down 50 120)
+  mwl (mwheel-left 50 120)
+  mwr (mwheel-right 50 120)
 )
 
 (deflayer base
   brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
-  @escctrl
   @fnl
-  _ _ f p b j l u y ;
-  @a @r @s @t g m @n @e @i @o
-  _ _ _ d v k h
+  @grl  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab   q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps  a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft  z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl  lmet lalt           spc            ralt rmet rctl
+)
+
+(deflayer qwerty
+  brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
+  @fnl
+  @grl  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab   q    w    @esy @rar @tms y    u    i    o    p    [    ]    \
+  @ect  @a   @sa  @d   @f   @gnm h    @j   @k   @l   @;   '    ret
+  lsft  z    x    c    v    b    n    m    ,    .    /    rsft
+  caps  lmet lalt           @spb           ralt rmet rctl
+)
+
+(deflayer colemak
+  brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
+  @fnl
+  @grl  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab   q    w    @fsy @par @bms j    l    u    y    ;    [    ]    \
+  @ect  @a   @r   @s   @t   @gnm m    @n   @e  @i    @o   '    ret
+  lsft  z    x    c    d    v    k    h    ,    .    /    rsft
+  caps  lmet lalt           @spb          ralt rmet rctl
 )
 
 (deflayer fn
-  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
-  @escctrl
+  f1  f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
   fn
-	_ _ _ _ _ _ _ _ _ _
-	_	_	_	_	_	_	_	_	_	_
-	_	_	_	_	_	_	_
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _   _    _              _              _    _    _
+)
+
+(deflayer layers
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _
+  _   @bas @qwr @col _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _   _    _              _              _    _    _
+)
+
+(deflayer numbers
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    +    kp1  kp2  kp3  _    _    _    _
+  _   _    _    _    _    _    -    kp4  kp5  kp6  kp0  _    _
+  _   _    _    _    _    _    =    kp7  kp8  kp9  /    _
+  _   _    _              _              _    _    _
+)
+
+(deflayer arrows
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    pgup home _    _    _    _    _
+  _   _    _    _    _    _    left down up   rght _    _    _
+  _   _    _    _    _    _    _    pgdn end  _    _    _
+  _   _    _              _              _    _    _
+)
+
+(deflayer symbols
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    '    @s1  @s2  @s3  '    _    _    _
+  _   _    _    _    _    _    @co  @s4  @s5  @s6  @pc  _    _
+  _   _    _    _    _    _    @dq  @s7  @s8  @po  @dq  _
+  _   _    _              _              _    _    _
+)
+
+(deflayer brackets
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    bspc del  esc  ret  _    _    _
+  _   _    _    _    _    _    _    @fo  [    @po  @co  _    _
+  _   _    _    _    _    _    _    @fc  ]    @pc  /    _
+  _   _    _              _              _    _    _
+)
+
+(deflayer mouse
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    @mwl @mwd @mwu @mwr _    _
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _   _    _              _              _    _    _
+)
+
+(deflayer blank
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    _    _    _    _    _    _
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _   _    _              _              _    _    _
 )
 
 (defcfg
