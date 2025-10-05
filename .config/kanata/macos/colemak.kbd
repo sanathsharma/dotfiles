@@ -23,21 +23,29 @@
   sym (layer-toggle symbols)
   br  (layer-toggle brackets)
   mse (layer-toggle mouse)
+  spl (layer-toggle spacelayer)
 
   qwr (layer-switch qwerty)
+  qxt (layer-switch qwertyext)
   bas (layer-switch base)
   col (layer-switch colemak)
+  cxt (layer-switch colemakext)
 
   ;; tap-hold keys with letters for tap and layer change for hold
   gnm (tap-hold-release $tap-time $hold-time g @num)
   rar (tap-hold-release $tap-time $hold-time r @arr)
   par (tap-hold-release $tap-time $hold-time p @arr)
+  far (tap-hold-release $tap-time $hold-time f @arr)
+  ear (tap-hold-release $tap-time $hold-time e @arr)
   esy (tap-hold-release $tap-time $hold-time e @sym)
   fsy (tap-hold-release $tap-time $hold-time f @sym)
   spb (tap-hold-release $tap-time $hold-time spc @br)
+  wbr (tap-hold-release $tap-time $hold-time w @br)
+  spm (tap-hold-release $tap-time $hold-time spc @spl)
   grl (tap-hold-release $tap-time $hold-time grv @lay)
   tms (tap-hold-release $tap-time $hold-time t @mse)
   bms (tap-hold-release $tap-time $hold-time b @mse)
+  gms (tap-hold-release $tap-time $hold-time g @mse)
 
   ;; colmak home row mods
   a (tap-hold $tap-time $hold-time a lmet)
@@ -99,6 +107,16 @@
   caps  lmet lalt           @spb           ralt rmet rctl
 )
 
+(deflayer qwertyext
+  brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
+  @fnl
+  @grl  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab   q    @wbr @ear r    t    y    u    i    o    p    [    ]    \
+  @ect  @a   @sa  @d   @f   @gms h    @j   @k   @l   @;   '    ret
+  lsft  z    x    c    v    b    n    m    ,    .    /    rsft
+  caps  lmet lalt           @spm           ralt rmet rctl
+)
+
 (deflayer colemak
   brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
   @fnl
@@ -107,6 +125,16 @@
   @ect  @a   @r   @s   @t   @gnm m    @n   @e  @i    @o   '    ret
   lsft  z    x    c    d    v    k    h    ,    .    /    rsft
   caps  lmet lalt           @spb          ralt rmet rctl
+)
+
+(deflayer colemakext
+  brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
+  @fnl
+  @grl  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab   q    @wbr @far p    b    j    l    u    y    ;    [    ]    \
+  @ect  @a   @r   @s   @t   @gms m    @n   @e  @i    @o   '    ret
+  lsft  z    x    c    d    v    k    h    ,    .    /    rsft
+  caps  lmet lalt           @spm          ralt rmet rctl
 )
 
 (deflayer fn
@@ -122,7 +150,7 @@
 (deflayer layers
   _   _    _    _    _    _    _    _    _    _    _    _
   _
-  _   @bas @qwr @col _    _    _    _    _    _    _    _    _    _
+  _   @bas @qxt @cxt @qwr @col _    _    _    _    _    _    _    _
   _   _    _    _    _    _    _    _    _    _    _    _    _    _
   _   _    _    _    _    _    _    _    _    _    _    _    _
   _   _    _    _    _    _    _    _    _    _    _    _
@@ -133,9 +161,9 @@
   _   _    _    _    _    _    _    _    _    _    _    _
   _
   _   _    _    _    _    _    _    _    _    _    _    _    _    _
-  _   _    _    _    _    _    +    kp1  kp2  kp3  _    _    _    _
-  _   _    _    _    _    _    -    kp4  kp5  kp6  kp0  _    _
-  _   _    _    _    _    _    =    kp7  kp8  kp9  /    _
+  _   _    _    _    _    _    +    1    2    3    _    _    _    _
+  _   _    _    _    _    _    -    4    5    6    0    _    _
+  _   _    _    _    _    _    =    7    8    9    /    _
   _   _    _              _              _    _    _
 )
 
@@ -163,7 +191,7 @@
   _   _    _    _    _    _    _    _    _    _    _    _
   _
   _   _    _    _    _    _    _    _    _    _    _    _    _    _
-  _   _    _    _    _    _    _    bspc del  esc  ret  _    _    _
+  _   _    _    _    _    _    _    bspc ret  esc  del  _    _    _
   _   _    _    _    _    _    _    @fo  [    @po  @co  _    _
   _   _    _    _    _    _    _    @fc  ]    @pc  /    _
   _   _    _              _              _    _    _
@@ -176,6 +204,16 @@
   _   _    _    _    _    _    _    _    _    _    _    _    _    _
   _   _    _    _    _    _    _    @mwl @mwd @mwu @mwr _    _
   _   _    _    _    _    _    _    _    _    _    _    _
+  _   _    _              _              _    _    _
+)
+
+(deflayer spacelayer
+  _   _    _    _    _    _    _    _    _    _    _    _
+  _
+  _   _    _    _    _    _    _    _    _    _    _    _    _    _
+  _   @s1  @s2  @s3  @s4  @s5  @s6  @s7  @s8  @po  @pc  _    _    _
+  _   1    2    3    4    5    6    7    8    9    0    _    _
+  _   _    _    _    _    _    _    bspc ret  esc  del  _
   _   _    _              _              _    _    _
 )
 
