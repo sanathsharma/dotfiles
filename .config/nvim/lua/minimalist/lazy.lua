@@ -242,6 +242,10 @@ require("lazy").setup({
 					list = { selection = { auto_insert = false, preselect = false } },
 					menu = { auto_show = true },
 				},
+				keymap = {
+					["<Down>"] = { "select_next", "fallback" },
+					["<Up>"] = { "select_prev", "fallback" },
+				},
 			},
 
 			-- Default list of enabled providers defined so that you can extend it
@@ -407,7 +411,9 @@ require("lazy").setup({
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		cmd = "TSJToggle",
 		config = function()
-			require("treesj").setup()
+			require("treesj").setup({
+				use_default_keymaps = false,
+			})
 		end,
 	},
 	{
