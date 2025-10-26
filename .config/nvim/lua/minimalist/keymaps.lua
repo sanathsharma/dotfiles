@@ -172,6 +172,9 @@ function M.setup()
 			},
 			{ "<A-j>", "<cmd>move .+1==<cr>", noremap = true, silent = true },
 			{ "<A-k>", "<cmd>move .-2==<cr>", noremap = true, silent = true },
+
+			-- Undotree
+			{ "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Toggle undotree" },
 		},
 		{
 			mode = { "n", "v" },

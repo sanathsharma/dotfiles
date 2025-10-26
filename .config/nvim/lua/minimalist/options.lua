@@ -22,6 +22,7 @@ function M.setup()
 	vim.opt.ignorecase = true -- Ignore case in search
 	vim.opt.smartcase = true -- Ignore case if search pattern is all lowercase
 	vim.opt.inccommand = "split" -- Incrementally show the matching lines in a horizontal split view
+	vim.opt.swapfile = false -- Disable swap file
 end
 
 function M.setup_fold_opts()
