@@ -673,6 +673,21 @@ require("lazy").setup({
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
+	{
+		"ThePrimeagen/harpoon",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			require("harpoon").setup({
+				global_settings = {
+					save_on_change = true,
+					mark_branch = true,
+				},
+			})
+			require("minimalist.keymaps").setup_harpoon_keymaps()
+		end,
+	},
 	-- Themes
 	{
 		"folke/tokyonight.nvim",

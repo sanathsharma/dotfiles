@@ -416,4 +416,21 @@ function M.setup_fold_keymaps()
 	})
 end
 
+function M.setup_harpoon_keymaps()
+	require("which-key").add({
+		{
+			mode = "n",
+			name = "Harpoon",
+			"<leader>h",
+			{ "h", ":lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Toggle quick menu" },
+			{ "hm", ":lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Toggle quick menu" },
+			{ "ha", ":lua require('harpoon.mark').add_file()<cr>", desc = "Toggle quick menu" },
+			{ "<leader>1", ":lua require('harpoon.ui').nav_file(1)<cr>", desc = "Go to file 1" },
+			{ "<leader>2", ":lua require('harpoon.ui').nav_file(2)<cr>", desc = "Go to file 2" },
+			{ "<leader>3", ":lua require('harpoon.ui').nav_file(3)<cr>", desc = "Go to file 3" },
+			{ "<leader>4", ":lua require('harpoon.ui').nav_file(4)<cr>", desc = "Go to file 4" },
+		},
+	})
+end
+
 return M
