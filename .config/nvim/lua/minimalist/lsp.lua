@@ -17,7 +17,7 @@ function M.setup()
 	-- Simple setup of servers
 	for _, server in pairs(simple_setup) do
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
-		lspconfig[server].setup({ capabilities = capabilities })
+		vim.lsp.config(server, { capabilities = capabilities })
 	end
 
 	-- Custom setup of servers
@@ -26,13 +26,8 @@ function M.setup()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
 	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
-	lspconfig.cssls.setup({
-		capabilities = capabilities,
-	})
-
-	lspconfig.html.setup({
-		capabilities = capabilities,
-	})
+	vim.lsp.config("cssls", { capabilities = capabilities })
+	vim.lsp.config("html", { capabilities = capabilities })
 end
 
 function M.setup_rustaceanvim()
