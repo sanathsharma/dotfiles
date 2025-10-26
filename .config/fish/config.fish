@@ -160,11 +160,18 @@ function w
 	end
 end
 
-function tms
+function tmsw
 	set result (worktree $argv)
 	if test -n "$result"
 		sesh connect $result
 	end
+end
+
+function tms
+  set result (sesh list | fzf)
+  if test -n "$result"
+    sesh connect $result
+  end
 end
 
 # Added by OrbStack: command-line tools and integration
