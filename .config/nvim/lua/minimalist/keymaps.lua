@@ -18,8 +18,8 @@ function M.setup()
 			},
 			{
 				"<leader><leader>",
-				"<cmd>FzfLua files<cr>",
-				desc = "Open file picker",
+				"<cmd>Fmt<cr>",
+				desc = "Format file",
 			},
 			{
 				"<leader>'",
