@@ -3,16 +3,16 @@ local M = {}
 ---@param originalTable table<string, string[]>
 ---@param keysToInclude string[]
 function M.filterTable(originalTable, keysToInclude)
-  local resultTable = {}
+	local resultTable = {}
 
-  for _, key in ipairs(keysToInclude) do
-    local value = originalTable[key]
-    if value then
-      resultTable[key] = value
-    end
-  end
+	for _, key in ipairs(keysToInclude) do
+		local value = originalTable[key]
+		if value then
+			resultTable[key] = value
+		end
+	end
 
-  return resultTable
+	return resultTable
 end
 
 ---@param path_one string
@@ -52,7 +52,7 @@ end
 
 -- Inspired by https://github.com/asilvadesigns/config/blob/87adf2bdc22c4ca89d1b06b013949d817b405e77/nvim/lua/plugins/conform.lua#L63
 ---@param _formatters table<string, string[]>
----@return string[] | nil
+---@return string | nil
 function M.get_closest_formatter(_formatters)
 	---@type string
 	local current_buffer_path = vim.api.nvim_buf_get_name(0)
@@ -72,11 +72,25 @@ function M.get_closest_formatter(_formatters)
 		local formatter_config_path = nil
 
 		for _, v in ipairs(formatter_configs) do
+			local stop_dir = require("lspconfig.util").root_pattern(".git")(v)
 			formatter_config_path = vim.fs.find(v, {
 				path = current_buffer_path,
-				stop = require("lspconfig.util").root_pattern(".git")(v),
+				stop = stop_dir,
 				upward = true,
+				type = "file",
 			})
+			if not formatter_config_path or #formatter_config_path == 0 then
+				if stop_dir then
+					local file_path = vim.fs.joinpath(stop_dir, v)
+					if vim.fn.filereadable(file_path) == 1 then
+						formatter_config_path = { file_path }
+					end
+				end
+			end
+
+			if formatter_config_path[1] ~= nil then
+				break
+			end
 		end
 
 		if formatter_config_path[1] ~= nil then
@@ -100,7 +114,7 @@ function M.get_closest_formatter(_formatters)
 		return nil
 	end
 
-	return { shortest_path_key }
+	return shortest_path_key
 end
 
 function M.is_dadbod_temp_dir()
