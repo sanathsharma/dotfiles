@@ -88,29 +88,11 @@ require("lazy").setup({
 			})
 		end,
 	},
-	--[[ {
-		'nvim-treesitter/nvim-treesitter',
-		branch = 'main',
-		build = ':TSUpdate',
-		config = function()
-			require('nvim-treesitter').setup()
-			require('nvim-treesitter').install(treesitter_parsers)
-			vim.api.nvim_create_autocmd('FileType', {
-				pattern = treesitter_parsers,
-				callback = function()
-					-- syntax highlighting, provided by Neovim
-					vim.treesitter.start()
-					-- folds, provided by Neovim
-					vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-					-- indentation, provided by nvim-treesitter
-					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-				end,
-			})
-		end,
-	} ]]
-	--,
 	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
 		branch = "master",
 		build = ":TSUpdate",
 		config = function()
@@ -142,14 +124,10 @@ require("lazy").setup({
 				incremental_selection = {
 					enable = true,
 					keymaps = {
-						-- Start selection with space + v (similar to visual mode)
-						init_selection = "<M-S-l>",
-						-- Grow selection outward with space + k
-						node_incremental = "<M-S-l>",
-						-- Grow selection to scope with space + j
-						scope_incremental = "<M-S-j>",
-						-- Shrink selection with space + h
-						node_decremental = "<M-S-h>",
+						init_selection = "gnn", -- set to `false` to disable one of the mappings
+						node_incremental = "grn",
+						scope_incremental = "grc",
+						node_decremental = "grm",
 					},
 				},
 				ensure_installed = {},
@@ -157,6 +135,27 @@ require("lazy").setup({
 				modules = {},
 				sync_install = false,
 				parser_install_dir = nil,
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true,
+						keymaps = {
+							["aa"] = "@parameter.outer",
+							["ia"] = "@parameter.inner",
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["ac"] = "@class.outer",
+							["ic"] = "@class.inner",
+							["aj"] = "@conditional.outer",
+							["ij"] = "@conditional.inner",
+							["al"] = "@loop.outer",
+							["il"] = "@loop.inner",
+							["at"] = "@comment.outer",
+							["as"] = "@scope",
+						},
+						include_surrounding_whitespace = false,
+					},
+				},
 			})
 		end,
 	},
@@ -467,26 +466,13 @@ require("lazy").setup({
 		},
 	},
 	{
-		"echasnovski/mini.ai",
-		version = "*",
-		config = function()
-			require("mini.ai").setup()
-		end,
-	},
-	{
 		"echasnovski/mini.pairs",
 		version = "*",
 		config = function()
 			require("mini.pairs").setup()
 		end,
 	},
-	{
-		"echasnovski/mini.bracketed",
-		version = "*",
-		config = function()
-			require("mini.bracketed").setup()
-		end,
-	},
+	"tpope/vim-unimpaired",
 	-- Rust
 	{
 		"mrcjkb/rustaceanvim",
