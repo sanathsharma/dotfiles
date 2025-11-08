@@ -110,3 +110,9 @@ Install prettierd for fast js like files formatting
 ```sh
 npm install -g @fsouza/prettierd
 ```
+
+Install svelte lsp
+
+```sh
+npm install -g svelte-language-server
+```
