@@ -473,6 +473,12 @@ require("lazy").setup({
 		end,
 	},
 	"tpope/vim-unimpaired",
+	{
+		"arnamak/stay-centered.nvim",
+		config = function()
+			require("stay-centered").setup()
+		end,
+	},
 	-- Rust
 	{
 		"mrcjkb/rustaceanvim",
