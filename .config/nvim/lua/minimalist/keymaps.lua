@@ -96,7 +96,7 @@ function M.setup()
 				vim.lsp.buf.hover,
 				desc = "Show docs for item under cursor",
 			},
-			{ "<leader>m", "<cmd>FzfLua marks<cr>", desc = "Search and select marks" },
+			{ "<leader>m", "<cmd>FzfLua keymaps<cr>", desc = "Search and select keymaps" },
 
 			-- Oil
 			{
