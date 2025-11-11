@@ -32,4 +32,9 @@ function M.setup_fold_opts()
 	vim.opt.foldenable = true
 end
 
+function M.setup_undodir_opts()
+	vim.opt.undodir = "~/.undodir"
+	vim.opt.undofile = true
+end
+
 return M

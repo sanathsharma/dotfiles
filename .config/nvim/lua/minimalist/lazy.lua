@@ -160,7 +160,12 @@ require("lazy").setup({
 		end,
 	},
 	"numToStr/Comment.nvim",
-	"mbbill/undotree",
+	{
+		"mbbill/undotree",
+		config = function()
+			require("minimalist.options").setup_undodir_opts()
+		end,
+	},
 	"ggandor/leap.nvim",
 	{
 		"nvim-treesitter/nvim-treesitter-context",
