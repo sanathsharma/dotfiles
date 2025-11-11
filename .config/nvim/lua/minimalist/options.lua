@@ -33,7 +33,7 @@ function M.setup_fold_opts()
 end
 
 function M.setup_undodir_opts()
-	vim.opt.undodir = "~/.undodir"
+	vim.opt.undodir = vim.fn.expand("~") .. "/.undodir"
 	vim.opt.undofile = true
 end
 
