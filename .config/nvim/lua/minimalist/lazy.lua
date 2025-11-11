@@ -479,13 +479,6 @@ require("lazy").setup({
 	},
 	"tpope/vim-unimpaired",
 	{
-		"arnamak/stay-centered.nvim",
-		config = function()
-			require("stay-centered").setup()
-		end,
-	},
-	-- Rust
-	{
 		"mrcjkb/rustaceanvim",
 		version = "^6",
 		lazy = false, -- This plugin is already lazy
