@@ -510,6 +510,7 @@ require("lazy").setup({
 				"mfussenegger/nvim-dap",
 				config = function()
 					require("minimalist.keymaps").setup_dap_keymaps()
+					require("minimalist.dap-adapters").setup()
 				end,
 			},
 		},
