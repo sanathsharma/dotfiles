@@ -210,14 +210,25 @@ git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 ### Managing ai model keys
 
 ```sh
-mkdir ~/keys
-cd ~/keys
+mkdir ~/dotlocal
+cd ~/dotlocal
 touch anthropic_key.txt
 touch openapi_key.txt
 ```
 
 Add the key for the respective models or model providers in the file, and the fish config shall load the keys to their
 respective env var for the cli tools to use.
+
+### Manageing MCP keys
+
+```sh
+mkdir ~/dotlocal
+cd ~/dotlocal
+touch context7_key.txt
+```
+
+Add the key for the respective mcp server api keys providers in the file, and the fish config shall load the keys to their
+respective env var for the mcp server to use.
 
 ### Setting up git user details and signing key
 

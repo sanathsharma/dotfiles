@@ -152,6 +152,10 @@ if test -e $HOME/dotlocal/openapi_key.txt
 	set -gx OPENAI_API_KEY $(cat $HOME/dotlocal/openapi_key.txt)
 end
 
+if test -e $HOME/dotlocal/context7_key.txt
+	set -gx CONTEXT7_API_KEY $(cat $HOME/dotlocal/context7_key.txt)
+end
+
 # functions
 function w
 	set result (worktree $argv)
