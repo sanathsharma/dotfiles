@@ -296,9 +296,35 @@ create_pr_with_error_handling() {
         MERGE_TEST=$(git merge-tree "$MERGE_BASE" "$SOURCE_COMMIT" "$TARGET_COMMIT" 2>/dev/null || echo "")
         
         if echo "$MERGE_TEST" | grep -q "<<<<<<< "; then
-            echo "  ⚠️  Warning: Potential merge conflicts detected between $SOURCE and $TARGET" >&2
-            echo "  💡 PR can still be created, but will need manual conflict resolution" >&2
-            debug_echo "Merge conflicts detected, but continuing with PR creation"
+            echo "  ❌ Merge conflicts detected between $SOURCE and $TARGET" >&2
+            
+            # Smart conflict resolution strategy based on target branch type
+            case "$TARGET" in
+                main|master|feat/*|feature/*|fixes/*)
+                    echo "  💡 Recommended resolution strategy:" >&2
+                    echo "     1. Pull latest changes: git checkout $TARGET && git pull origin $TARGET" >&2
+                    echo "     2. Merge into source: git checkout $SOURCE && git merge $TARGET" >&2
+                    echo "     3. Resolve conflicts in your editor" >&2
+                    echo "     4. Complete merge: git add . && git commit" >&2
+                    echo "     5. Push changes: git push origin $SOURCE" >&2
+                    ;;
+                *)
+                    TEMP_BRANCH="base-${TARGET}/${SOURCE}"
+                    echo "  💡 Recommended resolution strategy (temp branch approach):" >&2
+                    echo "     1. Pull latest target: git checkout $TARGET && git pull origin $TARGET" >&2
+                    echo "     2. Create temp branch: git checkout -b $TEMP_BRANCH" >&2
+                    echo "     3. Merge source: git merge $SOURCE" >&2
+                    echo "     4. Resolve conflicts in your editor" >&2
+                    echo "     5. Complete merge: git add . && git commit" >&2
+                    echo "     6. Push temp branch: git push -u origin $TEMP_BRANCH" >&2
+                    echo "     7. Create PR: $TEMP_BRANCH → $TARGET" >&2
+                    echo "     8. After PR merge, cleanup: git branch -d $TEMP_BRANCH && git push origin :$TEMP_BRANCH" >&2
+                    ;;
+            esac
+            
+            debug_echo "Merge conflicts detected, skipping PR creation"
+            echo "MERGE_CONFLICTS:$TARGET"
+            return 1
         fi
     fi
     
@@ -439,6 +465,18 @@ copy_to_clipboard() {
 # Step 1: Select source branch
 echo ""
 echo "Step 1: Select the source branch for PRs"
+
+# Get current branch
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$CURRENT_BRANCH" = "HEAD" ]; then
+    echo "Error: You are in detached HEAD state. Please checkout a branch first."
+    exit 1
+fi
+
+echo "Current branch: $CURRENT_BRANCH"
+echo ""
+
+# Get all branches
 ALL_BRANCHES=$(git branch -a | sed 's/^[*+ ] //' | sed 's|remotes/origin/||' | grep -v '^HEAD' | sort -u)
 
 if [ -z "$ALL_BRANCHES" ]; then
@@ -446,14 +484,24 @@ if [ -z "$ALL_BRANCHES" ]; then
     exit 1
 fi
 
-SOURCE_BRANCH=$(echo "$ALL_BRANCHES" | fzf --reverse --info=inline --prompt="Source Branch: " --height=20 --preview="" --multi=0)
+# Ask if user wants to change the current branch using fzf
+echo "Select an option:"
+OPTION=$(printf "Use current branch: %s\nSelect different branch" "$CURRENT_BRANCH" | fzf --reverse --info=inline --prompt="Option: " --height=5 --preview="" --multi=0)
 
-if [ -z "$SOURCE_BRANCH" ]; then
-    echo "No source branch selected. Exiting."
-    exit 0
+if echo "$OPTION" | grep -q "Select different branch"; then
+    echo "Select branch to create PRs from:"
+    SOURCE_BRANCH=$(echo "$ALL_BRANCHES" | fzf --reverse --info=inline --prompt="Source Branch: " --height=20 --preview="" --multi=0)
+    
+    if [ -z "$SOURCE_BRANCH" ]; then
+        echo "No branch selected, using current branch: $CURRENT_BRANCH"
+        SOURCE_BRANCH="$CURRENT_BRANCH"
+    else
+        echo "Selected branch: $SOURCE_BRANCH"
+    fi
+else
+    SOURCE_BRANCH="$CURRENT_BRANCH"
+    echo "Using current branch: $SOURCE_BRANCH"
 fi
-
-echo "Selected source branch: $SOURCE_BRANCH"
 
 # Get the base branch for the source branch
 debug_echo "Getting base branch for: $SOURCE_BRANCH"
@@ -464,7 +512,15 @@ echo "Base branch: $ORIGINAL_BASE"
 # Step 2: Select target branches for PRs
 echo ""
 echo "Step 2: Select target branches for pull requests (use TAB to select multiple)"
-TARGET_BRANCHES=$(echo "$ALL_BRANCHES" | grep -v "^${SOURCE_BRANCH}$" | fzf --reverse --info=inline --prompt="Target Branches: " --height=20 --preview="" --multi)
+# Filter out the source branch from available target branches
+AVAILABLE_BRANCHES=$(echo "$ALL_BRANCHES" | grep -v "^${SOURCE_BRANCH}$")
+
+if [ -z "$AVAILABLE_BRANCHES" ]; then
+    echo "Error: No other branches found to merge into"
+    exit 1
+fi
+
+TARGET_BRANCHES=$(echo "$AVAILABLE_BRANCHES" | fzf --reverse --info=inline --prompt="Target Branches: " --height=20 --preview="" --multi)
 
 if [ -z "$TARGET_BRANCHES" ]; then
     echo "No target branches selected. Exiting."
@@ -491,8 +547,14 @@ TEMP_RESULTS=$(mktemp)
 # Process each target branch (avoid subshell by using here-string instead of pipe)
 while IFS= read -r TARGET_BRANCH; do
     if [ -n "$TARGET_BRANCH" ]; then
+        echo "Processing target branch: $TARGET_BRANCH"
+        
         # Use the enhanced PR creation function
+        # Temporarily disable exit-on-error to handle function return codes
+        set +e
         PR_RESULT=$(create_pr_with_error_handling "$SOURCE_BRANCH" "$TARGET_BRANCH")
+        FUNC_EXIT_CODE=$?
+        set -e
         
         # Parse the result to update summary
         case "$PR_RESULT" in
@@ -549,6 +611,9 @@ while IFS= read -r TARGET_BRANCH; do
                 echo "error|$TARGET_BRANCH|Failed to create PR" >> "$TEMP_RESULTS"
                 ;;
         esac
+        
+        echo "Completed processing target branch: $TARGET_BRANCH"
+        echo ""
     fi
 done <<< "$TARGET_BRANCHES"
 
@@ -641,12 +706,9 @@ fi
 
 if echo "$SUMMARY" | grep -q "Merge conflicts"; then
     echo ""
-    echo "💡 To resolve merge conflicts:"
-    echo "   1. git checkout $SOURCE_BRANCH"
-    echo "   2. git rebase <target-branch>  # or git merge <target-branch>"
-    echo "   3. Resolve conflicts in your editor"
-    echo "   4. git add . && git rebase --continue  # or git commit"
-    echo "   5. git push --force-with-lease"
+    echo "💡 Merge conflicts detected. Refer to the specific resolution strategies"
+    echo "   shown above for each conflicted branch (different strategies for"
+    echo "   main/master/feature branches vs. other branch types)."
 fi
 
 if [ "$PR_CREATED" = true ]; then
