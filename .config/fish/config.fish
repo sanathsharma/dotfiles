@@ -183,4 +183,7 @@ end
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 
 # opencode
-fish_add_path /home/sanathsharma/.opencode/bin
+fish_add_path $HOME/.opencode/bin
+
+# Added by Antigravity
+fish_add_path $HOME/.antigravity/antigravity/bin
