@@ -56,8 +56,20 @@ local setup_svelte_lsp = function()
 	})
 end
 
+local setup_tailwindcss_lsp = function()
+	local capabilities = require("blink.cmp").get_lsp_capabilities()
+	vim.lsp.config("tailwindcss", {
+		capabilities = capabilities,
+		settings = {
+			tailwindCSS = {
+				classFunctions = { "cva", "cx", "clsx", "cn" },
+			},
+		},
+	})
+end
+
 function M.setup()
-	local custom_setup = { "html", "cssls", "rust_analyzer", "svelte" }
+	local custom_setup = { "html", "cssls", "rust_analyzer", "svelte", "tailwindcss" }
 	local simple_setup = require("minimalist.utils").filterTable(enable_lsps, custom_setup)
 
 	-- Simple setup of servers
@@ -68,6 +80,7 @@ function M.setup()
 
 	setup_lsps_with_sinippet_support()
 	setup_svelte_lsp()
+	setup_tailwindcss_lsp()
 end
 
 function M.setup_rustaceanvim()
