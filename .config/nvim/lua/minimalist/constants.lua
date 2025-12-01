@@ -11,9 +11,11 @@ local enable_lsps = {
 	"cssls",
 	"html",
 	"marksman", -- markdown
+	"svelte",
 }
 
 local treesitter_parsers = {
+	"svelte",
 	"rust",
 	"javascript",
 	"javascriptreact",

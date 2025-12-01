@@ -171,3 +171,16 @@ vim.api.nvim_create_autocmd("CursorMovedI", {
 		vim.lsp.buf.clear_references()
 	end,
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client_id = args.data.client_id
+		local client = vim.lsp.get_client_by_id(client_id)
+		if not client or not client.server_capabilities.executeCommandProvider then
+			return
+		end
+
+		-- local available_commands = client.server_capabilities.executeCommandProvider.commands
+		require("minimalist.lsp-commands").setup(client)
+	end,
+})

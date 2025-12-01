@@ -105,18 +105,6 @@ function M.setup()
 				desc = "Open parent directory",
 			},
 
-			-- Split join
-			{
-				"<leader>tt",
-				"<cmd>TSJToggle<CR>",
-				desc = "Toggle split join",
-			},
-			{
-				"<leader>ti",
-				"<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
-				desc = "Toggle lsp inlay hints",
-			},
-
 			-- Goto
 			{
 				"gd",
@@ -200,6 +188,32 @@ function M.setup()
 			{ "<leader>y", "\"+y", noremap = true, desc = "Yank selection into system clipboard" },
 			{ "<A-j>", ":move '>+1<CR>gv=gv", noremap = true, silent = true },
 			{ "<A-k>", ":move '<-2<CR>gv=gv", noremap = true, silent = true },
+		},
+	})
+
+	M.setup_toggle_keymaps()
+end
+
+function M.setup_toggle_keymaps()
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{ "<leader>t", "", desc = "+toggle" },
+			{
+				"<leader>tt",
+				"<cmd>TSJToggle<CR>",
+				desc = "Toggle split join",
+			},
+			{
+				"<leader>ti",
+				"<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
+				desc = "Toggle lsp inlay hints",
+			},
+			{
+				"<leader>tb",
+				"<cmd>Gitsigns toggle_current_line_blame<CR>",
+				desc = "Toggle current line blame",
+			},
 		},
 	})
 end
@@ -430,6 +444,7 @@ function M.setup_harpoon_keymaps()
 			{ "<leader>2", ":lua require('harpoon.ui').nav_file(2)<cr>", desc = "Go to file 2" },
 			{ "<leader>3", ":lua require('harpoon.ui').nav_file(3)<cr>", desc = "Go to file 3" },
 			{ "<leader>4", ":lua require('harpoon.ui').nav_file(4)<cr>", desc = "Go to file 4" },
+			{ "<leader>5", ":lua require('harpoon.ui').nav_file(5)<cr>", desc = "Go to file 5" },
 		},
 	})
 end

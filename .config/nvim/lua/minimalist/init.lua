@@ -14,4 +14,4 @@ require("minimalist.project").load_project_config()
 require("minimalist.lsp").enable()
 
 -- Set default theme
-vim.cmd("colorscheme tokyonight-night")
+vim.cmd("colorscheme rose-pine-main")

@@ -336,6 +336,7 @@ require("lazy").setup({
 					typescriptreact = { "biome", "prettierd", stop_after_first = true },
 					json = { "biome", "prettierd", stop_after_first = true },
 					jsonc = { "biome", "prettierd", stop_after_first = true },
+					html = { "biome", "prettierd", stop_after_first = true },
 					sh = { "shfmt" },
 					yaml = { "yamlfmt" },
 					rust = { "rustfmt" },
@@ -685,6 +686,21 @@ require("lazy").setup({
 				},
 			})
 			require("minimalist.keymaps").setup_harpoon_keymaps()
+		end,
+	},
+	{
+		"nvimtools/none-ls.nvim",
+		dependencies = {
+			"CKolkey/ts-node-action",
+		},
+		config = function()
+			local null_ls = require("null-ls")
+			require("null-ls").setup({
+				sources = {
+					null_ls.builtins.code_actions.refactoring,
+					null_ls.builtins.code_actions.ts_node_action,
+				},
+			})
 		end,
 	},
 	-- Themes

@@ -8,10 +8,56 @@ function M.enable()
 	end
 end
 
-function M.setup()
-	local lspconfig = require("lspconfig")
+local setup_lsps_with_sinippet_support = function()
+	-- Snippet support required for css/html completions from vscode-langservers-extracted
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities.textDocument.completion.completionItem.snippetSupport = true
+	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
-	local custom_setup = { "html", "cssls", "rust_analyzer" }
+	vim.lsp.config("cssls", {
+		capabilities = capabilities,
+		settings = {
+			css = {
+				validate = true,
+				lint = {
+					unknownAtRules = "ignore",
+				},
+			},
+			scss = {
+				validate = true,
+				lint = {
+					unknownAtRules = "ignore",
+				},
+			},
+			less = {
+				validate = true,
+				lint = {
+					unknownAtRules = "ignore",
+				},
+			},
+		},
+	})
+	vim.lsp.config("html", { capabilities = capabilities })
+end
+
+local setup_svelte_lsp = function()
+	local capabilities = require("blink.cmp").get_lsp_capabilities()
+	vim.lsp.config("svelte", {
+		capabilities = capabilities,
+		settings = {
+			svelte = {
+				plugin = {
+					svelte = {
+						defaultScriptLanguage = "ts",
+					},
+				},
+			},
+		},
+	})
+end
+
+function M.setup()
+	local custom_setup = { "html", "cssls", "rust_analyzer", "svelte" }
 	local simple_setup = require("minimalist.utils").filterTable(enable_lsps, custom_setup)
 
 	-- Simple setup of servers
@@ -20,14 +66,8 @@ function M.setup()
 		vim.lsp.config(server, { capabilities = capabilities })
 	end
 
-	-- Custom setup of servers
-	-- Snippet support required for css/html completions from vscode-langservers-extracted
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	capabilities.textDocument.completion.completionItem.snippetSupport = true
-	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-
-	vim.lsp.config("cssls", { capabilities = capabilities })
-	vim.lsp.config("html", { capabilities = capabilities })
+	setup_lsps_with_sinippet_support()
+	setup_svelte_lsp()
 end
 
 function M.setup_rustaceanvim()
