@@ -62,7 +62,7 @@ local setup_tailwindcss_lsp = function()
 		capabilities = capabilities,
 		settings = {
 			tailwindCSS = {
-				classFunctions = { "cva", "cx", "clsx", "cn" },
+				classFunctions = { "cva", "cx", "clsx", "cn", "classNames" },
 			},
 		},
 	})
