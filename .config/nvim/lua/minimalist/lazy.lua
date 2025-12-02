@@ -340,6 +340,7 @@ require("lazy").setup({
 					sh = { "shfmt" },
 					yaml = { "yamlfmt" },
 					rust = { "rustfmt" },
+					svelte = { "biome" },
 				},
 			})
 		end,

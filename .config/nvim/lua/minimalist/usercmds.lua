@@ -14,8 +14,11 @@ vim.api.nvim_create_user_command("Fmt", function(args)
 		prettierd = { ".prettierrc", "prettier.config.js" },
 	})
 
+	local fidget = require("fidget")
+
 	if not formatter then
 		require("conform").format({ async = true, lsp_format = "fallback", range = range })
+		fidget.notify("Running lsp formatting", vim.log.levels.INFO)
 	else
 		require("conform").format({
 			async = true,
@@ -23,6 +26,7 @@ vim.api.nvim_create_user_command("Fmt", function(args)
 			lsp_fromat = "never",
 			range = range,
 		})
+		fidget.notify("Running " .. formatter .. " formatting", vim.log.levels.INFO)
 	end
 end, { range = true })
 
