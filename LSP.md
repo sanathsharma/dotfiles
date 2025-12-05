@@ -116,3 +116,6 @@ Install svelte lsp
 ```sh
 npm install -g svelte-language-server
 ```
+
+Setup language tools on per-project basis for code-actions, diagnostics, go to definition, etc.
+See https://github.com/sveltejs/language-tools/tree/master/packages/typescript-plugin#usage
