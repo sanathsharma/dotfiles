@@ -1,5 +1,28 @@
 local M = {}
 
+-- Function to prompt user for debugger port with validation
+-- @param default_port string: The default port to prefill in the input prompt
+-- @param prompt_message string: Optional custom prompt message
+-- @return number: The validated port number
+local function get_debugger_port(default_port, prompt_message)
+	prompt_message = prompt_message or "Debug adapter port: "
+	local user_port = vim.fn.input(prompt_message, tostring(default_port))
+
+	-- Validate port input - ensure it's numeric and within valid range
+	if user_port == "" or not user_port:match("^%d+$") then
+		vim.notify("Invalid input. Using default port " .. default_port, vim.log.levels.WARN)
+		return tonumber(default_port)
+	end
+
+	local port_num = tonumber(user_port)
+	if port_num < 1024 or port_num > 65535 then
+		vim.notify("Invalid port range (1024-65535). Using default port " .. default_port, vim.log.levels.WARN)
+		return tonumber(default_port)
+	end
+
+	return port_num
+end
+
 -- Reference: https://www.lazyvim.org/extras/lang/typescript#nvim-dap-optional
 local setup_js_debug_adapter = function()
 	local dap = require("dap")
@@ -73,6 +96,9 @@ local setup_js_debug_adapter = function()
 					cwd = "${workspaceFolder}",
 					sourceMaps = true,
 					runtimeExecutable = runtimeExecutable,
+					port = function()
+						return get_debugger_port(9229, "Attach to debug port: ")
+					end,
 					skipFiles = {
 						"<node_internals>/**",
 						"node_modules/**",
