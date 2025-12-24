@@ -2,7 +2,6 @@ none
 readme
 neovide
 helix
-lvim
 lazygit
 gitui
 fish
@@ -21,3 +20,4 @@ nushell
 aipack
 ideavim
 worktree
+opencode
