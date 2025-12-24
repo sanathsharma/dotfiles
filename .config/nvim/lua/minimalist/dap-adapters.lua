@@ -107,6 +107,7 @@ local setup_js_debug_adapter = function()
 						"${workspaceFolder}/**",
 						"!**/node_modules/**",
 					},
+					restart = true,
 				},
 			}
 		end
