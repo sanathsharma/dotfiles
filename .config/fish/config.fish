@@ -28,6 +28,7 @@ abbr -a sb "switch-branch.sh"
 abbr -a sro "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 abbr -a gc "gen-commit -v"
 abbr -a gco "gen-commit -m openai:gpt-4.1-mini"
+abbr -a gcoc "opencode run --command commit --format json | jq -r 'select(.type == "text") | .part.text' | git commit -e -F -"
 
 set os (uname)
 if test $os = "Darwin"
