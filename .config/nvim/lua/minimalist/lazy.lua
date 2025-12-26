@@ -739,10 +739,11 @@ require("lazy").setup({
 			},
 			custom_highlights = function(colors)
 				return {
-					-- CursorLine = { bg = "#2a2b3d" },
-					-- CursorColumn = { bg = "#2a2b3d" },
-					-- 	ColorColumn = { bg = "#313244" },
-					-- 	Whitespace = { fg = "NvimDarkGray4" },
+					CursorLine = { bg = "#2a2b3d" },
+					CursorColumn = { bg = "#2a2b3d" },
+					ColorColumn = { bg = "#2a2b3d" },
+					-- ColorColumn = { bg = "#313244" },
+					-- Whitespace = { fg = "NvimDarkGray4" },
 				}
 			end,
 		},
