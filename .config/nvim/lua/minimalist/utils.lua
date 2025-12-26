@@ -102,11 +102,16 @@ function M.get_closest_formatter(_formatters)
 	local shortest_path_key = nil
 	---@type number
 	local shortest_path_val = math.huge
+	---@type table<string, boolean>
+	local tied_formatters = {}
 
 	for formatter_name, formatter_distance in pairs(distance) do
 		if formatter_distance < shortest_path_val then
 			shortest_path_key = formatter_name
 			shortest_path_val = formatter_distance
+			tied_formatters = { [formatter_name] = true }
+		elseif formatter_distance == shortest_path_val then
+			tied_formatters[formatter_name] = true
 		end
 	end
 
@@ -114,6 +119,27 @@ function M.get_closest_formatter(_formatters)
 		return nil
 	end
 
+	-- If there's only one formatter with the shortest distance, return it
+	local tied_count = 0
+	for _ in pairs(tied_formatters) do
+		tied_count = tied_count + 1
+	end
+
+	if tied_count == 1 then
+		return shortest_path_key
+	end
+
+	-- Multiple formatters with same distance, check preferred formatters by filetype
+	local filetype = vim.bo.filetype
+	local preferred_formatters = require("conform").formatters_by_ft[filetype] or {}
+
+	for _, formatter_name in ipairs(preferred_formatters) do
+		if tied_formatters[formatter_name] then
+			return formatter_name
+		end
+	end
+
+	-- Fallback to the first tied formatter if none are in preferred list
 	return shortest_path_key
 end
 

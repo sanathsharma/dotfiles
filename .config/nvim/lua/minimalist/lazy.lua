@@ -329,7 +329,7 @@ require("lazy").setup({
 			require("conform").setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
-					css = { "biome", "prettierd", stop_after_first = true },
+					css = { "stylelint", "biome", "prettierd", stop_after_first = true },
 					javascript = { "biome", "prettierd", stop_after_first = true },
 					javascriptreact = { "biome", "prettierd", stop_after_first = true },
 					typescript = { "biome", "prettierd", stop_after_first = true },

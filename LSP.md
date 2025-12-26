@@ -117,5 +117,11 @@ Install svelte lsp
 npm install -g svelte-language-server
 ```
 
+Install stylelint css formatter lsp
+
+```sh
+npm install -g stylelint-lsp
+```
+
 Setup language tools on per-project basis for code-actions, diagnostics, go to definition, etc.
 See https://github.com/sveltejs/language-tools/tree/master/packages/typescript-plugin#usage

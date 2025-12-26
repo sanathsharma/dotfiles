@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -e
 
 # Run opencode and extract commit message
 COMMIT_MSG=$(opencode run --command commit --format json | jq -r 'select(.type == "text") | .part.text')

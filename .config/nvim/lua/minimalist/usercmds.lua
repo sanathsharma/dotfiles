@@ -10,6 +10,7 @@ vim.api.nvim_create_user_command("Fmt", function(args)
 
 	-- Inspired by https://github.com/asilvadesigns/config/blob/87adf2bdc22c4ca89d1b06b013949d817b405e77/nvim/lua/plugins/conform.lua#L145
 	local formatter = require("minimalist.utils").get_closest_formatter({
+		stylelint = require("minimalist.constants").stylelint_files,
 		biome = { "biome.json" },
 		prettierd = { ".prettierrc", "prettier.config.js" },
 	})
@@ -36,6 +37,7 @@ vim.api.nvim_create_user_command("Fmtb", function()
 		formatters = { "biome" },
 		lsp_fromat = "never",
 	})
+	require("fidget").notify("Running biome formatting", vim.log.levels.INFO)
 end, {})
 
 vim.api.nvim_create_user_command("Fmtp", function()
@@ -44,6 +46,12 @@ vim.api.nvim_create_user_command("Fmtp", function()
 		formatters = { "prettierd" },
 		lsp_fromat = "never",
 	})
+	require("fidget").notify("Running prettierd formatting", vim.log.levels.INFO)
+end, {})
+
+vim.api.nvim_create_user_command("Fmtlsp", function()
+	require("conform").format({ async = true })
+	require("fidget").notify("Running lsp formatting", vim.log.levels.INFO)
 end, {})
 
 -- Register extended functionality commands

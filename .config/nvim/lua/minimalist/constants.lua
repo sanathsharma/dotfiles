@@ -1,35 +1,50 @@
 local enable_lsps = {
-	"lua_ls",
-	-- "rust_analyzer", -- Managed by rustaceanvim
 	"biome",
-	"ts_ls",
+	"cssls",
+	"cssmodules_ls",
+	"css_variables",
+	"emmet_language_server",
+	"html",
+	"lua_ls",
+	"marksman", -- markdown
+	-- "rust_analyzer", -- Managed by rustaceanvim
+	"stylelint_lsp",
+	"svelte",
 	"tailwindcss",
 	"taplo", -- toml
-	"emmet_language_server",
-	"css_variables",
-	"cssmodules_ls",
-	"cssls",
-	"html",
-	"marksman", -- markdown
-	"svelte",
+	"ts_ls",
 }
 
 local treesitter_parsers = {
-	"svelte",
-	"rust",
 	"javascript",
 	"javascriptreact",
-	"typescript",
-	"typescriptreact",
-	"toml",
-	"yaml",
 	"json",
-	"sh",
 	"lua",
 	"markdown",
+	"rust",
+	"sh",
+	"svelte",
+	"toml",
+	"typescript",
+	"typescriptreact",
+	"yaml",
+}
+
+local stylelint_files = {
+	".stylelintrc",
+	".stylelintrc.mjs",
+	".stylelintrc.cjs",
+	".stylelintrc.js",
+	".stylelintrc.json",
+	".stylelintrc.yaml",
+	".stylelintrc.yml",
+	"stylelint.config.mjs",
+	"stylelint.config.cjs",
+	"stylelint.config.js",
 }
 
 return {
 	enable_lsps = enable_lsps,
 	treesitter_parsers = treesitter_parsers,
+	stylelint_files = stylelint_files,
 }
