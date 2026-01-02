@@ -188,6 +188,11 @@ function M.setup()
 			{ "<leader>y", "\"+y", noremap = true, desc = "Yank selection into system clipboard" },
 			{ "<A-j>", ":move '>+1<CR>gv=gv", noremap = true, silent = true },
 			{ "<A-k>", ":move '<-2<CR>gv=gv", noremap = true, silent = true },
+			{
+				"<leader>s",
+				":<C-u>'<,'>sort<CR>",
+				desc = "Sort selections",
+			},
 		},
 	})
 
