@@ -25,6 +25,7 @@ function M.setup()
 	vim.opt.swapfile = false -- Disable swap file
 	vim.opt.conceallevel = 0 -- Hide all concealables
 	vim.opt.winborder = "rounded" -- Enable rounded borders
+	vim.cmd("set completeopt+=noselect") -- Disable selecting the popup menu
 end
 
 function M.setup_fold_opts()
