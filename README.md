@@ -249,3 +249,11 @@ add the following content to the ~/dotlocal/.gitconfig file
 ### Commit message generator with AI
 
 see https://github.com/sanathsharma/gen-commit for setup and usage
+
+### neovim version manager
+
+```sh
+cargo install bob-nvim
+bob use nightly (or) bob use stable
+```
+

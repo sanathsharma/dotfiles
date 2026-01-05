@@ -24,6 +24,7 @@ function M.setup()
 	vim.opt.inccommand = "split" -- Incrementally show the matching lines in a horizontal split view
 	vim.opt.swapfile = false -- Disable swap file
 	vim.opt.conceallevel = 0 -- Hide all concealables
+	vim.opt.winborder = "rounded" -- Enable rounded borders
 end
 
 function M.setup_fold_opts()

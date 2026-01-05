@@ -188,3 +188,5 @@ fish_add_path $HOME/.opencode/bin
 
 # Added by Antigravity
 fish_add_path $HOME/.antigravity/antigravity/bin
+
+fish_add_path $HOME/.local/share/bob/nvim-bin
