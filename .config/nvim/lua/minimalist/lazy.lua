@@ -56,6 +56,7 @@ require("lazy").setup({
 				},
 				fzf_colors = true,
 			})
+			require("minimalist.keymaps").setup_fzflua_keymaps()
 		end,
 	},
 	{

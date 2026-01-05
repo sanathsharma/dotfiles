@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.setup_fzflua_keymaps()
 	require("which-key").add({
 		{
 			mode = { "n" },
@@ -86,6 +86,15 @@ function M.setup()
 				"<cmd>FzfLua lsp_code_actions<cr>",
 				desc = "Perform code actions",
 			},
+			{ "<leader>m", "<cmd>FzfLua keymaps<cr>", desc = "Search and select keymaps" },
+		},
+	})
+end
+
+function M.setup()
+	require("which-key").add({
+		{
+			mode = { "n" },
 			{
 				"<leader>r",
 				vim.lsp.buf.rename,
@@ -96,7 +105,6 @@ function M.setup()
 				vim.lsp.buf.hover,
 				desc = "Show docs for item under cursor",
 			},
-			{ "<leader>m", "<cmd>FzfLua keymaps<cr>", desc = "Search and select keymaps" },
 
 			-- Oil
 			{
