@@ -73,10 +73,10 @@ set -Ux FZF_DEFAULT_OPTS "\
 set -Ux FZF_DEFAULT_COMMAND ""
 set -Ux FZF_COMPLETION_TRIGGER "~~"
 set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH "$VOLTA_HOME/bin" $PATH
 
 # Path
 # For Linux
+fish_add_path $VOLTA_HOME/bin
 fish_add_path /opt/nvim-linux64/bin
 fish_add_path /root/.local/bin
 fish_add_path $HOME/.local/bin

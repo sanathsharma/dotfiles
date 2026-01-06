@@ -91,6 +91,32 @@ function M.setup_fzflua_keymaps()
 	})
 end
 
+function M.setup_yazi_keymaps()
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{
+				"<leader>e",
+				"<cmd>Yazi<cr>",
+				desc = "Open yazi at the current file",
+			},
+		},
+	})
+end
+
+function M.setup_oil_keymaps()
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{
+				"<leader>e",
+				"<cmd>Oil<cr>",
+				desc = "Open parent directory",
+			},
+		},
+	})
+end
+
 function M.setup()
 	require("which-key").add({
 		{
@@ -107,11 +133,6 @@ function M.setup()
 			},
 
 			-- Oil
-			{
-				"<leader>e",
-				"<cmd>Oil<cr>",
-				desc = "Open parent directory",
-			},
 
 			-- Goto
 			{

@@ -59,34 +59,62 @@ require("lazy").setup({
 			require("minimalist.keymaps").setup_fzflua_keymaps()
 		end,
 	},
+	-- {
+	-- 	"stevearc/oil.nvim",
+	-- 	config = function()
+	-- 		require("oil").setup({
+	-- 			default_file_explorer = true,
+	-- 			keymaps = {
+	-- 				["?"] = "actions.show_help",
+	-- 				["<CR>"] = "actions.select",
+	-- 				["<C-v>"] = "actions.select_vsplit",
+	-- 				["<C-h>"] = "actions.select_split",
+	-- 				["<C-t>"] = "actions.select_tab",
+	-- 				["<C-p>"] = "actions.preview",
+	-- 				["q"] = { "actions.close", mode = "n" },
+	-- 				["r"] = "actions.refresh",
+	-- 				["-"] = "actions.parent",
+	-- 				["_"] = "actions.open_cwd",
+	-- 				["`"] = "actions.cd",
+	-- 				["~"] = "actions.tcd",
+	-- 				["gs"] = "actions.change_sort",
+	-- 				["gx"] = "actions.open_external",
+	-- 				["."] = "actions.toggle_hidden",
+	-- 				["g\\"] = "actions.toggle_trash",
+	-- 			},
+	-- 			view_options = {
+	-- 				show_hidden = true,
+	-- 			},
+	-- 			columns = {},
+	-- 		})
+	-- 		require("minimalist.keymaps").setup_oil_keymaps()
+	-- 	end,
+	-- },
+	---@type LazySpec
 	{
-		"stevearc/oil.nvim",
+		"mikavilpas/yazi.nvim",
+		version = "*", -- use the latest stable version
+		event = "VeryLazy",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", lazy = true },
+		},
+		---@type YaziConfig | {}
+		opts = {
+			open_for_directories = false,
+			keymaps = {
+				show_help = "<f1>",
+			},
+			yazi_floating_window_zindex = nil,
+		},
+		-- 👇 if you use `open_for_directories=true`, this is recommended
+		init = function()
+			-- mark netrw as loaded so it's not loaded at all.
+			--
+			-- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
+			vim.g.loaded_netrwPlugin = 1
+		end,
 		config = function()
-			require("oil").setup({
-				default_file_explorer = true,
-				keymaps = {
-					["?"] = "actions.show_help",
-					["<CR>"] = "actions.select",
-					["<C-v>"] = "actions.select_vsplit",
-					["<C-h>"] = "actions.select_split",
-					["<C-t>"] = "actions.select_tab",
-					["<C-p>"] = "actions.preview",
-					["q"] = { "actions.close", mode = "n" },
-					["r"] = "actions.refresh",
-					["-"] = "actions.parent",
-					["_"] = "actions.open_cwd",
-					["`"] = "actions.cd",
-					["~"] = "actions.tcd",
-					["gs"] = "actions.change_sort",
-					["gx"] = "actions.open_external",
-					["."] = "actions.toggle_hidden",
-					["g\\"] = "actions.toggle_trash",
-				},
-				view_options = {
-					show_hidden = true,
-				},
-				columns = {},
-			})
+			require("minimalist.keymaps").setup_yazi_keymaps()
 		end,
 	},
 	{
