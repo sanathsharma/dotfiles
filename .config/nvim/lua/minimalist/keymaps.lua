@@ -201,10 +201,6 @@ function M.setup()
 			{ "gl", "$", desc = "Goto line end" },
 			{ "gs", "^", desc = "Goto first non-blank in line" },
 			{ "gk", "g_", desc = "Goto last non-blank in line" },
-
-			-- Comments
-			{ "<leader>c", "gcc", desc = "Comment/uncomment selections", noremap = true },
-			{ "<leader>C", "gbc", desc = "Block comment/uncomment selections", noremap = true },
 		},
 		{
 			mode = { "v" },
@@ -479,6 +475,47 @@ function M.setup_harpoon_keymaps()
 			{ "<leader>3", ":lua require('harpoon.ui').nav_file(3)<cr>", desc = "Go to file 3" },
 			{ "<leader>4", ":lua require('harpoon.ui').nav_file(4)<cr>", desc = "Go to file 4" },
 			{ "<leader>5", ":lua require('harpoon.ui').nav_file(5)<cr>", desc = "Go to file 5" },
+		},
+	})
+end
+
+function M.setup_comment_keymaps()
+	local api = require("Comment.api")
+
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{
+				"<leader>c",
+				function()
+					require("Comment.api").toggle.linewise.current()
+				end,
+				desc = "Comment/uncomment selections",
+			},
+			{
+				"<leader>C",
+				function()
+					require("Comment.api").toggle.blockwise.current()
+				end,
+				desc = "Block comment/uncomment selections",
+			},
+		},
+		{
+			mode = { "x" },
+			{
+				"<leader>c",
+				function()
+					api.toggle.linewise(vim.fn.visualmode())
+				end,
+				desc = "Comment/uncomment selections",
+			},
+			{
+				"<leader>C",
+				function()
+					api.toggle.blockwise(vim.fn.visualmode())
+				end,
+				desc = "Block comment/uncomment selections",
+			},
 		},
 	})
 end

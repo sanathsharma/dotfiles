@@ -188,7 +188,12 @@ require("lazy").setup({
 			})
 		end,
 	},
-	"numToStr/Comment.nvim",
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("minimalist.keymaps").setup_comment_keymaps()
+		end,
+	},
 	{
 		"mbbill/undotree",
 		config = function()
