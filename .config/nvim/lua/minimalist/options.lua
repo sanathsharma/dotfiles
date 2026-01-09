@@ -26,6 +26,9 @@ function M.setup()
 	vim.opt.conceallevel = 0 -- Hide all concealables
 	vim.opt.winborder = "rounded" -- Enable rounded borders
 	vim.cmd("set completeopt+=noselect") -- Disable selecting the popup menu
+	vim.opt.splitright = true -- Horizontal splits on the right
+	vim.opt.splitbelow = true -- Vertical splits below the current window
+	vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 end
 
 function M.setup_fold_opts()
