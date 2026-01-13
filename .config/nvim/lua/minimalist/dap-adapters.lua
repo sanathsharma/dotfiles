@@ -91,7 +91,7 @@ local setup_js_debug_adapter = function()
 				{
 					type = "pwa-node",
 					request = "attach",
-					name = "Attach",
+					name = "Attach by process and port",
 					processId = require("dap.utils").pick_process,
 					cwd = "${workspaceFolder}",
 					sourceMaps = true,
@@ -109,6 +109,27 @@ local setup_js_debug_adapter = function()
 					},
 					restart = true,
 				},
+				{
+					type = "pwa-node",
+					request = "attach",
+					name = "Attach by port",
+					cwd = "${workspaceFolder}",
+					sourceMaps = true,
+					runtimeExecutable = runtimeExecutable,
+					port = function()
+						return get_debugger_port(9229, "Attach to debug port: ")
+					end,
+					skipFiles = {
+						"<node_internals>/**",
+						"node_modules/**",
+					},
+					resolveSourceMapLocations = {
+						"${workspaceFolder}/**",
+						"!**/node_modules/**",
+					},
+					restart = true,
+
+				}
 			}
 		end
 	end
