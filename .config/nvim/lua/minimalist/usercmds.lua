@@ -11,7 +11,7 @@ vim.api.nvim_create_user_command("Fmt", function(args)
 	-- Inspired by https://github.com/asilvadesigns/config/blob/87adf2bdc22c4ca89d1b06b013949d817b405e77/nvim/lua/plugins/conform.lua#L145
 	local formatter = require("minimalist.utils").get_closest_formatter({
 		stylelint = require("minimalist.constants").stylelint_files,
-		biome = { "biome.json" },
+		["biome-check"] = { "biome.json" },
 		prettierd = { ".prettierrc", "prettier.config.js" },
 	})
 
@@ -34,8 +34,7 @@ end, { range = true })
 vim.api.nvim_create_user_command("Fmtb", function()
 	require("conform").format({
 		async = true,
-		formatters = { "biome" },
-		lsp_fromat = "never",
+		formatters = { "biome-check" },
 	})
 	require("fidget").notify("Running biome formatting", vim.log.levels.INFO)
 end, {})
@@ -44,7 +43,6 @@ vim.api.nvim_create_user_command("Fmtp", function()
 	require("conform").format({
 		async = true,
 		formatters = { "prettierd" },
-		lsp_fromat = "never",
 	})
 	require("fidget").notify("Running prettierd formatting", vim.log.levels.INFO)
 end, {})
@@ -100,3 +98,11 @@ end, {
 	desc = "Jump to context (upwards)",
 	nargs = "?",
 })
+
+vim.api.nvim_create_user_command("BiomeOrganizeImports", function()
+	require("conform").format({
+		async = true,
+		formatters = { "biome-organize-imports" },
+	})
+	require("fidget").notify("Organizing imports w/ biome", vim.log.levels.INFO)
+end, {})
