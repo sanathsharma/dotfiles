@@ -24,4 +24,8 @@
   "show_wrap_guides": true,
   "wrap_guides": [100, 120],
   "format_on_save": "off",
+  "terminal": {
+    "font_family": "JetBrainsMono Nerd Font Mono",
+    "font_size": 13,
+  },
 }
