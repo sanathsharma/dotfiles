@@ -67,6 +67,7 @@ set -Ux FZF_DEFAULT_OPTS "\
 --preview=\"bat --style=numbers --color=always {}\" \
 --height=20 \
 --reverse \
+--bind \"change:first\" \
 --multi"
 # set -Ux FZF_DEFAULT_COMMAND "rg --files --hidden --glob '!.git/*' --glob '!**/.git/*'"
 # set -Ux FZF_DEFAULT_COMMAND "fd --type file --hidden --no-ignore"
