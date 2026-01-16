@@ -21,3 +21,4 @@ aipack
 ideavim
 worktree
 opencode
+zed
