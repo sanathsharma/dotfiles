@@ -91,6 +91,9 @@ fish_add_path /usr/bin
 fish_add_path $HOME/jetbrains-toolbox/bin
 fish_add_path $HOME/.codeium/windsurf/bin
 fish_add_path $HOME/scripts
+fish_add_path $HOME/.opencode/bin
+fish_add_path $HOME/.antigravity/antigravity/bin
+fish_add_path $HOME/.local/share/bob/nvim-bin
 # Go entry
 fish_add_path /usr/local/go/bin
 # MacOS specific
@@ -104,7 +107,7 @@ fish_add_path "$HOME/Library/PostgreSQL/16/bin"
 fish_add_path /usr/local/bin
 fish_add_path /run/current-system/sw/bin
 
-if test -d /opt/homebrew/opt/postgresql@15/bin 
+if test -d /opt/homebrew/opt/postgresql@15/bin
 	fish_add_path /opt/homebrew/opt/postgresql@15/bin
 
 	set -gx LDFLAGS "-L/opt/homebrew/opt/postgresql@15/lib"
@@ -183,11 +186,3 @@ end
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
-
-# opencode
-fish_add_path $HOME/.opencode/bin
-
-# Added by Antigravity
-fish_add_path $HOME/.antigravity/antigravity/bin
-
-fish_add_path $HOME/.local/share/bob/nvim-bin
