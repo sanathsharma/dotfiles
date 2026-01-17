@@ -51,7 +51,7 @@
   t (tap-hold $tap-time $hold-time t lctl)
   n (tap-hold $tap-time $hold-time n rctl)
   e (tap-hold $tap-time $hold-time e rsft)
-  i (tap-hold $tap-time $hold-time i ralt)
+  i (tap-hold $tap-time $hold-time i lalt)
   o (tap-hold $tap-time $hold-time o rmet)
 
   ;; qwerty home row mods
@@ -60,7 +60,7 @@
   f (tap-hold $tap-time $hold-time f lctl)
   j (tap-hold $tap-time $hold-time j rctl)
   k (tap-hold $tap-time $hold-time k rsft)
-  l (tap-hold $tap-time $hold-time l ralt)
+  l (tap-hold $tap-time $hold-time l lalt)
   ; (tap-hold $tap-time $hold-time ; rmet)
 
   s1 S-1
