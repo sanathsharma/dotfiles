@@ -331,6 +331,7 @@ function M.setup_dap_keymaps()
 			{ "<leader>,q", "<cmd>DapDisconnect<cr>", desc = "Disconnect debug session" },
 			{ "<leader>,b", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint" },
 			{ "<leader>,r", "<cmd>DapRestartFrame<cr>", desc = "Restart frame" },
+			{ "<leader>,e", "<cmd>lua require(\"dap\").set_exception_breakpoints()<cr>", desc = "Set exception breakpoints" },
 		},
 	})
 end
