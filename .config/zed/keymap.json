@@ -28,6 +28,7 @@
     "context": "Editor && vim_mode == helix_normal && !VimWaiting && !menu",
     "bindings": {
       "space space": "editor::Format",
+      "space e": "workspace::ToggleLeftDock",
     },
   },
 ]
