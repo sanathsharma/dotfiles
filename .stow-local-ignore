@@ -1,4 +1,8 @@
 .gitignore
 .git
-README.md
+*.md
 LICENSE
+scopes.txt
+.editorconfig
+.luarc.json
+.idea
