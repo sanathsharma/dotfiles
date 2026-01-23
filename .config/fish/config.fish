@@ -150,15 +150,15 @@ if test -e /home/linuxbrew/.linuxbrew/bin/brew
 end
 
 if test -e $HOME/dotlocal/anthropic_key.txt
-	set -gx ANTHROPIC_API_KEY $(cat $HOME/dotlocal/anthropic_key.txt)
+	set -x ANTHROPIC_API_KEY $(cat $HOME/dotlocal/anthropic_key.txt)
 end
 
 if test -e $HOME/dotlocal/openapi_key.txt
-	set -gx OPENAI_API_KEY $(cat $HOME/dotlocal/openapi_key.txt)
+	set -x OPENAI_API_KEY $(cat $HOME/dotlocal/openapi_key.txt)
 end
 
 if test -e $HOME/dotlocal/context7_key.txt
-	set -gx CONTEXT7_API_KEY $(cat $HOME/dotlocal/context7_key.txt)
+	set -x CONTEXT7_API_KEY $(cat $HOME/dotlocal/context7_key.txt)
 end
 
 # functions

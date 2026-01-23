@@ -29,6 +29,7 @@ function M.setup()
 	vim.opt.splitright = true -- Horizontal splits on the right
 	vim.opt.splitbelow = true -- Vertical splits below the current window
 	vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
+	-- vim.opt.exrc = "on" -- Read .nvimrc,.nvim.lua,.exrc in the current directory
 end
 
 function M.setup_fold_opts()
