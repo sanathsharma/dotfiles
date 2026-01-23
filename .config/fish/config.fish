@@ -29,6 +29,7 @@ abbr -a sro "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*
 abbr -a gc "gen-commit -v"
 abbr -a gco "gen-commit -m openai:gpt-4.1-mini"
 abbr -a gcoc "sh ~/scripts/commit-opencode.sh"
+abbr -a j "just"
 
 set os (uname)
 if test $os = "Darwin"
