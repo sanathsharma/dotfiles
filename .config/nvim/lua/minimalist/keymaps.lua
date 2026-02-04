@@ -88,6 +88,15 @@ function M.setup_fzflua_keymaps()
 			},
 			{ "<leader>m", "<cmd>FzfLua keymaps<cr>", desc = "Search and select keymaps" },
 		},
+		{
+			mode = { "v" },
+			{
+				"<leader>a",
+				"<cmd>FzfLua lsp_code_actions<cr>",
+				desc = "Perform visual mode code actions",
+				silent = true,
+			},
+		},
 	})
 end
 
@@ -132,7 +141,22 @@ function M.setup()
 				desc = "Show docs for item under cursor",
 			},
 
-			-- Oil
+			{
+				"<C-s>",
+				"<cmd>wa<cr>",
+				desc = "Save all files",
+			},
+
+			{
+				"]t",
+				"<cmd>tabn<cr>",
+				desc = "Next tab",
+			},
+			{
+				"[t",
+				"<cmd>tabp<cr>",
+				desc = "Previous tab",
+			},
 
 			-- Goto
 			{
