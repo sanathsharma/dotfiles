@@ -46,6 +46,27 @@ if ! command -v gh > /dev/null 2>&1; then
     exit 1
 fi
 
+# Fetch latest changes from remote to ensure accurate conflict detection
+echo "🔄 Fetching latest changes from remote..."
+if ! git fetch origin 2>&1; then
+    echo ""
+    echo "❌ Error: Failed to fetch from remote."
+    echo ""
+    echo "This script requires up-to-date remote information to:"
+    echo "  - Detect merge conflicts accurately"
+    echo "  - Compare branch differences correctly"
+    echo "  - Ensure PRs are created with current state"
+    echo ""
+    echo "Please check:"
+    echo "  - Your network connection"
+    echo "  - Remote repository access permissions"
+    echo "  - Git authentication (try: gh auth login)"
+    echo ""
+    exit 1
+fi
+echo "✅ Successfully fetched latest changes"
+echo ""
+
 # Function to get the base branch for a given branch using merge-base analysis
 # This function finds the most likely base branch by:
 # 1. Checking upstream tracking branch (most reliable)
