@@ -29,6 +29,7 @@ abbr -a sro "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*
 abbr -a gc "gen-commit -v"
 abbr -a gco "gen-commit -m openai::gpt-4.1-mini"
 abbr -a gcoc "sh ~/scripts/commit-opencode.sh"
+abbr -a gcoo "gen-commit -m ollama::gpt-oss:20b --verbose"
 abbr -a rel "create-release.sh"
 abbr -a j "just"
 
