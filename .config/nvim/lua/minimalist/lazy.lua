@@ -398,10 +398,14 @@ require("lazy").setup({
 				},
 				formatters = {
 					sql_formatter = {
+						meta = {
+							url = "https://github.com/sql-formatter-org/sql-formatter",
+							description = "A whitespace formatter for different query languages.",
+						},
 						command = "sql-formatter",
 						args = {
 							"--config",
-							vim.fn.expand("~") .."/.config/sql-formatter/sql_formatter.json",
+							vim.fn.expand("~") .. "/.config/sql-formatter/sql_formatter.json",
 						},
 					},
 				},
