@@ -394,6 +394,16 @@ require("lazy").setup({
 					yaml = { "yamlfmt" },
 					rust = { "rustfmt" },
 					svelte = { "biome-check" },
+					sql = { "sql_formatter" },
+				},
+				formatters = {
+					sql_formatter = {
+						command = "sql-formatter",
+						args = {
+							"--config",
+							vim.fn.expand("~") .."/.config/sql-formatter/sql_formatter.json",
+						},
+					},
 				},
 			})
 		end,

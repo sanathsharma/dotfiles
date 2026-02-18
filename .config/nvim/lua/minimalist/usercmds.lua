@@ -1,3 +1,11 @@
+local concat_formatters = function(formatters)
+	local names = {}
+	for _, formatter in ipairs(formatters) do
+		table.insert(names, formatter.name)
+	end
+	return table.concat(names, ", ")
+end
+
 vim.api.nvim_create_user_command("Fmt", function(args)
 	local range = nil
 	if args.count ~= -1 then
@@ -17,9 +25,14 @@ vim.api.nvim_create_user_command("Fmt", function(args)
 
 	local fidget = require("fidget")
 
+	local conform = require("conform")
 	if not formatter then
-		require("conform").format({ async = true, lsp_format = "fallback", range = range })
-		fidget.notify("Running lsp formatting", vim.log.levels.INFO)
+		conform.format({ async = true, lsp_format = "fallback", range = range })
+
+		local bufnr = vim.api.nvim_get_current_buf()
+		local formatters = conform.list_formatters_to_run(bufnr)
+		local text = #formatters > 0 and concat_formatters(formatters) or "lsp"
+		fidget.notify("Formatting with " .. text, vim.log.levels.INFO)
 	else
 		require("conform").format({
 			async = true,
@@ -27,7 +40,7 @@ vim.api.nvim_create_user_command("Fmt", function(args)
 			lsp_fromat = "never",
 			range = range,
 		})
-		fidget.notify("Running " .. formatter .. " formatting", vim.log.levels.INFO)
+		fidget.notify("Formatting with " .. formatter, vim.log.levels.INFO)
 	end
 end, { range = true })
 

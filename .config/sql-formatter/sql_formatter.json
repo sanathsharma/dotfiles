@@ -1,0 +1,9 @@
+{
+	"$schema": "https://raw.githubusercontent.com/sql-formatter-org/sql-formatter/refs/heads/master/schema.json",
+	"language": "postgresql",
+	"dialect": "sql",
+	"tabWidth": 2,
+	"keywordCase": "upper",
+	"dataTypeCase": "upper",
+	"useTabs": true
+}
