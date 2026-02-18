@@ -4,7 +4,7 @@ vim.cmd([[:cnoreabbrev Marks FzfLua marks]])
 
 -- Toggle
 vim.cmd([[:cnoreabbrev Tblame Gitsigns toggle_current_line_blame]])
-vim.cmd([[:cnoreabbrev Tdbui DBUIToggle]])
+vim.cmd([[:cnoreabbrev Tdbui tab DBUI]])
 
 -- Reset
 vim.cmd([[:cnoreabbrev Rhunk Gitsigns reset_hunk]])
