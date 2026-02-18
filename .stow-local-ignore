@@ -1,6 +1,6 @@
 .gitignore
 .git
-*.md
+^[^/]*\.md$
 LICENSE
 scopes.txt
 .editorconfig
