@@ -545,4 +545,17 @@ function M.setup_comment_keymaps()
 	})
 end
 
+function M.setup_flash_keymaps()
+	require("which-key").add({
+		{
+			mode = { "n", "x", "o" },
+			{
+				"gw",
+				"<cmd>lua require('flash').jump()<cr>",
+				desc = "Flash",
+			},
+		},
+	})
+end
+
 return M

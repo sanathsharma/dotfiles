@@ -214,12 +214,18 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("minimalist.keymaps").setup_flash_keymaps()
+		end,
+	},
+	{
 		"mbbill/undotree",
 		config = function()
 			require("minimalist.options").setup_undodir_opts()
 		end,
 	},
-	"ggandor/leap.nvim",
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		config = function()
