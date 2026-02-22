@@ -63,6 +63,10 @@ require("lazy").setup({
 				grep = {
 					hidden = true,
 				},
+				files = {
+					previewer = "bat",
+					hidden = true,
+				},
 				colorschemes = {
 					winopts = {
 						fullscreen = false,
