@@ -68,8 +68,25 @@ local setup_tailwindcss_lsp = function()
 	})
 end
 
+local setup_lua_ls = function()
+	vim.lsp.config("lua_ls", {
+		filetypes = { "lua" },
+		settings = {
+			Lua = {
+				diagnostics = {
+					disable = { "missing-fields" },
+					globals = { "vim" },
+				},
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+			},
+		},
+	})
+end
+
 function M.setup()
-	local custom_setup = { "html", "cssls", "rust_analyzer", "svelte", "tailwindcss" }
+	local custom_setup = { "html", "cssls", "rust_analyzer", "svelte", "tailwindcss", "lua_ls" }
 	local simple_setup = require("minimalist.utils").filterTable(enable_lsps, custom_setup)
 
 	-- Simple setup of servers
@@ -81,6 +98,7 @@ function M.setup()
 	setup_lsps_with_sinippet_support()
 	setup_svelte_lsp()
 	setup_tailwindcss_lsp()
+	setup_lua_ls()
 end
 
 function M.setup_rustaceanvim()
