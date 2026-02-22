@@ -545,6 +545,25 @@ function M.setup_comment_keymaps()
 	})
 end
 
+function M.setup_scribble_keymaps()
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{ "<leader>x", "", desc = "+scribble" },
+			{
+				"<leader>xx",
+				"<cmd>ScribbleSelect<cr>",
+				desc = "Scribble select from a list of scratchfles",
+			},
+			{
+				"<leader>xc",
+				"<cmd>ScribbleCreate<cr>",
+				desc = "Scribble create a new scratch file",
+			},
+		},
+	})
+end
+
 function M.setup_flash_keymaps()
 	require("which-key").add({
 		{

@@ -665,6 +665,10 @@ require("lazy").setup({
 					name = "work",
 					path = "~/vaults/work",
 				},
+				{
+					name = "work",
+					path = "~/vaults/scribble",
+				},
 			},
 			ui = {
 				checkboxes = {
@@ -828,4 +832,16 @@ require("lazy").setup({
 	{ "EdenEast/nightfox.nvim", name = "nightfox", lazy = true },
 	{ "rose-pine/neovim", name = "rosepine", lazy = true },
 	{ "projekt0n/github-nvim-theme", name = "github-theme", lazy = true },
+	-- Custom plugins
+	{
+		-- dir = "~/personal/scribble.nvim",
+		"sanathsharma/scribble.nvim",
+		config = function()
+			require("scribble").setup({
+				storage = "~/vaults/scribble",
+			})
+
+			require("minimalist.keymaps").setup_scribble_keymaps()
+		end,
+	},
 }, {})
