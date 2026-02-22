@@ -837,10 +837,8 @@ require("lazy").setup({
 		-- dir = "~/personal/scribble.nvim",
 		"sanathsharma/scribble.nvim",
 		config = function()
-			require("scribble").setup({
-				storage = "~/vaults/scribble",
-			})
-
+			vim.g.scribble_dir = "~/vaults/scribble"
+			require("scribble").setup()
 			require("minimalist.keymaps").setup_scribble_keymaps()
 		end,
 	},

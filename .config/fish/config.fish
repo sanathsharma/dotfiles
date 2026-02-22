@@ -54,6 +54,7 @@ alias cat="bat"
 alias dr="sh ~/scripts/debug_rust.sh"
 alias op="cd ~/vaults/personal"
 alias ow="cd ~/vaults/work"
+alias scratch="yazi ~/vaults/scribble"
 
 # Set variables
 set -gx EDITOR nvim
