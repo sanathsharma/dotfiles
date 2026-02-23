@@ -834,8 +834,8 @@ require("lazy").setup({
 	{ "projekt0n/github-nvim-theme", name = "github-theme", lazy = true },
 	-- Custom plugins
 	{
-		dir = "~/personal/scribble.nvim",
-		-- "sanathsharma/scribble.nvim",
+		-- dir = "~/personal/scribble.nvim",
+		"sanathsharma/scribble.nvim",
 		config = function()
 			vim.g.scribble_dir = "~/vaults/scribble"
 			require("scribble").setup()
