@@ -573,6 +573,9 @@ function M.setup_scribble_keymaps()
 				"<cmd>ScribbleListFiletype<cr>",
 				desc = "Scribble select from a list of filetype specific scratchfles",
 			},
+		},
+		{
+			mode = { "n", "v" },
 			{
 				"<leader>xc",
 				"",
@@ -589,7 +592,7 @@ function M.setup_scribble_keymaps()
 				desc = "Create miscellaneous scratch file",
 			},
 			{
-				"<leader>xcm",
+				"<leader>xcf",
 				"<cmd>ScribbleCreateFiletype<cr>",
 				desc = "Create filetype specific scratch file",
 			},
