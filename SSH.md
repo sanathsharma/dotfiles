@@ -248,3 +248,41 @@ You should connect without being prompted for a password.
    ```
 
 3. **Use different keys** for different servers or purposes to limit the impact of a compromised key.
+
+### Auto loading SSH keys and agent on repo level
+
+Create a new file `~/dotlocal/.gitconfig` with the following content:
+
+```
+[user]
+	name = username_work
+	email = email_work
+	signingKey = "~/.ssh/work_key.pub"
+
+[includeif "gitdir:~/personal/dotfiles"]
+	path = "~/keys/.gitconfig_personal"
+
+[includeif "gitdir:~/personal/worktree"]
+	path = "~/keys/.gitconfig_personal"
+
+[includeif "gitdir:~/personal/scribble.nvim"]
+	path = "~/keys/.gitconfig_personal"
+
+[gpg]
+	program = /opt/homebrew/bin/gpg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+```
+
+and create `~/dotlocal/.gitconfig_personal` with the following content:
+
+```
+[user]
+	name = username_personal
+	email = email_personal
+	signingKey = "~/.ssh/personal_key.pub"
+```
