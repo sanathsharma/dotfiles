@@ -835,6 +835,7 @@ require("lazy").setup({
 	-- Custom plugins
 	{
 		-- dir = "~/personal/scribble.nvim",
+		-- dir = "~/code/scribble.nvim",
 		"sanathsharma/scribble.nvim",
 		config = function()
 			vim.g.scribble_dir = "~/vaults/scribble"

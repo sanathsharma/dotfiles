@@ -549,14 +549,14 @@ function M.setup_scribble_keymaps()
 	require("which-key").add({
 		{
 			mode = { "n" },
-			{ "<leader>x", "", desc = "+scribble" },
+			{ "<leader>xs", "", desc = "+scribble" },
 			{
-				"<leader>xx",
+				"<leader>xss",
 				"<cmd>ScribbleListBranch<cr>",
 				desc = "Scribble select from a list of branch specific scratchfles",
 			},
 			{
-				"<leader>xm",
+				"<leader>xsm",
 				function()
 					local dir = require("scribble").get_dir()
 					require("yazi").yazi({}, dir)
@@ -564,12 +564,12 @@ function M.setup_scribble_keymaps()
 				desc = "Open yazi at the scribble directory",
 			},
 			{
-				"<leader>xa",
+				"<leader>xsl",
 				"<cmd>ScribbleListAll<cr>",
 				desc = "Scribble select from a list of all scratchfles",
 			},
 			{
-				"<leader>xf",
+				"<leader>xsf",
 				"<cmd>ScribbleListFiletype<cr>",
 				desc = "Scribble select from a list of filetype specific scratchfles",
 			},
@@ -577,22 +577,27 @@ function M.setup_scribble_keymaps()
 		{
 			mode = { "n", "v" },
 			{
-				"<leader>xc",
+				"<leader>xsa",
+				"<cmd>ScribbleCreate<cr>",
+				desc = "Scribble select create options",
+			},
+			{
+				"<leader>xsc",
 				"",
 				desc = "+Scribble create",
 			},
 			{
-				"<leader>xcb",
+				"<leader>xscb",
 				"<cmd>ScribbleCreateBranch<cr>",
 				desc = "Create branch specific scratch file",
 			},
 			{
-				"<leader>xcm",
+				"<leader>xscm",
 				"<cmd>ScribbleCreateMisc<cr>",
 				desc = "Create miscellaneous scratch file",
 			},
 			{
-				"<leader>xcf",
+				"<leader>xscf",
 				"<cmd>ScribbleCreateFiletype<cr>",
 				desc = "Create filetype specific scratch file",
 			},
