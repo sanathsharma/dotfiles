@@ -32,3 +32,4 @@ codebook/
 tmp/
 lazy-lock.json
 kitty-override.conf
+.config/gh
