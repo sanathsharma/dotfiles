@@ -1,1 +1,3 @@
-source "/home/sanathsharma/.local/share/bob/env/env.fish"
+if test -f ~/.local/share/bob/env/env.fish
+    source ~/.local/share/bob/env/env.fish
+end
