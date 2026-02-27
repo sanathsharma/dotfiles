@@ -13,6 +13,8 @@ local enable_lsps = {
 	"tailwindcss",
 	"taplo", -- toml
 	"ts_ls",
+	"yamlls",
+	"jsonls",
 }
 
 local treesitter_parsers = {

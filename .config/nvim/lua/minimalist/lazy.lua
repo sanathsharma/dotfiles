@@ -251,7 +251,10 @@ require("lazy").setup({
 	},
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { "saghen/blink.cmp" },
+		dependencies = {
+			"saghen/blink.cmp",
+			"b0o/SchemaStore.nvim",
+		},
 		config = function()
 			require("minimalist.lsp").setup()
 		end,
