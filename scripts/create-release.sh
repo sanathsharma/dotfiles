@@ -80,88 +80,136 @@ echo "Branch: $BRANCH_NAME"
 echo "Tag: $TAG_NAME"
 echo ""
 
-# Check if tag already exists locally
+# Check if tag already exists (locally or on remote)
+TAG_EXISTS=0
 if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
-	echo "Error: Tag '$TAG_NAME' already exists locally"
-	exit 1
+	TAG_EXISTS=1
+	echo "⚠️  Tag '$TAG_NAME' already exists locally."
+elif git ls-remote --tags origin | grep -q "refs/tags/$TAG_NAME"; then
+	TAG_EXISTS=1
+	echo "⚠️  Tag '$TAG_NAME' already exists on remote."
 fi
 
-# Check if tag already exists on remote
-if git ls-remote --tags origin | grep -q "refs/tags/$TAG_NAME"; then
-	echo "Error: Tag '$TAG_NAME' already exists on remote"
-	exit 1
+if [ "$TAG_EXISTS" = "1" ]; then
+	EXISTING_COMMIT=$(git rev-parse "$TAG_NAME" 2>/dev/null || git ls-remote --tags origin "refs/tags/$TAG_NAME" | awk '{print $1}')
+	echo "   Points to: $EXISTING_COMMIT"
+	echo ""
+	EXISTING_ACTION=$(gum choose "Create GitHub release at existing tag" "Abort")
+	if [ "$EXISTING_ACTION" = "Abort" ]; then
+		echo "Aborted."
+		exit 0
+	fi
 fi
 
-# Ensure we're on the correct branch
-CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-if [ "$CURRENT_BRANCH" != "$BRANCH_NAME" ]; then
-	echo "Switching to branch: $BRANCH_NAME"
-	git checkout "$BRANCH_NAME"
-fi
+COMMIT_SHA=""
+TAG_MESSAGE=""
 
-# Fetch latest changes from remote
-echo "Fetching latest changes from remote..."
-git fetch origin "$BRANCH_NAME"
+if [ "$TAG_EXISTS" = "0" ]; then
+	# Ensure we're on the correct branch
+	CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+	if [ "$CURRENT_BRANCH" != "$BRANCH_NAME" ]; then
+		echo "Switching to branch: $BRANCH_NAME"
+		git checkout "$BRANCH_NAME"
+	fi
 
-# Check if local branch is behind remote
-LOCAL=$(git rev-parse @)
-REMOTE=$(git rev-parse "@{u}" 2>/dev/null || echo "")
-BASE=$(git merge-base @ "@{u}" 2>/dev/null || echo "")
+	# Fetch latest changes from remote
+	echo "Fetching latest changes from remote..."
+	git fetch origin "$BRANCH_NAME"
 
-if [ -n "$REMOTE" ]; then
-	if [ "$LOCAL" != "$REMOTE" ]; then
-		if [ "$LOCAL" = "$BASE" ]; then
-			echo "Local branch is behind remote. Pulling changes..."
-			git pull origin "$BRANCH_NAME"
-			echo "✅ Successfully pulled latest changes"
-		elif [ "$REMOTE" = "$BASE" ]; then
-			echo ""
-			echo "⚠️  Local branch is ahead of remote."
-			echo "Please push your changes before creating a release:"
-			echo "  git push origin $BRANCH_NAME"
-			echo ""
-			exit 1
-		else
-			echo "Error: Local and remote branches have diverged."
-			echo "Please resolve this manually before creating a release."
+	# Ask if releasing from latest commit or a specific commit
+	echo ""
+	echo "Release from which commit?"
+	COMMIT_OPTION=$(gum choose "Latest commit" "Specific commit")
+
+	if [ "$COMMIT_OPTION" = "Specific commit" ]; then
+		# Check remote tracking exists
+		if ! git rev-parse "origin/$BRANCH_NAME" >/dev/null 2>&1; then
+			echo "Error: No remote tracking found for branch '$BRANCH_NAME'."
+			echo "Please push your branch first:"
+			echo "  git push -u origin $BRANCH_NAME"
 			exit 1
 		fi
+
+		echo ""
+		echo "Select commit to tag:"
+		SELECTED=$(git log "origin/$BRANCH_NAME" --oneline -50 | fzf --reverse --info=inline --prompt="Commit: " --height=20 --preview="git show --stat --color=always {1}" --multi=0)
+
+		if [ -z "$SELECTED" ]; then
+			echo "No commit selected, aborting."
+			exit 1
+		fi
+
+		COMMIT_SHA=$(echo "$SELECTED" | awk '{print $1}')
+		COMMIT_MSG=$(echo "$SELECTED" | cut -d' ' -f2-)
+		echo ""
+		echo "Selected commit: $COMMIT_SHA $COMMIT_MSG"
+		echo ""
 	else
-		echo "Branch is up to date with remote."
+		# Latest commit — check local/remote sync
+		LOCAL=$(git rev-parse @)
+		REMOTE=$(git rev-parse "@{u}" 2>/dev/null || echo "")
+		BASE=$(git merge-base @ "@{u}" 2>/dev/null || echo "")
+
+		if [ -n "$REMOTE" ]; then
+			if [ "$LOCAL" != "$REMOTE" ]; then
+				if [ "$LOCAL" = "$BASE" ]; then
+					echo "Local branch is behind remote. Pulling changes..."
+					git pull origin "$BRANCH_NAME"
+					echo "✅ Successfully pulled latest changes"
+				elif [ "$REMOTE" = "$BASE" ]; then
+					echo ""
+					echo "⚠️  Local branch is ahead of remote."
+					echo "Please push your changes before creating a release:"
+					echo "  git push origin $BRANCH_NAME"
+					echo ""
+					exit 1
+				else
+					echo "Error: Local and remote branches have diverged."
+					echo "Please resolve this manually before creating a release."
+					exit 1
+				fi
+			else
+				echo "Branch is up to date with remote."
+			fi
+		else
+			echo ""
+			echo "⚠️  Branch has no upstream tracking."
+			echo "Please push your branch first:"
+			echo "  git push -u origin $BRANCH_NAME"
+			echo ""
+			exit 1
+		fi
+
+		COMMIT_SHA=$(git rev-parse HEAD)
+		echo ""
+		echo "Using latest commit: $(git log -1 --oneline)"
 	fi
-else
+
 	echo ""
-	echo "⚠️  Branch has no upstream tracking."
-	echo "Please push your branch first:"
-	echo "  git push -u origin $BRANCH_NAME"
+	echo "All commits are synced with remote."
 	echo ""
-	exit 1
+
+	# Ask for tag message
+	echo "Enter tag message (optional):"
+	TAG_MESSAGE=$(gum input --placeholder "Tag message")
+
+	# Create the tag
+	if [ -n "$TAG_MESSAGE" ]; then
+		echo "Creating annotated tag: $TAG_NAME -> $COMMIT_SHA"
+		git tag -a "$TAG_NAME" "$COMMIT_SHA" -m "$TAG_MESSAGE"
+	else
+		echo "Creating lightweight tag: $TAG_NAME -> $COMMIT_SHA"
+		git tag "$TAG_NAME" "$COMMIT_SHA"
+	fi
+
+	# Push the tag to remote
+	echo "Pushing tag to remote..."
+	git push origin "$TAG_NAME"
+
+	echo ""
+	echo "Tag created successfully!"
+	echo ""
 fi
-
-echo ""
-echo "All commits are synced with remote."
-echo ""
-
-# Ask for tag message
-echo "Enter tag message (optional):"
-TAG_MESSAGE=$(gum input --placeholder "Tag message")
-
-# Create the tag
-if [ -n "$TAG_MESSAGE" ]; then
-	echo "Creating annotated tag: $TAG_NAME"
-	git tag -a "$TAG_NAME" -m "$TAG_MESSAGE"
-else
-	echo "Creating lightweight tag: $TAG_NAME"
-	git tag "$TAG_NAME"
-fi
-
-# Push the tag to remote
-echo "Pushing tag to remote..."
-git push origin "$TAG_NAME"
-
-echo ""
-echo "Tag created successfully!"
-echo ""
 
 # Ask if user wants to create a GitHub release
 echo "Create GitHub release? (y/n)"
@@ -259,3 +307,4 @@ echo ""
 echo "=== Done! ==="
 echo "Tag: $TAG_NAME"
 echo "Branch: $BRANCH_NAME"
+echo "Commit: $COMMIT_SHA"
