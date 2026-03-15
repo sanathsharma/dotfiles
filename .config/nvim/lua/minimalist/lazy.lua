@@ -370,23 +370,40 @@ require("lazy").setup({
 		build = "make install_jsregexp",
 		lazy = true,
 		dependencies = {
-			{
-				"rafamadriz/friendly-snippets",
-				config = function()
-					require("luasnip.loaders.from_vscode").lazy_load()
-					require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
-				end,
-			},
+			"rafamadriz/friendly-snippets",
+			{ "rust10x/rust10x-vscode", ft = { "rust" } },
 		},
 		opts = {
 			history = true,
 			delete_check_events = "TextChanged",
 		},
 		config = function()
+			local luasnip = require("luasnip")
+			local types = require("luasnip.util.types")
+
+			luasnip.config.setup({
+				keep_roots = true,
+				link_roots = true,
+				link_children = true,
+				exit_roots = false,
+				update_events = "TextChanged,TextChangedI",
+				-- enable_autosnippets = true,
+				ext_ops = {
+					[types.choiceNode] = {
+						active = {
+							virt_text = { { "⇐", "Error" } },
+						},
+					},
+				},
+			})
+
 			-- Load snippets from ~/.config/nvim/snippets
 			require("snippets")
 			-- Setup luasnip keymaps
 			require("minimalist.keymaps").setup_luasnip_keymaps()
+
+			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
 		end,
 	},
 	{

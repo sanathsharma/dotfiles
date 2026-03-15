@@ -276,41 +276,34 @@ function M.setup_luasnip_keymaps()
 	local ls = require("luasnip")
 	require("which-key").add({
 		{
-			mode = { "i" },
+			mode = { "i", "s" },
 			silent = true,
 			{
 				"<M-K>",
 				function()
-					ls.expand()
+					if ls.expand_or_jumpable() then
+						ls.expand_or_jump()
+					end
 				end,
-				desc = "Expand snippet",
+				desc = "Expand snippet or jump",
 			},
-		},
-		{
-			mode = { "i", "s" },
-			silent = true,
 			{
 				"<M-L>",
-				function()
-					ls.jump(1)
-				end,
-				desc = "Jump forward",
-			},
-			{
-				"<M-J>",
-				function()
-					ls.jump(-1)
-				end,
-				desc = "Jump backward",
-			},
-			{
-				"<M-E>",
 				function()
 					if ls.choice_active() then
 						ls.change_choice(1)
 					end
 				end,
 				desc = "Change choice",
+			},
+			{
+				"<M-J>",
+				function()
+					if ls.jumpable(-1) then
+						ls.jump(-1)
+					end
+				end,
+				desc = "Jump backward",
 			},
 		},
 	})
