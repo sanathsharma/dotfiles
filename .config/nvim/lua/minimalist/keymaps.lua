@@ -618,4 +618,17 @@ function M.setup_flash_keymaps()
 	})
 end
 
+function M.setup_rustowl_keymaps()
+	require("which-key").add({
+		{
+			mode = { "n", "x", "o" },
+			{
+				"<leader>to",
+				"<cmd>lua require('rustowl').toggle()<cr>",
+				desc = "Toggle rustowl",
+			},
+		},
+	})
+end
+
 return M

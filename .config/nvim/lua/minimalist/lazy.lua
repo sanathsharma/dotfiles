@@ -440,6 +440,29 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"cordx56/rustowl",
+		version = "*",
+		build = "cargo install rustowl",
+		lazy = false,
+		config = function()
+			require("minimalist.keymaps").setup_rustowl_keymaps()
+			require("rustowl").setup({
+				auto_attach = true,
+				auto_enable = false,
+				highlight_style = "underline",
+				idle_time = 500,
+				colors = {
+					lifetime = "#50fa7b", -- Dracula green
+					imm_borrow = "#8be9fd", -- Dracula cyan
+					mut_borrow = "#ff79c6", -- Dracula pink
+					move = "#f1fa8c", -- Dracula yellow
+					call = "#ffb86c", -- Dracula orange
+					outlive = "#ff5555", -- Dracula red
+				},
+			})
+		end,
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("gitsigns").setup({

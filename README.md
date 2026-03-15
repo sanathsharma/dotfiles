@@ -257,3 +257,9 @@ cargo install bob-nvim
 bob use nightly (or) bob use stable
 ```
 
+### Install rustowl for neovim
+
+```sh
+cargo install cargo-binstall
+cargo binstall rustowl
+```
