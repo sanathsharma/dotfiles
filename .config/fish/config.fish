@@ -33,6 +33,8 @@ abbr -a gccl "sh ~/scripts/commit-claude.sh"
 abbr -a gcoo "gen-commit -m ollama::gpt-oss:20b --verbose"
 abbr -a rel "create-release.sh"
 abbr -a j "just"
+abbr -a cw "create-worktree.sh"
+abbr -a nw "create-worktree.sh"
 
 set os (uname)
 if test $os = "Darwin"
