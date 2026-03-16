@@ -57,6 +57,11 @@ alias dr="sh ~/scripts/debug_rust.sh"
 alias op="cd ~/vaults/personal"
 alias ow="cd ~/vaults/work"
 alias scratch="yazi ~/vaults/scribble"
+alias ga="git add --patch"
+alias gaa="git add --all"
+alias gp="git pull"
+alias gP="git push"
+alias gs="git status"
 
 # Set variables
 set -gx EDITOR nvim
