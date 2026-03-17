@@ -98,7 +98,7 @@ if [ "$NEW_BRANCH" = "true" ]; then
 	git worktree add "$WORKTREE_PATH" -b "$FINAL_BRANCH" "origin/$BASE_BRANCH"
 else
 	echo "  Mode:   checkout $BASE_BRANCH"
-	git worktree add "$WORKTREE_PATH" "origin/$BASE_BRANCH"
+	git worktree add "$WORKTREE_PATH" "$FINAL_BRANCH"
 fi
 
 echo ""
