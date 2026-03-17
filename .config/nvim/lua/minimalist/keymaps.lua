@@ -624,4 +624,52 @@ function M.setup_rustowl_keymaps()
 	})
 end
 
+function M.setup_99_keymaps()
+	local _99 = require("99")
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{ "<leader>p", "", desc = "+99" },
+			{
+				"<leader>ps",
+				function()
+					_99.search()
+				end,
+				desc = "99: Search",
+			},
+			{
+				"<leader>px",
+				function()
+					_99.stop_all_requests()
+				end,
+				desc = "99: Cancel all requests",
+			},
+			{
+				"<leader>pm",
+				function()
+					require("99.extensions.fzf_lua").select_model()
+				end,
+				desc = "99: Select model",
+			},
+			{
+				"<leader>pp",
+				function()
+					require("99.extensions.fzf_lua").select_provider()
+				end,
+				desc = "99: Select provider",
+			},
+		},
+		{
+			mode = { "v" },
+			{
+				"<leader>pv",
+				function()
+					_99.visual()
+				end,
+				desc = "99: Replace selection with AI output",
+			},
+		},
+	})
+end
+
 return M

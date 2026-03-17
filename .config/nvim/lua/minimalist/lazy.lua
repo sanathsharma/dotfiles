@@ -548,6 +548,25 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"ThePrimeagen/99",
+		config = function()
+			local _99 = require("99")
+			local cwd = vim.uv.cwd()
+			local basename = vim.fs.basename(cwd)
+			_99.setup({
+				provider = _99.Providers.ClaudeCodeProvider,
+				model = "claude-sonnet-4-5",
+				logger = {
+					level = _99.DEBUG,
+					path = "/tmp/" .. basename .. ".99.debug",
+					print_on_error = true,
+				},
+				tmp_dir = "./tmp",
+			})
+			require("minimalist.keymaps").setup_99_keymaps()
+		end,
+	},
+	{
 		"Wansmer/treesj",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		cmd = "TSJToggle",
