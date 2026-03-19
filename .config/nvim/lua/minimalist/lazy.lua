@@ -553,9 +553,18 @@ require("lazy").setup({
 			local _99 = require("99")
 			local cwd = vim.uv.cwd()
 			local basename = vim.fs.basename(cwd)
+			local hostname = vim.uv.os_gethostname()
+			local provider = _99.Providers.ClaudeCodeProvider
+			local model = "claude-sonnet-4-5"
+
+			if hostname == "pop-os" then
+				provider = _99.Providers.OpenCodeProvider
+				model = "opencode/minimax-m2.5"
+			end
+
 			_99.setup({
-				provider = _99.Providers.ClaudeCodeProvider,
-				model = "claude-sonnet-4-5",
+				provider = provider,
+				model = model,
 				logger = {
 					level = _99.DEBUG,
 					path = "/tmp/" .. basename .. ".99.debug",
