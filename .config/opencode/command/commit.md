@@ -6,6 +6,12 @@ model: opencode/glm-5
 
 Generate a conventional commit message on my behalf for the staged changes.
 
+**CRITICAL INSTRUCTIONS:**
+- DO NOT run any git commands
+- DO NOT execute any shell commands
+- ONLY output the commit message in your response
+- Do not explain, do not add code blocks, just output the raw message
+
 **Instructions:**
 1. Run `git log --no-merges -n 5` to see the last 5 commits for inspiration and style matching
 2. Follow the same prefix/pattern (like [company-name]) used in previous commits if present
