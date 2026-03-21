@@ -9,7 +9,7 @@ if [ "$1" = "--no-verify" ]; then
 fi
 
 # Run opencode and extract commit message
-COMMIT_MSG=$(opencode run --command commit --format json | jq -r 'select(.type == "text") | .part.text')
+COMMIT_MSG=$(opencode run "/commit" --format json | jq -r 'select(.type == "text") | .part.text')
 
 # Check if message was extracted
 if [ -z "$COMMIT_MSG" ]; then
