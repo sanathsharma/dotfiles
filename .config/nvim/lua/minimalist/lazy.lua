@@ -659,7 +659,11 @@ require("lazy").setup({
 		},
 		---@module 'dap-view'
 		---@type dapview.Config
-		opts = {},
+		opts = {
+			sections = { "watches", "scopes", "exceptions", "breakpoints", "threads", "repl", "sessions", "console" },
+			controls = { enabled = true },
+			switchbuf = "useopen,usetab,uselast",
+		},
 		config = function()
 			require("minimalist.keymaps").setup_dapview_keymaps()
 		end,
