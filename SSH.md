@@ -286,3 +286,50 @@ and create `~/dotlocal/.gitconfig_personal` with the following content:
 	email = email_personal
 	signingKey = "~/.ssh/personal_key.pub"
 ```
+
+## Connecting to Remote Servers with Port Forwarding
+
+SSH port forwarding allows you to access services running on a remote server as if they were running locally. This is useful for development, debugging, or accessing databases and web interfaces.
+
+### Remote Port Forwarding Configuration
+
+Add the following to your SSH config file to automatically forward remote ports to your local machine:
+
+```
+Host work
+    HostName lan_ip
+    User hostname
+    IdentityFile ~/.ssh/your_key.pub
+
+    # Remote port forwarding
+    RemoteForward 27017 localhost:27017  # MongoDB
+    RemoteForward 5432 localhost:5432    # PostgreSQL
+    RemoteForward 6379 localhost:6379    # Redis
+
+    # Local port forwarding
+    LocalForward 27017 localhost:27017  # MongoDB
+    LocalForward 5432 localhost:5432    # PostgreSQL
+    LocalForward 6379 localhost:6379    # Redis
+```
+
+### How It Works
+
+- `RemoteForward remote_port local_port`: Forwards a port from the remote server to your local machine
+- `LocalForward local_port remote_port`: Forwards trafic from a local port to a remote port. This is the option that you will use to asses web servers on local machine that are running on a remote server.
+- In the example above, any service running on the remote server at port 3000 will be accessible locally at localhost:3000
+
+### Common Use Cases
+
+- Accessing development servers running on a remote machine
+- Connecting to databases (MongoDB, PostgreSQL, Redis) on a remote server
+- Accessing web interfaces (like dashboards or admin panels) running remotely
+
+### Connecting
+
+Once configured, simply connect with:
+```bash
+ssh work
+```
+
+The port forwarding will be established automatically when you connect.
+
