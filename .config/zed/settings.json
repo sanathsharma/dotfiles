@@ -10,23 +10,27 @@
     "diagnostics": false,
     "metrics": false,
   },
-  "vim_mode": true,
-  "icon_theme": "Catppuccin Mocha",
+  "vim_mode": false,
+  "relative_line_numbers": "disabled",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha",
+  },
   "ui_font_size": 14,
   "buffer_font_size": 12,
   "theme": {
     "mode": "dark",
-    "light": "Ayu Light",
+    "light": "Catppuccin Latte",
     "dark": "Catppuccin Mocha",
   },
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "ui_font_family": "JetBrainsMono Nerd Font",
-  "relative_line_numbers": "enabled",
   "show_wrap_guides": true,
   "wrap_guides": [100, 120],
   "format_on_save": "off",
   "terminal": {
     "font_family": "JetBrainsMono Nerd Font Mono",
-    "font_size": 13,
+    "font_size": 11.5,
   }
 }

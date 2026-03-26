@@ -33,3 +33,4 @@ tmp/
 lazy-lock.json
 kitty-override.conf
 .config/gh
+.config/zed/prompts
