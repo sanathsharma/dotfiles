@@ -112,6 +112,27 @@ end, {
 	nargs = "?",
 })
 
+vim.api.nvim_create_user_command("CopyPath", function()
+	local path = vim.api.nvim_buf_get_name(0)
+	if path == "" then
+		require("fidget").notify("No file associated with current buffer", vim.log.levels.WARN)
+		return
+	end
+	vim.fn.setreg("+", path)
+	require("fidget").notify("Copied: " .. path, vim.log.levels.INFO)
+end, { desc = "Copy full path of current buffer to clipboard" })
+
+vim.api.nvim_create_user_command("CopyRelPath", function()
+	local full_path = vim.api.nvim_buf_get_name(0)
+	if full_path == "" then
+		require("fidget").notify("No file associated with current buffer", vim.log.levels.WARN)
+		return
+	end
+	local rel_path = vim.fn.fnamemodify(full_path, ":.")
+	vim.fn.setreg("+", rel_path)
+	require("fidget").notify("Copied: " .. rel_path, vim.log.levels.INFO)
+end, { desc = "Copy relative path of current buffer to clipboard" })
+
 vim.api.nvim_create_user_command("BiomeOrganizeImports", function()
 	require("conform").format({
 		async = true,
