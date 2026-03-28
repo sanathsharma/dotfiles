@@ -82,38 +82,6 @@ require("lazy").setup({
 			require("minimalist.keymaps").setup_fzflua_keymaps()
 		end,
 	},
-	-- {
-	-- 	"stevearc/oil.nvim",
-	-- 	config = function()
-	-- 		require("oil").setup({
-	-- 			default_file_explorer = true,
-	-- 			keymaps = {
-	-- 				["?"] = "actions.show_help",
-	-- 				["<CR>"] = "actions.select",
-	-- 				["<C-v>"] = "actions.select_vsplit",
-	-- 				["<C-h>"] = "actions.select_split",
-	-- 				["<C-t>"] = "actions.select_tab",
-	-- 				["<C-p>"] = "actions.preview",
-	-- 				["q"] = { "actions.close", mode = "n" },
-	-- 				["r"] = "actions.refresh",
-	-- 				["-"] = "actions.parent",
-	-- 				["_"] = "actions.open_cwd",
-	-- 				["`"] = "actions.cd",
-	-- 				["~"] = "actions.tcd",
-	-- 				["gs"] = "actions.change_sort",
-	-- 				["gx"] = "actions.open_external",
-	-- 				["."] = "actions.toggle_hidden",
-	-- 				["g\\"] = "actions.toggle_trash",
-	-- 			},
-	-- 			view_options = {
-	-- 				show_hidden = true,
-	-- 			},
-	-- 			columns = {},
-	-- 		})
-	-- 		require("minimalist.keymaps").setup_oil_keymaps()
-	-- 	end,
-	-- },
-	---@type LazySpec
 	{
 		"mikavilpas/yazi.nvim",
 		version = "*", -- use the latest stable version
@@ -502,39 +470,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-	-- {
-	-- 	"Exafunction/windsurf.nvim",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 	},
-	-- 	config = function()
-	-- 		require("codeium").setup({
-	-- 			enable_cmp_source = false,
-	-- 			virtual_text = {
-	-- 				enabled = true,
-	-- 				manual = true,
-	-- 				key_bindings = {
-	-- 					-- Accept the current completion.
-	-- 					accept = "<M-y>",
-	-- 					-- Accept the next word.
-	-- 					accept_word = "<M-w>",
-	-- 					-- Accept the next line.
-	-- 					accept_line = "<M-cr>",
-	-- 					-- Clear the virtual text.
-	-- 					clear = "<M-c>",
-	-- 					-- Cycle to the next completion.
-	-- 					next = "<M-[>",
-	-- 					-- Cycle to the previous completion.
-	-- 					prev = "<M-]>",
-	-- 				},
-	-- 			},
-	-- 			workspace_root = {
-	-- 				use_lsp = true,
-	-- 			},
-	-- 		})
-	-- 		require("minimalist.keymaps").setup_codeium_keymaps()
-	-- 	end,
-	-- },
 	{
 		"supermaven-inc/supermaven-nvim",
 		config = function()
@@ -628,6 +563,9 @@ require("lazy").setup({
 		end,
 	},
 	"tpope/vim-unimpaired",
+	-- NOTE: Run `:Obsession` to start auto save session and then run `:source Session.vim` to restore
+	-- Use `:!Obsession` to stop auto save session
+	"tpope/vim-obsession",
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^6",
