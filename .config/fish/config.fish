@@ -35,6 +35,8 @@ abbr -a rel "create-release.sh"
 abbr -a j "just"
 abbr -a cw "create-worktree.sh"
 abbr -a nw "create-worktree.sh"
+abbr -a t "tmux"
+abbr -a ta "tmux a"
 
 set os (uname)
 if test $os = "Darwin"
@@ -62,6 +64,8 @@ alias gaa="git add --all"
 alias gp="git pull"
 alias gP="git push"
 alias gs="git status"
+alias gd="git diff"
+alias gds="git diff --staged"
 
 # Set variables
 set -gx EDITOR nvim
