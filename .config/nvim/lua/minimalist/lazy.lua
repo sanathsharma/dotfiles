@@ -110,73 +110,57 @@ require("lazy").setup({
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-		branch = "master",
+		branch = "main",
+		lazy = false,
 		build = ":TSUpdate",
 		config = function()
-			local configs = require("nvim-treesitter.configs")
-			configs.setup({
-				auto_install = true,
-				highlight = {
-					enable = true,
-					disable = function(lang, buf)
-						local max_filesize = 100 * 1024 -- 100 KB
-						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-						if ok and stats and stats.size > max_filesize then
-							return true
-						end
-					end,
-					additional_vim_regex_highlighting = false,
-				},
-				indent = { enable = true },
-				rainbow = {
-					enable = true,
-					extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-					max_file_lines = nil, -- Do not enable for files with more than n lines, int
-				},
-				autotag = {
-					enable = true,
-					filetype = treesitter_parsers,
-				},
-				-- INFO: use `o` to jump between either ends of selection for inc/dec selection w/ j,k
-				incremental_selection = {
-					enable = true,
-					keymaps = {
-						init_selection = "gnn", -- set to `false` to disable one of the mappings
-						node_incremental = "grn",
-						scope_incremental = "grc",
-						node_decremental = "grm",
+			require("minimalist.treesitter").setup_autocmds()
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		init = function()
+			-- Disable entire built-in ftplugin mappings to avoid conflicts.
+			-- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+			vim.g.no_plugin_maps = true
+		end,
+		config = function()
+			-- configuration
+			require("nvim-treesitter-textobjects").setup({
+				select = {
+					-- Automatically jump forward to textobj, similar to targets.vim
+					lookahead = true,
+					-- You can choose the select mode (default is charwise 'v')
+					--
+					-- Can also be a function which gets passed a table with the keys
+					-- * query_string: eg '@function.inner'
+					-- * method: eg 'v' or 'o'
+					-- and should return the mode ('v', 'V', or '<c-v>') or a table
+					-- mapping query_strings to modes.
+					selection_modes = {
+						-- ["@parameter.outer"] = "v", -- charwise
+						-- ["@function.outer"] = "V", -- linewise
+						-- ['@class.outer'] = '<c-v>', -- blockwise
 					},
+					-- If you set this to `true` (default is `false`) then any textobject is
+					-- extended to include preceding or succeeding whitespace. Succeeding
+					-- whitespace has priority in order to act similarly to eg the built-in
+					-- `ap`.
+					--
+					-- Can also be a function which gets passed a table with the keys
+					-- * query_string: eg '@function.inner'
+					-- * selection_mode: eg 'v'
+					-- and should return true of false
+					include_surrounding_whitespace = false,
 				},
-				ensure_installed = {},
-				ignore_install = {},
-				modules = {},
-				sync_install = false,
-				parser_install_dir = nil,
-				textobjects = {
-					select = {
-						enable = true,
-						lookahead = true,
-						keymaps = {
-							["aa"] = "@parameter.outer",
-							["ia"] = "@parameter.inner",
-							["af"] = "@function.outer",
-							["if"] = "@function.inner",
-							["ac"] = "@class.outer",
-							["ic"] = "@class.inner",
-							["aj"] = "@conditional.outer",
-							["ij"] = "@conditional.inner",
-							["al"] = "@loop.outer",
-							["il"] = "@loop.inner",
-							["at"] = "@comment.outer",
-							["as"] = "@scope",
-						},
-						include_surrounding_whitespace = false,
-					},
+				move = {
+					-- whether to set jumps in the jumplist
+					set_jumps = true,
 				},
 			})
+
+			require("minimalist.keymaps").setup_treesitter_textobjects_keymaps()
 		end,
 	},
 	{

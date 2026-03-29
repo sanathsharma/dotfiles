@@ -18,18 +18,18 @@ local enable_lsps = {
 }
 
 local treesitter_parsers = {
+	"bash",
+	"fish",
 	"javascript",
-	"javascriptreact",
 	"json",
 	"lua",
 	"markdown",
 	"rust",
-	"sh",
 	"svelte",
 	"toml",
 	"typescript",
-	"typescriptreact",
 	"yaml",
+	"zsh",
 }
 
 local stylelint_files = {

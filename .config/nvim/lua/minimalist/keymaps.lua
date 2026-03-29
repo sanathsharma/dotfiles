@@ -625,6 +625,18 @@ function M.setup_flash_keymaps()
 				"<cmd>lua require('flash').jump()<cr>",
 				desc = "Flash",
 			},
+			{
+				"<leader>xt",
+				function()
+					require("flash").treesitter({
+						actions = {
+							["<Up>"] = "next",
+							["<Down>"] = "prev",
+						},
+					})
+				end,
+				desc = "Treesitter incremental selection",
+			},
 		},
 	})
 end
@@ -685,6 +697,156 @@ function M.setup_99_keymaps()
 					_99.visual()
 				end,
 				desc = "99: Replace selection with AI output",
+			},
+		},
+	})
+end
+
+M.setup_treesitter_textobjects_keymaps = function()
+	local select_textobject = require("nvim-treesitter-textobjects.select").select_textobject
+	local swap = require("nvim-treesitter-textobjects.swap")
+
+	require("which-key").add({
+		{
+			mode = { "x", "o" },
+			-- You can use the capture groups defined in `textobjects.scm`
+			-- List of capture groups: https://github.com/nvim-treesitter/nvim-treesitter-textobjects/blob/main/BUILTIN_TEXTOBJECTS.md
+			{
+				"if",
+				function()
+					select_textobject("@function.inner", "textobjects")
+				end,
+				desc = "Select inside function",
+			},
+			{
+				"af",
+				function()
+					select_textobject("@function.outer", "textobjects")
+				end,
+				desc = "Select around function",
+			},
+			{
+				"ac",
+				function()
+					select_textobject("@comment.outer", "textobjects")
+				end,
+				desc = "Select around comment",
+			},
+			{
+				"ic",
+				function()
+					select_textobject("@comment.inner", "textobjects")
+				end,
+				desc = "Select inside comment",
+			},
+			{
+				"al",
+				function()
+					select_textobject("@loop.outer", "textobjects")
+				end,
+				desc = "Select around loop",
+			},
+			{
+				"il",
+				function()
+					select_textobject("@loop.inner", "textobjects")
+				end,
+				desc = "Select inside loop",
+			},
+			{
+				"aj",
+				function()
+					select_textobject("@conditional.outer", "textobjects")
+				end,
+				desc = "Select around conditional",
+			},
+			{
+				"ij",
+				function()
+					select_textobject("@conditional.inner", "textobjects")
+				end,
+				desc = "Select inside conditional",
+			},
+			{
+				"aa",
+				function()
+					select_textobject("@parameter.outer", "textobjects")
+				end,
+				desc = "Select around parameter",
+			},
+			{
+				"ia",
+				function()
+					select_textobject("@parameter.inner", "textobjects")
+				end,
+				desc = "Select inside parameter",
+			},
+			{
+				"ab",
+				function()
+					select_textobject("@block.outer", "textobjects")
+				end,
+				desc = "Select around block",
+			},
+			{
+				"ib",
+				function()
+					select_textobject("@block.inner", "textobjects")
+				end,
+				desc = "Select inside block",
+			},
+			{
+				"aq",
+				function()
+					select_textobject("@custom_string.outer", "textobjects")
+				end,
+				desc = "Select around quote",
+			},
+			{
+				"iq",
+				function()
+					select_textobject("@custom_string.inner", "textobjects")
+				end,
+				desc = "Select inside quote",
+			},
+			{
+				"ao",
+				function()
+					select_textobject("@custom_bracket.outer", "textobjects")
+				end,
+				desc = "Select around bracket",
+			},
+			{
+				"io",
+				function()
+					select_textobject("@custom_bracket.inner", "textobjects")
+				end,
+				desc = "Select inside bracket",
+			},
+
+			-- You can also use captures from other query groups like `locals.scm`
+			{
+				"as",
+				function()
+					select_textobject("@local.scope", "locals")
+				end,
+				desc = "Select around local scope",
+			},
+		},
+		{
+			mode = { "n" },
+			-- Swap
+			{
+				"<leader>a",
+				function()
+					swap.swap_next("@parameter.inner")
+				end,
+			},
+			{
+				"<leader>A",
+				function()
+					swap.swap_previous("@parameter.outer")
+				end,
 			},
 		},
 	})

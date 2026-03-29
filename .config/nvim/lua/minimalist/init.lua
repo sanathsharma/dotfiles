@@ -13,5 +13,8 @@ require("minimalist.project").load_project_config()
 -- Enable all LSPs for which setup is defined
 require("minimalist.lsp").enable()
 
+-- Install required treesitter parsers
+require("minimalist.treesitter").install()
+
 -- Set default theme
 vim.cmd("colorscheme catppuccin-mocha")
