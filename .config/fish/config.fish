@@ -37,6 +37,8 @@ abbr -a cw "create-worktree.sh"
 abbr -a nw "create-worktree.sh"
 abbr -a t "tmux"
 abbr -a ta "tmux a"
+abbr -a wifi "impala"
+abbr -a bluetooth "bluetui"
 
 set os (uname)
 if test $os = "Darwin"

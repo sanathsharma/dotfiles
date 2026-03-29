@@ -263,3 +263,30 @@ bob use nightly (or) bob use stable
 cargo install cargo-binstall
 cargo binstall rustowl
 ```
+
+### Install bluetooth and wifi tui's
+
+Install deps
+
+```sh
+sudo apt install libdbus-1-dev pkg-config iwd
+```
+
+if iwd was newly installed and is not already enaled then enable it.
+
+```sh
+sudo systemctl enable --now iwd
+```
+
+Add current user to netdev to manage wifi
+This requires system restart, alrenatively run `newgrp netdev` to use without restart
+```sh
+sudo usermod -aG netdev $USER
+```
+
+Install packages
+```sh
+cargo install impala
+cargo install bluetui
+```
+
