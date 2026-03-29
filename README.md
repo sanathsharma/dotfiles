@@ -272,21 +272,39 @@ Install deps
 sudo apt install libdbus-1-dev pkg-config iwd
 ```
 
-if iwd was newly installed and is not already enaled then enable it.
-
+Install packages
 ```sh
+cargo install impala
+cargo install bluetui
+```
+
+Setup NetworkManager to use iwd
+
+Add following in `/etc/NetworkManager/conf.d/iwd.conf`
+```
+[device]
+wifi.backend=iwd   
+```
+
+Then run the following
+```sh
+sudo systemctl stop NetworkManager
+sudo systemctl disable --now wpa_supplicant
 sudo systemctl enable --now iwd
+sudo systemctl start NetworkManager
+```
+
+This setup allows NetworkManager to manage connections using iwd instead of wpa_supplicant. Reboot if necessary to ensure changes take effect.
+
+Add the following into `/etc/iwd/main.conf` to enable the iwd on start
+```
+[General]
+EnableNetworkConfiguration=true
 ```
 
 Add current user to netdev to manage wifi
 This requires system restart, alrenatively run `newgrp netdev` to use without restart
 ```sh
 sudo usermod -aG netdev $USER
-```
-
-Install packages
-```sh
-cargo install impala
-cargo install bluetui
 ```
 
