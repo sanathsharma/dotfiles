@@ -9,3 +9,4 @@ font-size = 11
 shell-integration-features = no-cursor
 macos-option-as-alt = true
 window-decoration = none
+adjust-cell-height = 0
