@@ -151,6 +151,9 @@ sudo apt install -y curl \
     libbz2-dev libsndio-dev freeglut3-dev libxmu-dev libxi-dev libfontconfig1-dev \
     libxcursor-dev
 cargo install --git https://github.com/neovide/neovide
+
+# Install tree-sitter-cli for neovim treesitter parser installations
+brew install tree-sitter-cli
 ```
 
 # Install go (see <https://go.dev/doc/install> for more info)
