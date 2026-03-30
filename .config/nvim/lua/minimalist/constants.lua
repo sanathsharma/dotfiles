@@ -30,6 +30,8 @@ local treesitter_parsers = {
 	"typescript",
 	"yaml",
 	"zsh",
+	"jsx",
+	"tsx",
 }
 
 local stylelint_files = {
