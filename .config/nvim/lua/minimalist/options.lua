@@ -44,4 +44,9 @@ function M.setup_undodir_opts()
 	vim.opt.undofile = true
 end
 
+function M.setup_terminal_opts()
+	vim.opt.number = false
+	vim.opt.relativenumber = false
+end
+
 return M

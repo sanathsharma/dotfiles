@@ -19,8 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugins setup
 -- ---------------------------------------------------------------------------------------------------------------------
 
-local treesitter_parsers = require("minimalist.constants").treesitter_parsers
-
 require("lazy").setup({
 	{
 		"folke/which-key.nvim",
@@ -31,6 +29,7 @@ require("lazy").setup({
 			local keymaps = require("minimalist.keymaps")
 			keymaps.setup()
 			keymaps.setup_lazy_module_keymaps()
+			keymaps.setup_terminal_keymaps()
 		end,
 	},
 	{

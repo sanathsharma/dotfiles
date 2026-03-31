@@ -852,4 +852,22 @@ M.setup_treesitter_textobjects_keymaps = function()
 	})
 end
 
+M.setup_terminal_keymaps = function()
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{
+				"<leader>xu",
+				function()
+					vim.cmd.vsplit()
+					vim.cmd.terminal()
+					vim.cmd.wincmd("J")
+					vim.api.nvim_win_set_height(0, 15)
+				end,
+				desc = "Open terminal",
+			},
+		},
+	})
+end
+
 return M
