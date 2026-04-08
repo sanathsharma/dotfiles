@@ -41,3 +41,8 @@
 (block
 	. (_) @custom_bracket.inner
 	(_)* @custom_bracket.inner)
+
+(function_item
+	(body) @function.inner)
+
+((function_item) @function.outer)

@@ -10,3 +10,13 @@
 (function_declaration
 	(block) @function.inner)
 
+((function_definition) @function.outer)
+
+(function_definition
+	(block) @function.inner)
+
+((block) @block.outer)
+
+(block
+	. (_) @block.inner
+	(_)* @block.inner)
