@@ -246,6 +246,7 @@ function M.setup()
 	})
 
 	M.setup_toggle_keymaps()
+	M.setup_neogit_keymaps()
 end
 
 function M.setup_toggle_keymaps()
@@ -865,6 +866,19 @@ M.setup_terminal_keymaps = function()
 					vim.api.nvim_win_set_height(0, 15)
 				end,
 				desc = "Open terminal",
+			},
+		},
+	})
+end
+
+M.setup_neogit_keymaps = function()
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{
+				"<leader>xg",
+				"<cmd>Neogit<cr>",
+				desc = "Show Neogit UI",
 			},
 		},
 	})
