@@ -836,18 +836,18 @@ M.setup_treesitter_textobjects_keymaps = function()
 		{
 			mode = { "n" },
 			-- Swap
-			{
-				"<leader>a",
-				function()
-					swap.swap_next("@parameter.inner")
-				end,
-			},
-			{
-				"<leader>A",
-				function()
-					swap.swap_previous("@parameter.outer")
-				end,
-			},
+			-- {
+			-- 	"<leader>a",
+			-- 	function()
+			-- 		swap.swap_next("@parameter.inner")
+			-- 	end,
+			-- },
+			-- {
+			-- 	"<leader>A",
+			-- 	function()
+			-- 		swap.swap_previous("@parameter.outer")
+			-- 	end,
+			-- },
 		},
 	})
 end
@@ -865,6 +865,49 @@ M.setup_terminal_keymaps = function()
 					vim.api.nvim_win_set_height(0, 15)
 				end,
 				desc = "Open terminal",
+			},
+		},
+	})
+end
+
+M.setup_gitcommit_ft_keymaps = function()
+	local hostname = vim.uv.os_gethostname()
+	if hostname == "pop-os" then
+		require("which-key").add({
+			{
+				mode = { "n" },
+				{
+					"<c-c><c-g>",
+					function()
+						local fidget = require("fidget")
+						fidget.notify("Generating commit message...", vim.log.levels.INFO, { title = "gen-commit" })
+
+						vim.system({ "gen-commit", "--print" }, { text = true }, function(obj)
+							if obj.code ~= 0 then
+								fidget.notify("Failed to generate commit message!", vim.log.levels.ERROR, { title = "gen-commit" })
+								return
+							end
+
+							local result = obj.stdout:gsub("^%s+", ""):gsub("%s+$", "")
+							vim.schedule(function()
+								vim.api.nvim_buf_set_lines(0, 0, 0, false, { result })
+								require("fidget").notify("Commit message generated!", vim.log.levels.INFO, { title = "gen-commit" })
+							end)
+						end)
+					end,
+					desc = "Commit with gen-commit cli",
+				},
+			},
+		})
+		return
+	end
+	require("which-key").add({
+		{
+			mode = { "n" },
+			{
+				"<c-c><c-g>",
+				"<cmd>read !COMMIT_PRINT_ONLY=1 ./scripts/commit-claude.sh<cr>",
+				desc = "Commit with claude code",
 			},
 		},
 	})

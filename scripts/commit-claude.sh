@@ -2,11 +2,29 @@
 
 set -e
 
-# Check for --no-verify flag
+# Check for flags
 NO_VERIFY=""
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+	echo "Usage: $0 [OPTIONS]"
+	echo "       COMMIT_PRINT_ONLY=1 $0"
+	echo ""
+	echo "Options:"
+	echo "  --no-verify    Skip pre-commit hooks"
+	echo "  --help, -h     Show this help message"
+	echo ""
+	echo "Environment variables:"
+	echo "  COMMIT_PRINT_ONLY=1   Generate and print commit message only, don't commit"
+	exit 0
+fi
+
 if [ "$1" = "--no-verify" ]; then
 	NO_VERIFY="--no-verify"
 	echo "[debug] Using --no-verify flag"
+fi
+
+if [ "$COMMIT_PRINT_ONLY" = "1" ]; then
+	PRINT_ONLY="true"
+	echo "[debug] Print-only mode enabled"
 fi
 
 echo "[debug] Checking for staged changes..."
@@ -37,6 +55,12 @@ echo "$COMMIT_MSG"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 
+# Exit early if print-only mode
+if [ "$PRINT_ONLY" = "true" ]; then
+	echo "[debug] Print-only mode: exiting without commit"
+	exit 0
+fi
+
 # Ask for confirmation
 printf "Do you want to proceed with this commit message? [Y/n] "
 read -r response
@@ -48,13 +72,13 @@ fi
 
 # Check response
 case "$response" in
-	[yY][eE][sS]|[yY])
-		echo "[debug] Proceeding with commit..."
-		;;
-	*)
-		echo "Commit cancelled by user"
-		exit 0
-		;;
+[yY][eE][sS] | [yY])
+	echo "[debug] Proceeding with commit..."
+	;;
+*)
+	echo "Commit cancelled by user"
+	exit 0
+	;;
 esac
 
 # Create temp file for commit message
