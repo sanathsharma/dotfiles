@@ -195,6 +195,17 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 vim.api.nvim_create_autocmd("Filetype", {
+	group = vim.api.nvim_create_augroup("spaces-instead-of-tabs", { clear = true }),
+	pattern = { "yaml" },
+	callback = function()
+		vim.opt.shiftwidth = 2
+		vim.opt.expandtab = true
+		vim.opt.tabstop = 2
+		vim.opt.softtabstop = 2
+	end,
+})
+
+vim.api.nvim_create_autocmd("Filetype", {
 	group = vim.api.nvim_create_augroup("gitcommit-keymaps-load", { clear = true }),
 	pattern = { "gitcommit" },
 	callback = function()

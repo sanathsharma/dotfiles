@@ -14,7 +14,7 @@ function M.setup()
 	vim.opt.tabstop = 2 -- Number of spaces tabs count for
 	vim.opt.softtabstop = 2 -- Number of spaces for a tab when editing
 	vim.opt.scrolloff = 3 -- Keep 3 lines visible above/below cursor
-	vim.opt.signcolumn = "yes" -- Always show sign column
+	vim.opt.signcolumn = "yes:1" -- Always show sign column
 	vim.opt.hlsearch = true -- Highlight search matches
 	vim.opt.incsearch = true -- Show search matches as you type
 	vim.opt.showbreak = "↪·" -- Indicate a line break in a long line of text
