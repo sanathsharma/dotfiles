@@ -7,7 +7,6 @@ require("minimalist.lazy")
 require("minimalist.options").setup()
 require("minimalist.autocmds")
 require("minimalist.usercmds")
-require("minimalist.aliases")
 require("minimalist.project").load_project_config()
 
 -- Enable all LSPs for which setup is defined

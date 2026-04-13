@@ -266,22 +266,40 @@ require("lazy").setup({
 			},
 
 			completion = {
-				-- (Default) Only show the documentation popup when manually triggered
 				documentation = { auto_show = true },
 				list = { selection = { auto_insert = true, preselect = false } },
 				accept = { auto_brackets = { enabled = false } },
-				menu = { auto_show = true },
+				menu = {
+					auto_show = true,
+					draw = {
+						components = {
+							kind_icon = {
+								text = function(ctx)
+									-- customize icon for alias source
+									if ctx.item.kind_name == "Alias" then
+										return " "
+									end
+									-- fallback to default behavior
+									return ctx.kind_icon .. ctx.icon_gap
+								end,
+							},
+						},
+					},
+				},
+				ghost_text = { enabled = true },
 			},
 
 			cmdline = {
 				completion = {
 					list = { selection = { auto_insert = true, preselect = false } },
 					menu = { auto_show = true },
+					ghost_text = { enabled = true },
 				},
 				keymap = {
 					["<Down>"] = { "select_next", "fallback" },
 					["<Up>"] = { "select_prev", "fallback" },
 				},
+				sources = { "buffer", "cmdline", "alias" },
 			},
 
 			-- Default list of enabled providers defined so that you can extend it
@@ -298,6 +316,13 @@ require("lazy").setup({
 						module = "lazydev.integrations.blink",
 						-- make lazydev completions top priority (see `:h blink.cmp`)
 						score_offset = 100,
+					},
+					alias = {
+						name = "Alias",
+						module = "sources.blink-cmp-alias", -- custom source in lua/sources
+						opts = {
+							aliases = require("minimalist.aliases").get(),
+						},
 					},
 				},
 			},

@@ -1,15 +1,19 @@
-vim.cmd([[:cnoreabbrev Themes FzfLua colorschemes]])
-vim.cmd([[:cnoreabbrev Livegrep FzfLua live_grep]])
-vim.cmd([[:cnoreabbrev Marks FzfLua marks]])
+local M = {}
 
--- Toggle
-vim.cmd([[:cnoreabbrev Tblame Gitsigns toggle_current_line_blame]])
-vim.cmd([[:cnoreabbrev Tdbui tab DBUI]])
+function M.get()
+	local aliases = {
+		Themes = "FzfLua colorschemes",
+		Livegrep = "FzfLua live_grep",
+		Marks = "FzfLua marks",
+		Tblame = "Gitsigns toggle_current_line_blame",
+		Tdbui = "tab DBUI",
+		Rhunk = "Gitsigns reset_hunk",
+		Rbuffer = "Gitsigns reset_buffer",
+		Shunk = "Gitsigns stage_hunk",
+		Sbuffer = "Gitsigns stage_buffer",
+		LoadSession = "source Session.vim",
+	}
+	return aliases
+end
 
--- Reset
-vim.cmd([[:cnoreabbrev Rhunk Gitsigns reset_hunk]])
-vim.cmd([[:cnoreabbrev Rbuffer Gitsigns reset_buffer]])
-
--- Stage
-vim.cmd([[:cnoreabbrev Shunk Gitsigns stage_hunk]])
-vim.cmd([[:cnoreabbrev Sbuffer Gitsigns stage_buffer]])
+return M
