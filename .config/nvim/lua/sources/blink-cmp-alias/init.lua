@@ -32,25 +32,18 @@ local function setup_cmds(aliases)
 	end
 end
 
----@module 'blink.cmp'
----@class blink.cmp.Source
----@field aliases? table<string, string>
-local source = {}
+local function is_subcommand(ctx)
+	local col = ctx.cursor and ctx.cursor[2] or 1
 
-function source.new(opts)
-	local self = setmetatable({}, { __index = source })
-	self.aliases = opts.aliases or {}
-
-	setup_cmds(self.aliases)
-	return self
+	return col ~= 1
 end
 
-function source:get_completions(_ctx, callback)
+local function create_completion_items(aliases)
 	local items = {}
 
 	local kind = require("blink.cmp.types").CompletionItemKind.Property
 
-	for name, cmd in pairs(self.aliases) do
+	for name, cmd in pairs(aliases) do
 		table.insert(items, {
 			label = name,
 			kind = kind, -- fallback
@@ -64,6 +57,29 @@ function source:get_completions(_ctx, callback)
 			},
 		})
 	end
+
+	return items
+end
+
+---@module 'blink.cmp'
+---@class blink.cmp.Source
+---@field aliases? table<string, string>
+local source = {}
+
+function source.new(opts)
+	local self = setmetatable({}, { __index = source })
+	self.aliases = opts.aliases or {}
+
+	setup_cmds(self.aliases)
+	return self
+end
+
+function source:get_completions(ctx, callback)
+	if is_subcommand(ctx) then
+		return callback({ items = {}, is_incomplete_forward = false, is_incomplete_backward = false })
+	end
+
+	local items = create_completion_items(self.aliases)
 
 	callback({ items = items, is_incomplete_forward = false, is_incomplete_backward = false })
 end
