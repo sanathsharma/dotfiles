@@ -43,6 +43,6 @@
 	(_)* @custom_bracket.inner)
 
 (function_item
-	(body) @function.inner)
+	(block) @function.inner)
 
 ((function_item) @function.outer)
