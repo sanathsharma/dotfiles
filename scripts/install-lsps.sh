@@ -43,9 +43,9 @@ npm install -g cssmodules-language-server
 # Rust (requires rustup to be installed)
 echo "Installing Rust analyzer..."
 if command -v rustup >/dev/null 2>&1; then
-    rustup component add rust-analyzer
+	rustup component add rust-analyzer
 else
-    echo "Warning: rustup not found. Please install Rust first to add rust-analyzer."
+	echo "Warning: rustup not found. Please install Rust first to add rust-analyzer."
 fi
 
 # Shell formatter
@@ -59,16 +59,28 @@ go install github.com/google/yamlfmt/cmd/yamlfmt@latest
 # Lua formatter
 echo "Installing stylua for Lua formatting..."
 if command -v cargo >/dev/null 2>&1; then
-    cargo install stylua
+	cargo install stylua
 elif command -v brew >/dev/null 2>&1; then
-    brew install stylua
+	brew install stylua
 else
-    echo "Warning: Neither cargo nor brew found. Cannot install stylua."
+	echo "Warning: Neither cargo nor brew found. Cannot install stylua."
 fi
 
 # JavaScript formatter
 echo "Installing prettierd for fast JavaScript formatting..."
 npm install -g @fsouza/prettierd
+
+# Svelte
+echo "Installing Svelte language server..."
+npm install -g svelte-language-server
+
+# Stylelint
+echo "Installing Stylelint language server..."
+npm install -g stylelint-lsp
+
+# SQL
+echo "Installing SQL formatter..."
+npm install -g sql-formatter
 
 echo ""
 echo "LSP installation complete!"
