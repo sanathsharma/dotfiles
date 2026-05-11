@@ -8,7 +8,7 @@ function M.enable()
 	end
 end
 
-local setup_lsps_with_sinippet_support = function()
+local function setup_lsps_with_sinippet_support()
 	-- Snippet support required for css/html completions from vscode-langservers-extracted
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -40,7 +40,7 @@ local setup_lsps_with_sinippet_support = function()
 	vim.lsp.config("html", { capabilities = capabilities })
 end
 
-local setup_svelte_lsp = function()
+local function setup_svelte_lsp()
 	local capabilities = require("blink.cmp").get_lsp_capabilities()
 	vim.lsp.config("svelte", {
 		capabilities = capabilities,
@@ -56,7 +56,7 @@ local setup_svelte_lsp = function()
 	})
 end
 
-local setup_tailwindcss_lsp = function()
+local function setup_tailwindcss_lsp()
 	local capabilities = require("blink.cmp").get_lsp_capabilities()
 	vim.lsp.config("tailwindcss", {
 		capabilities = capabilities,
@@ -68,8 +68,10 @@ local setup_tailwindcss_lsp = function()
 	})
 end
 
-local setup_lua_ls = function()
+local function setup_lua_ls()
+	local capabilities = require("blink.cmp").get_lsp_capabilities()
 	vim.lsp.config("lua_ls", {
+		capabilities = capabilities,
 		filetypes = { "lua" },
 		settings = {
 			Lua = {
