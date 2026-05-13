@@ -1,4 +1,4 @@
-local concat_formatters = function(formatters)
+local function concat_formatters(formatters)
 	local names = {}
 	for _, formatter in ipairs(formatters) do
 		table.insert(names, formatter.name)
@@ -6,7 +6,7 @@ local concat_formatters = function(formatters)
 	return table.concat(names, ", ")
 end
 
-vim.api.nvim_create_user_command("Fmt", function(args)
+local function get_range_from_usrcmd_args(args)
 	local range = nil
 	if args.count ~= -1 then
 		local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
@@ -15,6 +15,12 @@ vim.api.nvim_create_user_command("Fmt", function(args)
 			["end"] = { args.line2, end_line:len() },
 		}
 	end
+
+	return range
+end
+
+vim.api.nvim_create_user_command("Fmt", function(args)
+	local range = get_range_from_usrcmd_args(args)
 
 	-- Inspired by https://github.com/asilvadesigns/config/blob/87adf2bdc22c4ca89d1b06b013949d817b405e77/nvim/lua/plugins/conform.lua#L145
 	local formatter = require("minimalist.utils").get_closest_formatter({
@@ -59,6 +65,44 @@ vim.api.nvim_create_user_command("Fmtp", function()
 	})
 	require("fidget").notify("Running prettierd formatting", vim.log.levels.INFO)
 end, {})
+
+vim.api.nvim_create_user_command("FmtWith", function(args)
+	local conform = require("conform")
+	local formatters = vim
+		.iter(conform.list_formatters(0))
+		:map(function(formatter)
+			return formatter.name
+		end)
+		:totable()
+
+	require("fzf-lua").fzf_exec(formatters, {
+		prompt = "Select formatter to run:",
+		complete = function(selected)
+			conform.format({
+				async = true,
+				formatters = selected,
+				range = get_range_from_usrcmd_args(args),
+			})
+
+			local formatters_str = vim.iter(selected):join(", ")
+			require("fidget").notify("Running " .. formatters_str .. " formatting", vim.log.levels.INFO)
+		end,
+	})
+end, { range = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "css", "scss", "less", "sass", "stylus" },
+	callback = function()
+		vim.api.nvim_create_user_command("FmtCss", function(args)
+			require("conform").format({
+				async = true,
+				formatters = { "stylelint", "biome-check" },
+				range = get_range_from_usrcmd_args(args),
+			})
+			require("fidget").notify("Running stylelint, biome-check formatting", vim.log.levels.INFO)
+		end, { range = true })
+	end,
+})
 
 vim.api.nvim_create_user_command("Fmtlsp", function()
 	require("conform").format({ async = true })
