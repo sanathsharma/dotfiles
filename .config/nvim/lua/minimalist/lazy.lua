@@ -387,20 +387,22 @@ require("lazy").setup({
 		config = function()
 			require("conform").setup({
 				formatters_by_ft = {
-					lua = { "stylua" },
+					c = { "clang_format" },
+					cpp = { "clang_format" },
 					css = { "stylelint", "biome-check", "prettierd", stop_after_first = true },
+					html = { "biome-check", "prettierd", stop_after_first = true },
 					javascript = { "biome-check", "prettierd", stop_after_first = true },
 					javascriptreact = { "biome-check", "prettierd", stop_after_first = true },
-					typescript = { "biome-check", "prettierd", stop_after_first = true },
-					typescriptreact = { "biome-check", "prettierd", stop_after_first = true },
 					json = { "biome-check", "prettierd", stop_after_first = true },
 					jsonc = { "biome-check", "prettierd", stop_after_first = true },
-					html = { "biome-check", "prettierd", stop_after_first = true },
-					sh = { "shfmt" },
-					yaml = { "yamlfmt" },
+					lua = { "stylua" },
 					rust = { "rustfmt" },
-					svelte = { "biome-check" },
+					sh = { "shfmt" },
 					sql = { "sql_formatter" },
+					svelte = { "biome-check" },
+					typescript = { "biome-check", "prettierd", stop_after_first = true },
+					typescriptreact = { "biome-check", "prettierd", stop_after_first = true },
+					yaml = { "yamlfmt" },
 				},
 				formatters = {
 					sql_formatter = {

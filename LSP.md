@@ -130,3 +130,8 @@ Install Sql formatter
 ```sh 
 npm install -g sql-formatter
 ```
+
+Setup for c/c++
+```sh
+brew install llvm clang-format
+```

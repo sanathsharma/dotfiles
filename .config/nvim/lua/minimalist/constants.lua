@@ -1,37 +1,39 @@
 local enable_lsps = {
 	"biome",
+	"clangd",
+	"css_variables",
 	"cssls",
 	"cssmodules_ls",
-	"css_variables",
 	"emmet_language_server",
 	"html",
+	"jsonls",
 	"lua_ls",
 	"marksman", -- markdown
-	-- "rust_analyzer", -- Managed by rustaceanvim
 	"stylelint_lsp",
 	"svelte",
 	"tailwindcss",
 	"taplo", -- toml
 	"ts_ls",
 	"yamlls",
-	"jsonls",
+	-- "rust_analyzer", -- Managed by rustaceanvim
 }
 
 local treesitter_parsers = {
 	"bash",
+	"c",
 	"fish",
 	"javascript",
 	"json",
+	"jsx",
 	"lua",
 	"markdown",
 	"rust",
 	"svelte",
 	"toml",
+	"tsx",
 	"typescript",
 	"yaml",
 	"zsh",
-	"jsx",
-	"tsx",
 }
 
 local stylelint_files = {
