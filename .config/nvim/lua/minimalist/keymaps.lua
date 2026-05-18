@@ -500,18 +500,19 @@ function M.setup_fold_keymaps()
 	})
 end
 
-function M.setup_harpoon_keymaps()
+function M.setup_grapple_keymaps()
 	require("which-key").add({
 		{
 			mode = "n",
-			{ "<leader>h", ":lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Toggle quick menu" },
-			{ "<leader>hm", ":lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Toggle quick menu" },
-			{ "<leader>ha", ":lua require('harpoon.mark').add_file()<cr>", desc = "Toggle quick menu" },
-			{ "<leader>1", ":lua require('harpoon.ui').nav_file(1)<cr>", desc = "Go to file 1" },
-			{ "<leader>2", ":lua require('harpoon.ui').nav_file(2)<cr>", desc = "Go to file 2" },
-			{ "<leader>3", ":lua require('harpoon.ui').nav_file(3)<cr>", desc = "Go to file 3" },
-			{ "<leader>4", ":lua require('harpoon.ui').nav_file(4)<cr>", desc = "Go to file 4" },
-			{ "<leader>5", ":lua require('harpoon.ui').nav_file(5)<cr>", desc = "Go to file 5" },
+			{ "<leader>h", "<cmd>Grapple toggle_tags<cr>", desc = "Toggle tags menu" },
+			{ "<leader>ha", "<cmd>Grapple toggle<cr>", desc = "Tag a file" },
+			{ "<leader>hm", "<cmd>Grapple toggle_tags<cr>", desc = "Toggle tags menu" },
+
+			{ "<leader>1", "<cmd>Grapple select index=1<cr>", desc = "Select first tag" },
+			{ "<leader>2", "<cmd>Grapple select index=2<cr>", desc = "Select second tag" },
+			{ "<leader>3", "<cmd>Grapple select index=3<cr>", desc = "Select third tag" },
+			{ "<leader>4", "<cmd>Grapple select index=4<cr>", desc = "Select fourth tag" },
+			{ "<leader>5", "<cmd>Grapple select index=5<cr>", desc = "Select fifth tag" },
 		},
 	})
 end

@@ -789,18 +789,14 @@ require("lazy").setup({
 		},
 	},
 	{
-		"ThePrimeagen/harpoon",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
+		"cbochs/grapple.nvim",
 		config = function()
-			require("harpoon").setup({
-				global_settings = {
-					save_on_change = true,
-					mark_branch = true,
-				},
+			require("grapple").setup({
+				scope = "git_branch",
+				icons = false,
+				status = false,
 			})
-			require("minimalist.keymaps").setup_harpoon_keymaps()
+			require("minimalist.keymaps").setup_grapple_keymaps()
 		end,
 	},
 	{
