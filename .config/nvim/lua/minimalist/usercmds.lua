@@ -23,16 +23,16 @@ vim.api.nvim_create_user_command("Fmt", function(args)
 	local range = get_range_from_usrcmd_args(args)
 
 	-- Inspired by https://github.com/asilvadesigns/config/blob/87adf2bdc22c4ca89d1b06b013949d817b405e77/nvim/lua/plugins/conform.lua#L145
-	local formatter = require("minimalist.utils").get_closest_formatter({
+	local formatters_with_config = require("minimalist.utils").get_closest_formatter({
 		stylelint = require("minimalist.constants").stylelint_files,
 		["biome-check"] = { "biome.json" },
-		prettierd = { ".prettierrc", "prettier.config.js" },
+		prettierd = { ".prettierrc", "prettier.config.js", ".prettierrc.json" },
 	})
 
 	local fidget = require("fidget")
 
 	local conform = require("conform")
-	if not formatter then
+	if not formatters_with_config then
 		conform.format({ async = true, lsp_format = "fallback", range = range })
 
 		local bufnr = vim.api.nvim_get_current_buf()
@@ -42,11 +42,13 @@ vim.api.nvim_create_user_command("Fmt", function(args)
 	else
 		require("conform").format({
 			async = true,
-			formatters = { formatter },
+			formatters = formatters_with_config,
 			lsp_fromat = "never",
 			range = range,
 		})
-		fidget.notify("Formatting with " .. formatter, vim.log.levels.INFO)
+
+		local running_formatters_str = vim.iter(formatters_with_config):join(", ")
+		fidget.notify("Formatting with " .. running_formatters_str, vim.log.levels.INFO)
 	end
 end, { range = true })
 
@@ -77,16 +79,18 @@ vim.api.nvim_create_user_command("FmtWith", function(args)
 
 	require("fzf-lua").fzf_exec(formatters, {
 		prompt = "Select formatter to run:",
-		complete = function(selected)
-			conform.format({
-				async = true,
-				formatters = selected,
-				range = get_range_from_usrcmd_args(args),
-			})
+		actions = {
+			["default"] = function(selected)
+				conform.format({
+					async = true,
+					formatters = selected,
+					range = get_range_from_usrcmd_args(args),
+				})
 
-			local formatters_str = vim.iter(selected):join(", ")
-			require("fidget").notify("Running " .. formatters_str .. " formatting", vim.log.levels.INFO)
-		end,
+				local formatters_str = vim.iter(selected):join(", ")
+				require("fidget").notify("Running " .. formatters_str .. " formatting", vim.log.levels.INFO)
+			end,
+		},
 	})
 end, { range = true })
 

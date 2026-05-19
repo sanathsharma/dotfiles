@@ -399,7 +399,7 @@ require("lazy").setup({
 					rust = { "rustfmt" },
 					sh = { "shfmt" },
 					sql = { "sql_formatter" },
-					svelte = { "biome-check" },
+					svelte = { "biome-check", "prettierd" },
 					typescript = { "biome-check", "prettierd", stop_after_first = true },
 					typescriptreact = { "biome-check", "prettierd", stop_after_first = true },
 					yaml = { "yamlfmt" },

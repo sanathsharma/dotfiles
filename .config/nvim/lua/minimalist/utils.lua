@@ -52,7 +52,7 @@ end
 
 -- Inspired by https://github.com/asilvadesigns/config/blob/87adf2bdc22c4ca89d1b06b013949d817b405e77/nvim/lua/plugins/conform.lua#L63
 ---@param _formatters table<string, string[]>
----@return string | nil
+---@return string[] | nil
 function M.get_closest_formatter(_formatters)
 	---@type string
 	local current_buffer_path = vim.api.nvim_buf_get_name(0)
@@ -119,28 +119,13 @@ function M.get_closest_formatter(_formatters)
 		return nil
 	end
 
-	-- If there's only one formatter with the shortest distance, return it
-	local tied_count = 0
-	for _ in pairs(tied_formatters) do
-		tied_count = tied_count + 1
+	---@type string[]
+	local result = {}
+	for formatter_name in pairs(tied_formatters) do
+		table.insert(result, formatter_name)
 	end
 
-	if tied_count == 1 then
-		return shortest_path_key
-	end
-
-	-- Multiple formatters with same distance, check preferred formatters by filetype
-	local filetype = vim.bo.filetype
-	local preferred_formatters = require("conform").formatters_by_ft[filetype] or {}
-
-	for _, formatter_name in ipairs(preferred_formatters) do
-		if tied_formatters[formatter_name] then
-			return formatter_name
-		end
-	end
-
-	-- Fallback to the first tied formatter if none are in preferred list
-	return shortest_path_key
+	return result
 end
 
 function M.is_dadbod_temp_dir()
