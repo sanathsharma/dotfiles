@@ -9,7 +9,15 @@ local ts_commands = {}
 ts_commands.organize_imports = function()
 	return {
 		command = "_typescript.organizeImports",
-		arguments = { vim.api.nvim_buf_get_name(0) },
+		arguments = {
+			vim.api.nvim_buf_get_name(0),
+			{
+				-- 'All' - organizes imports including destructive actions (removing unused imports)
+				-- 'SortAndCombine' - Doesn't perform destructive actions.
+				-- 'RemoveUnused' - Only removes unused imports.
+				mode = "All",
+			},
+		},
 		title = "",
 	}
 end
