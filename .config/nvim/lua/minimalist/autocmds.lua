@@ -212,3 +212,11 @@ vim.api.nvim_create_autocmd("Filetype", {
 		require("minimalist.keymaps").setup_gitcommit_ft_keymaps()
 	end,
 })
+
+vim.api.nvim_create_autocmd("Filetype", {
+	group = vim.api.nvim_create_augroup("autoenable-spell-check", { clear = true }),
+	pattern = { "gitcommit" },
+	callback = function()
+		vim.opt.spell = true
+	end,
+})
