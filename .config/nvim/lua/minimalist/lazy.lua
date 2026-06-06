@@ -504,7 +504,7 @@ require("lazy").setup({
 
 			if hostname == "pop-os" then
 				provider = _99.Providers.OpenCodeProvider
-				model = "opencode/minimax-m2.5"
+				model = "opencode/minimax-m2.7"
 			end
 
 			_99.setup({
@@ -573,9 +573,6 @@ require("lazy").setup({
 		end,
 	},
 	"tpope/vim-unimpaired",
-	-- NOTE: Run `:Obsession` to start auto save session and then run `:source Session.vim` to restore
-	-- Use `:!Obsession` to stop auto save session
-	"tpope/vim-obsession",
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^6",
