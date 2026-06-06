@@ -5,6 +5,7 @@
 	fsmonitor = true ; Run daemon to monitor file changes to speed up git status command 
 	untrackedcache = true
 	excludesFile = "~/dotlocal/.gitignore_global"
+	pager = delta
 ; [remote.origin]
 ; 	fetch = "+refs/heads/*:refs/remotes/origin/*"
 [alias]
@@ -34,10 +35,12 @@
 	forceWithLease = true
 [rebase]
 	updateRefs = true
+; [merge]
+; 	tool = meld
+; [diff]
+; 	tool = meld
 [merge]
-	tool = meld
-[diff]
-	tool = meld
+	conflictStyle = zdiff3
 [gpg]
 	format = ssh
 [commit]
@@ -49,3 +52,13 @@
 ; setup user.name, user.email and user.signingKey in the following file
 [include]
 	path = "~/dotlocal/.gitconfig"
+	path = "~/.config/delta/catppuccin.gitconfig"
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
+	features = catppuccin-mocha
+	side-by-side = true
+	line-numbers = true
+
