@@ -4,7 +4,8 @@
 		"~/work",
 		"~/code",
 		"~/code/projects",
-		"~/code/external"
+		"~/code/external",
+		"~/code/demo"
 	],
 	"sort": "tmux"
 }
