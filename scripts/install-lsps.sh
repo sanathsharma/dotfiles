@@ -52,6 +52,10 @@ fi
 echo "Installing shfmt for shell formatting..."
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 
+# YAML
+echo "Installing YAML language server..."
+npm install -g yaml-language-server
+
 # YAML formatter
 echo "Installing yamlfmt for YAML formatting..."
 go install github.com/google/yamlfmt/cmd/yamlfmt@latest

@@ -87,6 +87,11 @@ Shell file formatter (https://github.com/mvdan/sh)
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 ```
 
+Install yaml language server
+```sh
+npm install -g yaml-language-server
+```
+
 yaml formatter (https://github.com/google/yamlfmt)
 
 ```sh
