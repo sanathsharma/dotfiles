@@ -139,11 +139,6 @@ bind --mode insert \cy forward-char
 bind --mode default --mode insert \cp history-search-backward
 bind --mode default --mode insert \cn history-search-forward
 
-# Initialization
-zoxide init --cmd cd fish | source
-# oh-my-posh init fish --config ~/.config/ohmyposh/base.toml | source
-starship init fish | source
-
 # Enable vi mode
 set -g fish_key_bindings fish_vi_key_bindings
 set -g fish_vi_force_cursor 1
@@ -212,3 +207,8 @@ set --export PATH $BUN_INSTALL/bin $PATH
 if test -e $HOME/dotlocal/local_config.fish
 	source $HOME/dotlocal/local_config.fish
 end
+
+# Initialization
+zoxide init --cmd cd fish | source
+# oh-my-posh init fish --config ~/.config/ohmyposh/base.toml | source
+starship init fish | source

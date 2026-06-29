@@ -198,6 +198,7 @@ vim.api.nvim_create_autocmd("Filetype", {
 	group = vim.api.nvim_create_augroup("spaces-instead-of-tabs", { clear = true }),
 	pattern = { "yaml" },
 	callback = function()
+		vim.opt.list = true
 		vim.opt.shiftwidth = 2
 		vim.opt.expandtab = true
 		vim.opt.tabstop = 2
