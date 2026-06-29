@@ -307,7 +307,7 @@ require("lazy").setup({
 			sources = {
 				default = { "lazydev", "lsp", "path", "snippets", "buffer" },
 				per_filetype = {
-					sql = { "dadbod" },
+					sql = { "dadbod", "snippets" },
 				},
 				providers = {
 					dadbod = { module = "vim_dadbod_completion.blink" },
