@@ -142,3 +142,6 @@ export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 . "$HOME/.deno/env"
 
 export PATH="$HOME/.opencode/bin:$PATH"
+
+# Added by GitButler installer
+eval "$(but completions zsh)"
