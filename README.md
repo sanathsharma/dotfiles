@@ -273,6 +273,10 @@ cargo binstall rustowl
 cargo install git-delta
 ```
 
+### Install git-buttler
+
+See https://docs.gitbutler.com/ai-agents/getting-started#install-the-but-cli
+
 ### Install bluetooth and wifi tui's
 
 Install deps
