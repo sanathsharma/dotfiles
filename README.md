@@ -273,6 +273,12 @@ cargo binstall rustowl
 cargo install git-delta
 ```
 
+### Install gh-dash githuh cli extension
+
+```sh
+gh extension install gh-dash
+```
+
 ### Install git-buttler
 
 See https://docs.gitbutler.com/ai-agents/getting-started#install-the-but-cli
