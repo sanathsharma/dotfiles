@@ -212,3 +212,6 @@ end
 zoxide init --cmd cd fish | source
 # oh-my-posh init fish --config ~/.config/ohmyposh/base.toml | source
 starship init fish | source
+
+# Added by GitButler installer
+but completions fish | source
