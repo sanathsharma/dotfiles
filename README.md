@@ -283,6 +283,13 @@ gh extension install gh-dash
 
 See https://docs.gitbutler.com/ai-agents/getting-started#install-the-but-cli
 
+### Install lua runtime, to run cli scripts
+
+```sh
+brew install lua luarocks
+luarocks install argparse
+```
+
 ### Install bluetooth and wifi tui's
 
 Install deps
