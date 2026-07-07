@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd("Filetype", {
 		end
 
 		vim.opt.colorcolumn = tostring(max_width)
-		vim.opt.expandtab = false -- Use tabs instead of spaces
+		vim.opt.expandtab = true -- Use tabs instead of spaces
 		vim.opt.shiftwidth = tab_spaces -- Size of an indent
 		vim.opt.shiftround = true -- Round indent to multiple of shiftwidth
 		vim.opt.tabstop = tab_spaces -- Number of spaces tabs count for

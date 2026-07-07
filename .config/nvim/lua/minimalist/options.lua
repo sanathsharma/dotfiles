@@ -30,6 +30,7 @@ function M.setup()
 	vim.opt.splitbelow = true -- Vertical splits below the current window
 	vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 	-- vim.opt.exrc = true -- Read .nvimrc,.nvim.lua,.exrc in the current directory
+	vim.opt.list = true -- Show whitespace
 end
 
 function M.setup_fold_opts()
