@@ -279,6 +279,12 @@ cargo install git-delta
 gh extension install gh-dash
 ```
 
+### Install television
+
+```sh
+brew install television
+```
+
 ### Install git-buttler
 
 See https://docs.gitbutler.com/ai-agents/getting-started#install-the-but-cli

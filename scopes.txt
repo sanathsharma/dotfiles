@@ -19,6 +19,7 @@ posting
 readme
 scripts
 starship
+television
 tmux
 worktree
 yazi
