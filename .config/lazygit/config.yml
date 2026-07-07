@@ -10,6 +10,10 @@ customCommands:
     context: "commits"
     command: "git commit --amend --no-verify --no-edit"
     description: "Amend commit w/o running the pre-commit hook"
+  - key: "<c-n>"
+    context: "commits"
+    command: "git commit --allow-empty --allow-empty-message --only -m ''"
+    description: "Amend commit w/o running the pre-commit hook"
   - key: "C"
     context: "files"
     command: "sh ~/scripts/commit.sh"
@@ -31,26 +35,32 @@ customCommands:
 gui:
   theme:
     activeBorderColor:
-      - "#89b4fa"
+      - '#89b4fa'
       - bold
     inactiveBorderColor:
-      - "#a6adc8"
-    optionsTextColor:
-      - "#89b4fa"
-    selectedLineBgColor:
-      - "#313244"
-    cherryPickedCommitBgColor:
-      - "#45475a"
-    cherryPickedCommitFgColor:
-      - "#89b4fa"
-    unstagedChangesColor:
-      - "#f38ba8"
-    defaultFgColor:
-      - "#cdd6f4"
+      - '#a6adc8'
     searchingActiveBorderColor:
-      - "#f9e2af"
+      - '#f9e2af'
+    optionsTextColor:
+      - '#89b4fa'
+    selectedLineBgColor:
+      - '#313244'
+    inactiveViewSelectedLineBgColor:
+      - '#6c7086'
+    cherryPickedCommitFgColor:
+      - '#89b4fa'
+    cherryPickedCommitBgColor:
+      - '#45475a'
+    markedBaseCommitFgColor:
+      - '#89b4fa'
+    markedBaseCommitBgColor:
+      - '#f9e2af'
+    unstagedChangesColor:
+      - '#f38ba8'
+    defaultFgColor:
+      - '#cdd6f4'
   authorColors:
-    "*": "#b4befe"
+    '*': '#b4befe'
 git:
   autoForwardBranches: "allBranches"
   overrideGpg: true
