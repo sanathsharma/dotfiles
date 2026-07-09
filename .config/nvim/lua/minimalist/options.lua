@@ -3,8 +3,6 @@ local M = {}
 function M.setup()
 	vim.g.mapleader = " " -- Set leader key to space
 	vim.g.maplocalleader = "\\" -- Set local leader key to backslash
-	vim.opt.relativenumber = true -- Show relative line numbers
-	vim.opt.number = true -- Show absolute line number for current line
 	vim.opt.colorcolumn = "100,120" -- Show vertical lines at columns 100 and 120
 	vim.opt.cursorline = true -- Highlight current line
 	vim.opt.cursorcolumn = true -- Highlight current column
@@ -14,7 +12,6 @@ function M.setup()
 	vim.opt.tabstop = 2 -- Number of spaces tabs count for
 	vim.opt.softtabstop = 2 -- Number of spaces for a tab when editing
 	vim.opt.scrolloff = 3 -- Keep 3 lines visible above/below cursor
-	vim.opt.signcolumn = "yes:1" -- Always show sign column
 	vim.opt.hlsearch = true -- Highlight search matches
 	vim.opt.incsearch = true -- Show search matches as you type
 	vim.opt.showbreak = "↪·" -- Indicate a line break in a long line of text
@@ -31,13 +28,20 @@ function M.setup()
 	vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 	-- vim.opt.exrc = true -- Read .nvimrc,.nvim.lua,.exrc in the current directory
 	vim.opt.list = true -- Show whitespace
+
+	-- Status columns configuration
+	vim.opt.statuscolumn = "%s%=%l %C "
+	vim.opt.signcolumn = "yes:2" -- Show sign column, 2 columns
+	vim.opt.relativenumber = true -- Show relative line numbers
+	vim.opt.number = true -- Show absolute line number for current line
 end
 
 function M.setup_fold_opts()
-	vim.opt.foldcolumn = "0"
+	vim.opt.foldcolumn = "1" -- Show fold column, only 1
 	vim.opt.foldlevel = 99
 	vim.opt.foldlevelstart = 99
 	vim.opt.foldenable = true
+	vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldinner: ,foldclose:"
 end
 
 function M.setup_undodir_opts()

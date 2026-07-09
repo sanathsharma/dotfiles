@@ -484,7 +484,6 @@ function M.setup_lazy_module_keymaps()
 			{ "<leader>l", "", desc = "+lazy" },
 			{ "<leader>ld", "<cmd>Lazy load nvim-dap-view<cr>", desc = "Lazy load dap setup" },
 			{ "<leader>lt", "<cmd>Lazy load neotest<cr>", desc = "Lazy load neotest" },
-			{ "<leader>lf", "<cmd>Lazy load nvim-ufo<cr>", desc = "Lazy load folds" },
 			{ "<leader>lD", "<cmd>Lazy load diffview.nvim<cr>", desc = "Lazy load diffview" },
 		},
 	})

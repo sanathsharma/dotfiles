@@ -461,6 +461,7 @@ require("lazy").setup({
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("gitsigns").setup({
+				sign_priority = 11,
 				signs = {
 					add = { text = "+" },
 					change = { text = "~" },
@@ -652,7 +653,9 @@ require("lazy").setup({
 	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = { "kevinhwang91/promise-async" },
-		lazy = true,
+		init = function()
+			require("minimalist.options").setup_fold_opts()
+		end,
 		config = function()
 			require("ufo").setup({
 				provider_selector = function(bufnr, filetype, buftype)
@@ -660,7 +663,6 @@ require("lazy").setup({
 				end,
 			})
 
-			require("minimalist.options").setup_fold_opts()
 			require("minimalist.keymaps").setup_fold_keymaps()
 		end,
 	},
