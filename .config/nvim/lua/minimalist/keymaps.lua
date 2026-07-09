@@ -322,12 +322,11 @@ function M.setup_luasnip_keymaps()
 end
 
 function M.setup_rustaceanvim_keymaps()
-	local bufnr = vim.api.nvim_get_current_buf()
 	require("which-key").add({
 		{
 			mode = { "n" },
 			silent = true,
-			buffer = bufnr,
+			buffer = 0,
 			noremap = true,
 			{
 				"<leader>a",
