@@ -112,6 +112,9 @@ require("lazy").setup({
 		branch = "main",
 		lazy = false,
 		build = ":TSUpdate",
+		init = function()
+			require("minimalist.options").setup_fold_opts()
+		end,
 		config = function()
 			require("minimalist.treesitter").setup_autocmds()
 		end,
@@ -650,17 +653,6 @@ require("lazy").setup({
 		end,
 	},
 	{ "j-hui/fidget.nvim", version = "*", opts = {} },
-	{
-		"kevinhwang91/nvim-ufo",
-		dependencies = { "kevinhwang91/promise-async" },
-		init = function()
-			require("minimalist.options").setup_fold_opts()
-		end,
-		config = function()
-			require("minimalist.folds").setup()
-			require("minimalist.keymaps").setup_fold_keymaps()
-		end,
-	},
 	{ "godlygeek/tabular" },
 	{ "tpope/vim-fugitive" },
 	{ "sindrets/diffview.nvim", lazy = true },
