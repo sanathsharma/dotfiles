@@ -1,0 +1,12 @@
+columns:
+- id
+- status
+- name
+- host
+- compose
+- cpu
+- memory
+- net_tx
+- net_rx
+- uptime
+- restarts

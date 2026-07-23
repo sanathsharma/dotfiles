@@ -3,6 +3,7 @@ aerospace
 aipack
 alacrity
 delta
+dtop
 fish
 git
 gitui
