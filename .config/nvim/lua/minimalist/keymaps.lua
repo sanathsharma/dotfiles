@@ -200,17 +200,6 @@ function M.setup()
 			{ "<C-u>", "<C-u>zz" },
 			{ "U", "<C-r>" },
 
-			-- Leap
-			{
-				"gw",
-				"<Plug>(leap)",
-				desc = "Leap anywhere",
-			},
-			{
-				"gW",
-				"<Plug>(leap-from-window)",
-				desc = "Leap from window",
-			},
 			{ "<A-j>", "<cmd>move .+1==<cr>", noremap = true, silent = true },
 			{ "<A-k>", "<cmd>move .-2==<cr>", noremap = true, silent = true },
 
@@ -616,27 +605,56 @@ function M.setup_scribble_keymaps()
 	})
 end
 
+local flash_utils = {}
+
+function flash_utils.jump()
+	require("flash").jump()
+end
+
+function flash_utils.treesitter()
+	require("flash").treesitter({
+		actions = {
+			["<Up>"] = "next",
+			["<Down>"] = "prev",
+		},
+	})
+end
+
 function M.setup_flash_keymaps()
 	require("which-key").add({
 		{
-			mode = { "n", "x", "o" },
-			{
-				"gw",
-				"<cmd>lua require('flash').jump()<cr>",
-				desc = "Flash",
-			},
-			{
-				"<leader>xt",
-				function()
-					require("flash").treesitter({
-						actions = {
-							["<Up>"] = "next",
-							["<Down>"] = "prev",
-						},
-					})
-				end,
-				desc = "Treesitter incremental selection",
-			},
+			mode = { "n" },
+			{ "gw", flash_utils.jump, desc = "Flash" },
+			{ "gW", flash_utils.treesitter, desc = "Flash Treesitter" },
+		},
+		{
+			mode = { "x", "o" },
+			{ "s", flash_utils.jump, desc = "Flash" },
+			{ "S", flash_utils.treesitter, desc = "Flash Treesitter" },
+		},
+		{
+			"r",
+			mode = "o",
+			function()
+				require("flash").remote()
+			end,
+			desc = "Remote Flash",
+		},
+		{
+			"R",
+			mode = { "o", "x" },
+			function()
+				require("flash").treesitter_search()
+			end,
+			desc = "Treesitter Search",
+		},
+		{
+			"<c-s>",
+			mode = { "c" },
+			function()
+				require("flash").toggle()
+			end,
+			desc = "Toggle Flash Search",
 		},
 	})
 end
