@@ -508,7 +508,7 @@ require("lazy").setup({
 
 			if hostname == "pop-os" then
 				provider = _99.Providers.OpenCodeProvider
-				model = "opencode/minimax-m2.7"
+				model = "opencode/minimax-m3"
 			end
 
 			_99.setup({
