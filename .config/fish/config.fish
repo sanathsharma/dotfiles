@@ -182,14 +182,14 @@ function w
 	end
 end
 
-function tmsw
+function sesh_load_worktree
 	set result (worktree $argv)
 	if test -n "$result"
 		sesh connect $result
 	end
 end
 
-function tms
+function sesh_load
   set result (sesh list | fzf)
   if test -n "$result"
     sesh connect $result
