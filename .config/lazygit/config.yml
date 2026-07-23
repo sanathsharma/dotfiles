@@ -13,7 +13,7 @@ customCommands:
   - key: "<c-n>"
     context: "commits"
     command: "git commit --allow-empty --allow-empty-message --only -m ''"
-    description: "Amend commit w/o running the pre-commit hook"
+    description: "Create empty commit"
   - key: "C"
     context: "files"
     command: "sh ~/scripts/commit.sh"
