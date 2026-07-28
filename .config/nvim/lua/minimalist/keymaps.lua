@@ -191,6 +191,17 @@ function M.setup()
 				"\"+yy",
 				desc = "Yank current line into system clipboard",
 			},
+			{
+				"<leader>p",
+				"\"_dP",
+				desc = "Paste without yanking",
+			},
+			{
+				mode = { "n", "v" },
+				"<leader>X",
+				"\"_d",
+				desc = "Delete without yanking"
+			},
 
 			-- Remaps
 			{ "<Esc>", "<cmd>nohlsearch<CR>" },
@@ -722,7 +733,7 @@ end
 
 M.setup_treesitter_textobjects_keymaps = function()
 	local select_textobject = require("nvim-treesitter-textobjects.select").select_textobject
-	local swap = require("nvim-treesitter-textobjects.swap")
+	-- local swap = require("nvim-treesitter-textobjects.swap")
 
 	require("which-key").add({
 		{

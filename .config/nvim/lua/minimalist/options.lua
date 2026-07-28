@@ -6,18 +6,26 @@ function M.setup()
 	vim.opt.colorcolumn = "100,120" -- Show vertical lines at columns 100 and 120
 	vim.opt.cursorline = true -- Highlight current line
 	vim.opt.cursorcolumn = true -- Highlight current column
+
+	-- Indent options
 	vim.opt.expandtab = false -- Use tabs instead of spaces
 	vim.opt.shiftwidth = 2 -- Size of an indent
 	vim.opt.shiftround = true -- Round indent to multiple of shiftwidth
 	vim.opt.tabstop = 2 -- Number of spaces tabs count for
 	vim.opt.softtabstop = 2 -- Number of spaces for a tab when editing
+	vim.opt.smartindent = true -- Smart autoindenting
+	vim.opt.autoindent = true -- Copy indent from current line
+
 	vim.opt.scrolloff = 3 -- Keep 3 lines visible above/below cursor
 	vim.opt.hlsearch = true -- Highlight search matches
 	vim.opt.incsearch = true -- Show search matches as you type
-	vim.opt.showbreak = "↪·" -- Indicate a line break in a long line of text
-	vim.opt.listchars = "eol:⏎,tab:⇾·,trail:·,nbsp:⎵,extends:»,precedes:«,space:·"
 	vim.opt.ignorecase = true -- Ignore case in search
 	vim.opt.smartcase = true -- Ignore case if search pattern is all lowercase
+
+	vim.opt.showbreak = "↪·" -- Indicate a line break in a long line of text
+	vim.opt.listchars = "eol:⏎,tab:⇾·,trail:·,nbsp:⎵,extends:»,precedes:«,space:·"
+	vim.opt.list = true -- Show list chars
+
 	vim.opt.inccommand = "split" -- Incrementally show the matching lines in a horizontal split view
 	vim.opt.swapfile = false -- Disable swap file
 	vim.opt.conceallevel = 0 -- Hide all concealables
@@ -27,7 +35,16 @@ function M.setup()
 	vim.opt.splitbelow = true -- Vertical splits below the current window
 	vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 	-- vim.opt.exrc = true -- Read .nvimrc,.nvim.lua,.exrc in the current directory
-	vim.opt.list = true -- Show whitespace
+	vim.opt.showmatch = true -- Highlight matching brackets
+	vim.opt.updatetime = 300 -- Faster completion
+	vim.opt.autoread = true -- Automatically read changed files from outside Neovim
+	vim.opt.autowrite = false
+	vim.opt.autochdir = false
+	vim.opt.iskeyword:append("-") -- Don't consider words with '-' as keywords
+	vim.opt.selection = "inclusive"
+	-- vim.opt.clipboard:append("unnamedplus")
+	vim.opt.encoding = "utf-8"
+	vim.opt.termguicolors = true
 
 	-- Status columns configuration
 	vim.opt.statuscolumn = "%s%=%l %C "
