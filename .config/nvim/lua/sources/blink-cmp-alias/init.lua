@@ -75,13 +75,17 @@ function source.new(opts)
 end
 
 function source:get_completions(ctx, callback)
+	local function cancel() end
+
 	if is_subcommand(ctx) then
-		return callback({ items = {}, is_incomplete_forward = false, is_incomplete_backward = false })
+		callback({ items = {}, is_incomplete_forward = false, is_incomplete_backward = false })
+		return cancel
 	end
 
 	local items = create_completion_items(self.aliases)
 
 	callback({ items = items, is_incomplete_forward = false, is_incomplete_backward = false })
+	return cancel
 end
 
 return source

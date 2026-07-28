@@ -503,6 +503,7 @@ require("lazy").setup({
 			local cwd = vim.uv.cwd()
 			local basename = vim.fs.basename(cwd)
 			local hostname = vim.uv.os_gethostname()
+			---@type _99.Providers.BaseProvider
 			local provider = _99.Providers.ClaudeCodeProvider
 			local model = "claude-sonnet-4-5"
 
@@ -590,7 +591,7 @@ require("lazy").setup({
 		"saecki/crates.nvim",
 		event = { "BufRead Cargo.toml" },
 		config = function()
-			require("crates").setup()
+			require("crates").setup({})
 		end,
 	},
 	-- Debug adapters setup
@@ -833,6 +834,7 @@ require("lazy").setup({
 				treesitter_context = true,
 				which_key = true,
 			},
+			---@diagnostic disable-next-line: unused-local
 			custom_highlights = function(colors)
 				return {
 					CursorLine = { bg = "#2a2b3d" },

@@ -692,7 +692,7 @@ function M.setup_99_keymaps()
 			{
 				"<leader>ps",
 				function()
-					_99.search()
+					_99.search({})
 				end,
 				desc = "99: Search",
 			},
@@ -723,7 +723,7 @@ function M.setup_99_keymaps()
 			{
 				"<leader>pv",
 				function()
-					_99.visual()
+					_99.visual({})
 				end,
 				desc = "99: Replace selection with AI output",
 			},

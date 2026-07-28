@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 })
 
 -- Set default options for rust
-vim.api.nvim_create_autocmd("Filetype", {
+vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "rust" },
 	callback = function()
 		local default_max_width = 80
@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd("Filetype", {
 
 		-- Try to read rustfmt.toml configuration
 		local rustfmt_path = vim.fn.findfile("rustfmt.toml", ".;")
-		if rustfmt_path ~= "" then
+		if type(rustfmt_path) == "string" and rustfmt_path ~= "" then
 			local file = io.open(rustfmt_path, "r")
 			if file then
 				local content = file:read("*all")
@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd("Filetype", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("Filetype", {
+vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "markdown" },
 	callback = function()
 		if
@@ -80,6 +80,11 @@ vim.api.nvim_create_autocmd("Filetype", {
 -- restore cursor to file position in previous editing session
 vim.api.nvim_create_autocmd("BufReadPost", {
 	callback = function(args)
+		-- skip if in diff mode
+		if vim.o.diff then
+			return
+		end
+
 		local mark = vim.api.nvim_buf_get_mark(args.buf, "\"")
 		local line_count = vim.api.nvim_buf_line_count(args.buf)
 		if mark[1] > 0 and mark[1] <= line_count then
@@ -194,7 +199,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("Filetype", {
+vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("spaces-instead-of-tabs", { clear = true }),
 	pattern = { "yaml" },
 	callback = function()
@@ -206,7 +211,7 @@ vim.api.nvim_create_autocmd("Filetype", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("Filetype", {
+vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("gitcommit-keymaps-load", { clear = true }),
 	pattern = { "gitcommit" },
 	callback = function()
@@ -214,7 +219,7 @@ vim.api.nvim_create_autocmd("Filetype", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("Filetype", {
+vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("autoenable-spell-check", { clear = true }),
 	pattern = { "gitcommit" },
 	callback = function()

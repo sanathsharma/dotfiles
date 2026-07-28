@@ -249,9 +249,10 @@ local function lsp_rename_word(old_word, new_word)
 	end
 
 	-- Perform LSP rename
-	local params = vim.lsp.util.make_position_params()
+	local params = vim.lsp.util.make_position_params(0, "utf-8")
 	params.newName = new_word
 
+	---@diagnostic disable-next-line: unused-local
 	vim.lsp.buf_request(0, "textDocument/rename", params, function(err, result, ctx, config)
 		if err then
 			vim.notify("LSP rename failed: " .. err.message, vim.log.levels.ERROR)
