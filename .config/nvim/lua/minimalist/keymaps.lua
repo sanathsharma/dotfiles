@@ -200,7 +200,7 @@ function M.setup()
 				mode = { "n", "v" },
 				"<leader>X",
 				"\"_d",
-				desc = "Delete without yanking"
+				desc = "Delete without yanking",
 			},
 
 			-- Remaps
@@ -279,6 +279,11 @@ function M.setup_toggle_keymaps()
 					require("fidget").notify("Diagnositics virtual text: " .. tostring(virtual_text_enabled), vim.log.levels.INFO)
 				end,
 				desc = "Toggle diagnostics virtual text",
+			},
+			{
+				"<leader>ts",
+				"<cmd>SupermavenToggle<cr>",
+				desc = "Toggle supermaven code completions",
 			},
 		},
 	})
