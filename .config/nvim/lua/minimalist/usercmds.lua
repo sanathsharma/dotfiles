@@ -135,7 +135,14 @@ vim.api.nvim_create_user_command("BiomeCheck", function()
 	-- Save buffer first
 	vim.cmd("write")
 
-	local cmd = string.format("biome check --write \"%s\"", current_file)
+	local biome_bin = vim.fs.find("node_modules/.bin/biome", {
+		path = vim.fn.fnamemodify(current_file, ":h"),
+		upward = true,
+		stop = vim.loop.os_homedir(),
+		type = "file",
+	})[1] or "biome"
+
+	local cmd = string.format("%s check --write %s", vim.fn.shellescape(biome_bin), vim.fn.shellescape(current_file))
 	local output = vim.fn.system(cmd)
 	local exit_code = vim.v.shell_error
 
