@@ -282,6 +282,12 @@ cargo install git-delta
 gh extension install gh-dash
 ```
 
+### Install hunk
+
+```sh
+brew install hunk
+```
+
 ### Install television
 
 ```sh
