@@ -502,15 +502,15 @@ require("lazy").setup({
 			local _99 = require("99")
 			local cwd = vim.uv.cwd()
 			local basename = vim.fs.basename(cwd)
-			local hostname = vim.uv.os_gethostname()
+			-- local hostname = vim.uv.os_gethostname()
 			---@type _99.Providers.BaseProvider
 			local provider = _99.Providers.ClaudeCodeProvider
-			local model = "claude-sonnet-4-5"
+			local model = "claude-sonnet-5"
 
-			if hostname == "pop-os" then
-				provider = _99.Providers.OpenCodeProvider
-				model = "opencode/minimax-m3"
-			end
+			-- if hostname == "pop-os" then
+			-- 	provider = _99.Providers.OpenCodeProvider
+			-- 	model = "opencode/minimax-m3"
+			-- end
 
 			_99.setup({
 				provider = provider,
@@ -654,8 +654,6 @@ require("lazy").setup({
 		end,
 	},
 	{ "j-hui/fidget.nvim", version = "*", opts = {} },
-	{ "godlygeek/tabular" },
-	{ "tpope/vim-fugitive" },
 	{ "sindrets/diffview.nvim", lazy = true },
 	{
 		"NeogitOrg/neogit",
@@ -803,61 +801,11 @@ require("lazy").setup({
 	},
 	-- Themes
 	{
-		"folke/tokyonight.nvim",
-		lazy = true,
-		opts = {},
-	},
-	{
 		"catppuccin/nvim",
-		lazy = true,
 		name = "catppuccin",
-		opts = {
-			flavour = "mocha",
-			integrations = {
-				flash = true,
-				fzf = true,
-				gitsigns = true,
-				indent_blankline = { enabled = true },
-				leap = true,
-				mini = true,
-				native_lsp = {
-					enabled = true,
-					underlines = {
-						errors = { "undercurl" },
-						hints = { "undercurl" },
-						warnings = { "undercurl" },
-						information = { "undercurl" },
-					},
-				},
-				snacks = true,
-				treesitter = true,
-				treesitter_context = true,
-				which_key = true,
-			},
-			---@diagnostic disable-next-line: unused-local
-			custom_highlights = function(colors)
-				return {
-					CursorLine = { bg = "#2a2b3d" },
-					CursorColumn = { bg = "#2a2b3d" },
-					ColorColumn = { bg = "#2a2b3d" },
-					-- ColorColumn = { bg = "#313244" },
-					-- Whitespace = { fg = "NvimDarkGray4" },
-				}
-			end,
-		},
-	},
-	{ "EdenEast/nightfox.nvim", name = "nightfox", lazy = true },
-	{ "rose-pine/neovim", name = "rosepine", lazy = true },
-	{ "projekt0n/github-nvim-theme", name = "github-theme", lazy = true },
-	-- Custom plugins
-	{
-		-- dir = "~/personal/scribble.nvim",
-		-- dir = "~/code/scribble.nvim",
-		"sanathsharma/scribble.nvim",
 		config = function()
-			vim.g.scribble_dir = "~/vaults/scribble"
-			require("scribble").setup()
-			require("minimalist.keymaps").setup_scribble_keymaps()
-		end,
+			require("minimalist.colorscheme").setup()
+		end
 	},
 }, {})
+
