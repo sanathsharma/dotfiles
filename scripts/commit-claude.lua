@@ -43,7 +43,11 @@ log("[debug] Found staged changes")
 log("[debug] Generating commit message with Claude...")
 
 local err_file = os.tmpname()
-local handle = io.popen('echo "/commit" | claude --print --model sonnet 2>"' .. err_file .. '"')
+local handle = io.popen('echo "/commit" | claude --print --model sonnet --allowedTools "Bash(git diff *),Bash(git log *)" 2>"' .. err_file .. '"')
+if not handle then
+	io.stderr:write("Error: Failed to run Claude\n")
+	os.exit(1)
+end
 local commit_msg = handle:read("*a")
 handle:close()
 commit_msg = commit_msg:gsub("%s+$", "")
@@ -98,6 +102,10 @@ log("[debug] Proceeding with commit...")
 
 local temp_msg = os.tmpname()
 local f = io.open(temp_msg, "w")
+if not f then
+	print("Error: Failed to create temporary file")
+	os.exit(1)
+end
 f:write(commit_msg .. "\n")
 f:close()
 

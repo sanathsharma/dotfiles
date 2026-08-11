@@ -2,7 +2,7 @@ Generate a conventional commit message for the staged changes.
 
 ## Steps
 
-1. Run `git diff --cached` to get staged changes. If nothing is staged, say so and stop.
+1. Run `git diff --staged` to get staged changes. If nothing is staged, say so and stop.
 
 2. Run `git log --no-merges -10 --pretty=format:"%s"` to get recent commit history (skip merge commits). Use the first 5 non-merge messages.
 
