@@ -953,7 +953,7 @@ M.setup_gitcommit_ft_keymaps = function()
 			mode = { "n" },
 			{
 				"<c-c><c-g>",
-				"<cmd>read !COMMIT_PRINT_ONLY=1 ./scripts/commit-claude.sh<cr>",
+				"<cmd>read !./scripts/commit-claude.lua --print<cr>",
 				desc = "Commit with claude code",
 			},
 		},

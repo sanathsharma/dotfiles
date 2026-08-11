@@ -43,7 +43,7 @@ BREAKING CHANGE: /v1/* routes no longer exist
 - Footer: `BREAKING CHANGE:` if applicable, after a blank line
 - No markdown formatting in the output — no bold, no backticks, no headers, plain text only
 
-Print only the raw commit message, nothing else — no explanation, no code fences, no labels.
+Your entire response must be exactly the commit message and nothing else. The very first characters of your response must be the commit type (or `[prefix]` if applicable). Do not explain your reasoning, describe the changes, or add any text before or after the message — no explanation, no code fences, no labels.
 
 Example output:
 feat(auth): add OAuth2 login flow
