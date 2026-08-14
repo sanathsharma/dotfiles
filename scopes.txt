@@ -8,6 +8,7 @@ fish
 git
 gitui
 helix
+hunk
 ideavim
 kitty
 lazygit
