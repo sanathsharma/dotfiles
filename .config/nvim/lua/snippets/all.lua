@@ -18,4 +18,10 @@ ls.add_snippets("all", {
 			return os.date("!%Y-%m-%dT%TZ")
 		end)
 	),
+	s(
+		"timestamp",
+		f(function()
+			return os.time()
+		end)
+	),
 })
