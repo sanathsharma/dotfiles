@@ -736,7 +736,7 @@ function M.setup_99_keymaps()
 	})
 end
 
-M.setup_treesitter_textobjects_keymaps = function()
+function M.setup_treesitter_textobjects_keymaps()
 	local select_textobject = require("nvim-treesitter-textobjects.select").select_textobject
 	-- local swap = require("nvim-treesitter-textobjects.swap")
 
@@ -900,6 +900,10 @@ M.setup_terminal_keymaps = function()
 				end,
 				desc = "Open terminal",
 			},
+		},
+		{
+			mode = { "t" },
+			{ "<Esc>", "<C-\\><C-N>" },
 		},
 	})
 end
