@@ -86,6 +86,10 @@ npm install -g stylelint-lsp
 echo "Installing SQL formatter..."
 npm install -g sql-formatter
 
+# C/C++
+echo "Installing LLVM (clangd) and clang-format for C/C++..."
+brew install llvm clang-format
+
 echo ""
 echo "LSP installation complete!"
 echo ""
