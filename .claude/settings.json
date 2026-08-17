@@ -1,14 +1,14 @@
 {
-	"model": "claude-fable-5[1m]",
-	"enabledPlugins": {
-		"typescript-lsp@claude-plugins-official": true,
-		"rust-analyzer-lsp@claude-plugins-official": true,
-		"lua-lsp@claude-plugins-official": true,
-		"mattpocock-skills@claude-plugins-official": true
-	},
-	"tui": "fullscreen",
-	"statusLine": {
-		"type": "command",
-		"command": "npx ccstatusline"
-	}
+  "model": "sonnet",
+  "statusLine": {
+    "type": "command",
+    "command": "npx ccstatusline"
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "mattpocock-skills@claude-plugins-official": true
+  },
+  "tui": "fullscreen"
 }
