@@ -40,6 +40,7 @@ abbr -a ta "tmux a"
 abbr -a wifi "impala"
 abbr -a bluetooth "bluetui"
 abbr -a commit "sh ~/scripts/commit.sh"
+abbr -a h "hunk diff"
 
 set os (uname)
 if test $os = "Darwin"
