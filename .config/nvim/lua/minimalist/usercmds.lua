@@ -195,3 +195,12 @@ vim.api.nvim_create_user_command("BiomeOrganizeImports", function()
 	})
 	require("fidget").notify("Organizing imports w/ biome", vim.log.levels.INFO)
 end, {})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "json",
+	callback = function(args)
+		vim.api.nvim_buf_create_user_command(args.buf, "JqMinify", function()
+			vim.cmd("%!jq -c .")
+		end, { desc = "Minify JSON using jq" })
+	end,
+})
