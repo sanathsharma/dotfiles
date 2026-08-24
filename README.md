@@ -270,6 +270,10 @@ cargo install cargo-binstall
 cargo binstall rustowl
 ```
 
+Or see the docs for installtion script
+
+https://github.com/cordx56/rustowl/blob/main/docs/installation.md#quick-start
+
 ### Install delta diffing tool for git commands
 
 ```sh
