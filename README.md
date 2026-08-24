@@ -276,6 +276,12 @@ cargo binstall rustowl
 cargo install git-delta
 ```
 
+### Install github cli
+
+```sh
+brew install gh
+```
+
 ### Install gh-dash githuh cli extension
 
 ```sh
@@ -349,3 +355,16 @@ This requires system restart, alrenatively run `newgrp netdev` to use without re
 sudo usermod -aG netdev $USER
 ```
 
+### Setup pass with gpg
+
+1. Install gnupg if not yet installed "sudo apt install gnupg"
+2. Generate a key with "gpg --full-generate-key"
+3. All the keys can be listed with "gpg --list-keys"
+4. The long hex string is the key id that can be used in "pass init <key-id>"
+5. Or you can use the email-id from the key instead like so "pass init <email-id>"
+
+### Install kitty
+
+see https://sw.kovidgoyal.net/kitty/binary/#binary-install
+
+add the kitty.desktop as per the docs for the kitty shortcut show up in the menu/launcher

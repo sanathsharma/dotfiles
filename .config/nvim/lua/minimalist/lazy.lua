@@ -406,6 +406,7 @@ require("lazy").setup({
 					typescript = { "biome-check", "prettierd", stop_after_first = true },
 					typescriptreact = { "biome-check", "prettierd", stop_after_first = true },
 					yaml = { "yamlfmt" },
+					toml = { "taplo" },
 				},
 				formatters = {
 					sql_formatter = {
@@ -805,7 +806,6 @@ require("lazy").setup({
 		name = "catppuccin",
 		config = function()
 			require("minimalist.colorscheme").setup()
-		end
+		end,
 	},
 }, {})
-

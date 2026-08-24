@@ -27,3 +27,9 @@ See https://github.com/obra/superpowers for more info and installation steps
 
 superpowers is enabled by default when installed, so when you use mattpocock/skills, some of the instructions shall
 collide, so its better to use one of the other.
+
+### Install pstack's unslop skill
+
+```sh
+npx skills add https://github.com/cursor/plugins --skill unslop
+```
