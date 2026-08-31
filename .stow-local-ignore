@@ -7,3 +7,15 @@ scopes.txt
 .luarc.json
 .idea
 Session.vim
+CLAUDE.md
+.claude/
+!.calude/settings.json
+!.calude/CLAUDE.md
+tmp/
+AI.md
+CLAUDE.md
+DAP.md
+REAMDE.md
+SSH.md
+stylua.toml
+

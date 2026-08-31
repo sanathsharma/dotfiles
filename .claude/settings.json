@@ -10,5 +10,7 @@
     "lua-lsp@claude-plugins-official": true,
     "mattpocock-skills@claude-plugins-official": true
   },
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "autoMemoryEnabled": false,
+  "agentPushNotifEnabled": true
 }

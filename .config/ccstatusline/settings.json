@@ -20,10 +20,12 @@
         "id": "4",
         "type": "separator"
       },
-      {
+			{
         "id": "5",
-        "type": "git-branch",
-        "color": "magenta"
+        "type": "context-percentage",
+        "color": "yellow",
+        "bold": true,
+        "rawValue": true
       },
       {
         "id": "6",
@@ -31,6 +33,15 @@
       },
       {
         "id": "7",
+        "type": "git-branch",
+        "color": "magenta"
+      },
+      {
+        "id": "8",
+        "type": "separator"
+      },
+      {
+        "id": "9",
         "type": "git-changes",
         "color": "yellow"
       }
