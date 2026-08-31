@@ -40,3 +40,5 @@ kitty-override.conf
 !.claude/CLAUDE.md
 !.claude/commands
 Session.vim
+.bashrc
+.zshrc

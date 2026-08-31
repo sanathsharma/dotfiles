@@ -20,7 +20,7 @@ apt install xclip
 brew install fish
 
 # Set default shell to fish
-chsh -s /usr/bin/fish
+chsh -s $(which fish)
 
 # Install fisher, plugin manager for fish
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
@@ -38,7 +38,7 @@ apt install gcc build-essential
 brew install lazygit lazydocker
 
 # Install dtop, alternative/addon to lazydocker
-cargo binstall dtop
+brew install dtop
 
 brew install ripgrep fd
 
@@ -70,7 +70,7 @@ source ~/.config/fish/config.fish
 rustup component add rust-analyzer
 
 # Install yazi terminal UI file manager
-cargo install --locked yazi-fm yazi-cli
+brew install yazi
 
 # Install tree-sitter-cli for neovim treesitter parser installations
 brew install tree-sitter-cli
@@ -214,12 +214,6 @@ gh extension install gh-dash
 
 ```sh
 brew install hunk
-```
-
-### Install television
-
-```sh
-brew install television
 ```
 
 ### Install git-buttler

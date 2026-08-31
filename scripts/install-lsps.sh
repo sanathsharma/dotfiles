@@ -62,9 +62,7 @@ go install github.com/google/yamlfmt/cmd/yamlfmt@latest
 
 # Lua formatter
 echo "Installing stylua for Lua formatting..."
-if command -v cargo >/dev/null 2>&1; then
-	cargo install stylua
-elif command -v brew >/dev/null 2>&1; then
+if command -v brew >/dev/null 2>&1; then
 	brew install stylua
 else
 	echo "Warning: Neither cargo nor brew found. Cannot install stylua."
