@@ -38,3 +38,4 @@ kitty-override.conf
 .claude/
 !.calude/settings.json
 !.calude/CLAUDE.md
+Session.vim

@@ -8,30 +8,16 @@ apt upgrade
 # Install curl
 apt install curl
 
-# Install zip (for mason)
-apt install zip
-
 # Install git
 apt install git-all
 
 # Install xclip for clipboard ops
 apt install xclip
 
-# Install zsh
-apt install zsh
+# Install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Set default shell to zsh
-chsh -s /usr/bin/zsh
-
-# Or install Fish
-# See https://github.com/fish-shell/fish-shell?tab=readme-ov-file#packages-for-linux for setup
-# Following steps for debian based linux
-# sudo apt-add-repository ppa:fish-shell/release-3
-# Might need to install python3-launchpadlib if above command throws
-# error: AttributeError: 'NoneType' object has no attribute 'people'
-# sudo apt install python3-launchpadlib
-# sudo apt update
-sudo apt install fish
+brew install fish
 
 # Set default shell to fish
 chsh -s /usr/bin/fish
@@ -39,21 +25,7 @@ chsh -s /usr/bin/fish
 # Install fisher, plugin manager for fish
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 
-# Install GNU stow
-apt install stow
-
-# Install fzf from source (see https://github.com/junegunn/fzf?tab=readme-ov-file#using-git for more info)
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-
-# or install skim via cargo for fish
-cargo install skim
-
-# Install zoxide from source (see https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation for more info)
-curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-
-# Install tmux
-apt install tmux
+brew install fzf zoxide stow tmux
 
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -63,24 +35,12 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Install c compiler and build essential
 apt install gcc build-essential
 
-# Install lazygit (see https://github.com/jesseduffield/lazygit?tab=readme-ov-file#binary-releases for more info)
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-tar xf lazygit.tar.gz lazygit
-install lazygit /usr/local/bin
-rm -rf lazygit lazygit.tar.gz
+brew install lazygit lazydocker
 
-# Install lazydocker
-curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+# Install dtop, alternative/addon to lazydocker
+cargo binstall dtop
 
-# Install dtop, alternative to lazydocker
-cargo install dtop
-
-# Install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Install ripgrep, fd
-apt install ripgrep fd-find
+brew install ripgrep fd
 
 # Install bat from source
 # cargo install --locked bat 
@@ -95,48 +55,15 @@ brew install btop
 apt install postgresql-client
 
 # Install jq for json parcing and formatting for vim-rest-console (see https://jqlang.github.io/jq/ for more info)
-apt install jq
+brew install jq
 
-# Install lua for luarocks installation (required by rest.nvim)
-apt install lua5.1 liblua5.1-dev libcurl4-openssl-dev
-
-# Install luarocks from their site
-# See https://luarocks.org/#quick-start for installation steps of latest luarocks
-
-# Install lua-curl
-# Use `find /usr -name curl.h` to find the include directory for curl headers
-luarocks install lua-curl CURL_INCDIR=/usr/include/x86_64-linux-gnu
-
-# Install nodejs via nvm (see https://nodejs.org/en/download/package-manager for more info)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-# resource to make nvm available
-source ~/.bashrc
-source ~/.zshrc
-nvm install 20
-node -v
-npm -v
-
-# Install ohmyposh
-curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin
-
-# Or install starship
-curl -sS https://starship.rs/install.sh | sh
-
-# Install neovim
-# for latest
-wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-# for nightly
-# wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-tar -C /opt -xzvf ./nvim-linux64.tar.gz
-rm -f ./nvim-linux64.tar.gz
+brew install starship
 
 # Install rust
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 # Update if already present
 rustup update
-# resource to make rustup available
-source ~/.bashrc
-source ~/.zshrc
+source ~/.config/fish/config.fish
 
 # Add rust analyzer, with stable toolchain
 # This makes neovim use the same rust-analyzer verison as the compiler, avoiding editor not giving errors or giving unnecessary errors for example
@@ -145,18 +72,15 @@ rustup component add rust-analyzer
 # Install yazi terminal UI file manager
 cargo install --locked yazi-fm yazi-cli
 
-# Install neovide (see https://neovide.dev/installation.html#linux-source)
-```sh
-sudo apt install -y curl \
-    gnupg ca-certificates git \
-    gcc-multilib g++-multilib cmake libssl-dev pkg-config \
-    libfreetype6-dev libasound2-dev libexpat1-dev libxcb-composite0-dev \
-    libbz2-dev libsndio-dev freeglut3-dev libxmu-dev libxi-dev libfontconfig1-dev \
-    libxcursor-dev
-cargo install --git https://github.com/neovide/neovide
-
 # Install tree-sitter-cli for neovim treesitter parser installations
 brew install tree-sitter-cli
+```
+
+### neovim version manager
+
+```sh
+cargo install bob-nvim
+bob use nightly (or) bob use stable
 ```
 
 # Install go (see <https://go.dev/doc/install> for more info)
@@ -239,7 +163,7 @@ respective env var for the mcp server to use.
 ### Setting up git user details and signing key
 
 ```sh
-cd ~/keys
+cd ~/dotlocal
 touch .gitconfig
 ```
 
@@ -256,12 +180,6 @@ add the following content to the ~/dotlocal/.gitconfig file
 
 see https://github.com/sanathsharma/gen-commit for setup and usage
 
-### neovim version manager
-
-```sh
-cargo install bob-nvim
-bob use nightly (or) bob use stable
-```
 
 ### Install rustowl for neovim
 
@@ -313,50 +231,6 @@ See https://docs.gitbutler.com/ai-agents/getting-started#install-the-but-cli
 ```sh
 brew install lua luarocks
 luarocks install argparse
-```
-
-### Install bluetooth and wifi tui's
-
-Install deps
-
-```sh
-sudo apt install libdbus-1-dev pkg-config iwd
-```
-
-Install packages
-```sh
-cargo install impala
-cargo install bluetui
-```
-
-Setup NetworkManager to use iwd
-
-Add following in `/etc/NetworkManager/conf.d/iwd.conf`
-```
-[device]
-wifi.backend=iwd   
-```
-
-Then run the following
-```sh
-sudo systemctl stop NetworkManager
-sudo systemctl disable --now wpa_supplicant
-sudo systemctl enable --now iwd
-sudo systemctl start NetworkManager
-```
-
-This setup allows NetworkManager to manage connections using iwd instead of wpa_supplicant. Reboot if necessary to ensure changes take effect.
-
-Add the following into `/etc/iwd/main.conf` to enable the iwd on start
-```
-[General]
-EnableNetworkConfiguration=true
-```
-
-Add current user to netdev to manage wifi
-This requires system restart, alrenatively run `newgrp netdev` to use without restart
-```sh
-sudo usermod -aG netdev $USER
 ```
 
 ### Setup pass with gpg
