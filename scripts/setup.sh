@@ -12,6 +12,7 @@ apt install curl git-all xclip gcc build-essential postgresql-client -y
 /home/linuxbrew/.linuxbrew/bin/stow . -t ~
 /home/linuxbrew/.linuxbrew/bin/brew install fish -y
 /home/linuxbrew/.linuxbrew/bin/fish
+echo "/home/linuxbrew/.linuxbrew/bin/fish" | tee -a /etc/shells
 chsh -s /home/linuxbrew/.linuxbrew/bin/fish
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 

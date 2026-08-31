@@ -20,6 +20,7 @@ apt install xclip
 brew install fish
 
 # Set default shell to fish
+echo "$(which fish)" | sudo tee -a /etc/shells
 chsh -s $(which fish)
 
 # Install fisher, plugin manager for fish
