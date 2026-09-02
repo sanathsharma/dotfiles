@@ -9,8 +9,9 @@ scopes.txt
 Session.vim
 CLAUDE.md
 .claude/
-!.calude/settings.json
-!.calude/CLAUDE.md
+!.claude/settings.json
+!.claude/CLAUDE.md
+!.claude/commands/
 tmp/
 CLAUDE.md
 REAMDE.md

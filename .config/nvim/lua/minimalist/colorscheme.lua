@@ -3,27 +3,16 @@ local M = {}
 function M.setup()
 	require("catppuccin").setup({
 		flavour = "mocha",
-		integrations = {
-			flash = true,
-			fzf = true,
-			gitsigns = true,
-			indent_blankline = { enabled = true },
-			leap = true,
-			mini = true,
-			native_lsp = {
-				enabled = true,
-				underlines = {
-					errors = { "undercurl" },
-					hints = { "undercurl" },
-					warnings = { "undercurl" },
-					information = { "undercurl" },
-				},
+		lsp_styles = {
+			underlines = {
+				errors = { "undercurl" },
+				hints = { "undercurl" },
+				warnings = { "undercurl" },
+				information = { "underline" },
+				ok = { "underline" },
 			},
-			snacks = true,
-			treesitter = true,
-			treesitter_context = true,
-			which_key = true,
 		},
+		auto_integrations = true,
 		---@diagnostic disable-next-line: unused-local
 		custom_highlights = function(colors)
 			return {
@@ -34,6 +23,22 @@ function M.setup()
 				-- Whitespace = { fg = "NvimDarkGray4" },
 			}
 		end,
+
+		styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+			comments = { "italic" },
+			conditionals = { "italic" },
+			loops = {},
+			functions = { "italic" },
+			keywords = {},
+			strings = {},
+			variables = {},
+			numbers = {},
+			booleans = {},
+			properties = {},
+			types = { "italic" },
+			operators = {},
+			-- miscs = {}, -- Uncomment to turn off hard-coded styles
+		},
 	})
 end
 

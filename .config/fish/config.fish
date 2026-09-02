@@ -5,17 +5,11 @@ end
 # Abbreviations
 abbr -a c clear
 abbr -a lg "lazygit -ucd ~/.config/lazygit"
-abbr -a gui gitui
 abbr -a x exit
 abbr -a sv "sudo nvim"
-abbr -a cwr "cargo watch -q -c -w src/ -x run"
-abbr -a cwrc "cargo watch -q -c -w src/ -w .cargo/ -x run"
-abbr -a cwt "cargo watch -q -c -x \"test -- --nocapture\""
-abbr -a cr "cargo run"
 abbr -a ld lazydocker
 abbr -a d docker
 abbr -a k kubectl
-abbr -a z zellij
 abbr -a fm yazi
 abbr -a ss "sudo shutdown -h now"
 abbr -a sr "sudo shutdown -r now"
@@ -29,7 +23,6 @@ abbr -a up "update.sh"
 abbr -a sro "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 abbr -a gc "gen-commit -v"
 abbr -a gco "gen-commit -m openai::gpt-4.1-mini"
-abbr -a gcoc "sh ~/scripts/commit-opencode.sh"
 abbr -a gccl "lua ~/scripts/commit-claude.lua"
 abbr -a gcoo "gen-commit -m ollama::gpt-oss:20b --verbose"
 abbr -a rel "create-release.sh"
@@ -42,15 +35,8 @@ abbr -a wifi "impala"
 abbr -a bluetooth "bluetui"
 abbr -a commit "sh ~/scripts/commit.sh"
 abbr -a h "hunk diff"
-
-set os (uname)
-if test $os = "Darwin"
-	abbr -a hrm "kanata -c ~/.config/kanata/macos/config.kbd"
-	abbr -a colemak "kanata -c ~/.config/kanata/macos/colemak.kbd"
-else
-	abbr -a hrm "kanata -c ~/.config/kanata/linux/config.kbd"
-	abbr -a colemak "kanata -c ~/.config/kanata/linux/colemak.kbd"
-end
+abbr -a hash "openssl rand -base64 32"
+abbr -a restart-greeter "sudo systemctl restart cosmic-greeter"
 
 # Alias
 alias ls="ls --color"
@@ -102,17 +88,13 @@ fish_add_path $VOLTA_HOME/bin
 fish_add_path /opt/nvim-linux64/bin
 fish_add_path /root/.local/bin
 fish_add_path $HOME/.local/bin
-fish_add_path $HOME/.local/Webstorm/bin
 fish_add_path $HOME/.local/kitty.app/bin
 fish_add_path $HOME/bin
 fish_add_path /sbin
 fish_add_path $HOME/go
 fish_add_path $GOPATH/bin
 fish_add_path /usr/bin
-fish_add_path $HOME/jetbrains-toolbox/bin
-fish_add_path $HOME/.codeium/windsurf/bin
 fish_add_path $HOME/scripts
-fish_add_path $HOME/.antigravity/antigravity/bin
 fish_add_path $HOME/.local/share/bob/nvim-bin
 # Go entry
 fish_add_path /usr/local/go/bin
@@ -121,8 +103,6 @@ fish_add_path $HOME/nvim-macos-arm64/bin
 fish_add_path $HOME/Library/Python/3.x/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.cargo/bin
-fish_add_path "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-fish_add_path "$HOME/.aipack-base/bin"
 fish_add_path "$HOME/Library/PostgreSQL/16/bin"
 fish_add_path /usr/local/bin
 fish_add_path /run/current-system/sw/bin
@@ -193,10 +173,10 @@ function sesh_load_worktree
 end
 
 function sesh_load
-  set result (sesh list | fzf)
-  if test -n "$result"
-    sesh connect $result
-  end
+	set result (sesh list | fzf)
+	if test -n "$result"
+		sesh connect $result
+	end
 end
 
 # Added by OrbStack: command-line tools and integration
@@ -209,6 +189,12 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 if test -e $HOME/dotlocal/local_config.fish
 	source $HOME/dotlocal/local_config.fish
+end
+
+# Reset terminal modes on exit, so that escape sequences are not left over
+function __reset_terminal --on-event fish_postexec
+	printf '\e[<u\e[?1000l\e[?1002l\e[?1003l\e[?1006l'
+	timeout 0.05 dd of=/dev/null bs=1 count=4096 2>/dev/null
 end
 
 # Initialization

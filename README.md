@@ -71,7 +71,7 @@ source ~/.config/fish/config.fish
 rustup component add rust-analyzer
 
 # Install yazi terminal UI file manager
-brew install yazi
+brew install yazi resvg chafa
 
 # Install tree-sitter-cli for neovim treesitter parser installations
 brew install tree-sitter-cli
