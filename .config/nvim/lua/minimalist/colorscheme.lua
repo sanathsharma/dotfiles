@@ -6,7 +6,7 @@ function M.setup()
 		lsp_styles = {
 			underlines = {
 				errors = { "undercurl" },
-				hints = { "undercurl" },
+				hints = { "underline" },
 				warnings = { "undercurl" },
 				information = { "underline" },
 				ok = { "underline" },

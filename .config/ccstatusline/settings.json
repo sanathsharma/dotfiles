@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "lines": [
     [
       {
@@ -20,7 +20,7 @@
         "id": "4",
         "type": "separator"
       },
-			{
+      {
         "id": "5",
         "type": "context-percentage",
         "color": "yellow",

@@ -53,7 +53,7 @@ function M.setup()
 	vim.opt.number = true -- Show absolute line number for current line
 
 	-- Mouse
-	vim.opt.mousescroll = "ver:0,hor:0" -- Disable scroll while keeping other mouse actions
+	-- vim.opt.mousescroll = "ver:0,hor:0" -- Disable scroll while keeping other mouse actions
 end
 
 function M.setup_fold_opts()
