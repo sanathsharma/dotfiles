@@ -37,6 +37,7 @@ abbr -a commit "sh ~/scripts/commit.sh"
 abbr -a h "hunk diff"
 abbr -a hash "openssl rand -base64 32"
 abbr -a restart-greeter "sudo systemctl restart cosmic-greeter"
+abbr -a so "source ~/.config/fish/config.fish && fish_user_key_bindings"
 
 # Alias
 alias ls="ls --color"
@@ -57,6 +58,9 @@ alias gP="git push"
 alias gs="git status"
 alias gd="git diff"
 alias gds="git diff --staged"
+alias npm="bun"
+alias ni="bun install"
+alias npx="bun run"
 
 # Set variables
 set -gx EDITOR nvim
