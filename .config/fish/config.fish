@@ -41,7 +41,8 @@ abbr -a dbnvim 'DBUI_URL="$DATABASE_URL" nvim --cmd "DBUI"'
 
 # Alias
 alias ls="exa -l --icons -a --git"
-alias vim="nvim"
+alias neovim="$(which nvim)"
+alias vim="neovim"
 alias tmux="tmux -u -f ~/.config/tmux/tmux.conf"
 # use https://github.com/sanathsharma/gen-commit instead
 # alias gen-commit="sh ~/scripts/gen-commit.sh"
@@ -62,6 +63,13 @@ alias npm="bun"
 alias ni="bun install"
 alias npx="bun run"
 alias jl="_fzf_search_just_commands"
+
+if command -q omarchy
+  alias mini="NVIM_APPNAME=custom-nvim PROFILE=minimalist neovim"
+  alias nvim="NVIM_APPNAME=custom-nvim PROFILE=omarchy neovim"
+else
+  alias nvim="NVIM_APPNAME=custom-nvim PROFILE=minimalist neovim"
+end
 
 # Set variables
 set -gx EDITOR nvim

@@ -15,8 +15,7 @@ require("core.usercmds")
 require("core.project").load_project_config()
 require("core.remove-clipboard").setup()
 
-require("minimalist.lazy")
-vim.cmd([[colorscheme catppuccin]])
+require("omarchy.lazy")
 
 -- Not backed by any plugin, so it doesn't need a lazy.nvim spec entry of its
 -- own -- just called directly once fidget (used for its notifications) is

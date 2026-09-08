@@ -1,0 +1,5 @@
+require("plugins.completion.snippets.rust")
+require("plugins.completion.snippets.all")
+require("plugins.completion.snippets.javascript")
+require("plugins.completion.snippets.gitcommit")
+require("plugins.completion.snippets.sql")
