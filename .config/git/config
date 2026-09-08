@@ -1,0 +1,70 @@
+# See https://git-scm.com/docs/git-config
+
+[init]
+	defaultBranch = "main"
+[core]
+	editor = "$EDITOR"
+	fsmonitor = true ; Run daemon to monitor file changes to speed up git status command 
+	untrackedcache = true
+	excludesFile = "~/dotlocal/.gitignore_global"
+	pager = delta
+; [remote.origin]
+; 	fetch = "+refs/heads/*:refs/remotes/origin/*"
+[alias]
+	sro = config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' ; Set remote.origin for new worktree
+	; Use -L :<fn-name>:/path/to/file for changes done on specific functions
+	fb = blame -w -C -C -C ; File blame w/ ignored whitespace, detect lines moved or copied, the commit that created the file or any commit at all
+	st = status -s
+	sta = status
+	udn = commit --amend --date=now --no-edit
+	cp = cherry-pick
+	ap = add --patch
+	co = checkout
+	br = branch
+	ci = commit
+[rerere]
+	enabled = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[fetch]
+	writeCommitGraph = true ; For large repositories
+[maintenance]
+	auto = false
+	strategy = incremental
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+	forceWithLease = true
+[rebase]
+	updateRefs = true
+; [merge]
+; 	tool = meld
+; [diff]
+; 	tool = meld
+[merge]
+	conflictStyle = zdiff3
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
+	sort = -version:refname  # Sort version numbers as you would expect
+[checkout]
+	defaultRemote = origin
+; setup user.name, user.email and user.signingKey in the following file
+[include]
+	path = "~/dotlocal/.gitconfig"
+	path = "~/.config/delta/catppuccin.gitconfig"
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
+	features = catppuccin-mocha
+	side-by-side = true
+	line-numbers = true
+

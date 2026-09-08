@@ -8,4 +8,5 @@ link:
 	ln -s $(pwd)/.config/yazi ~/.config/yazi
 	ln -s $(pwd)/.claude/CLAUDE.md ~/.claude/CLAUDE.md
 	ln -s $(pwd)/.claude/commands ~/.claude/commands
+	ln -s $(pwd)/.config/git ~/.config/git
 
