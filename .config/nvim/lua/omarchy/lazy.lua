@@ -39,15 +39,37 @@ vim.opt.rtp:prepend(lazypath)
 -- hot-reload logic has its opts.colorscheme convention to scan for.
 -- ---------------------------------------------------------------------------------------------------------------------
 
--- Suppresses LazyVim's own require-order health check, which the bare
--- LazyVim/LazyVim dependency would otherwise trip: this profile never calls
--- require("lazyvim").setup(), so no LazyVim distro config/keymaps/autocmds
--- ever run.
+-- Suppresses LazyVim's own require-order health check, which the
+-- LazyVim/LazyVim entry's default config (below) would otherwise trip.
 vim.g.lazyvim_check_order = false
 
 local lazy_loader = require("lazy_loader")
 local spec = lazy_loader.load_dir("minimalist.plugins")
 vim.list_extend(spec, lazy_loader.load_dir("omarchy.plugins"))
+
+-- The LazyVim/LazyVim entry above carries `opts.colorscheme` purely as data
+-- for the hot-reload logic (see lua/omarchy/plugins/omarchy-theme-hotreload.lua)
+-- and has no `config` of its own. Left alone, lazy.nvim's default
+-- config-from-opts behavior (lazy.core.loader.config) auto-runs
+-- `require("lazyvim").setup(opts)` for any spec shaped like that, which
+-- starts the entire LazyVim distro -- including `lazyvim.config.keymaps`,
+-- which crashes on `Snacks` being nil since this profile never loads
+-- snacks.nvim (see the comment block above). The entry itself comes from
+-- lua/omarchy/plugins/theme.lua, an Omarchy-controlled symlink regenerated
+-- by the theme switcher (not ours to edit), so the fix has to
+-- patch the merged spec here instead: give it an explicit `config` that
+-- only applies the colorscheme, so the rest of the distro never starts.
+for _, plugin in ipairs(spec) do
+	if plugin[1] == "LazyVim/LazyVim" then
+		local colorscheme = plugin.opts and plugin.opts.colorscheme
+		plugin.config = function()
+			if colorscheme then
+				vim.cmd.colorscheme(colorscheme)
+			end
+		end
+		break
+	end
+end
 
 require("lazy").setup(spec)
 
