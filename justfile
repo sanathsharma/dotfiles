@@ -1,5 +1,5 @@
 link:
-	ln -s $(pwd)/.config/custom-nvim ~/.config/nvim
+	ln -s $(pwd)/.config/nvim ~/.config/custom-nvim
 	ln -s $(pwd)/.config/tmux ~/.config/tmux
 	ln -s $(pwd)/.config/fish ~/.config/fish
 	ln -s $(pwd)/.config/starship ~/.config/starship
