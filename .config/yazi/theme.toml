@@ -1,0 +1,21 @@
+[mgr]
+border_symbol = "│"
+
+[indicator]
+padding = { open = "█", close = "█" }
+
+[status]
+sep_left = { open = "█", close = "█" }
+sep_right = { open = "█", close = "█"}
+
+[which]
+separator = "  "
+
+[icon]
+separator_open = ""
+separator_close = ""
+globs = []
+dirs = []
+files = []
+exts = []
+conds = []

@@ -1,0 +1,18 @@
+-- Enable loader to speed up start time
+if vim.loader then
+	vim.loader.enable()
+end
+
+require("minimalist.lazy")
+require("minimalist.options").setup()
+require("minimalist.autocmds")
+require("minimalist.usercmds")
+require("minimalist.project").load_project_config()
+require("minimalist.remove-clipboard").setup()
+
+-- Enable all LSPs for which setup is defined
+require("minimalist.lsp").enable()
+
+-- Install required treesitter parsers
+require("minimalist.treesitter").install()
+

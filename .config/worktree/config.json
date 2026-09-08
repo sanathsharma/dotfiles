@@ -1,0 +1,9 @@
+{
+	"directories": [
+		"~/code/sanathsharma",
+		"~/code/ssincorp",
+		"~/code/external",
+		"~/code/demo"
+	],
+	"sort": "tmux"
+}
