@@ -15,7 +15,7 @@ abbr -a ss "sudo shutdown -h now"
 abbr -a sr "sudo shutdown -r now"
 abbr -a u "sudo apt update && sudo apt upgrade"
 abbr -a zz "cd -"
-abbr -a clip "xclip -selection clipboard"
+abbr -a clip "wl-copy"
 abbr -a s "kitten ssh"
 abbr -a nb "new-branch.sh"
 abbr -a sb "switch-branch.sh"
@@ -36,12 +36,12 @@ abbr -a bluetooth "bluetui"
 abbr -a commit "sh ~/scripts/commit.sh"
 abbr -a h "hunk diff"
 abbr -a hash "openssl rand -base64 32"
-abbr -a restart-greeter "sudo systemctl restart cosmic-greeter"
 abbr -a so "source ~/.config/fish/config.fish && fish_user_key_bindings"
 
 # Alias
-alias ls="ls --color"
-alias vim="nvim"
+alias ls="exa -l --icons -a --git"
+alias neovim="$(which nvim)"
+alias vim="neovim"
 alias tmux="tmux -u -f ~/.config/tmux/tmux.conf"
 # use https://github.com/sanathsharma/gen-commit instead
 # alias gen-commit="sh ~/scripts/gen-commit.sh"
@@ -61,6 +61,8 @@ alias gds="git diff --staged"
 alias npm="bun"
 alias ni="bun install"
 alias npx="bun run"
+alias jl="_fzf_search_just_commands"
+alias nvim="PROFILE=minimalist neovim"
 
 # Set variables
 set -gx EDITOR nvim
@@ -71,15 +73,16 @@ set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 set -gx GPG_TTY "$(tty)"
 set fish_greeting ""
 set -Ux FZF_DEFAULT_OPTS "\
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
---color=selected-bg:#45475a \
 --preview=\"bat --style=numbers --color=always {}\" \
 --height=20 \
 --reverse \
 --bind \"change:first\" \
---multi"
+--multi \
+--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+--color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+--color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+--color=selected-bg:#45475A \
+--color=border:#6C7086,label:#CDD6F4"
 # set -Ux FZF_DEFAULT_COMMAND "rg --files --hidden --glob '!.git/*' --glob '!**/.git/*'"
 # set -Ux FZF_DEFAULT_COMMAND "fd --type file --hidden --no-ignore"
 set -Ux FZF_DEFAULT_COMMAND ""
@@ -146,7 +149,20 @@ set fish_cursor_external line
 set fish_cursor_visual block
 
 if test -e /home/linuxbrew/.linuxbrew/bin/brew
-	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv fish)"
+	# Keep system binaries (e.g. dbus-monitor) taking precedence over Linuxbrew's
+	# shims, which can be built with incompatible defaults (e.g. a D-Bus socket
+	# path baked in under the Linuxbrew prefix instead of the real system bus).
+	fish_add_path --move /usr/bin
+	fish_add_path --move /sbin
+end
+
+if command -q luarocks
+	# luarocks installs rocks into its configured tree but never puts them on
+	# Lua's search path itself; without this, `require()` can't find anything
+	# `luarocks install` just installed.
+	set -gx LUA_PATH (luarocks path --full --lr-path)
+	set -gx LUA_CPATH (luarocks path --full --lr-cpath)
 end
 
 if test -e $HOME/dotlocal/anthropic_key.txt
@@ -183,6 +199,34 @@ function sesh_load
 	end
 end
 
+function dbui
+	if test -z "$argv[1]"
+		echo "Usage: dbui <db-connection-url>"
+		return 1
+	end
+	nvim -c "DBConnect $argv[1]"
+end
+
+function spec-dbui
+	set -l urls
+
+	for name in $argv
+		if set -l val (secretspec get $name 2>/dev/null)
+			and test -n "$val"
+			set -a urls $val
+		else
+			echo "skipping $name (not found or empty)" >&2
+		end
+	end
+
+	if test (count $urls) -eq 0
+		echo "no valid secrets found for: $argv" >&2
+		return 1
+	end
+
+	dbui $urls
+end
+
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
@@ -203,7 +247,6 @@ end
 
 # Initialization
 zoxide init --cmd cd fish | source
-# oh-my-posh init fish --config ~/.config/ohmyposh/base.toml | source
 starship init fish | source
 
 # Added by GitButler installer

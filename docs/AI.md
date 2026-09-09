@@ -33,3 +33,21 @@ collide, so its better to use one of the other.
 ```sh
 npx skills add https://github.com/cursor/plugins --skill unslop
 ```
+
+### Sample .claude/settings.json
+
+```json
+{
+	"theme": "custom:omarchy",
+	"agentPushNotifEnabled": true,
+	"statusLine": {
+		"type": "command",
+		"command": "ccstatusline",
+		"padding": 0,
+		"refreshInterval": 10
+	},
+	"model": "sonnet",
+	"tui": "fullscreen",
+	"autoMemoryEnabled": false
+}
+```

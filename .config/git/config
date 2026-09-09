@@ -1,3 +1,5 @@
+# See https://git-scm.com/docs/git-config
+
 [init]
 	defaultBranch = "main"
 [core]
@@ -6,6 +8,11 @@
 	untrackedcache = true
 	excludesFile = "~/dotlocal/.gitignore_global"
 	pager = delta
+; fsmonitor spawns a persistent per-repo daemon on first git status; exclude
+; directories with many small independent repos (e.g. nvim plugin managers)
+; where a startup sweep can burst-spawn dozens of daemons at once.
+[includeIf "gitdir:~/.local/share/nvim/lazy/**"]
+	path = "~/.config/git/fsmonitor-off.gitconfig"
 ; [remote.origin]
 ; 	fetch = "+refs/heads/*:refs/remotes/origin/*"
 [alias]
@@ -17,6 +24,9 @@
 	udn = commit --amend --date=now --no-edit
 	cp = cherry-pick
 	ap = add --patch
+	co = checkout
+	br = branch
+	ci = commit
 [rerere]
 	enabled = true
 [column]
@@ -33,6 +43,7 @@
 [push]
 	autoSetupRemote = true
 	forceWithLease = true
+	default = current
 [rebase]
 	updateRefs = true
 ; [merge]
@@ -47,12 +58,13 @@
 	gpgsign = true
 [tag]
 	gpgSign = true
+	sort = -version:refname  # Sort version numbers as you would expect
 [checkout]
 	defaultRemote = origin
 ; setup user.name, user.email and user.signingKey in the following file
 [include]
 	path = "~/dotlocal/.gitconfig"
-	path = "~/.config/delta/catppuccin.gitconfig"
+	path = "~/.config/delta/theme.gitconfig"
 [interactive]
 	diffFilter = delta --color-only
 [delta]

@@ -1,2 +1,2 @@
-local config = os.getenv("CONFIG") or "minimalist"
+local config = os.getenv("PROFILE") or "minimalist"
 require(config)

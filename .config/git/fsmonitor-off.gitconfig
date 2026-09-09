@@ -1,0 +1,5 @@
+# Included via includeIf.gitdir in ~/.config/git/config for directory trees
+# with many small, independent git repos (e.g. nvim plugin managers) where
+# fsmonitor's per-repo daemon provides no benefit but burst-spawns on sweep.
+[core]
+	fsmonitor = false
