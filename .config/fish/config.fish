@@ -62,13 +62,7 @@ alias npm="bun"
 alias ni="bun install"
 alias npx="bun run"
 alias jl="_fzf_search_just_commands"
-
-if command -q omarchy
-  alias mini="NVIM_APPNAME=custom-nvim PROFILE=minimalist neovim"
-  alias nvim="NVIM_APPNAME=custom-nvim PROFILE=omarchy neovim"
-else
-  alias nvim="NVIM_APPNAME=custom-nvim PROFILE=minimalist neovim"
-end
+alias nvim="PROFILE=minimalist neovim"
 
 # Set variables
 set -gx EDITOR nvim
@@ -83,7 +77,12 @@ set -Ux FZF_DEFAULT_OPTS "\
 --height=20 \
 --reverse \
 --bind \"change:first\" \
---multi"
+--multi \
+--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+--color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+--color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+--color=selected-bg:#45475A \
+--color=border:#6C7086,label:#CDD6F4"
 # set -Ux FZF_DEFAULT_COMMAND "rg --files --hidden --glob '!.git/*' --glob '!**/.git/*'"
 # set -Ux FZF_DEFAULT_COMMAND "fd --type file --hidden --no-ignore"
 set -Ux FZF_DEFAULT_COMMAND ""

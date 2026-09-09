@@ -64,7 +64,7 @@
 ; setup user.name, user.email and user.signingKey in the following file
 [include]
 	path = "~/dotlocal/.gitconfig"
-	path = "~/.config/delta/catppuccin.gitconfig"
+	path = "~/.config/delta/theme.gitconfig"
 [interactive]
 	diffFilter = delta --color-only
 [delta]
