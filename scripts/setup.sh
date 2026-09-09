@@ -17,6 +17,7 @@ chsh -s /home/linuxbrew/.linuxbrew/bin/fish
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 
 brew install fzf zoxide tmux lazygit lazydocker ripgrep fd bat btop jq starship dtop yazi resvg chafa gh hunk lua luarocks gum -y
+command -v lsof >/dev/null 2>&1 || brew install lsof
 bat cache --build
 gh extension install gh-dash
 luarocks install argparse

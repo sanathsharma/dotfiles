@@ -28,4 +28,4 @@ if port < 1 or port > 65535 then
 end
 
 -- Run lsof command
-os.execute("sudo lsof -i tcp:" .. port)
+os.execute("lsof -i tcp:" .. port)

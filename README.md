@@ -52,6 +52,7 @@ apt install postgresql-client
 brew install jq
 
 brew install starship
+brew install gum
 
 # Install rust
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
@@ -91,10 +92,6 @@ export PATH=$PATH:/usr/local/go/bin
 # Install delve for go debugging
 
 go install github.com/go-delve/delve/cmd/dlv@latest
-
-# Install gum for bash scripting
-
-go install github.com/charmbracelet/gum@latest
 
 # Python, assuming python3 is already pre-installed
 
