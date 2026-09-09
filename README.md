@@ -5,14 +5,7 @@
 apt update
 apt upgrade
 
-# Install curl
-apt install curl
-
-# Install git
-apt install git-all
-
-# Install xclip for clipboard ops
-apt install xclip
+apt install curl git-all xclip
 
 # Install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -26,7 +19,7 @@ chsh -s $(which fish)
 # Install fisher, plugin manager for fish
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 
-brew install fzf zoxide stow tmux
+brew install fzf zoxide tmux
 
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
