@@ -156,6 +156,7 @@ local function setup_keymaps()
 	vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, { desc = "Show docs for item under cursor" })
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto declaration" })
+	vim.keymap.set("n", "<M-i>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
 
 	vim.keymap.set("n", "<leader>ti", function()
 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())

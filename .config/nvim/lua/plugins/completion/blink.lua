@@ -31,7 +31,7 @@ function M.setup()
 			["<Tab>"] = { "snippet_forward", "fallback" },
 			["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-			["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+			["<M-i>"] = { "show_signature", "hide_signature", "fallback" },
 		},
 
 		appearance = {
@@ -109,7 +109,13 @@ function M.setup()
 		-- See the fuzzy documentation for more information
 		fuzzy = { implementation = "prefer_rust_with_warning" },
 
-		signature = { enabled = true },
+		signature = {
+			enabled = true,
+			trigger = {
+				enabled = true,
+				show_on_trigger_character = true,
+			},
+		},
 
 		snippets = { preset = "luasnip" },
 	})

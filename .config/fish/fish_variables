@@ -4,4 +4,4 @@ SETUVAR --export FZF_COMPLETION_TRIGGER:\x7e\x7e
 SETUVAR --export FZF_DEFAULT_COMMAND:
 SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dpreview\x3d\x22bat\x20\x2d\x2dstyle\x3dnumbers\x20\x2d\x2dcolor\x3dalways\x20\x7b\x7d\x22\x20\x2d\x2dheight\x3d20\x20\x2d\x2dreverse\x20\x2d\x2dbind\x20\x22change\x3afirst\x22\x20\x2d\x2dmulti
 SETUVAR _fisher_upgraded_to_4_4:\x1d
-SETUVAR fish_user_paths:/home/sanathsharma/scripts\x1e/home/sanathsharma/go\x1e/usr/local/bin\x1e/home/sanathsharma/\x2ecargo/bin\x1e/usr/bin\x1e/sbin\x1e/home/sanathsharma/\x2elocal/bin
+SETUVAR fish_user_paths:/sbin\x1e/usr/bin\x1e/home/sanathsharma/scripts\x1e/home/sanathsharma/go\x1e/usr/local/bin\x1e/home/sanathsharma/\x2ecargo/bin\x1e/home/sanathsharma/\x2elocal/bin

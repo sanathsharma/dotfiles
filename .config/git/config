@@ -38,6 +38,7 @@
 [push]
 	autoSetupRemote = true
 	forceWithLease = true
+	default = current
 [rebase]
 	updateRefs = true
 ; [merge]

@@ -23,7 +23,7 @@ function M.init()
 	vim.opt.foldlevel = 99
 	vim.opt.foldlevelstart = 99
 	vim.opt.foldenable = true
-	vim.o.fillchars = "eob: ,fold: ,foldsep: ,foldinner: "
+	vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldinner: ,foldclose:"
 end
 
 function M.setup()
@@ -44,14 +44,14 @@ function M.setup()
 end
 
 function M.install()
-	-- local alreadyInstalled = require("nvim-treesitter.config").get_installed()
-	-- local parsersToInstall = vim
-	-- 	.iter(parsers)
-	-- 	:filter(function(parser)
-	-- 		return not vim.tbl_contains(alreadyInstalled, parser)
-	-- 	end)
-	-- 	:totable()
-	-- require("nvim-treesitter").install(parsersToInstall)
+	local alreadyInstalled = require("nvim-treesitter.config").get_installed()
+	local parsersToInstall = vim
+		.iter(parsers)
+		:filter(function(parser)
+			return not vim.tbl_contains(alreadyInstalled, parser)
+		end)
+		:totable()
+	require("nvim-treesitter").install(parsersToInstall)
 end
 
 return M

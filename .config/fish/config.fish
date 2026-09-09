@@ -37,7 +37,6 @@ abbr -a commit "sh ~/scripts/commit.sh"
 abbr -a h "hunk diff"
 abbr -a hash "openssl rand -base64 32"
 abbr -a so "source ~/.config/fish/config.fish && fish_user_key_bindings"
-abbr -a dbnvim 'DBUI_URL="$DATABASE_URL" nvim --cmd "DBUI"'
 
 # Alias
 alias ls="exa -l --icons -a --git"
@@ -152,6 +151,19 @@ set fish_cursor_visual block
 
 if test -e /home/linuxbrew/.linuxbrew/bin/brew
 	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv fish)"
+	# Keep system binaries (e.g. dbus-monitor) taking precedence over Linuxbrew's
+	# shims, which can be built with incompatible defaults (e.g. a D-Bus socket
+	# path baked in under the Linuxbrew prefix instead of the real system bus).
+	fish_add_path --move /usr/bin
+	fish_add_path --move /sbin
+end
+
+if command -q luarocks
+	# luarocks installs rocks into its configured tree but never puts them on
+	# Lua's search path itself; without this, `require()` can't find anything
+	# `luarocks install` just installed.
+	set -gx LUA_PATH (luarocks path --full --lr-path)
+	set -gx LUA_CPATH (luarocks path --full --lr-cpath)
 end
 
 if test -e $HOME/dotlocal/anthropic_key.txt
@@ -186,6 +198,34 @@ function sesh_load
 	if test -n "$result"
 		sesh connect $result
 	end
+end
+
+function dbui
+	if test -z "$argv[1]"
+		echo "Usage: dbui <db-connection-url>"
+		return 1
+	end
+	nvim -c "DBConnect $argv[1]"
+end
+
+function spec-dbui
+	set -l urls
+
+	for name in $argv
+		if set -l val (secretspec get $name 2>/dev/null)
+			and test -n "$val"
+			set -a urls $val
+		else
+			echo "skipping $name (not found or empty)" >&2
+		end
+	end
+
+	if test (count $urls) -eq 0
+		echo "no valid secrets found for: $argv" >&2
+		return 1
+	end
+
+	dbui $urls
 end
 
 # Added by OrbStack: command-line tools and integration

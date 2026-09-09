@@ -25,6 +25,9 @@ return {
 		"Wansmer/treesj",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		cmd = "TSJToggle",
+		init = function()
+			require("plugins.editing.treesj").setup_keymaps()
+		end,
 		config = function()
 			require("plugins.editing.treesj").setup()
 		end,

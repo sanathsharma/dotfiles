@@ -36,8 +36,8 @@ return {
 			"TmuxNavigatePrevious",
 			"TmuxNavigatorProcessList",
 		},
-		config = function()
-			require("plugins.navigation.tmux-navigator").setup()
+		init = function()
+			require("plugins.navigation.tmux-navigator").setup_keymaps()
 		end,
 	},
 }
