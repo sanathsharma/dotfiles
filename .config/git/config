@@ -8,6 +8,11 @@
 	untrackedcache = true
 	excludesFile = "~/dotlocal/.gitignore_global"
 	pager = delta
+; fsmonitor spawns a persistent per-repo daemon on first git status; exclude
+; directories with many small independent repos (e.g. nvim plugin managers)
+; where a startup sweep can burst-spawn dozens of daemons at once.
+[includeIf "gitdir:~/.local/share/nvim/lazy/**"]
+	path = "~/.config/git/fsmonitor-off.gitconfig"
 ; [remote.origin]
 ; 	fetch = "+refs/heads/*:refs/remotes/origin/*"
 [alias]
