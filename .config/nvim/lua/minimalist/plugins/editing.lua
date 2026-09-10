@@ -45,6 +45,12 @@ return {
 		end,
 	},
 	{
+		"nvim-mini/mini.ai",
+		config = function()
+			require("plugins.editing.mini-ai").setup()
+		end,
+	},
+	{
 		"echasnovski/mini.pairs",
 		version = "*",
 		config = function()

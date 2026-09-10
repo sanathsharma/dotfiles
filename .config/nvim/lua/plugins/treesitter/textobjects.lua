@@ -31,10 +31,6 @@ local function setup_keymaps()
 		{ "ia", "@parameter.inner", "Select inside parameter" },
 		{ "ab", "@block.outer", "Select around block" },
 		{ "ib", "@block.inner", "Select inside block" },
-		{ "aq", "@custom_string.outer", "Select around quote" },
-		{ "iq", "@custom_string.inner", "Select inside quote" },
-		{ "ao", "@custom_bracket.outer", "Select around bracket" },
-		{ "io", "@custom_bracket.inner", "Select inside bracket" },
 	}
 
 	for _, t in ipairs(textobjects) do
