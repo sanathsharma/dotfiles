@@ -14,6 +14,8 @@ local function treesitter_jump()
 end
 
 function M.setup()
+	require("flash").setup()
+
 	vim.keymap.set("n", "gw", jump, { desc = "Flash" })
 	vim.keymap.set("n", "gW", treesitter_jump, { desc = "Flash Treesitter" })
 
