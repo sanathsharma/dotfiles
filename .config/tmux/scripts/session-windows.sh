@@ -7,7 +7,7 @@ set -euo pipefail
 
 session_name="$1"
 
-case "$session_name" in
+case "${session_name##*/}" in
   be__*|mr__*)
     windows=(editor term agent dbui)
     ;;
