@@ -63,6 +63,7 @@ alias ni="bun install"
 alias npx="bun run"
 alias jl="_fzf_search_just_commands"
 alias nvim="PROFILE=minimalist neovim"
+alias dbconnect="lua ~/scripts/dbconnect.lua"
 
 # Set variables
 set -gx EDITOR nvim
@@ -205,26 +206,6 @@ function dbui
 		return 1
 	end
 	nvim -c "DBConnect $argv[1]"
-end
-
-function spec-dbui
-	set -l urls
-
-	for name in $argv
-		if set -l val (secretspec get $name 2>/dev/null)
-			and test -n "$val"
-			set -a urls $val
-		else
-			echo "skipping $name (not found or empty)" >&2
-		end
-	end
-
-	if test (count $urls) -eq 0
-		echo "no valid secrets found for: $argv" >&2
-		return 1
-	end
-
-	dbui $urls
 end
 
 # Added by OrbStack: command-line tools and integration
