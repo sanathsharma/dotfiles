@@ -34,8 +34,11 @@ local function setup_keymaps()
 	)
 end
 
-function M.setup()
+function M.init()
 	require("fzf-lua").register_ui_select()
+end
+
+function M.setup()
 	require("fzf-lua").setup({
 		winopts = {
 			fullscreen = true,

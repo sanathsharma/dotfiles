@@ -1,6 +1,9 @@
 return {
 	{
 		"ibhagwan/fzf-lua",
+		init = function()
+			require("plugins.navigation.fzf-lua").init()
+		end,
 		config = function()
 			require("plugins.navigation.fzf-lua").setup()
 		end,
