@@ -23,15 +23,7 @@ local function setup_keymaps()
 	vim.keymap.set("n", "<leader>g", "<cmd>FzfLua git_status<cr>", { desc = "Open changed file picker" })
 	vim.keymap.set("n", "<leader>o", "<cmd>FzfLua lsp_incoming_calls<cr>", { desc = "Open incoming calls picker" })
 	vim.keymap.set("n", "<leader>O", "<cmd>FzfLua lsp_outgoing_calls<cr>", { desc = "Open outgoing calls picker" })
-	vim.keymap.set("n", "<leader>a", "<cmd>FzfLua lsp_code_actions<cr>", { desc = "Perform code actions" })
 	vim.keymap.set("n", "<leader>m", "<cmd>FzfLua keymaps<cr>", { desc = "Search and select keymaps" })
-
-	vim.keymap.set(
-		"v",
-		"<leader>a",
-		"<cmd>FzfLua lsp_code_actions<cr>",
-		{ desc = "Perform visual mode code actions", silent = true }
-	)
 end
 
 function M.init()

@@ -80,12 +80,14 @@ function M.setup()
 		-- Default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
-			default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+			default = { "lazydev", "lsp", "path", "snippets", "buffer", "ripgrep" },
 			per_filetype = {
 				sql = { "dadbod", "snippets" },
 			},
 			providers = {
 				dadbod = { module = "vim_dadbod_completion.blink" },
+				-- automatic mode: searches once typing passes prefix_min_len (default 3)
+				ripgrep = { module = "blink-ripgrep", name = "Ripgrep", opts = {} },
 				lazydev = {
 					name = "LazyDev",
 					module = "lazydev.integrations.blink",

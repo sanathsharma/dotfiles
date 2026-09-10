@@ -45,4 +45,14 @@ return {
 			require("plugins.lsp.rustowl").setup()
 		end,
 	},
+	{
+		"rachartier/tiny-code-action.nvim",
+		-- no `version` -- upstream cuts no tags, so a version constraint matches
+		-- nothing and the install may not track latest main reliably
+		dependencies = { "ibhagwan/fzf-lua" },
+		event = "LspAttach",
+		config = function()
+			require("plugins.lsp.tiny-code-action").setup()
+		end,
+	},
 }

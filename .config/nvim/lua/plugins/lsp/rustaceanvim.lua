@@ -58,9 +58,9 @@ local function setup_rust_format_opts()
 end
 
 local function setup_keymaps()
-	vim.keymap.set("n", "<leader>a", function()
-		vim.cmd.RustLsp("codeAction")
-	end, { silent = true, buffer = 0, noremap = true, desc = "Rust code action" })
+	-- vim.keymap.set("n", "<leader>a", function()
+	-- 	vim.cmd.RustLsp("codeAction")
+	-- end, { silent = true, buffer = 0, noremap = true, desc = "Rust code action" })
 
 	vim.keymap.set("n", "K", function()
 		vim.cmd.RustLsp({ "hover", "actions" })

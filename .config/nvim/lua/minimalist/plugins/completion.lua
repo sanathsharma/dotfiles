@@ -4,6 +4,8 @@ return {
 		-- optional: provides snippets for the snippet source
 		dependencies = {
 			{ "L3MON4D3/LuaSnip", version = "v2.*" },
+			-- adds a ripgrep-backed completion source (requires `rg` on PATH)
+			{ "mikavilpas/blink-ripgrep.nvim", version = "*" },
 		},
 
 		-- use a release tag to download pre-built binaries
