@@ -32,6 +32,13 @@ function M.setup()
 			["<S-Tab>"] = { "snippet_backward", "fallback" },
 
 			["<M-i>"] = { "show_signature", "hide_signature", "fallback" },
+
+			-- buffer/ripgrep only auto-trigger when lsp has nothing (see providers.lsp.fallbacks
+			-- below); force them on demand even when lsp already has results
+			["<C-l>"] = {
+				function(cmp) return cmp.show({ providers = { "buffer", "ripgrep" } }) end,
+				"fallback",
+			},
 		},
 
 		appearance = {
@@ -88,6 +95,9 @@ function M.setup()
 				dadbod = { module = "vim_dadbod_completion.blink" },
 				-- automatic mode: searches once typing passes prefix_min_len (default 3)
 				ripgrep = { module = "blink-ripgrep", name = "Ripgrep", opts = {} },
+				-- buffer/ripgrep can't resolve additionalTextEdits; racing them against lsp
+				-- for the same symbol risks accepting the import-less duplicate on <C-y>
+				lsp = { fallbacks = { "buffer", "ripgrep" } },
 				lazydev = {
 					name = "LazyDev",
 					module = "lazydev.integrations.blink",
