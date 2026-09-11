@@ -59,6 +59,14 @@ return {
 	},
 	"tpope/vim-unimpaired",
 	{
+		"abecodes/tabout.nvim",
+		event = "InsertEnter",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("plugins.editing.tabout").setup()
+		end,
+	},
+	{
 		"nvimtools/none-ls.nvim",
 		dependencies = {
 			"CKolkey/ts-node-action",
