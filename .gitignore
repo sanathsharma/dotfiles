@@ -41,3 +41,4 @@ kitty-override.conf
 Session.vim
 .bashrc
 .zshrc
+.config/fish/fish_variables*
