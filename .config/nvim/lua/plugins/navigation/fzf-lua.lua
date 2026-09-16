@@ -1,5 +1,33 @@
 local M = {}
 
+local function next_docs_dir()
+	local dir = vim.fn.getcwd() .. "/node_modules/next/dist/docs"
+	if vim.fn.isdirectory(dir) == 1 then
+		return dir
+	end
+	return nil
+end
+
+local function setup_usercmds()
+	vim.api.nvim_create_user_command("NextDocs", function()
+		local dir = next_docs_dir()
+		if not dir then
+			vim.notify("Not a Next.js project (node_modules/next/dist/docs not found)", vim.log.levels.WARN)
+			return
+		end
+		require("fzf-lua").files({ cwd = dir })
+	end, { desc = "Browse Next.js internal docs files" })
+
+	vim.api.nvim_create_user_command("NextDocsGrep", function()
+		local dir = next_docs_dir()
+		if not dir then
+			vim.notify("Not a Next.js project (node_modules/next/dist/docs not found)", vim.log.levels.WARN)
+			return
+		end
+		require("fzf-lua").live_grep({ cwd = dir })
+	end, { desc = "Grep Next.js internal docs files" })
+end
+
 local function setup_keymaps()
 	vim.keymap.set("n", "<leader>f", "<cmd>FzfLua files<cr>", { desc = "Open file picker" })
 	vim.keymap.set("n", "<leader>F", function()
@@ -72,6 +100,7 @@ function M.setup()
 	})
 
 	setup_keymaps()
+	setup_usercmds()
 end
 
 return M
