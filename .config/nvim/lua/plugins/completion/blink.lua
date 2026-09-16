@@ -33,7 +33,15 @@ function M.setup()
 			-- buffer/ripgrep only auto-trigger when lsp has nothing (see providers.lsp.fallbacks
 			-- below); force them on demand even when lsp already has results
 			["<C-l>"] = {
-				function(cmp) return cmp.show({ providers = { "buffer", "ripgrep" } }) end,
+				function(cmp)
+					return cmp.show({ providers = { "buffer", "ripgrep" } })
+				end,
+				"fallback",
+			},
+			["<C-s>"] = {
+				function(cmp)
+					return cmp.show({ providers = { "snippets" } })
+				end,
 				"fallback",
 			},
 		},
