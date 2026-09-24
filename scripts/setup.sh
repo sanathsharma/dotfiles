@@ -30,6 +30,7 @@ rustup component add rust-analyzer
 
 cargo install cargo-binstall
 cargo binstall rustowl
+cargo install sqlx-cli
 
 cargo install bob-nvim
 bob use nightly (or) bob use stable
