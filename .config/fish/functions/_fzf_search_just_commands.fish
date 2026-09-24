@@ -60,7 +60,7 @@ function _fzf_search_just_commands
 	set preview_cmd "just --justfile $found_justfile --show {} 2>/dev/null"
 
 	# Use fzf to select just recipe
-	set selected_recipe (printf '%s\n' $recipes | fzf --height=15 --reverse --prompt="Just Recipe> " --preview=$preview_cmd)
+	set selected_recipe (printf '%s\n' $recipes | fzf --height=15 --reverse --no-multi --prompt="Just Recipe> " --preview=$preview_cmd)
 
 	# If recipe selected, insert "just <recipe>" at current commandline position
 	if test -n "$selected_recipe"

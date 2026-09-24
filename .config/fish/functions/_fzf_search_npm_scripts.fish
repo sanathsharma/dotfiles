@@ -33,7 +33,7 @@ function _fzf_search_npm_scripts
     set preview_cmd "jq -r '.scripts[\"{}\"]//.scripts.\"{}\"' $package_json_path"
 
     # Use fzf to select npm script
-    set selected_script (printf '%s\n' $scripts | fzf --height=15 --reverse --prompt="NPM Script> " --preview=$preview_cmd)
+    set selected_script (printf '%s\n' $scripts | fzf --height=15 --reverse --no-multi --prompt="NPM Script> " --preview=$preview_cmd)
 
     # If script selected, insert "npm run <script>" at current commandline position
     if test -n "$selected_script"

@@ -150,21 +150,27 @@ set fish_cursor_external line
 # visual mode, but due to fish_cursor_default, is redundant here
 set fish_cursor_visual block
 
-if test -e /home/linuxbrew/.linuxbrew/bin/brew
-	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv fish)"
-	# Keep system binaries (e.g. dbus-monitor) taking precedence over Linuxbrew's
-	# shims, which can be built with incompatible defaults (e.g. a D-Bus socket
-	# path baked in under the Linuxbrew prefix instead of the real system bus).
-	fish_add_path --move /usr/bin
-	fish_add_path --move /sbin
-end
+# brew/luarocks are only needed for interactive work (editor tooling, shell
+# completions); skip them for non-interactive `fish -c ...` invocations (e.g.
+# tmux popups that run one command and exit) to avoid paying their subprocess
+# startup cost on every such invocation.
+if status is-interactive
+	if test -e /home/linuxbrew/.linuxbrew/bin/brew
+		eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv fish)"
+		# Keep system binaries (e.g. dbus-monitor) taking precedence over Linuxbrew's
+		# shims, which can be built with incompatible defaults (e.g. a D-Bus socket
+		# path baked in under the Linuxbrew prefix instead of the real system bus).
+		fish_add_path --move /usr/bin
+		fish_add_path --move /sbin
+	end
 
-if command -q luarocks
-	# luarocks installs rocks into its configured tree but never puts them on
-	# Lua's search path itself; without this, `require()` can't find anything
-	# `luarocks install` just installed.
-	set -gx LUA_PATH (luarocks path --full --lr-path)
-	set -gx LUA_CPATH (luarocks path --full --lr-cpath)
+	if command -q luarocks
+		# luarocks installs rocks into its configured tree but never puts them on
+		# Lua's search path itself; without this, `require()` can't find anything
+		# `luarocks install` just installed.
+		set -gx LUA_PATH (luarocks path --full --lr-path)
+		set -gx LUA_CPATH (luarocks path --full --lr-cpath)
+	end
 end
 
 if test -e $HOME/dotlocal/anthropic_key.txt
@@ -195,7 +201,14 @@ function sesh_load_worktree
 end
 
 function sesh_load
-	set result (sesh list | fzf)
+	# `sesh list` lines are either a path (~-prefixed) or a bare tmux session
+	# name; resolve the latter via tmux before previewing, then show the same
+	# Path/Branch/Commit + directory listing the worktree CLI's fzf preview
+	# shows.
+	# fzf runs preview commands through $SHELL (fish here), so this has to be
+	# fish syntax, not POSIX sh.
+	set preview 'set p (string replace -r "^~" "$HOME" -- {}); if not test -d "$p"; set p (tmux display-message -p -t {} "#{pane_current_path}" 2>/dev/null); end; echo "Path: $p"; echo "Branch: "(git -C "$p" rev-parse --abbrev-ref HEAD 2>/dev/null); echo "Commit: "(git -C "$p" rev-parse HEAD 2>/dev/null); echo; ls -la --color=always "$p" 2>/dev/null'
+	set result (sesh list | fzf --no-multi --preview "$preview")
 	if test -n "$result"
 		sesh connect $result
 	end
@@ -228,8 +241,13 @@ function __reset_terminal --on-event fish_postexec
 end
 
 # Initialization
-zoxide init --cmd cd fish | source
-starship init fish | source
+# Prompt/cd-jump init and shell completions are only useful in an interactive
+# session — skip them for non-interactive `fish -c ...` invocations (see the
+# brew/luarocks guard above for why).
+if status is-interactive
+	zoxide init --cmd cd fish | source
+	starship init fish | source
 
-# Added by GitButler installer
-but completions fish | source
+	# Added by GitButler installer
+	but completions fish | source
+end
