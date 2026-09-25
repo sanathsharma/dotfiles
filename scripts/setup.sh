@@ -29,11 +29,10 @@ source ~/.config/fish/config.fish
 rustup component add rust-analyzer
 
 cargo install cargo-binstall
-cargo binstall rustowl
 cargo install sqlx-cli
 
 cargo install bob-nvim
-bob use nightly (or) bob use stable
+bob use stable # or bob use nightly
 
 GO_VERSION=go1.27.0
 curl -Lo go.tar.gz <https://go.dev/dl/${GO_VERSION}.linux-amd64.tar.gz>
@@ -45,3 +44,6 @@ source ~/.config/fish/config.fish
 curl -fsSL https://claude.ai/install.sh | bash
 
 ./install-lsps.sh
+
+# See https://github.com/cordx56/rustowl/blob/main/docs/installation.md for other installation methods
+cargo binstall rustowl
