@@ -34,6 +34,12 @@ collide, so its better to use one of the other.
 npx skills add https://github.com/cursor/plugins --skill unslop
 ```
 
+### Install rust-best-practices skill
+
+```sh
+npx skills@latest add stolinski/s-stack --skill rust-best-practices
+```
+
 ### Sample .claude/settings.json
 
 ```json
