@@ -35,8 +35,10 @@ abbr -a wifi "impala"
 abbr -a bluetooth "bluetui"
 abbr -a commit "sh ~/scripts/commit.sh"
 abbr -a h "hunk diff"
+abbr -a hs "hunk diff --staged"
 abbr -a hash "openssl rand -base64 32"
 abbr -a so "source ~/.config/fish/config.fish && fish_user_key_bindings"
+abbr -a review "coderabbit review --plain --type uncommitted"
 
 # Alias
 alias ls="exa -l --icons -a --git"

@@ -45,5 +45,8 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 ./install-lsps.sh
 
+cargo install cargo-audit
+cargo install cargo-deny
+
 # See https://github.com/cordx56/rustowl/blob/main/docs/installation.md for other installation methods
 cargo binstall rustowl
