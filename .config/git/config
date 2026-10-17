@@ -66,11 +66,12 @@
 	path = "~/dotlocal/.gitconfig"
 	path = "~/.config/delta/theme.gitconfig"
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = delta --color-only --tabs 2
 [delta]
 	navigate = true  # use n and N to move between diff sections
 	dark = true      # or light = true, or omit for auto-detection
 	features = catppuccin-mocha
 	side-by-side = true
 	line-numbers = true
+	tabs = 2
 

@@ -94,7 +94,7 @@ function M.setup()
 				-- Use the native fzf previewer for better integration with shell pagers
 				previewer = "codeaction_native",
 				-- Configure delta for syntax-highlighted diff previews
-				preview_pager = "delta --side-by-side --width=$FZF_PREVIEW_COLUMNS --hunk-header-style='omit' --file-style='omit'",
+				preview_pager = "delta --side-by-side --width=$FZF_PREVIEW_COLUMNS --hunk-header-style='omit' --file-style='omit' --tabs=2",
 			},
 		},
 	})
