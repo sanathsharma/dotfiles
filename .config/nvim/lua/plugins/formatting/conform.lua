@@ -1,18 +1,5 @@
 local M = {}
 
-local stylelint_files = {
-	".stylelintrc",
-	".stylelintrc.mjs",
-	".stylelintrc.cjs",
-	".stylelintrc.js",
-	".stylelintrc.json",
-	".stylelintrc.yaml",
-	".stylelintrc.yml",
-	"stylelint.config.mjs",
-	"stylelint.config.cjs",
-	"stylelint.config.js",
-}
-
 local function concat_formatters(formatters)
 	local names = {}
 	for _, formatter in ipairs(formatters) do
@@ -34,168 +21,20 @@ local function get_range_from_usrcmd_args(args)
 	return range
 end
 
----@param path_one string
----@param current_buffer string
-local function get_distance_to(path_one, current_buffer)
-	if path_one == nil then
-		return math.huge
-	end
-
-	local common_prefix = ""
-	local current_remaining = ""
-	local other_remaining = ""
-
-	for i = 1, math.min(#current_buffer, #path_one) do
-		if current_buffer:sub(i, i) == path_one:sub(i, i) then
-			common_prefix = common_prefix .. current_buffer:sub(i, i)
-		else
-			current_remaining = current_buffer:sub(i)
-			other_remaining = path_one:sub(i)
-			break
-		end
-	end
-
-	-- Calculate the distance by counting directory separators
-	local distance = 0
-
-	for _ in current_remaining:gmatch("/") do
-		distance = distance + 1
-	end
-
-	for _ in other_remaining:gmatch("/") do
-		distance = distance + 1
-	end
-
-	return distance
-end
-
--- Inspired by https://github.com/asilvadesigns/config/blob/87adf2bdc22c4ca89d1b06b013949d817b405e77/nvim/lua/plugins/conform.lua#L63
----@param _formatters table<string, string[]>
----@return string[] | nil
-local function get_closest_formatter(_formatters)
-	---@type string
-	local current_buffer_path = vim.api.nvim_buf_get_name(0)
-
-	local available_formatters = require("conform").list_formatters(0)
-	local keys_to_include = {}
-	for _, value in ipairs(available_formatters) do
-		table.insert(keys_to_include, value.name)
-	end
-	---@type table<string, string[]>
-	_formatters = require("core.utils").filterTable(_formatters, keys_to_include)
-
-	---@type table<string, number>
-	local distance = {}
-
-	for formatter_name, formatter_configs in pairs(_formatters) do
-		local formatter_config_path = nil
-
-		for _, v in ipairs(formatter_configs) do
-			local stop_dir = require("lspconfig.util").root_pattern(".git")(v)
-			formatter_config_path = vim.fs.find(v, {
-				path = current_buffer_path,
-				stop = stop_dir,
-				upward = true,
-				type = "file",
-			})
-			if not formatter_config_path or #formatter_config_path == 0 then
-				if stop_dir then
-					local file_path = vim.fs.joinpath(stop_dir, v)
-					if vim.fn.filereadable(file_path) == 1 then
-						formatter_config_path = { file_path }
-					end
-				end
-			end
-
-			if formatter_config_path[1] ~= nil then
-				break
-			end
-		end
-
-		if formatter_config_path[1] ~= nil then
-			distance[formatter_name] = get_distance_to(formatter_config_path[1], current_buffer_path)
-		end
-	end
-
-	---@type string|nil
-	local shortest_path_key = nil
-	---@type number
-	local shortest_path_val = math.huge
-	---@type table<string, boolean>
-	local tied_formatters = {}
-
-	for formatter_name, formatter_distance in pairs(distance) do
-		if formatter_distance < shortest_path_val then
-			shortest_path_key = formatter_name
-			shortest_path_val = formatter_distance
-			tied_formatters = { [formatter_name] = true }
-		elseif formatter_distance == shortest_path_val then
-			tied_formatters[formatter_name] = true
-		end
-	end
-
-	if shortest_path_key == nil then
-		return nil
-	end
-
-	---@type string[]
-	local result = {}
-	for formatter_name in pairs(tied_formatters) do
-		table.insert(result, formatter_name)
-	end
-
-	return result
-end
-
 local function setup_usercmds()
 	vim.api.nvim_create_user_command("Fmt", function(args)
 		local range = get_range_from_usrcmd_args(args)
 
-		-- Inspired by https://github.com/asilvadesigns/config/blob/87adf2bdc22c4ca89d1b06b013949d817b405e77/nvim/lua/plugins/conform.lua#L145
-		local formatters_with_config = get_closest_formatter({
-			stylelint = stylelint_files,
-			["biome-check"] = { "biome.json" },
-			prettierd = { ".prettierrc", "prettier.config.js", ".prettierrc.json" },
-		})
-
 		local fidget = require("fidget")
 
 		local conform = require("conform")
-		if not formatters_with_config then
-			conform.format({ async = true, lsp_format = "fallback", range = range })
+		conform.format({ async = true, lsp_format = "fallback", range = range })
 
-			local bufnr = vim.api.nvim_get_current_buf()
-			local formatters = conform.list_formatters_to_run(bufnr)
-			local text = #formatters > 0 and concat_formatters(formatters) or "lsp"
-			fidget.notify("Formatting with " .. text, vim.log.levels.INFO)
-		else
-			conform.format({
-				async = true,
-				formatters = formatters_with_config,
-				lsp_fromat = "never",
-				range = range,
-			})
-
-			local running_formatters_str = vim.iter(formatters_with_config):join(", ")
-			fidget.notify("Formatting with " .. running_formatters_str, vim.log.levels.INFO)
-		end
+		local bufnr = vim.api.nvim_get_current_buf()
+		local formatters = conform.list_formatters_to_run(bufnr)
+		local text = #formatters > 0 and concat_formatters(formatters) or "lsp"
+		fidget.notify("Formatting with " .. text, vim.log.levels.INFO)
 	end, { range = true })
-
-	vim.api.nvim_create_user_command("Fmtb", function()
-		require("conform").format({
-			async = true,
-			formatters = { "biome-check" },
-		})
-		require("fidget").notify("Running biome formatting", vim.log.levels.INFO)
-	end, {})
-
-	vim.api.nvim_create_user_command("Fmtp", function()
-		require("conform").format({
-			async = true,
-			formatters = { "prettierd" },
-		})
-		require("fidget").notify("Running prettierd formatting", vim.log.levels.INFO)
-	end, {})
 
 	vim.api.nvim_create_user_command("FmtWith", function(args)
 		local conform = require("conform")
@@ -222,20 +61,6 @@ local function setup_usercmds()
 			},
 		})
 	end, { range = true })
-
-	vim.api.nvim_create_autocmd("FileType", {
-		pattern = { "css", "scss", "less", "sass", "stylus" },
-		callback = function()
-			vim.api.nvim_create_user_command("FmtCss", function(args)
-				require("conform").format({
-					async = true,
-					formatters = { "stylelint", "biome-check" },
-					range = get_range_from_usrcmd_args(args),
-				})
-				require("fidget").notify("Running stylelint, biome-check formatting", vim.log.levels.INFO)
-			end, { range = true })
-		end,
-	})
 
 	vim.api.nvim_create_user_command("Fmtlsp", function()
 		require("conform").format({ async = true })
@@ -291,28 +116,110 @@ local function setup_usercmds()
 	end, {})
 end
 
+local util = require("conform.util")
+
+local function has(bufnr, pkg)
+	return vim.fs.root(bufnr, "node_modules/" .. pkg) ~= nil
+end
+
+local function js_formatters(bufnr)
+	-- Vite+ bundles Oxlint + Oxfmt
+	if has(bufnr, "vite-plus") then
+		return { "vp_lint", "vp_fmt" }
+	end
+
+	-- Biome handles lint fixes and formatting in one pass
+	if has(bufnr, "@biomejs/biome") then
+		return { "biome-check" }
+	end
+
+	local list = {}
+
+	-- linter fixes first
+	if has(bufnr, "oxlint") then
+		table.insert(list, "oxlint")
+	end
+
+	-- then one formatter
+	if has(bufnr, "oxfmt") then
+		table.insert(list, "oxfmt")
+	elseif has(bufnr, "prettier") then
+		table.insert(list, "prettierd")
+	end
+
+	return list
+end
+
+local function css_formatters(bufnr)
+	local list = {}
+
+	if has(bufnr, "stylelint") then
+		table.insert(list, "stylelint")
+	end
+
+	if has(bufnr, "@biomejs/biome") then
+		table.insert(list, "biome-check")
+	end
+
+	if has(bufnr, "prettier") then
+		table.insert(list, "prettierd")
+	end
+
+	if has(bufnr, "oxlint") then
+		table.insert(list, "oxlint")
+	end
+
+	if has(bufnr, "oxfmt") then
+		table.insert(list, "oxfmt")
+	end
+
+	return list
+end
+
 function M.setup()
 	require("conform").setup({
 		formatters_by_ft = {
 			c = { "clang_format" },
 			cpp = { "clang_format" },
-			css = { "stylelint", "biome-check", "prettierd", stop_after_first = true },
-			html = { "biome-check", "prettierd", stop_after_first = true },
-			javascript = { "biome-check", "prettierd", stop_after_first = true },
-			javascriptreact = { "biome-check", "prettierd", stop_after_first = true },
-			json = { "biome-check", "prettierd", stop_after_first = true },
-			jsonc = { "biome-check", "prettierd", stop_after_first = true },
+			css = css_formatters,
+			html = js_formatters,
+			javascript = js_formatters,
+			javascriptreact = js_formatters,
+			json = js_formatters,
+			jsonc = js_formatters,
 			lua = { "stylua" },
 			rust = { "rustfmt" },
 			sh = { "shfmt" },
 			sql = { "sql_formatter" },
-			svelte = { "biome-check", "prettierd" },
-			typescript = { "biome-check", "prettierd", stop_after_first = true },
-			typescriptreact = { "biome-check", "prettierd", stop_after_first = true },
+			svelte = js_formatters,
+			typescript = js_formatters,
+			typescriptreact = js_formatters,
 			yaml = { "yamlfmt" },
 			toml = { "taplo" },
 		},
 		formatters = {
+			["biome-check"] = {
+				command = util.from_node_modules("@biomejs/biome"),
+				cwd = require("conform.util").root_file({ "biome.json" }),
+				require_cwd = true, -- skip if no root file was found
+			},
+			prettierd = {
+				cwd = require("conform.util").root_file({ ".prettierrc", "prettier.config.js", ".prettierrc.json" }),
+				require_cwd = true, -- skip if no root file was found
+			},
+			vp_fmt = {
+				command = util.from_node_modules("vp"),
+				args = { "fmt", "--stdin-filepath", "$FILENAME" },
+				stdin = true,
+				cwd = util.root_file({ "vite.config.ts", "vite.config.mts", "vite.config.js", "vite.config.mjs" }),
+			},
+			vp_lint = {
+				command = util.from_node_modules("vp"),
+				args = { "lint", "--fix", "$FILENAME" },
+				stdin = false,
+				exit_codes = { 0, 1 }, -- don't fail the format when unfixable lint errors remain
+				cwd = util.root_file({ "vite.config.ts", "vite.config.mts", "vite.config.js", "vite.config.mjs" }),
+			},
 			sql_formatter = {
 				meta = {
 					url = "https://github.com/sql-formatter-org/sql-formatter",
