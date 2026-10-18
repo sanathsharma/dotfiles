@@ -16,6 +16,8 @@ local enable_lsps = {
 	"jsonls",
 	"lua_ls",
 	"marksman", -- markdown
+	"oxfmt",
+	"oxlint",
 	"stylelint_lsp",
 	"svelte",
 	"tailwindcss",
