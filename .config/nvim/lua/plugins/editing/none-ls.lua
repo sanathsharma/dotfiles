@@ -6,6 +6,7 @@ function M.setup()
 		sources = {
 			null_ls.builtins.code_actions.refactoring,
 			null_ls.builtins.code_actions.ts_node_action,
+			null_ls.builtins.diagnostics.fish,
 		},
 	})
 end
