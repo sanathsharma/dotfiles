@@ -20,6 +20,7 @@ link:
 	ln -s $(pwd)/.config/sql-formatter ~/.config/sql-formatter
 	ln -s $(pwd)/.config/scribble ~/.config/scribble
 	ln -s $(pwd)/.config/lazygit ~/.config/lazygit
+	ln -s $(pwd)/.config/tuicr ~/.config/tuicr
 
 clean:
 	rm -rf ~/.config/nvim
@@ -43,3 +44,4 @@ clean:
 	rm -rf ~/.config/sql-formatter
 	rm -rf ~/.config/scribble
 	rm -rf ~/.config/lazygit
+	rm -rf ~/.config/tuicr

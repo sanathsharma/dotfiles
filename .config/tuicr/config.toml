@@ -1,0 +1,8 @@
+theme = "catppuccin-mocha"
+diff_view = "side-by-side"   # or "unified"
+ignore_whitespace = false    # ignore all whitespace in local VCS diffs
+mouse = true
+leader = ";"                 # configurable prefix for leader shortcuts
+editor = "nvim"              # editor for `e` / `:edit`; overrides $EDITOR
+comment_vim = true           # vim modal editing in the review comment box
+relative_line_numbers = true # show rendered-row distances in the diff gutter
