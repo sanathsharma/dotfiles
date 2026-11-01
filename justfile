@@ -21,6 +21,7 @@ link:
 	ln -s $(pwd)/.config/scribble ~/.config/scribble
 	ln -s $(pwd)/.config/lazygit ~/.config/lazygit
 	ln -s $(pwd)/.config/tuicr ~/.config/tuicr
+	ln -s $(pwd)/.config/hunk ~/.config/hunk
 
 clean:
 	rm -rf ~/.config/nvim
@@ -45,3 +46,4 @@ clean:
 	rm -rf ~/.config/scribble
 	rm -rf ~/.config/lazygit
 	rm -rf ~/.config/tuicr
+	rm -rf ~/.config/hunk
