@@ -92,6 +92,7 @@ set -Ux FZF_DEFAULT_OPTS "\
 set -Ux FZF_DEFAULT_COMMAND ""
 set -Ux FZF_COMPLETION_TRIGGER "~~"
 set -gx VOLTA_HOME "$HOME/.volta"
+set -gx STARSHIP_LOG error
 
 # Path
 # For Linux
