@@ -72,6 +72,9 @@ fi
 echo "Installing prettierd for fast JavaScript formatting..."
 npm install -g @fsouza/prettierd
 
+# Install oxc fmt and linters
+npm i -g oxfmt oxlint
+
 # Svelte
 echo "Installing Svelte language server..."
 npm install -g svelte-language-server
