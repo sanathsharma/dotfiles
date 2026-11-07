@@ -23,6 +23,7 @@ link:
 	ln -s $(pwd)/.config/tuicr ~/.config/tuicr
 	ln -s $(pwd)/.config/hunk ~/.config/hunk
 	ln -s $(pwd)/.config/tuxedo ~/.config/tuxedo
+	ln -s $(pwd)/.config/dunk ~/.config/dunk
 
 clean:
 	rm -rf ~/.config/nvim
@@ -49,3 +50,4 @@ clean:
 	rm -rf ~/.config/tuicr
 	rm -rf ~/.config/hunk
 	rm -rf ~/.config/tuxedo
+	rm -rf ~/.config/dunk

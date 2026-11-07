@@ -1,0 +1,31 @@
+[diff]
+layout = "split"
+context = 5
+
+[ui]
+border = "rounded"
+
+[syntax]
+enabled = true
+theme = "Catppuccin Mocha"
+
+[watch]
+enabled = true
+
+[highlights]
+Normal = { fg = "#cdd6f4", bg = "#1e1e2e" }
+Border = { fg = "#585b70" }
+DiffBorder = { fg = "#89b4fa" }
+CursorLine = { bg = "#313244" }
+SectionLabel = { fg = "#cba6f7", bold = true }
+ModeNormal = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
+ModeVisual = { fg = "#1e1e2e", bg = "#cba6f7", bold = true }
+DiffHunkBar = { fg = "#89b4fa" }
+
+DiffAdd = { bg = "#394545" }
+DiffDelete = { bg = "#493446" }
+DiffAddText = { bg = "#546d5c" }
+DiffDeleteText = { bg = "#734a5f" }
+DiffHunkHeader = { fg = "#89b4fa" }
+DiffCurrentHunk = { bg = "#313244", bold = true }
+Visual = { bg = "#585b70" }
