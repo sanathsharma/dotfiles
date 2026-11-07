@@ -39,6 +39,7 @@ abbr -a hs "hunk diff --staged"
 abbr -a hash "openssl rand -base64 32"
 abbr -a so "source ~/.config/fish/config.fish && fish_user_key_bindings"
 abbr -a review "coderabbit review --plain --type uncommitted"
+abbr -a tux "tuxedo"
 
 # Alias
 alias ls="exa -l --icons -a --git"
