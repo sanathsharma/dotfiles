@@ -1,6 +1,8 @@
 none
+agentop
 delta
 dtop
+dunk
 fish
 git
 hunk
@@ -11,5 +13,6 @@ nvim
 scripts
 starship
 tmux
+tuicr
 worktree
 yazi
