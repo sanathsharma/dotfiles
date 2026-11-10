@@ -20,6 +20,7 @@ CursorLine = { bg = "#313244" }
 SectionLabel = { fg = "#cba6f7", bold = true }
 ModeNormal = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
 ModeVisual = { fg = "#1e1e2e", bg = "#cba6f7", bold = true }
+ModeRestore = { fg = "#1e1e2e", bg = "#f38ba8", bold = true }
 DiffHunkBar = { fg = "#cdd6f4" }
 DiffHunkBarStaged = { fg = "#89b4fa" }
 
