@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+[ -d ~/tux ] || mkdir ~/tux
+
 apt update -y
 apt upgrade -y
 
