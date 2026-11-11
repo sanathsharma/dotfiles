@@ -6,17 +6,4 @@ return {
 		end,
 	},
 	{ "sindrets/diffview.nvim", lazy = true },
-	{
-		"NeogitOrg/neogit",
-		lazy = true,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"sindrets/diffview.nvim",
-			"ibhagwan/fzf-lua",
-		},
-		cmd = "Neogit",
-		config = function()
-			require("plugins.git.neogit").setup()
-		end,
-	},
 }
