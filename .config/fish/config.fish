@@ -72,6 +72,7 @@ alias dbconnect="lua ~/scripts/dbconnect.lua"
 # Set variables
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+set -gx SUDO_EDITOR nvim
 set -gx GIT_EDITOR nvim
 set -gx GOPATH $HOME/go
 set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
