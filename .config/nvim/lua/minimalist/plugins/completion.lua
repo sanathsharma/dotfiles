@@ -31,10 +31,4 @@ return {
 			require("plugins.completion.luasnip").setup()
 		end,
 	},
-	{
-		"supermaven-inc/supermaven-nvim",
-		config = function()
-			require("plugins.completion.supermaven").setup()
-		end,
-	},
 }
