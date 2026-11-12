@@ -38,6 +38,13 @@ function M.setup()
 				end,
 				"fallback",
 			},
+			-- on-demand Claude suggestions; never auto-triggers
+			["<M-c>"] = {
+				function(cmp)
+					return require("plugins.completion.sources.claude").trigger(cmp)
+				end,
+				"fallback",
+			},
 			["<C-s>"] = {
 				function(cmp)
 					return cmp.show({ providers = { "snippets" } })
@@ -54,7 +61,17 @@ function M.setup()
 
 		completion = {
 			documentation = { auto_show = true },
-			list = { selection = { auto_insert = true, preselect = false } },
+			list = {
+				selection = {
+					-- Claude menu: highlight the first suggestion but write nothing into the buffer until accept
+					preselect = function(ctx)
+						return require("plugins.completion.sources.claude").is_claude_context(ctx)
+					end,
+					auto_insert = function(ctx)
+						return not require("plugins.completion.sources.claude").is_claude_context(ctx)
+					end,
+				},
+			},
 			accept = { auto_brackets = { enabled = false } },
 			menu = {
 				auto_show = true,
@@ -73,7 +90,11 @@ function M.setup()
 					},
 				},
 			},
-			ghost_text = { enabled = true },
+			ghost_text = {
+				enabled = function()
+					return not require("plugins.completion.sources.claude").is_active()
+				end,
+			},
 		},
 
 		cmdline = {
@@ -108,6 +129,14 @@ function M.setup()
 					module = "lazydev.integrations.blink",
 					-- make lazydev completions top priority (see `:h blink.cmp`)
 					score_offset = 100,
+				},
+				-- not in sources.default: runs only via <M-c>
+				claude = {
+					name = "Claude",
+					module = "plugins.completion.sources.claude",
+					async = true,
+					timeout_ms = 30000,
+					opts = { model = "haiku", num_suggestions = 3 },
 				},
 				alias = {
 					name = "Alias",
